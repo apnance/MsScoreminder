@@ -237,7 +237,7 @@ struct ScoreManager : Codable {
         for (level, count) in levelTally!.enumerated() {
             
             let percent = ((count.double / gamesCount.double) * 100).roundTo(1)
-            rowData.append([Score.levelString[level], "\(count)", "\(percent)%"])
+            rowData.append([Score.nameFor(level: level), "\(count)", "\(percent)%"])
             
         }
         
