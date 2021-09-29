@@ -7,39 +7,60 @@
 
 import APNUtils
 
-struct Score: Codable, CustomStringConvertible {
+struct Score: Codable {
     
-    static let levels = ["*", "$", "@", "&", "#", "¿", ")", ")2", ")3", ")4"]
-    static let levelString = ["Cherry",
-                              "Strawberry",
-                              "Orange",
-                              "Pretzel",
-                              "Apple", "Pear",
-                              "Banana",
-                              "Banana2",
-                              "Banana3",
-                              "Banana4"]
+    private static let levels = ["*", "$", "@", "&", "#", "¿", ")", ")2", ")3", ")4", ")5", ")6"]
+    private static let levelNames = ["Cherry",
+                                     "Strawberry",
+                                     "Orange",
+                                     "Pretzel",
+                                     "Apple", "Pear",
+                                     "Banana",
+                                     "Banana2",
+                                     "Banana3",
+                                     "Banana4",
+                                     "Banana5",
+                                     "Banana6"]
     
-    static let levelColors: [Int : UIColor] = [0 : UIColor(named: "Cherry")!,
-                                               1 : UIColor(named: "Strawberry")!,
-                                               2 : UIColor(named: "Orange")!,
-                                               3 : UIColor(named: "Pretzel")!,
-                                               4 : UIColor(named: "Apple")!,
-                                               5 : UIColor(named: "Pear")!,
-                                               6 : UIColor(named: "Banana")!,
-                                               7 : UIColor(named: "Banana")!,
-                                               8 : UIColor(named: "Banana")!,
-                                               9 : UIColor(named: "Banana")!]
+    static var levelCount: Int { 9 }
+    
+    static func colorFor(level: Int) -> UIColor {
+        
+        UIColor(named: levelNames[level]) ?? UIColor.cyan
+        
+    }
+    
+    static func stringFor(level: Int) -> String {
+        
+        levels[level]
+        
+    }
+    
+    static func nameFor(level: Int) -> String {
+        
+        levelNames[level]
+        
+    }
+    
+    static func iconFor(level: Int) -> UIImage? {
+        
+        UIImage(named: "ms_icon_\(level)")
+        
+    }
     
     var date: Date
     var score: Int
     var level: Int
     
     var displayScore: String { score.delimited }
-    var levelString: String { Score.levels[level] }
-    var levelColor: UIColor { Score.levelColors[level] ?? UIColor.cyan }
+    var levelString: String { Score.stringFor(level: level) }
+    var levelColor: UIColor { Score.colorFor(level: level) }
     
-    var levelIconImage: UIImage { UIImage(named: "ms_icon_\(level)")! }
+    var levelIcon: UIImage { UIImage(named: "ms_icon_\(level)")! }
+    
+}
+
+extension Score: CustomStringConvertible {
     
     var description: String {
         
@@ -48,4 +69,3 @@ struct Score: Codable, CustomStringConvertible {
     }
     
 }
-
