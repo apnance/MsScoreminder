@@ -96,6 +96,8 @@ struct ScoreManager : Codable {
                 data.remove(at: i)
                 self.data[score.date.simple] = data
                 
+                tallyStats()
+                
                 return /*EXIT*/
                 
             }
@@ -110,7 +112,7 @@ struct ScoreManager : Codable {
 
         gamesCount = 0
                 
-        levelTally = Array(repeating: 0, count: Score.levels.count)
+        levelTally = Array(repeating: 0, count: Score.levelCount)
         
         var highScore: Score?
         var high = 0
