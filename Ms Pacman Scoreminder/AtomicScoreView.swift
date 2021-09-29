@@ -38,8 +38,7 @@ class AtomicScoreView: UIView {
         self.score = score
         scoreView.text  = score.score.delimited
         dateView.text   = score.date.simple
-        
-        fruitView.image = score.levelIconImage
+        fruitView.image = score.levelIcon
         
         layer.cornerRadius              = frame.height / 5.0
         clipsToBounds                   = true
