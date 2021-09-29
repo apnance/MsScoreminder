@@ -21,15 +21,16 @@ class ViewController: UIViewController {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var scoresView: UIView!
     
+    @IBOutlet weak var roundView: RoundView!
     @IBOutlet weak var deleteContainerView: UIView!
     @IBOutlet weak var deleteScoreContainerView: UIView!
     
+    @IBOutlet weak var deleteScoreLabel: UILabel!
     @IBAction func didTapDeleteScore(_ sender: UIButton) {
         
-        hideDelete()
+        showDeleteConfirmation(false)
         
         if sender.tag == 1 { delete(score: scoreToDelete) }
-        
         
     }
     
@@ -48,33 +49,38 @@ class ViewController: UIViewController {
         
     }
     
-    
-    private func hideDelete() {
+    private func showDeleteConfirmation(_ shouldShow: Bool) {
         
-        deleteContainerView.isHidden = true
+        deleteContainerView.isHidden = !shouldShow
         
     }
     
     private func confirmDeletion(of score: Score) {
         
-        let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: "AtomicScoreView", bundle: bundle)
-        let scoreView = nib.instantiate(withOwner: self, options: nil).first as! AtomicScoreView
-        scoreView.load(score: score)
+        let scoreView = AtomicScoreView.new(delegate: nil, withScore: score)
         
         deleteScoreContainerView.removeAllSubviews()
+        deleteScoreContainerView.translatesAutoresizingMaskIntoConstraints = true
         deleteScoreContainerView.addSubview(scoreView)
         
-        scoreView.centerXAnchor.constraint(equalTo: deleteScoreContainerView.centerXAnchor).isActive = true
-        scoreView.centerYAnchor.constraint(equalTo: deleteScoreContainerView.centerYAnchor).isActive = true
-        
-        scoreView.heightAnchor.constraint(equalToConstant: h).isActive = true
-        scoreView.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        
-        scoreView.setNeedsLayout()
+        scoreView.center = deleteScoreContainerView.frame.center
         
         deleteContainerView.isHidden = false
         
+    }
+ 
+    
+    func outlineLabel(_ label: UILabel) {
+        
+        let strokeTextAttributes = [
+            NSAttributedString.Key.strokeColor : UIColor(named: "Banana")!,
+            NSAttributedString.Key.foregroundColor : UIColor(named: "Pink")!,
+            NSAttributedString.Key.font : label.font!,
+            NSAttributedString.Key.strokeWidth : -3.5,
+
+        ] as [NSAttributedString.Key : Any]
+        
+        label.attributedText = NSMutableAttributedString(string: label.attributedText?.string ?? label.text ?? "-?-", attributes: strokeTextAttributes)
         
     }
     
@@ -85,57 +91,68 @@ class ViewController: UIViewController {
         
         print("Deleting: \(score)")
         
-        //
-        //        scoreInput.text = score.score.description
         scoreMan.remove(score)
         archive()
-        //        levelSelector.selectedSegmentIndex = score.level
-        //        scoreDidChange(sender: scoreInput)
-        //
+        
         scoreToDelete = nil
         updateVolatileUI()
-        
-        
         
     }
     
     private func scoreUI() {
         
-        let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: "AtomicScoreView", bundle: bundle)
+        scoresView.addDashedBorder(.white, width: 5, dashPattern: [0.1,12], lineCap: .round)
         
-        let scores = scoreMan.getLast(10)
+        let scores = scoreMan.getLast(18)
+        let colCount = Int(scoresView.frame.width) / Int(w)
+        var col = 1
         
-        var scoreCount = 0
-        let rowCount = Int(scoresView.frame.width) / Int(w)
-        
-        var row = 1
+        var (xO, yO) = ((scoresView.frame.width / colCount.double) / 2.0, (h + p) * 0.55)
         
         scoresView.removeAllSubviews()
         
         for score in scores {
             
-            let scoreView = nib.instantiate(withOwner: self, options: nil).first as! AtomicScoreView
+            let scoreView = AtomicScoreView.new(delegate: self,
+                                                withScore: score)
             
-            scoreView.load(score: score)
-            scoreView.translatesAutoresizingMaskIntoConstraints = false
+            scoreView.translatesAutoresizingMaskIntoConstraints = true
             scoresView.addSubview(scoreView)
             
-            scoreView.delegate = self
-            //            scoreView.borderView.layer.borderColor = score.levelColor.cgColor
+            // Layout
+            scoreView.center = CGPoint(x: xO, y: yO)
             
-            scoreView.heightAnchor.constraint(equalToConstant: h).isActive = true
-            scoreView.widthAnchor.constraint(equalToConstant: w).isActive = true
+            col += 1
             
-            let xO = (scoresView.frame.width / (rowCount.double + 1)) * row.double
-            let yO = (h + p) * (scoreCount / rowCount).double
+            if col > colCount {
+                
+                xO = (scoresView.frame.width / colCount.double) / 2.0
+                col = 1
+                
+                yO += (h + p)
+                
+            } else {
+                
+                xO += scoresView.frame.width / colCount.double
+
+            }
             
+        }
+        
+    }
+    
+    private func addShadows() {
+        
+        let views = [scoresView!,
+                     roundView!,
+                     deleteScoreContainerView!,
+                     deleteScoreLabel!]
+        
+        for view in views {
             
-            scoreView.centerXAnchor.constraint(equalTo: scoresView.leadingAnchor, constant: xO).isActive = true
-            scoreView.topAnchor.constraint(equalTo: scoresView.topAnchor, constant: yO).isActive = true
-            scoreCount += 1
-            row += 1
-            row = row > rowCount ? 1 : row
+            view.layer.shadowColor   = UIColor.black.cgColor
+            view.layer.shadowOffset  = CGSize(width: 5, height: 2)
+            view.layer.shadowOpacity = Float(0.3)
             
         }
         
@@ -146,9 +163,14 @@ class ViewController: UIViewController {
     // TODO: Clean Up - factor out several sub-func from initUI()
     private func initUI() {
         
-        hideDelete()
+        outlineLabel(deleteScoreLabel)
+        outlineLabel(highscoreLabel)
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(sender:)))
+        showDeleteConfirmation(false)
+        
+        addShadows()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleMainBodyTap(sender:)))
         mainView.addGestureRecognizer(tap)
         
         backgroundStripeView.layer.cornerRadius = backgroundStripeView.frame.width * 0.47
@@ -171,12 +193,11 @@ class ViewController: UIViewController {
         let selectedAtts = [NSAttributedString.Key.foregroundColor: UIColor.white as Any]
         levelSelector.setTitleTextAttributes(selectedAtts, for: .selected)
         
-        for segment in 0..<Score.levels.count {
+        for segment in 0..<Score.levelCount {
             
-            levelSelector.insertSegment(withTitle: Score.levels[segment], at: segment, animated: false)
-            
-            levelSelector.setImage(UIImage(named: "ms_icon_\(segment)"), forSegmentAt: segment)
-            
+            levelSelector.insertSegment(with: Score.iconFor(level: segment),
+                                        at: segment,
+                                        animated: false)
             
         }
         
@@ -187,11 +208,18 @@ class ViewController: UIViewController {
         
     }
     
-    @objc func dismissKeyboard(sender: Any) { scoreInput.resignFirstResponder() }
+    @objc func handleMainBodyTap(sender: Any) {
+        
+        scoreInput.resignFirstResponder()
+        
+        // Hide
+        showDeleteConfirmation(false)
+        
+    }
     
     @objc func selectLevel(sender: UISegmentedControl) {
         
-        dismissKeyboard(sender: self)
+        handleMainBodyTap(sender: self)
         
         let scoreText = scoreInput.text!
         
