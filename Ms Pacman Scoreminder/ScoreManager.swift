@@ -347,9 +347,6 @@ struct ScoreManager : Codable {
         
     }
      
-    // TODO: Clean Up - make sure getDataJSON and getExportData are used elsewhere
-    func getDataJSON() -> String? { data.jsonString }
-    
     func getExportData() -> CSV {
         
         var output = ""
