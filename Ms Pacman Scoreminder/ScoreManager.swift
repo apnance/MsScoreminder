@@ -7,10 +7,50 @@
 
 import APNUtils
 
+typealias CSV = String
+
+enum Filter: Codable {
+    
+    case last
+    case highs
+    case lows
+    
+    mutating func cycleNext() {
+        
+        switch self {
+            
+        case .last: self = .highs
+            
+        case .highs: self = .lows
+            
+        case .lows: self = .last
+            
+        }
+        
+    }
+    
+    var labelText: String {
+
+        switch self {
+            
+        case .last:     return "Recent Scores"
+            
+        case .highs:    return "High Scores"
+            
+        case .lows:     return "Low Scores"
+            
+        }
+        
+    }
+    
+}
+
 struct ScoreManager : Codable {
 
     private var gamesCount = 0
     private var highScore: Score?
+    
+    private var filter: Filter? = .last
     
     // Array for tracking number of games played to each level.
     private var levelTally: [Int]?
@@ -34,15 +74,31 @@ struct ScoreManager : Codable {
         
     }
     
-    private var scoresSorted: [Score] {
+    private var scoresDateSorted: [Score] {
         
         scores.sorted{ $0.date > $1.date }
         
     }
     
+    private var scoresHighSorted: [Score] {
+        
+        scores.sorted{ $0.score > $1.score }
+        
+    }
+    
+    private var scoresLowSorted: [Score] {
+        
+        scores.sorted{ $0.score < $1.score }
+        
+    }
+
+    
     init() {
         
         data = [String : [Score]]()
+        
+        // TODO: Clean Up - Test deleting this line that attempts to initalize filter, fairly certain it's redundant.
+        filter = filter ?? .highs
                 
     }
     
@@ -62,8 +118,8 @@ struct ScoreManager : Codable {
         
         for i in 0..<currData.count {
             
-            if currData[i].score == score.score {
-                
+            if currData[i] == score {
+
                 currData[i] = score
                 
                 self.data[score.date.simple] = currData
@@ -84,6 +140,12 @@ struct ScoreManager : Codable {
         
     }
     
+    mutating func cylecFilter() {
+        
+        filter?.cycleNext()
+        
+    }
+    
     mutating func remove(_ score: Score) {
         
         guard var data = data[score.date.simple]
@@ -91,7 +153,7 @@ struct ScoreManager : Codable {
         
         for i in 0..<data.count {
             
-            if data[i].score == score.score {
+            if data[i] == score {
                 
                 data.remove(at: i)
                 self.data[score.date.simple] = data
@@ -168,16 +230,47 @@ struct ScoreManager : Codable {
     
     }
     
-    func getLast(_ count: Int) -> [Score] {
+    func getRank(_ score: Score) -> Int {
+        
+        
+        for (i, data) in scoresHighSorted.enumerated() {
+            
+            if score == data { return i + 1 /*EXIT*/ }
+            
+        }
+        
+        return -1 /*EXIT*/
+        
+    }
+    
+    mutating func filter(count: Int) -> [Score] {
         
         let end = min(count, gamesCount) - 1
         
         if end < 0 { return [] }
         
-        return scoresSorted.sub(start: 0, end: end)
+        switch filter {
+        case .highs:
+            return scoresHighSorted.sub(start: 0, end: end)
+            
+        case .last:
+            return scoresDateSorted.sub(start: 0, end: end)
+            
+        case .lows:
+            return scoresLowSorted.sub(start: 0, end: end)
+            
+        default: filter = .highs
+            return scoresHighSorted.sub(start: 0, end: end)
+            
+        }
+        
         
     }
-    
+    func getFilterLabel() -> String {
+        
+        filter?.labelText ?? "-?-"
+        
+    }
     func getScores(forDateString date: String) -> [Score] {
         
         data[date] ?? [Score]()
@@ -189,7 +282,7 @@ struct ScoreManager : Codable {
         
         var scoreArray = [[String]]()
                 
-        let scores = scoresSorted
+        let scores = scoresDateSorted
         
         for score in scores {
             
@@ -253,7 +346,24 @@ struct ScoreManager : Codable {
         return report
         
     }
+     
+    // TODO: Clean Up - make sure getDataJSON and getExportData are used elsewhere
+    func getDataJSON() -> String? { data.jsonString }
+    
+    func getExportData() -> CSV {
         
+        var output = ""
+        
+        for score in scoresDateSorted {
+            
+            output += "\(score.date.simple),\(score.score),\(score.level)\n"
+            
+        }
+        
+        return output
+        
+    }
+    
 }
 
 extension ScoreManager: CustomStringConvertible {

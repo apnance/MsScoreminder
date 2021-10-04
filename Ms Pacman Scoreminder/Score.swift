@@ -54,7 +54,15 @@ struct Score: Codable {
     
     var displayScore: String { score.delimited }
     var levelString: String { Score.stringFor(level: level) }
-    var levelColor: UIColor { Score.colorFor(level: level) }
+    var levelForeColor: UIColor { Score.colorFor(level: level) }
+    var levelBackColor: UIColor {
+        
+        switch level {
+            case 0,1,3,4 : return UIColor.white
+            default: return UIColor.black
+        }
+        
+    }
     
     var levelIcon: UIImage { UIImage(named: "ms_icon_\(level)")! }
     
@@ -65,6 +73,16 @@ extension Score: CustomStringConvertible {
     var description: String {
         
         "\(date.simple)|\(score.delimited)|\(levelString)"
+        
+    }
+    
+}
+
+extension Score: Equatable {
+    
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        
+        lhs.score == rhs.score
         
     }
     

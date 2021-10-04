@@ -6,6 +6,7 @@
 //
 
 import APNUtils
+import MessageUI
 
 class ViewController: UIViewController {
     
@@ -19,18 +20,36 @@ class ViewController: UIViewController {
     @IBOutlet weak var levelSelector: UISegmentedControl!
     @IBOutlet weak var totalMoneySpentLabel: UITextField!
     @IBOutlet weak var containerView: UIView!
+    
     @IBOutlet weak var scoresView: UIView!
+    @IBOutlet weak var scoresLabel: UILabel!
     
     @IBOutlet weak var roundView: RoundView!
     @IBOutlet weak var deleteContainerView: UIView!
     @IBOutlet weak var deleteScoreContainerView: UIView!
     
     @IBOutlet weak var deleteScoreLabel: UILabel!
+    
+    
     @IBAction func didTapDeleteScore(_ sender: UIButton) {
         
         showDeleteConfirmation(false)
         
         if sender.tag == 1 { delete(score: scoreToDelete) }
+        
+    }
+    
+    @IBAction func didTapSend(_ sender: UIButton) {
+        
+        btnSendMail()
+        
+    }
+    
+    @IBAction func didTapFilter(_ sender: Any) {
+        
+        scoreMan.cylecFilter()
+        scoreUI()
+//        archive()
         
     }
     
@@ -46,8 +65,10 @@ class ViewController: UIViewController {
         initData()
         
         initUI()
-        
+                
     }
+    
+    override func viewWillDisappear(_ animated: Bool) { archive() }
     
     private func showDeleteConfirmation(_ shouldShow: Bool) {
         
@@ -57,7 +78,7 @@ class ViewController: UIViewController {
     
     private func confirmDeletion(of score: Score) {
         
-        let scoreView = AtomicScoreView.new(delegate: nil, withScore: score)
+        let scoreView = AtomicScoreView.new(delegate: nil, withScore: score, andRank: scoreMan.getRank(score))
         
         deleteScoreContainerView.removeAllSubviews()
         deleteScoreContainerView.translatesAutoresizingMaskIntoConstraints = true
@@ -92,7 +113,7 @@ class ViewController: UIViewController {
         print("Deleting: \(score)")
         
         scoreMan.remove(score)
-        archive()
+//        archive()
         
         scoreToDelete = nil
         updateVolatileUI()
@@ -103,18 +124,20 @@ class ViewController: UIViewController {
         
         scoresView.addDashedBorder(.white, width: 5, dashPattern: [0.1,12], lineCap: .round)
         
-        let scores = scoreMan.getLast(18)
+        let scores = scoreMan.filter(count: 18)
+        scoresLabel.text = scoreMan.getFilterLabel()
+        
         let colCount = Int(scoresView.frame.width) / Int(w)
         var col = 1
         
         var (xO, yO) = ((scoresView.frame.width / colCount.double) / 2.0, (h + p) * 0.55)
-        
+
         scoresView.removeAllSubviews()
         
         for score in scores {
             
             let scoreView = AtomicScoreView.new(delegate: self,
-                                                withScore: score)
+                                                withScore: score, andRank: scoreMan.getRank(score))
             
             scoreView.translatesAutoresizingMaskIntoConstraints = true
             scoresView.addSubview(scoreView)
@@ -238,7 +261,7 @@ class ViewController: UIViewController {
         
         updateVolatileUI()
         
-        archive()
+//        archive()
         
     }
     
@@ -289,7 +312,7 @@ class ViewController: UIViewController {
             print("Unarchive failed to find archive, returning empty ScoreData")
             
             scoreMan = ScoreManager.importData()
-            archive()
+//            archive()
             
             return /*EXIT*/
             
@@ -307,7 +330,7 @@ class ViewController: UIViewController {
             print("Old data backed up to '/private/tmp/\(suffix)_v?.?.csv'")
             
             scoreMan = ScoreManager.importData()
-            archive()
+//            archive()
             
             return /*EXIT*/
             
@@ -348,5 +371,80 @@ extension ViewController: AtomicScoreViewDelegate {
         
     }
     
+}
+
+extension ViewController: MFMailComposeViewControllerDelegate {
     
+    func btnSendMail() {
+        
+       if MFMailComposeViewController.canSendMail() {
+           
+          let mail = MFMailComposeViewController()
+           
+           mail.setToRecipients(["apnance@gmail.com"])
+           mail.setSubject("Ms. Score : Archived Data : \(Date().simple)")
+           mail.setMessageBody(buildHTML(), isHTML: true)
+           mail.mailComposeDelegate = self
+           
+           // Attachment
+           if let data = scoreMan.getExportData().data(using: .utf8) {
+               
+               mail.addAttachmentData(data as Data,
+                                      mimeType: "text/CSV",
+                                      fileName: "Ms_Score_\(Date().simpleUnderScore).csv")
+               
+           }
+              
+          present(mail, animated: true)
+           
+       } else {
+           
+           NSLog("Email cannot be sent")
+           
+       }
+        
+    }
+    
+    private func buildHTML() -> String {
+        
+        let levelReport = scoreMan.getLevelReport().replacingOccurrences(of: "\n", with: "<br/>")
+        
+        return  """
+                <html>\
+                <style>
+                body { background-color: #F0317E; font-size: 14pt; color: #FEE732; font-weight: 900;}
+                .date { color: #1082C8; }
+                .report { font-size: 8pt; color: black; }
+                </style>\
+                <body><br/><center>
+                   Archived Ms. Score data from <span class="date">\(Date().simple)</span>
+                    <br/><br/><span class="report">\(levelReport)</span>
+                </center></body>\
+                </html>
+                """
+        
+    }
+    
+    
+    func mailComposeController(_ controller: MFMailComposeViewController,
+                               didFinishWith result: MFMailComposeResult,
+                               error: Error?) {
+        
+       if let _ = error { self.dismiss(animated: true, completion: nil) }
+        
+        switch result {
+            
+        case .cancelled: NSLog("Cancelled"); break
+            
+        case .sent: NSLog("Mail sent successfully"); break
+            
+        case .failed: NSLog("Sending mail failed"); break
+            
+        default: break
+            
+       }
+        
+       controller.dismiss(animated: true, completion: nil)
+        
+    }
 }
