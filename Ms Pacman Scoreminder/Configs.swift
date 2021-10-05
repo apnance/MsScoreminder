@@ -9,10 +9,35 @@ import Foundation
 
 struct Configs {
     
-    static var archiveKey = "MsPacManArchiveKey"
+    struct Archive {
+        
+        static var key = "MsPacManArchiveKey"
+        
+    }
     
-    static var csvFile = "MsPacManCSV"
+    struct File {
+                
+        private static let basePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path + "/"
+        static let path = basePath + "Current.csv"
+        
+        // Generates a unique backup filepath appending filename in format: 'Backup-MM.dd.yy-HH.mm.ssss.csv'
+        static func generateBackupPath() -> String {
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MM.dd.yy-HH.mm.ssss"
+            
+            let date = dateFormatter.string(from: Date())
+            
+            return basePath + "Backup-\(date).csv"
+            
+        }
+    }
     
-    static var resetArchive = false
+    struct Test {
+
+        /// Set to false when not testing.
+        static var revertToHistoricData = false
+        
+    }
     
 }

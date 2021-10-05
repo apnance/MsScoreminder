@@ -74,33 +74,11 @@ struct ScoreManager : Codable {
         
     }
     
-    private var scoresDateSorted: [Score] {
-        
-        scores.sorted{ $0.date > $1.date }
-        
-    }
+    private var scoresDateSorted: [Score] { scores.sorted{ $0.date > $1.date } }
+    private var scoresHighSorted: [Score] { scores.sorted{ $0.score > $1.score } }
+    private var scoresLowSorted: [Score] { scores.sorted{ $0.score < $1.score } }
     
-    private var scoresHighSorted: [Score] {
-        
-        scores.sorted{ $0.score > $1.score }
-        
-    }
-    
-    private var scoresLowSorted: [Score] {
-        
-        scores.sorted{ $0.score < $1.score }
-        
-    }
-
-    
-    init() {
-        
-        data = [String : [Score]]()
-        
-        // TODO: Clean Up - Test deleting this line that attempts to initalize filter, fairly certain it's redundant.
-        filter = filter ?? .highs
-                
-    }
+    init() { data = [String : [Score]]() }
     
     // Adds or updates score in the data hash
     mutating func set(_ score: Score) {
@@ -109,6 +87,8 @@ struct ScoreManager : Codable {
         else {
             
             self.data[score.date.simple] = [score]
+            
+            save()
             
             tallyStats()
             
@@ -124,6 +104,8 @@ struct ScoreManager : Codable {
                 
                 self.data[score.date.simple] = currData
             
+                save()
+                
                 tallyStats()
                 
                 return /*EXIT*/
@@ -135,6 +117,8 @@ struct ScoreManager : Codable {
         currData.append(score)
         
         self.data[score.date.simple] = currData
+        
+        save()
         
         tallyStats()
         
@@ -154,11 +138,14 @@ struct ScoreManager : Codable {
         for i in 0..<data.count {
             
             if data[i] == score {
+        
+print("\(#function) - \(score)")
                 
                 data.remove(at: i)
                 self.data[score.date.simple] = data
                 
                 tallyStats()
+                save()
                 
                 return /*EXIT*/
                 
@@ -346,20 +333,6 @@ struct ScoreManager : Codable {
         return report
         
     }
-     
-    func getExportData() -> CSV {
-        
-        var output = ""
-        
-        for score in scoresDateSorted {
-            
-            output += "\(score.date.simple),\(score.score),\(score.level)\n"
-            
-        }
-        
-        return output
-        
-    }
     
 }
 
@@ -385,10 +358,12 @@ extension ScoreManager: CustomStringConvertible {
 
 extension ScoreManager {
     
-    static func importData() -> ScoreManager {
+    static func importData(from csv: CSV) -> ScoreManager {
         
         var scoreMan = ScoreManager()
-        let rawData = HistoricScores.data.split(separator: "\n")
+//        let rawData = HistoricScores.data.split(separator: "\n")
+        let rawData = csv.split(separator: "\n")
+
         
         for data in rawData {
             
@@ -419,3 +394,149 @@ extension ScoreManager {
     }
     
 }
+
+
+extension ScoreManager {
+    
+    func getCSV() -> CSV {
+        
+        var output = ""
+        
+        for score in scoresDateSorted {
+            
+            output += "\(score.date.simple),\(score.score),\(score.level)\n"
+            
+        }
+        
+        return output
+        
+    }
+    
+    func save() { save(getCSV()) }
+    
+    private func save(_ csv: CSV,
+                      toFile: String = Configs.File.path) {
+        
+        do {
+            
+            try csv.write(toFile: toFile,
+                           atomically: true,
+                           encoding: String.Encoding.utf8)
+            
+            NSLog("Saved data to: \(toFile)")
+            
+            
+        } catch {
+            
+            NSLog(error.localizedDescription)
+            
+        }
+        
+    }
+        
+    mutating func open() {
+        
+        var csv: CSV!
+
+        let savedData       = FileManager.default.contents(atPath: Configs.File.path)
+        let saveDataExists  = savedData != nil
+        let useHistoric     = Configs.Test.revertToHistoricData || !saveDataExists
+
+        if saveDataExists {
+
+            csv = String(decoding: savedData!,
+                         as: UTF8.self)
+            
+            if useHistoric {
+                
+                // backup old data
+                let backupFilePath = Configs.File.generateBackupPath()
+                NSLog("Backing up: \(backupFilePath)")
+                save(csv, toFile: backupFilePath)
+                
+            } else {
+                
+                NSLog("Loading: \(Configs.File.path)")
+
+            }
+            
+        }
+        
+        if useHistoric {
+
+            // load reset data
+            NSLog("Loading: HistoricScores.csv")
+            csv = HistoricScores.csv
+            save(csv)
+
+        }
+
+        self = ScoreManager.importData(from: csv)
+
+
+    }
+  
+}
+
+// TODO: Clean Up - move below code into extension above
+//extension ScoreManager {
+//
+//    // TODO: Clean Up - move archival to ScoreManager
+//    mutating func unarchive(resetArchive: Bool = false) {
+//
+//        guard let archived: ScoreManager = CodableArchiver.unarchive(file: Configs.archiveKey,
+//                                                                     inSubDir: "")
+//        else {
+//
+//            print("Unarchive failed to find archive, returning empty ScoreData")
+//
+//            self = ScoreManager.importData(from: HistoricScores.data)
+//
+//            archive()
+//
+//            return /*EXIT*/
+//
+//        }
+//
+//        self = archived
+//
+//        if resetArchive {
+//
+//            let suffix = "\(Configs.csvFile)_\(Date().description)"
+//
+//            writeCSV(withSuffix: suffix)
+//
+//            print("Unarchive bypassed. Resetting archive via data import.")
+//            print("Old data backed up to '/private/tmp/\(suffix)_v?.?.csv'")
+//
+//            self = ScoreManager.importData(from: HistoricScores.data)
+//
+//            return /*EXIT*/
+//
+//        }
+//
+//        print("Unarchive succeeded, returning archived ScoreData")
+//
+//    }
+    
+//    func archive() {
+//
+//        CodableArchiver.archive(self,
+//                                toFile: Configs.archiveKey,
+//                                inSubDir: nil)
+//
+//    }
+    
+//    func writeCSV(withSuffix suffix: String) {
+//
+//        let (scores, headers) = getScoreArray()
+//
+//        Report.write(data: scores,
+//                     headers: headers,
+//                     fileSuffix: suffix,
+//                     versionOverride: nil)
+//
+//
+//    }
+    
+//}
