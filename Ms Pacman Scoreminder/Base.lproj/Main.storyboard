@@ -87,8 +87,8 @@
                                         <color key="textColor" name="Banana"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Best Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRU-de-pwA">
-                                        <rect key="frame" x="146.5" y="192.5" width="121" height="27.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRU-de-pwA">
+                                        <rect key="frame" x="146" y="192.5" width="122.5" height="27.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="23"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -122,24 +122,23 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZyG-9R-Myt" userLabel="Container View">
-                                <rect key="frame" x="30" y="395.5" width="354" height="441.5"/>
+                                <rect key="frame" x="30" y="375.5" width="354" height="461.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High Scores" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZZ-vR-qwz">
-                                        <rect key="frame" x="121.5" y="-25" width="111" height="21.5"/>
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High Scores" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZZ-vR-qwz">
+                                        <rect key="frame" x="121.5" y="0.0" width="111" height="21.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="black" pointSize="18"/>
                                         <color key="textColor" name="Banana"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kw7-ga-S1C" userLabel="Scores View">
-                                        <rect key="frame" x="0.0" y="0.0" width="354" height="441.5"/>
+                                        <rect key="frame" x="0.0" y="25" width="354" height="436.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="Kw7-ga-S1C" firstAttribute="leading" secondItem="ZyG-9R-Myt" secondAttribute="leading" id="L5E-yd-ON7"/>
-                                    <constraint firstItem="qZZ-vR-qwz" firstAttribute="top" secondItem="ZyG-9R-Myt" secondAttribute="top" constant="-25" id="RLX-xD-Kia"/>
-                                    <constraint firstItem="Kw7-ga-S1C" firstAttribute="top" secondItem="ZyG-9R-Myt" secondAttribute="top" id="Rll-Lc-7F2"/>
+                                    <constraint firstItem="qZZ-vR-qwz" firstAttribute="top" secondItem="ZyG-9R-Myt" secondAttribute="top" id="RLX-xD-Kia"/>
+                                    <constraint firstItem="Kw7-ga-S1C" firstAttribute="top" secondItem="ZyG-9R-Myt" secondAttribute="top" constant="25" id="Rll-Lc-7F2"/>
                                     <constraint firstAttribute="trailing" secondItem="Kw7-ga-S1C" secondAttribute="trailing" id="UN1-t7-y2I"/>
                                     <constraint firstItem="qZZ-vR-qwz" firstAttribute="centerX" secondItem="ZyG-9R-Myt" secondAttribute="centerX" id="cQk-Ss-NEh"/>
                                     <constraint firstAttribute="bottom" secondItem="Kw7-ga-S1C" secondAttribute="bottom" id="gxR-ML-Dry"/>
@@ -215,39 +214,20 @@
                                     <constraint firstItem="JbC-vR-Can" firstAttribute="centerX" secondItem="OjF-A8-gQq" secondAttribute="centerX" id="bSc-ol-aQ3"/>
                                 </constraints>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="vrM-er-Mtl">
-                                <rect key="frame" x="27" y="45" width="35" height="86"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggF-iH-bax" customClass="RoundButton" customModule="APNUtils">
-                                        <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
-                                        <color key="backgroundColor" name="Banana"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="35" id="Kxh-9h-aoe"/>
-                                            <constraint firstAttribute="height" constant="35" id="UBY-Mm-TJp"/>
-                                        </constraints>
-                                        <color key="tintColor" name="Pink"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="envelope.fill" catalog="system"/>
-                                        <connections>
-                                            <action selector="didTapSend:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VcI-cM-xtX"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Phl-LB-6zV" customClass="RoundButton" customModule="APNUtils">
-                                        <rect key="frame" x="0.0" y="51" width="35" height="35"/>
-                                        <color key="backgroundColor" name="Pink"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="Njn-08-9H4"/>
-                                            <constraint firstAttribute="width" constant="35" id="OdF-mQ-RQx"/>
-                                        </constraints>
-                                        <color key="tintColor" name="Banana"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="list.bullet.rectangle.fill" catalog="system"/>
-                                        <connections>
-                                            <action selector="didTapFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XT6-Ii-8k7"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggF-iH-bax" customClass="RoundButton" customModule="APNUtils">
+                                <rect key="frame" x="15" y="44" width="35" height="35"/>
+                                <color key="backgroundColor" name="Banana"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="Kxh-9h-aoe"/>
+                                    <constraint firstAttribute="height" constant="35" id="UBY-Mm-TJp"/>
+                                </constraints>
+                                <color key="tintColor" name="Pink"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="envelope.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="didTapSend:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VcI-cM-xtX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="Blue"/>
@@ -256,6 +236,7 @@
                             <constraint firstItem="TCV-YU-Iab" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="4dK-Oi-YLW"/>
                             <constraint firstItem="2Bs-Ux-Man" firstAttribute="trailing" secondItem="SsP-ad-Wjl" secondAttribute="trailing" constant="-20" id="AIT-e9-TMa"/>
                             <constraint firstAttribute="trailing" secondItem="OjF-A8-gQq" secondAttribute="trailing" id="AjW-yn-A6k"/>
+                            <constraint firstItem="ggF-iH-bax" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Bmj-RX-qns"/>
                             <constraint firstAttribute="bottomMargin" secondItem="ZyG-9R-Myt" secondAttribute="bottom" constant="25" id="C8y-JA-aQD"/>
                             <constraint firstItem="OjF-A8-gQq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="CTi-zU-nlK"/>
                             <constraint firstItem="TCV-YU-Iab" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="Cg8-nc-lRf"/>
@@ -268,17 +249,15 @@
                             <constraint firstAttribute="trailing" secondItem="SsP-ad-Wjl" secondAttribute="trailing" constant="25" id="Xgf-aD-vNW"/>
                             <constraint firstItem="2Bs-Ux-Man" firstAttribute="top" secondItem="TCV-YU-Iab" secondAttribute="bottom" constant="7" id="ap2-yv-bG9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="SsP-ad-Wjl" secondAttribute="bottom" constant="-223" id="d35-DH-3yq"/>
-                            <constraint firstItem="vrM-er-Mtl" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="45" id="kzy-aO-7mH"/>
                             <constraint firstItem="TCV-YU-Iab" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="lAf-gf-WKs"/>
-                            <constraint firstItem="ZyG-9R-Myt" firstAttribute="top" secondItem="2Bs-Ux-Man" secondAttribute="bottom" constant="35" id="sJA-vq-cQz"/>
+                            <constraint firstItem="ZyG-9R-Myt" firstAttribute="top" secondItem="2Bs-Ux-Man" secondAttribute="bottom" constant="15" id="sJA-vq-cQz"/>
                             <constraint firstItem="2Bs-Ux-Man" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="232" id="sjh-Qa-xtP"/>
-                            <constraint firstItem="vrM-er-Mtl" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="27" id="skT-x5-RoJ"/>
+                            <constraint firstItem="ggF-iH-bax" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="15" id="sl1-ga-tOL"/>
                             <constraint firstItem="2Bs-Ux-Man" firstAttribute="leading" secondItem="SsP-ad-Wjl" secondAttribute="leading" constant="20" id="zpD-oV-VeI"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="backgroundStripeView" destination="SsP-ad-Wjl" id="Ood-df-EjZ"/>
-                        <outlet property="containerView" destination="ZyG-9R-Myt" id="lgG-67-PCa"/>
                         <outlet property="deleteContainerView" destination="OjF-A8-gQq" id="Awk-Xm-i2p"/>
                         <outlet property="deleteScoreContainerView" destination="n4R-5x-sl0" id="HN1-WD-DW6"/>
                         <outlet property="deleteScoreLabel" destination="Kwh-Xz-ZGz" id="vJr-X4-M58"/>
@@ -290,7 +269,8 @@
                         <outlet property="mainView" destination="8bC-Xf-vdC" id="J7W-rz-fVF"/>
                         <outlet property="roundView" destination="JbC-vR-Can" id="Hpu-ph-BWa"/>
                         <outlet property="scoreInput" destination="xi2-KO-0v3" id="VaV-bv-tqo"/>
-                        <outlet property="scoresLabel" destination="qZZ-vR-qwz" id="Oso-D3-fu1"/>
+                        <outlet property="scoresContainerView" destination="ZyG-9R-Myt" id="lgG-67-PCa"/>
+                        <outlet property="scoresFilterLabel" destination="qZZ-vR-qwz" id="Oso-D3-fu1"/>
                         <outlet property="scoresView" destination="Kw7-ga-S1C" id="QMM-I0-bJ2"/>
                         <outlet property="totalMoneySpentLabel" destination="lGR-By-8Ok" id="9ic-vw-xd1"/>
                     </connections>
@@ -304,9 +284,6 @@
         <designable name="38Q-XI-Laj">
             <size key="intrinsicContentSize" width="30" height="27"/>
         </designable>
-        <designable name="Phl-LB-6zV">
-            <size key="intrinsicContentSize" width="24" height="22"/>
-        </designable>
         <designable name="fBa-B0-nnn">
             <size key="intrinsicContentSize" width="30" height="28"/>
         </designable>
@@ -316,7 +293,6 @@
     </designables>
     <resources>
         <image name="envelope.fill" catalog="system" width="128" height="93"/>
-        <image name="list.bullet.rectangle.fill" catalog="system" width="128" height="93"/>
         <image name="ms_icon_0" width="174" height="174"/>
         <image name="ms_icon_4" width="174" height="174"/>
         <image name="ms_marquee" width="754.66668701171875" height="520.66668701171875"/>
