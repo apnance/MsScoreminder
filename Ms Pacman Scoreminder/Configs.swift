@@ -52,7 +52,11 @@ struct Configs {
     
     struct Test {
         
-        /// Set to false when not testing.
+        /// Setting to true causes Scoreminder to replace any data on device with a copy of the default data.
+        /// Doing so also causes a backup file to be written to your documents directory(viewable in
+        /// iOS's Files app) before reverting to default values.
+        ///
+        /// - important: Set to false when not testing.
         static let shouldRevertToDefaultData = false
         
     }
