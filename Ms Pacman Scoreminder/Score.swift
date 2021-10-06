@@ -7,7 +7,7 @@
 
 import APNUtils
 
-struct Score: Codable {
+struct Score {
     
     private static let levels = ["*", "$", "@", "&", "#", "¿", ")", ")2", ")3", ")4", ")5", ")6"]
     private static let levelNames = ["Cherry",
