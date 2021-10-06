@@ -59,7 +59,7 @@ class ViewController: UIViewController {
         initUI()
         
     }
-
+    
     override func viewDidAppear(_ animated: Bool) { scoreMan.warningsCheck() }
     
     override func viewWillDisappear(_ animated: Bool) { scoreMan.save() }
@@ -80,7 +80,10 @@ class ViewController: UIViewController {
     
     private func scoreUI() {
         
-        scoresView.addDashedBorder(.white, width: 5, dashPattern: [0.1,12], lineCap: .round)
+        scoresView.addDashedBorder(.white,
+                                   width: 5,
+                                   dashPattern: [0.1,12],
+                                   lineCap: .round)
         
         let scores = scoreMan.filter(count: 18)
         scoresFilterLabel.text = scoreMan.getFilterLabel()
@@ -89,7 +92,7 @@ class ViewController: UIViewController {
         var col = 1
         
         var (xO, yO) = ((scoresView.frame.width / colCount.double) / 2.0, (h + p) * 0.55)
-
+        
         scoresView.removeAllSubviews()
         
         for score in scores {
@@ -171,7 +174,7 @@ class ViewController: UIViewController {
         levelSelector.selectedSegmentTintColor = UIColor(named: "Blue")
         levelSelector.removeAllSegments()
         levelSelector.isEnabled = false
-        levelSelector.alpha = 0
+        levelSelector.alpha     = 0
         
         levelSelector.setTitleTextAttributes(normalAtts, for: .normal)
         
@@ -186,8 +189,13 @@ class ViewController: UIViewController {
             
         }
         
-        scoreInput.addTarget(self, action: #selector(scoreDidChange(sender:)), for: .editingChanged)
-        levelSelector.addTarget(self, action: #selector(selectLevel(sender:)), for: .valueChanged)
+        scoreInput.addTarget(self,
+                             action: #selector(scoreDidChange(sender:)),
+                             for: .editingChanged)
+        
+        levelSelector.addTarget(self,
+                                action: #selector(selectLevel(sender:)),
+                                for: .valueChanged)
         
         updateVolatileUI()
         
@@ -254,8 +262,8 @@ class ViewController: UIViewController {
         
         let score = Int(sender.text!) ?? -1
         
-        // Disable levelSelector if score is not positive and evenly divisible by 5
-        levelSelector.isEnabled = (score % 5) == 0
+        // Disable levelSelector if score is not a multiple of 10
+        levelSelector.isEnabled = (score % 10) == 0
         
         levelSelector.alpha = !levelSelector.isEnabled ? 0 : 1
         
@@ -276,7 +284,9 @@ class ViewController: UIViewController {
     
     private func confirmDeletion(of score: Score) {
         
-        let scoreView = AtomicScoreView.new(delegate: nil, withScore: score, andRank: scoreMan.getRank(score))
+        let scoreView = AtomicScoreView.new(delegate: nil,
+                                            withScore: score,
+                                            andRank: scoreMan.getRank(score))
         
         deleteScoreContainerView.removeAllSubviews()
         deleteScoreContainerView.translatesAutoresizingMaskIntoConstraints = true
@@ -297,17 +307,6 @@ class ViewController: UIViewController {
         
         scoreToDelete = nil
         updateVolatileUI()
-        
-    }
-    
-}
-
-extension ViewController: AtomicScoreViewDelegate {
-    
-    func didTap(score: Score) {
-        
-        scoreToDelete = score
-        confirmDeletion(of: score)
         
     }
     
@@ -348,7 +347,8 @@ extension ViewController: MFMailComposeViewControllerDelegate {
     
     private func buildHTML() -> String {
         
-        let levelReport = scoreMan.getLevelReport().replacingOccurrences(of: "\n", with: "<br/>")
+        let levelReport = scoreMan.getLevelReport().replacingOccurrences(of: "\n",
+                                                                         with: "<br/>")
         
         return  """
                 <html>\
@@ -387,4 +387,16 @@ extension ViewController: MFMailComposeViewControllerDelegate {
        controller.dismiss(animated: true, completion: nil)
         
     }
+}
+
+// MARK: - AtomicScoreViewDelegate
+extension ViewController: AtomicScoreViewDelegate {
+    
+    func didTap(score: Score) {
+        
+        scoreToDelete = score
+        confirmDeletion(of: score)
+        
+    }
+    
 }
