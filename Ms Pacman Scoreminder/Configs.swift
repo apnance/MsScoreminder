@@ -11,32 +11,49 @@ struct Configs {
     
     struct Archive {
         
-        static var key = "MsPacManArchiveKey"
+        struct Keys {
+            
+            static let preferences = "MSScorePrefsKey"
+            
+        }
         
     }
     
     struct File {
                 
-        private static let basePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path + "/"
-        static let path = basePath + "Current.csv"
+        static let maxBackupCount = 5
         
-        // Generates a unique backup filepath appending filename in format: 'Backup-MM.dd.yy-HH.mm.ssss.csv'
-        static func generateBackupPath() -> String {
+        private static let basePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path + "/"
+        static let defaultDataPath = Bundle.main.url(forResource:"DefaultData", withExtension: "csv")!.relativePath
+        static let currentDataPath = basePath + "Current.csv"
+        
+        /// Generates a unique backup file name based on current date/time
+        /// in format: 'Backup-MM.dd.yy-HH.mm.ssss.csv'
+        static func generateBackupFileName() -> String {
             
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MM.dd.yy-HH.mm.ssss"
             
             let date = dateFormatter.string(from: Date())
             
-            return basePath + "Backup-\(date).csv"
+            return "Backup-\(date).csv"
+            
+        }
+        
+        /// Generates a unique backup filepath appending filename
+        /// in format: 'Backup-MM.dd.yy-HH.mm.ssss.csv'
+        static func generateBackupFilePath() -> String {
+            
+            
+            return basePath + generateBackupFileName()
             
         }
     }
     
     struct Test {
-
+        
         /// Set to false when not testing.
-        static var revertToHistoricData = false
+        static let shouldRevertToDefaultData = false
         
     }
     

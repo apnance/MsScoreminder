@@ -57,9 +57,11 @@ class ViewController: UIViewController {
         initData()
         
         initUI()
-          
+        
     }
 
+    override func viewDidAppear(_ animated: Bool) { scoreMan.warningsCheck() }
+    
     override func viewWillDisappear(_ animated: Bool) { scoreMan.save() }
     
     private func outlineLabel(_ label: UILabel) {
@@ -137,12 +139,8 @@ class ViewController: UIViewController {
         
     }
     
-    private func initData() {
-        
-//        scoreMan.unarchive(resetArchive: Configs.resetArchive)
-        scoreMan.open()
-        
-    }
+    /// Initializes app data
+    private func initData() { scoreMan.open() }
     
     // TODO: Clean Up - factor out several sub-func from initUI()
     private func initUI() {
@@ -247,9 +245,7 @@ class ViewController: UIViewController {
         scoreMan.set(Score(date: Date(),
                            score: Int(scoreText)!,
                            level: levelSelector.selectedSegmentIndex))
-        
-//        scoreMan.save()
-        
+                
         updateVolatileUI()
         
     }
@@ -317,6 +313,7 @@ extension ViewController: AtomicScoreViewDelegate {
     
 }
 
+// MARK: - Email Data
 extension ViewController: MFMailComposeViewControllerDelegate {
     
     func btnSendMail() {
@@ -334,8 +331,8 @@ extension ViewController: MFMailComposeViewControllerDelegate {
            if let data = scoreMan.getCSV().data(using: .utf8) {
                
                mail.addAttachmentData(data as Data,
-                                      mimeType: "text/CSV",
-                                      fileName: "Ms_Score_\(Date().simpleUnderScore).csv")
+                                      mimeType: "text/csv",
+                                      fileName: "\(Configs.File.generateBackupFileName())")
                
            }
               

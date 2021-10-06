@@ -9,48 +9,11 @@ import APNUtils
 
 typealias CSV = String
 
-enum Filter: Codable {
-    
-    case last
-    case highs
-    case lows
-    
-    mutating func cycleNext() {
-        
-        switch self {
-            
-        case .last: self = .highs
-            
-        case .highs: self = .lows
-            
-        case .lows: self = .last
-            
-        }
-        
-    }
-    
-    var labelText: String {
+struct ScoreManager {
 
-        switch self {
-            
-        case .last:     return "Recent Scores"
-            
-        case .highs:    return "High Scores"
-            
-        case .lows:     return "Low Scores"
-            
-        }
-        
-    }
-    
-}
-
-struct ScoreManager : Codable {
-
-    private var gamesCount = 0
     private var highScore: Score?
-    
-    private var filter: Filter? = .last
+    private var gamesCount  = 0
+    private var prefs       = Preferences.shared
     
     // Array for tracking number of games played to each level.
     private var levelTally: [Int]?
@@ -124,9 +87,9 @@ struct ScoreManager : Codable {
         
     }
     
-    mutating func cylecFilter() {
+    func cylecFilter() {
         
-        filter?.cycleNext()
+        prefs.scoreSortFilter.cycleNext()
         
     }
     
@@ -138,9 +101,7 @@ struct ScoreManager : Codable {
         for i in 0..<data.count {
             
             if data[i] == score {
-        
-print("\(#function) - \(score)")
-                
+                        
                 data.remove(at: i)
                 self.data[score.date.simple] = data
                 
@@ -236,7 +197,8 @@ print("\(#function) - \(score)")
         
         if end < 0 { return [] }
         
-        switch filter {
+        switch prefs.scoreSortFilter {
+            
         case .highs:
             return scoresHighSorted.sub(start: 0, end: end)
             
@@ -246,16 +208,13 @@ print("\(#function) - \(score)")
         case .lows:
             return scoresLowSorted.sub(start: 0, end: end)
             
-        default: filter = .highs
-            return scoresHighSorted.sub(start: 0, end: end)
-            
         }
         
         
     }
     func getFilterLabel() -> String {
         
-        filter?.labelText ?? "-?-"
+        prefs.scoreSortFilter.labelText
         
     }
     func getScores(forDateString date: String) -> [Score] {
@@ -356,14 +315,13 @@ extension ScoreManager: CustomStringConvertible {
     
 }
 
+// MARK: - Data Storage
 extension ScoreManager {
     
     static func importData(from csv: CSV) -> ScoreManager {
         
         var scoreMan = ScoreManager()
-//        let rawData = HistoricScores.data.split(separator: "\n")
         let rawData = csv.split(separator: "\n")
-
         
         for data in rawData {
             
@@ -393,11 +351,6 @@ extension ScoreManager {
         
     }
     
-}
-
-
-extension ScoreManager {
-    
     func getCSV() -> CSV {
         
         var output = ""
@@ -415,7 +368,7 @@ extension ScoreManager {
     func save() { save(getCSV()) }
     
     private func save(_ csv: CSV,
-                      toFile: String = Configs.File.path) {
+                      toFile: String = Configs.File.currentDataPath) {
         
         do {
             
@@ -438,105 +391,89 @@ extension ScoreManager {
         
         var csv: CSV!
 
-        let savedData       = FileManager.default.contents(atPath: Configs.File.path)
+        let savedData       = FileManager.default.contents(atPath: Configs.File.currentDataPath)
         let saveDataExists  = savedData != nil
-        let useHistoric     = Configs.Test.revertToHistoricData || !saveDataExists
+        let useDefaults     = Configs.Test.shouldRevertToDefaultData || !saveDataExists
 
         if saveDataExists {
 
             csv = String(decoding: savedData!,
                          as: UTF8.self)
             
-            if useHistoric {
+            if useDefaults {
                 
                 // backup old data
-                let backupFilePath = Configs.File.generateBackupPath()
+                let backupFilePath = Configs.File.generateBackupFilePath()
                 NSLog("Backing up: \(backupFilePath)")
                 save(csv, toFile: backupFilePath)
                 
             } else {
                 
-                NSLog("Loading: \(Configs.File.path)")
+                NSLog("Loading: \(Configs.File.currentDataPath)")
 
             }
             
         }
         
-        if useHistoric {
-
+        if useDefaults {
+            
             // load reset data
-            NSLog("Loading: HistoricScores.csv")
-            csv = HistoricScores.csv
+            NSLog("Loading Defaults: \(Configs.File.defaultDataPath)")
+            
+            let savedData   = FileManager.default.contents(atPath: Configs.File.defaultDataPath)
+            csv = String(decoding: savedData!,
+                         as: UTF8.self)
+            
             save(csv)
-
+            
         }
-
+        
         self = ScoreManager.importData(from: csv)
+        
+    }
+    
+    /// Runs a series of data checks, presenting an alert at the first one that doesn't pass.
+    /// - warning: this method is relatively expensive has to open and scan documentDirectory
+    /// - important: this method calls displays an Alert and must be called in viewDidAppear.
+    func warningsCheck() {
+        
+        // Backup Count Check
+        let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        var csvCount = Int.max
+        
+        do {
+            
+            let directoryContents = try FileManager.default.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil)
+            csvCount = directoryContents.filter{ $0.pathExtension == "csv" }.count - 1
+            
+        } catch { print(error) }
+        
+        // Default Override
+        if Configs.Test.shouldRevertToDefaultData {
+            
+            let alertText: AlertText = (title: "Warning!",
+                                        """
+                                            Reverting to default data, all current\
+                                            data is being backed up.
 
+                                            Backup Count: \(csvCount)
 
+                                            See Files App
+                                        """)
+            
+            Alert.ok(alertText)
+            
+        } else {
+            
+            if csvCount >= Configs.File.maxBackupCount {
+                
+                Alert.ok(title: "File Accumulation Warning",
+                         message: "\nThere are \(csvCount) backup files in Files App.")
+                
+            }
+            
+        }
+        
     }
   
 }
-
-// TODO: Clean Up - move below code into extension above
-//extension ScoreManager {
-//
-//    // TODO: Clean Up - move archival to ScoreManager
-//    mutating func unarchive(resetArchive: Bool = false) {
-//
-//        guard let archived: ScoreManager = CodableArchiver.unarchive(file: Configs.archiveKey,
-//                                                                     inSubDir: "")
-//        else {
-//
-//            print("Unarchive failed to find archive, returning empty ScoreData")
-//
-//            self = ScoreManager.importData(from: HistoricScores.data)
-//
-//            archive()
-//
-//            return /*EXIT*/
-//
-//        }
-//
-//        self = archived
-//
-//        if resetArchive {
-//
-//            let suffix = "\(Configs.csvFile)_\(Date().description)"
-//
-//            writeCSV(withSuffix: suffix)
-//
-//            print("Unarchive bypassed. Resetting archive via data import.")
-//            print("Old data backed up to '/private/tmp/\(suffix)_v?.?.csv'")
-//
-//            self = ScoreManager.importData(from: HistoricScores.data)
-//
-//            return /*EXIT*/
-//
-//        }
-//
-//        print("Unarchive succeeded, returning archived ScoreData")
-//
-//    }
-    
-//    func archive() {
-//
-//        CodableArchiver.archive(self,
-//                                toFile: Configs.archiveKey,
-//                                inSubDir: nil)
-//
-//    }
-    
-//    func writeCSV(withSuffix suffix: String) {
-//
-//        let (scores, headers) = getScoreArray()
-//
-//        Report.write(data: scores,
-//                     headers: headers,
-//                     fileSuffix: suffix,
-//                     versionOverride: nil)
-//
-//
-//    }
-    
-//}
