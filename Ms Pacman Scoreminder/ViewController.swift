@@ -97,6 +97,7 @@ class ViewController: UIViewController {
         
     }
     
+    /// Styles the large pink/yellow background stripe.
     private func uiBGStripe() {
         
         let layer = backgroundStripeView.layer
@@ -107,6 +108,7 @@ class ViewController: UIViewController {
         
     }
     
+    /// Initializes scoreInput
     private func uiScoreInput() {
         
         scoreInput.layer.borderColor = UIColor.clear.cgColor
@@ -116,6 +118,7 @@ class ViewController: UIViewController {
         
     }
     
+    /// Styles levelSelector
     private func uiLevelSelector() {
         
         let normalAtts = [NSAttributedString.Key.foregroundColor: backgroundStripeView.backgroundColor as Any]
@@ -216,6 +219,7 @@ class ViewController: UIViewController {
         
     }
     
+    /// Styles `label` with pink text outlined in yellow border
     private func outlineLabel(_ label: UILabel) {
         
         let strokeTextAttributes = [
@@ -230,6 +234,7 @@ class ViewController: UIViewController {
         
     }
     
+    /// Adds drop shadows to all elements contained in internal views array
     private func addShadows() {
         
         let views = [scoresView!,
@@ -248,6 +253,8 @@ class ViewController: UIViewController {
     }
     
     // MARK: Score Updates
+    
+    /// Handles user taps on levelSelector
     @objc func selectLevel(sender: UISegmentedControl) {
         
         handleDismissDeleteUITap(sender: self)
@@ -273,7 +280,7 @@ class ViewController: UIViewController {
     
     @objc func scoreDidChange(sender: UITextField) {
         
-        let score = Int(sender.text!) ?? -1
+        let score = Int(scoreInput.text!) ?? -1
         
         // Disable levelSelector if score is not a multiple of 10
         levelSelector.isEnabled = (score % 10) == 0
