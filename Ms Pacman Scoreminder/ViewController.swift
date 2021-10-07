@@ -10,11 +10,12 @@ import MessageUI
 
 class ViewController: UIViewController {
     
+    // MARK: - Properties
+    var scoreMan = ScoreManager()
     private var scoreToDelete: Score?
     private let (w, h, p) = (100.0, 50.0, 10.0)
     
-    var scoreMan = ScoreManager()
-    
+    // MARK: - Outlets
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var backgroundStripeView: UIView!
     @IBOutlet weak var highscoreView: UIView!
@@ -35,8 +36,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var deleteScoreLabel: UILabel!
     
-    
-    @IBAction func didTapDeleteScore(_ sender: UIButton) {
+    // MARK: Actions
+    @IBAction func didTapYesDeleteScore(_ sender: UIButton) {
         
         showDeleteConfirmation(false)
         
@@ -50,35 +51,125 @@ class ViewController: UIViewController {
         
     }
     
+    // MARK: - Overrides
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        initData()
+        scoreMan.open()
         
-        initUI()
+        uiInit()
         
     }
     
     override func viewDidAppear(_ animated: Bool) { scoreMan.warningsCheck() }
-    
     override func viewWillDisappear(_ animated: Bool) { scoreMan.save() }
     
-    private func outlineLabel(_ label: UILabel) {
+    // MARK: UI
+    private func uiInit() {
         
-        let strokeTextAttributes = [
-            NSAttributedString.Key.strokeColor : UIColor(named: "Banana")!,
-            NSAttributedString.Key.foregroundColor : UIColor(named: "Pink")!,
-            NSAttributedString.Key.font : label.font!,
-            NSAttributedString.Key.strokeWidth : -3.5,
+        showDeleteConfirmation(false)
 
-        ] as [NSAttributedString.Key : Any]
+        uiMisc()
+        uiBGStripe()
+        uiScoreInput()
+        uiLevelSelector()
         
-        label.attributedText = NSMutableAttributedString(string: label.attributedText?.string ?? label.text ?? "-?-", attributes: strokeTextAttributes)
+        uiVolatile()
         
     }
     
-    private func scoreUI() {
+    private func uiMisc() {
+        
+        outlineLabel(deleteScoreLabel)
+        outlineLabel(highscoreLabel)
+        addShadows()
+        
+        totalMoneySpentLabel.textColor = UIColor(named: "Banana")
+        
+        let dismissDeleteTap = UITapGestureRecognizer(target: self,
+                                                      action: #selector(handleDismissDeleteUITap(sender:)))
+        mainView.addGestureRecognizer(dismissDeleteTap)
+        
+        let cycleFilterTap = UITapGestureRecognizer(target: self,
+                                                    action: #selector(cycleFilter))
+        scoresContainerView.addGestureRecognizer(cycleFilterTap)
+        
+    }
+    
+    private func uiBGStripe() {
+        
+        let layer = backgroundStripeView.layer
+        
+        layer.cornerRadius = backgroundStripeView.frame.width * 0.47
+        layer.borderColor = UIColor(named: "Banana")?.cgColor
+        layer.borderWidth = backgroundStripeView.frame.width * 0.04
+        
+    }
+    
+    private func uiScoreInput() {
+        
+        scoreInput.layer.borderColor = UIColor.clear.cgColor
+        scoreInput.addTarget(self,
+                             action: #selector(scoreDidChange(sender:)),
+                             for: .editingChanged)
+        
+    }
+    
+    private func uiLevelSelector() {
+        
+        let normalAtts = [NSAttributedString.Key.foregroundColor: backgroundStripeView.backgroundColor as Any]
+        let selectedAtts = [NSAttributedString.Key.foregroundColor: UIColor.white as Any]
+        
+        levelSelector.selectedSegmentTintColor = UIColor(named: "Blue")
+        levelSelector.removeAllSegments()
+        levelSelector.isEnabled = false
+        levelSelector.alpha     = 0
+        levelSelector.setTitleTextAttributes(normalAtts, for: .normal)
+        levelSelector.setTitleTextAttributes(selectedAtts, for: .selected)
+        
+        for segment in 0..<Score.levelCount {
+            
+            levelSelector.insertSegment(with: Score.iconFor(level: segment),
+                                        at: segment,
+                                        animated: false)
+            
+        }
+        
+        levelSelector.addTarget(self,
+                                action: #selector(selectLevel(sender:)),
+                                for: .valueChanged)
+        
+    }
+    
+    /// Updates UI affected by changes to data - called frequently in response to user interaction.
+    private func uiVolatile() {
+        
+        DispatchQueue.main.async {
+            
+            self.highLevelIcon.rotateRandom(minAngle: 0, maxAngle: 5)
+            
+            if let high = self.scoreMan.getHighscore() {
+                
+                self.highscoreLabel.text         = high.displayScore
+                self.highDateLabel.text          = high.date.simple
+                
+                self.highLevelIcon.image = UIImage(named: "ms_icon_\(high.level)")
+                
+                self.highscoreView.isHidden = false
+                
+                self.totalMoneySpentLabel.text = self.scoreMan.getMoneySpent()
+                
+                self.uiScore()
+                
+            } else { self.highscoreView.isHidden = true }
+            
+        }
+        
+    }
+    
+    /// Builds/rebuilds list of scores in response to changes in ScoreFilter
+    private func uiScore() {
         
         scoresView.addDashedBorder(.white,
                                    width: 5,
@@ -125,6 +216,20 @@ class ViewController: UIViewController {
         
     }
     
+    private func outlineLabel(_ label: UILabel) {
+        
+        let strokeTextAttributes = [
+            NSAttributedString.Key.strokeColor : UIColor(named: "Banana")!,
+            NSAttributedString.Key.foregroundColor : UIColor(named: "Pink")!,
+            NSAttributedString.Key.font : label.font!,
+            NSAttributedString.Key.strokeWidth : -3.5,
+
+        ] as [NSAttributedString.Key : Any]
+        
+        label.attributedText = NSMutableAttributedString(string: label.attributedText?.string ?? label.text ?? "-?-", attributes: strokeTextAttributes)
+        
+    }
+    
     private func addShadows() {
         
         let views = [scoresView!,
@@ -142,99 +247,7 @@ class ViewController: UIViewController {
         
     }
     
-    /// Initializes app data
-    private func initData() { scoreMan.open() }
-    
-    // TODO: Clean Up - factor out several sub-func from initUI()
-    private func initUI() {
-        
-        outlineLabel(deleteScoreLabel)
-        outlineLabel(highscoreLabel)
-        
-        showDeleteConfirmation(false)
-        
-        addShadows()
-        
-        let dismissDeleteTap = UITapGestureRecognizer(target: self, action: #selector(handleDismissDeleteUITap(sender:)))
-        deleteContainerView.addGestureRecognizer(dismissDeleteTap)
-        
-        let cycleFilterTap = UITapGestureRecognizer(target: self, action: #selector(cycleFilter))
-        scoresContainerView.addGestureRecognizer(cycleFilterTap)
-        
-        backgroundStripeView.layer.cornerRadius = backgroundStripeView.frame.width * 0.47
-        totalMoneySpentLabel.textColor = UIColor(named: "Banana")
-        
-        backgroundStripeView.layer.borderColor = UIColor(named: "Banana")?.cgColor
-        backgroundStripeView.layer.borderWidth = backgroundStripeView.frame.width * 0.04
-        scoreInput.layer.borderColor = UIColor.clear.cgColor
-        
-        let normalAtts = [NSAttributedString.Key.foregroundColor: backgroundStripeView.backgroundColor as Any]
-        
-        // level selector
-        levelSelector.selectedSegmentTintColor = UIColor(named: "Blue")
-        levelSelector.removeAllSegments()
-        levelSelector.isEnabled = false
-        levelSelector.alpha     = 0
-        
-        levelSelector.setTitleTextAttributes(normalAtts, for: .normal)
-        
-        let selectedAtts = [NSAttributedString.Key.foregroundColor: UIColor.white as Any]
-        levelSelector.setTitleTextAttributes(selectedAtts, for: .selected)
-        
-        for segment in 0..<Score.levelCount {
-            
-            levelSelector.insertSegment(with: Score.iconFor(level: segment),
-                                        at: segment,
-                                        animated: false)
-            
-        }
-        
-        scoreInput.addTarget(self,
-                             action: #selector(scoreDidChange(sender:)),
-                             for: .editingChanged)
-        
-        levelSelector.addTarget(self,
-                                action: #selector(selectLevel(sender:)),
-                                for: .valueChanged)
-        
-        updateVolatileUI()
-        
-    }
-    
-    func updateVolatileUI() {
-        
-        DispatchQueue.main.async {
-            
-            self.highLevelIcon.rotateRandom(minAngle: 0, maxAngle: 5)
-            
-            if let high = self.scoreMan.getHighscore() {
-                
-                self.highscoreLabel.text         = high.displayScore
-                self.highDateLabel.text          = high.date.simple
-                
-                self.highLevelIcon.image = UIImage(named: "ms_icon_\(high.level)")
-                
-                self.highscoreView.isHidden = false
-                
-                self.totalMoneySpentLabel.text = self.scoreMan.getMoneySpent()
-                
-                self.scoreUI()
-                
-            } else { self.highscoreView.isHidden = true }
-            
-        }
-        
-    }
-    
-    @objc func handleDismissDeleteUITap(sender: Any) {
-        
-        scoreInput.resignFirstResponder()
-        
-        // Hide
-        showDeleteConfirmation(false)
-        
-    }
-    
+    // MARK: Score Updates
     @objc func selectLevel(sender: UISegmentedControl) {
         
         handleDismissDeleteUITap(sender: self)
@@ -254,7 +267,7 @@ class ViewController: UIViewController {
                            score: Int(scoreText)!,
                            level: levelSelector.selectedSegmentIndex))
                 
-        updateVolatileUI()
+        uiVolatile()
         
     }
     
@@ -269,35 +282,30 @@ class ViewController: UIViewController {
         
     }
     
+    @objc fileprivate func cycleFilter() {
+        
+        scoreMan.cylecFilter()
+        uiScore()
+        
+    }
+    
+    // MARK: Deletion
+    @objc func handleDismissDeleteUITap(sender: Any) {
+        
+        scoreInput.resignFirstResponder()
+        
+        showDeleteConfirmation(false) // Hide
+        
+    }
+    
     private func showDeleteConfirmation(_ shouldShow: Bool) {
+        
+        scoreInput.resignFirstResponder()
         
         deleteContainerView.isHidden = !shouldShow
         
     }
     
-    @objc fileprivate func cycleFilter() {
-        
-        scoreMan.cylecFilter()
-        scoreUI()
-        
-    }
-    
-    private func confirmDeletion(of score: Score) {
-        
-        let scoreView = AtomicScoreView.new(delegate: nil,
-                                            withScore: score,
-                                            andRank: scoreMan.getRank(score))
-        
-        deleteScoreContainerView.removeAllSubviews()
-        deleteScoreContainerView.translatesAutoresizingMaskIntoConstraints = true
-        deleteScoreContainerView.addSubview(scoreView)
-        
-        scoreView.center = deleteScoreContainerView.frame.center
-        
-        deleteContainerView.isHidden = false
-        
-    }
- 
     private func delete(score: Score?) {
         
         guard let score = score
@@ -306,7 +314,7 @@ class ViewController: UIViewController {
         scoreMan.remove(score)
         
         scoreToDelete = nil
-        updateVolatileUI()
+        uiVolatile()
         
     }
     
@@ -387,6 +395,7 @@ extension ViewController: MFMailComposeViewControllerDelegate {
        controller.dismiss(animated: true, completion: nil)
         
     }
+    
 }
 
 // MARK: - AtomicScoreViewDelegate
@@ -395,7 +404,18 @@ extension ViewController: AtomicScoreViewDelegate {
     func didTap(score: Score) {
         
         scoreToDelete = score
-        confirmDeletion(of: score)
+        
+        let scoreView = AtomicScoreView.new(delegate: nil,
+                                            withScore: score,
+                                            andRank: scoreMan.getRank(score))
+        
+        deleteScoreContainerView.removeAllSubviews()
+        deleteScoreContainerView.translatesAutoresizingMaskIntoConstraints = true
+        deleteScoreContainerView.addSubview(scoreView)
+        
+        scoreView.center = deleteScoreContainerView.frame.center
+        
+        showDeleteConfirmation(true)
         
     }
     
