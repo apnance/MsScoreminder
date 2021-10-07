@@ -113,7 +113,7 @@ class ViewController: UIViewController {
         
         scoreInput.layer.borderColor = UIColor.clear.cgColor
         scoreInput.addTarget(self,
-                             action: #selector(scoreDidChange(sender:)),
+                             action: #selector(scoreDidChange),
                              for: .editingChanged)
         
     }
@@ -278,7 +278,8 @@ class ViewController: UIViewController {
         
     }
     
-    @objc func scoreDidChange(sender: UITextField) {
+    /// Handles changes to scoreInput
+    @objc func scoreDidChange() {
         
         let score = Int(scoreInput.text!) ?? -1
         
