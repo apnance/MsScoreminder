@@ -199,14 +199,21 @@ struct ScoreManager {
         
         switch prefs.scoreSortFilter {
             
-        case .highs:
+        case .highsHighFirst:
             return scoresHighSorted.sub(start: 0, end: end)
             
-        case .last:
+        case .highsNewFirst:
+            return scoresHighSorted.sub(start: 0, end: end).sorted{ $0.date > $1.date }
+            
+        case .recents:
             return scoresDateSorted.sub(start: 0, end: end)
             
-        case .lows:
+        case .lowsLowFirst:
             return scoresLowSorted.sub(start: 0, end: end)
+
+        case .lowsNewFirst:
+            return scoresLowSorted.sub(start: 0, end: end).sorted{ $0.date > $1.date }
+
             
         }
         
@@ -214,7 +221,7 @@ struct ScoreManager {
     }
     func getFilterLabel() -> String {
         
-        prefs.scoreSortFilter.labelText
+        String(describing: prefs.scoreSortFilter)
         
     }
     func getScores(forDateString date: String) -> [Score] {

@@ -7,35 +7,45 @@
 
 import APNUtils
 
-enum ScoreSortFilter: Codable {
+enum ScoreSortFilter: Codable, CustomStringConvertible {
     
-    case last
-    case highs
-    case lows
+    case recents
+    case highsHighFirst
+    case highsNewFirst
+    case lowsLowFirst
+    case lowsNewFirst
     
     mutating func cycleNext() {
         
         switch self {
             
-            case .last: self    = .highs
+            case .recents: self         = .highsHighFirst
                 
-            case .highs: self   = .lows
+            case .highsHighFirst: self  = .highsNewFirst
+            
+            case .highsNewFirst: self   = .lowsLowFirst
                 
-            case .lows: self    = .last
+            case .lowsLowFirst: self    = .lowsNewFirst
+            
+            case .lowsNewFirst: self    = .recents
             
         }
         
     }
     
-    var labelText: String {
+    var description: String {
         
         switch self {
             
-        case .last:     return "Recent Scores"
-            
-        case .highs:    return "High Scores"
-            
-        case .lows:     return "Low Scores"
+            case .recents:          return "Recent Scores"
+                
+            case .highsHighFirst:   return "Top Scores"
+
+            case .highsNewFirst:    return "Top Scores by Date"
+                
+            case .lowsLowFirst:     return "Low Scores"
+
+            case .lowsNewFirst:     return "Low Scores by Date"
             
         }
         
@@ -50,7 +60,7 @@ class Preferences: Codable {
     static var shared: Preferences = unarchive()
     
     /// Stores the score sorting filter
-    var scoreSortFilter: ScoreSortFilter = .last { didSet{ archive() } }
+    var scoreSortFilter: ScoreSortFilter = .recents { didSet{ archive() } }
     
 }
 
