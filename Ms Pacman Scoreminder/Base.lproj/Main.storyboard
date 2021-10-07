@@ -167,7 +167,7 @@
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" title="Yes"/>
                                                         <connections>
-                                                            <action selector="didTapDeleteScore:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DB0-uF-4ly"/>
+                                                            <action selector="didTapDeleteYesNoButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iBR-jX-aYF"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="38Q-XI-Laj" customClass="RoundButton" customModule="APNUtils">
@@ -178,7 +178,7 @@
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" title="No"/>
                                                         <connections>
-                                                            <action selector="didTapDeleteScore:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fUs-gt-vfM"/>
+                                                            <action selector="didTapDeleteYesNoButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="W8E-44-XKW"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>

@@ -37,7 +37,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var deleteScoreLabel: UILabel!
     
     // MARK: Actions
-    @IBAction func didTapYesDeleteScore(_ sender: UIButton) {
+    @IBAction func didTapDeleteYesNoButton(_ sender: UIButton) {
         
         showDeleteConfirmation(false)
         
