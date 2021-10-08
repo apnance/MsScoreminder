@@ -73,7 +73,7 @@ class ViewController: UIViewController {
         uiMisc()
         uiBGStripe()
         uiScoreInput()
-        uiLevelSelector()
+        uiBuildLevelSelector()
         
         uiVolatile()
         
@@ -119,7 +119,7 @@ class ViewController: UIViewController {
     }
     
     /// Styles levelSelector
-    private func uiLevelSelector() {
+    private func uiBuildLevelSelector() {
         
         let normalAtts = [NSAttributedString.Key.foregroundColor: backgroundStripeView.backgroundColor as Any]
         let selectedAtts = [NSAttributedString.Key.foregroundColor: UIColor.white as Any]
