@@ -69,7 +69,7 @@ class ViewController: UIViewController {
     private func uiInit() {
         
         showDeleteConfirmation(false)
-
+        
         uiMisc()
         uiBGStripe()
         uiScoreInput()
