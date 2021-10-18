@@ -48,9 +48,6 @@ class AtomicScoreView: UIView {
         borderView.layer.cornerRadius   = frame.height / 5.0
         borderView.layer.borderWidth    = frame.height / 10.0
         borderView.layer.borderColor    = score.levelForeColor.cgColor
-    
-        let tap = UITapGestureRecognizer(target: self,
-                                         action: #selector(handleTap))
         
         rotateRandom(minRange: -1.0...(-0.5), maxRange: 0.5...1.0)
         
@@ -60,6 +57,10 @@ class AtomicScoreView: UIView {
         gameRankBG.backgroundColor = score.levelForeColor
         
         addShadows()
+        
+        // Interaction
+        let tap = UITapGestureRecognizer(target: self,
+                                         action: #selector(handleTap))
         
         self.addGestureRecognizer(tap)
         
@@ -82,9 +83,9 @@ class AtomicScoreView: UIView {
     }
     
 }
-
+	
 protocol AtomicScoreViewDelegate {
     
     func didTap(score: Score)
-    
+        
 }
