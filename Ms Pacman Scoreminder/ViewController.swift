@@ -34,6 +34,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var scoreInput: UITextField!
     @IBOutlet weak var levelSelector: UISegmentedControl!
     @IBOutlet weak var totalMoneySpentLabel: UITextField!
+    @IBOutlet weak var versionLabel: UITextField!
     @IBOutlet weak var scoresContainerView: UIView!
     
     @IBOutlet weak var scoresView: UIView!
@@ -130,6 +131,10 @@ class ViewController: UIViewController {
     }
     
     private func uiMisc() {
+        
+        // version
+        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "-?-"
+        versionLabel.text = "v\(appVersion)"
         
         outlineLabel(deleteScoreLabel)
         outlineLabel(highscoreLabel)

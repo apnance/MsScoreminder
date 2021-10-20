@@ -28,10 +28,23 @@
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="v1.?" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fpz-Ml-hZL">
+                                        <rect key="frame" x="157" y="741" width="50" height="20"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="EOf-1R-Sgw"/>
+                                            <constraint firstAttribute="height" constant="20" id="fJx-45-y9o"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="10"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" name="Pink"/>
                                 <constraints>
+                                    <constraint firstItem="fpz-Ml-hZL" firstAttribute="centerX" secondItem="SsP-ad-Wjl" secondAttribute="centerX" id="I7a-cn-wYa"/>
                                     <constraint firstItem="lGR-By-8Ok" firstAttribute="centerX" secondItem="SsP-ad-Wjl" secondAttribute="centerX" id="pR9-48-ehJ"/>
+                                    <constraint firstItem="lGR-By-8Ok" firstAttribute="bottom" secondItem="fpz-Ml-hZL" secondAttribute="bottom" constant="-13" id="vmy-TN-6AV"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="2Bs-Ux-Man">
@@ -273,6 +286,7 @@
                         <outlet property="scoresFilterLabel" destination="qZZ-vR-qwz" id="Oso-D3-fu1"/>
                         <outlet property="scoresView" destination="Kw7-ga-S1C" id="QMM-I0-bJ2"/>
                         <outlet property="totalMoneySpentLabel" destination="lGR-By-8Ok" id="9ic-vw-xd1"/>
+                        <outlet property="versionLabel" destination="fpz-Ml-hZL" id="8lk-Tl-mfz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
