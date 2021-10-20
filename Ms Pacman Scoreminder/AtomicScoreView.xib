@@ -18,28 +18,6 @@
                     <rect key="frame" x="0.0" y="0.0" width="100" height="51"/>
                     <color key="backgroundColor" name="Blue"/>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gi6-lq-Ab2" userLabel="Game Rank Round View" customClass="RoundView" customModule="APNUtils">
-                    <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9999" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="3" translatesAutoresizingMaskIntoConstraints="NO" id="n4L-Qu-pSh">
-                            <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="20" id="aom-j0-NBk"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="14"/>
-                            <color key="textColor" name="Blue"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="20" id="BHU-XW-NdL"/>
-                        <constraint firstItem="n4L-Qu-pSh" firstAttribute="centerY" secondItem="Gi6-lq-Ab2" secondAttribute="centerY" id="BQK-1u-78g"/>
-                        <constraint firstAttribute="trailing" secondItem="n4L-Qu-pSh" secondAttribute="trailing" id="XDO-Jl-E9w"/>
-                        <constraint firstItem="n4L-Qu-pSh" firstAttribute="leading" secondItem="Gi6-lq-Ab2" secondAttribute="leading" id="ZC4-9d-wWr"/>
-                        <constraint firstAttribute="height" constant="20" id="mFg-mc-q6S"/>
-                    </constraints>
-                </view>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="-8" translatesAutoresizingMaskIntoConstraints="NO" id="AqY-Su-Diw">
                     <rect key="frame" x="5" y="5" width="90" height="46"/>
                     <subviews>
@@ -59,6 +37,28 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </stackView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gi6-lq-Ab2" userLabel="Score Stats Round VIew" customClass="RoundView" customModule="APNUtils">
+                    <rect key="frame" x="-5" y="-5" width="25" height="25"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9999" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="3" translatesAutoresizingMaskIntoConstraints="NO" id="n4L-Qu-pSh" userLabel="Score Stats">
+                            <rect key="frame" x="1" y="2.5" width="23" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="aom-j0-NBk"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="14"/>
+                            <color key="textColor" name="Blue"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="25" id="BHU-XW-NdL"/>
+                        <constraint firstItem="n4L-Qu-pSh" firstAttribute="centerY" secondItem="Gi6-lq-Ab2" secondAttribute="centerY" id="BQK-1u-78g"/>
+                        <constraint firstAttribute="trailing" secondItem="n4L-Qu-pSh" secondAttribute="trailing" constant="1" id="XDO-Jl-E9w"/>
+                        <constraint firstItem="n4L-Qu-pSh" firstAttribute="leading" secondItem="Gi6-lq-Ab2" secondAttribute="leading" constant="1" id="ZC4-9d-wWr"/>
+                        <constraint firstAttribute="height" constant="25" id="mFg-mc-q6S"/>
+                    </constraints>
+                </view>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ms_icon_2" translatesAutoresizingMaskIntoConstraints="NO" id="ro1-2K-rxe">
                     <rect key="frame" x="73.5" y="0.5" width="25" height="25"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -74,25 +74,25 @@
                 <constraint firstItem="ro1-2K-rxe" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="36" id="6Ze-pB-WXQ"/>
                 <constraint firstAttribute="trailing" secondItem="HIN-fb-Srb" secondAttribute="trailing" id="JbK-zQ-rcX"/>
                 <constraint firstItem="AqY-Su-Diw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="K60-lb-Tkw"/>
-                <constraint firstItem="Gi6-lq-Ab2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="M5b-mM-pXb"/>
+                <constraint firstItem="Gi6-lq-Ab2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-5" id="M5b-mM-pXb"/>
                 <constraint firstItem="AqY-Su-Diw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="SAb-7x-bmr"/>
                 <constraint firstAttribute="bottom" secondItem="AqY-Su-Diw" secondAttribute="bottom" id="SuU-50-j7f"/>
                 <constraint firstItem="HIN-fb-Srb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="UMi-4U-LhB"/>
                 <constraint firstAttribute="bottom" secondItem="HIN-fb-Srb" secondAttribute="bottom" id="mJ7-ga-geI"/>
                 <constraint firstItem="HIN-fb-Srb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="mP9-17-msq"/>
                 <constraint firstItem="ro1-2K-rxe" firstAttribute="centerY" secondItem="Csp-bg-MgK" secondAttribute="centerY" id="oqy-Os-OL9"/>
-                <constraint firstItem="Gi6-lq-Ab2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="pUv-mY-Zn2"/>
+                <constraint firstItem="Gi6-lq-Ab2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="-5" id="pUv-mY-Zn2"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="borderView" destination="HIN-fb-Srb" id="2ac-qN-lmz"/>
                 <outlet property="dateView" destination="Csp-bg-MgK" id="9UN-i6-Bzm"/>
                 <outlet property="fruitView" destination="ro1-2K-rxe" id="3Hy-fV-r0I"/>
-                <outlet property="gameRank" destination="n4L-Qu-pSh" id="jsh-Tx-BDB"/>
-                <outlet property="gameRankBG" destination="Gi6-lq-Ab2" id="29p-CG-hZC"/>
+                <outlet property="scoreStatsLabel" destination="n4L-Qu-pSh" id="jsh-Tx-BDB"/>
                 <outlet property="scoreView" destination="otq-Ol-ZOc" id="4aZ-gi-SEE"/>
+                <outlet property="socreStatsRoundView" destination="Gi6-lq-Ab2" id="29p-CG-hZC"/>
             </connections>
-            <point key="canvasLocation" x="113" y="-374"/>
+            <point key="canvasLocation" x="131.8840579710145" y="-379.35267857142856"/>
         </view>
     </objects>
     <resources>
