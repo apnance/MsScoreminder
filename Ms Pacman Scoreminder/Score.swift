@@ -55,8 +55,8 @@ struct Score {
     
     var displayScore: String { score.delimited }
     var levelString: String { Score.stringFor(level: level) }
-    var levelForeColor: UIColor { Score.colorFor(level: level) }
-    var levelBackColor: UIColor {
+    var colorLight: UIColor { Score.colorFor(level: level) }
+    var colorDark: UIColor {
         
         switch level {
             case 0,1,3,4 : return UIColor.white

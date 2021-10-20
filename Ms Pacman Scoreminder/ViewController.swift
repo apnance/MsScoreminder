@@ -15,6 +15,15 @@ class ViewController: UIViewController {
     private var scoreToDelete: Score?
     private let (w, h, p) = (100.0, 50.0, 10.0)
     
+    
+    private var scoreCycler  = (num: -34,
+                                incr: 1,
+                                dataCurrent: 1,
+                                dataMax: 0)
+    
+    private var scoreViews = [AtomicScoreView]()
+    private var timer: APNTimer?
+    
     // MARK: - Outlets
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var backgroundStripeView: UIView!
@@ -75,7 +84,48 @@ class ViewController: UIViewController {
         uiScoreInput()
         uiBuildLevelSelector()
         
+        cycleScores()
+        
         uiVolatile()
+        
+    }
+    
+    private func cycleScores() {
+
+        if timer == nil {
+            
+            timer = APNTimer(name: "scores",
+                             repeatInterval: 0.06) {
+                
+                _ in
+                
+                self.cycleScores()
+                
+            }
+            
+            scoreCycler.dataMax = scoreMan.getDataCount() - 1
+            
+            return /*EXIT*/
+            
+        }
+        
+        if scoreCycler.num > 34 {
+            
+            scoreCycler.incr        = -1
+            scoreCycler.dataCurrent = scoreCycler.dataCurrent >= scoreCycler.dataMax ? 0 : scoreCycler.dataCurrent + 1
+            
+        } else if scoreCycler.num < -16 {
+            
+            scoreCycler.incr        = 1
+            scoreCycler.dataCurrent = scoreCycler.dataCurrent >= scoreCycler.dataMax ? 0 : scoreCycler.dataCurrent + 1
+            
+        } else if scoreCycler.num >= 0 && scoreCycler.num <= scoreViews.lastUsableIndex {
+        
+            scoreViews[scoreCycler.num].updateDisplay(useData: scoreCycler.dataCurrent)
+            
+        }
+        
+        scoreCycler.num += scoreCycler.incr
         
     }
     
@@ -187,12 +237,18 @@ class ViewController: UIViewController {
         
         var (xO, yO) = ((scoresView.frame.width / colCount.double) / 2.0, (h + p) * 0.55)
         
+        scoreViews = []
         scoresView.removeAllSubviews()
+        scoreViews = []
+        
         
         for score in scores {
             
             let scoreView = AtomicScoreView.new(delegate: self,
-                                                withScore: score, andRank: scoreMan.getRank(score))
+                                                withScore: score,
+                                                andData: scoreMan.getData(score))
+            
+            scoreViews.append(scoreView)
             
             scoreView.translatesAutoresizingMaskIntoConstraints = true
             scoresView.addSubview(scoreView)
@@ -415,7 +471,7 @@ extension ViewController: AtomicScoreViewDelegate {
         
         let scoreView = AtomicScoreView.new(delegate: nil,
                                             withScore: score,
-                                            andRank: scoreMan.getRank(score))
+                                            andData: scoreMan.getData(score))
         
         deleteScoreContainerView.removeAllSubviews()
         deleteScoreContainerView.translatesAutoresizingMaskIntoConstraints = true

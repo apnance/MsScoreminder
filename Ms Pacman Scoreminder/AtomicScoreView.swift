@@ -15,17 +15,17 @@ class AtomicScoreView: UIView {
     /// Factory method for instantiating AtomicScoreViews via nib loading.
     static func new(delegate: AtomicScoreViewDelegate?,
                     withScore score: Score,
-                    andRank rank: Int) -> AtomicScoreView {
+                    andData data: [String]) -> AtomicScoreView {
         
         let scoreView = nib.instantiate(withOwner: self,
                                         options: nil).first as! AtomicScoreView
         scoreView.delegate = delegate
-        scoreView.load(score: score, rank: rank)
+        scoreView.load(score: score, data: data)
         
         return scoreView
         
     }
-    
+        
     @IBOutlet var scoreView: UILabel!
     @IBOutlet var dateView: UILabel!
     @IBOutlet var fruitView: UIImageView!
@@ -35,27 +35,25 @@ class AtomicScoreView: UIView {
     
     private var delegate: AtomicScoreViewDelegate?
     private var score: Score!
+            
+    private var data = [String]()
+  
+    private func load(score: Score, data: [String]) {
         
-    private func load(score: Score, rank: Int) {
-    
+        self.data = data
+        
         self.score = score
         scoreView.text  = score.score.delimited
         dateView.text   = score.date.simple
         fruitView.image = score.levelIcon
         
         layer.cornerRadius              = frame.height / 5.0
-        clipsToBounds                   = true
-        borderView.layer.cornerRadius   = frame.height / 5.0
-        borderView.layer.borderWidth    = frame.height / 10.0
-        borderView.layer.borderColor    = score.levelForeColor.cgColor
         
-        rotateRandom(minRange: -1.0...(-0.5), maxRange: 0.5...1.0)
+        borderView.layer.cornerRadius   = frame.height / 5.0
+        borderView.layer.borderWidth    = frame.height / 8.0
         
         gameRank.rotate(angle: -22.5)
-        gameRank.text = rank.description
-        gameRank.textColor = score.levelBackColor
-        gameRankBG.backgroundColor = score.levelForeColor
-        
+
         addShadows()
         
         // Interaction
@@ -64,13 +62,15 @@ class AtomicScoreView: UIView {
         
         self.addGestureRecognizer(tap)
         
+        updateDisplay()
+        
     }
     
     @objc func handleTap() { delegate?.didTap(score: score) }
     
     private func addShadows() {
         
-        let views = [gameRankBG!]
+        let views = [gameRankBG!, fruitView!]
         
         for view in views {
             
@@ -82,10 +82,23 @@ class AtomicScoreView: UIView {
         
     }
     
+    func updateDisplay(useData i: Int = 0) {
+        
+        gameRank.text = data[i]
+        
+        gameRank.textColor              = i % 2 != 0 ? score.colorLight : score.colorDark
+        gameRankBG.backgroundColor      = i % 2 != 0 ? score.colorDark : score.colorLight
+        
+        borderView.layer.borderColor    = gameRankBG.backgroundColor?.cgColor
+        
+        rotateRandom(minRange: -1.0...(-0.5), maxRange: 0.5...1.0)
+        
+    }
+    
 }
 	
 protocol AtomicScoreViewDelegate {
     
     func didTap(score: Score)
-        
+    
 }

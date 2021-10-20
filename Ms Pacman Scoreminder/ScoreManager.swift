@@ -178,16 +178,47 @@ struct ScoreManager {
     
     }
     
-    func getRank(_ score: Score) -> Int {
-        
-        
+    // TODO: Clean Up - rename getDataCount -> getStatCount
+    /// Returns the number of elements in the `[String]` returned by `getStats(:)`
+    func getDataCount() -> Int { getData(scores.first!).count }
+    
+    // TODO: Clean Up - rename getData -> getStats
+    /// Returns a `[String]` of ready to display score stats.
+    func getData(_ score: Score) -> [String] {
+                
         for (i, data) in scoresHighSorted.enumerated() {
             
-            if score == data { return i + 1 /*EXIT*/ }
+            if score == data {
+                
+            
+                let scoreCount = scores.count
+                let rank = i + 1
+                var percentile = String()
+                
+                switch rank {
+                    
+                case 1:
+                    
+                    percentile = " ★ "
+                    
+                case scoreCount:
+                    
+                    percentile = "LOW"
+                    
+                default:
+                    
+                    percentile = (((scoreCount - i).double / scoreCount.double) * 100).roundTo(1).description.rTrimTo(4)
+                    percentile = "\(percentile)%"
+                    
+                }
+                
+                return [rank.description, percentile] /*EXIT*/
+                
+            }
             
         }
         
-        return -1 /*EXIT*/
+        return []
         
     }
     
