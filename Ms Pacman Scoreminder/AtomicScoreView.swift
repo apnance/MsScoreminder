@@ -30,8 +30,8 @@ class AtomicScoreView: UIView {
     @IBOutlet var dateView: UILabel!
     @IBOutlet var fruitView: UIImageView!
     @IBOutlet weak var borderView: UIView!
-    @IBOutlet weak var gameRank: UILabel!
-    @IBOutlet weak var gameRankBG: RoundView!
+    @IBOutlet weak var scoreStatsLabel: UILabel!
+    @IBOutlet weak var scoresStatsRoundView: RoundView!
     
     private var delegate: AtomicScoreViewDelegate?
     private var score: Score!
@@ -52,7 +52,7 @@ class AtomicScoreView: UIView {
         borderView.layer.cornerRadius   = frame.height / 5.0
         borderView.layer.borderWidth    = frame.height / 8.0
         
-        gameRank.rotate(angle: -22.5)
+        scoreStatsLabel.rotate(angle: -22.5)
 
         addShadows()
         
@@ -70,7 +70,7 @@ class AtomicScoreView: UIView {
     
     private func addShadows() {
         
-        let views = [gameRankBG!, fruitView!]
+        let views = [scoresStatsRoundView!, fruitView!]
         
         for view in views {
             
@@ -84,12 +84,12 @@ class AtomicScoreView: UIView {
     
     func updateDisplay(useData i: Int = 0) {
         
-        gameRank.text = data[i]
+        scoreStatsLabel.text = data[i]
         
-        gameRank.textColor              = i % 2 != 0 ? score.colorLight : score.colorDark
-        gameRankBG.backgroundColor      = i % 2 != 0 ? score.colorDark : score.colorLight
+        scoreStatsLabel.textColor              = i % 2 != 0 ? score.colorLight : score.colorDark
+        scoresStatsRoundView.backgroundColor      = i % 2 != 0 ? score.colorDark : score.colorLight
         
-        borderView.layer.borderColor    = gameRankBG.backgroundColor?.cgColor
+        borderView.layer.borderColor    = scoresStatsRoundView.backgroundColor?.cgColor
         
         rotateRandom(minRange: -1.0...(-0.5), maxRange: 0.5...1.0)
         

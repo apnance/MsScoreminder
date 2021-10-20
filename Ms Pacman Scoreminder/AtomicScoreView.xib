@@ -90,7 +90,7 @@
                 <outlet property="fruitView" destination="ro1-2K-rxe" id="3Hy-fV-r0I"/>
                 <outlet property="scoreStatsLabel" destination="n4L-Qu-pSh" id="jsh-Tx-BDB"/>
                 <outlet property="scoreView" destination="otq-Ol-ZOc" id="4aZ-gi-SEE"/>
-                <outlet property="socreStatsRoundView" destination="Gi6-lq-Ab2" id="29p-CG-hZC"/>
+                <outlet property="scoresStatsRoundView" destination="Gi6-lq-Ab2" id="29p-CG-hZC"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="-379.35267857142856"/>
         </view>
