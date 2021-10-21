@@ -298,9 +298,9 @@ class ViewController: UIViewController {
     /// Adds drop shadows to all elements contained in internal views array
     private func addShadows() {
         
-        let views = [scoresView!,
-                     roundView!,
-                     deleteScoreContainerView!,
+        Utils.UI.addShadows(to: [scoresView!,
+                                 roundView!,
+                                 deleteScoreContainerView!,
                      deleteScoreLabel!]
         
         for view in views {

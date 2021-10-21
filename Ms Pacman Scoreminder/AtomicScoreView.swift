@@ -70,15 +70,7 @@ class AtomicScoreView: UIView {
     
     private func addShadows() {
         
-        let views = [scoresStatsRoundView!, fruitView!]
-        
-        for view in views {
-            
-            view.layer.shadowColor   = UIColor.black.cgColor
-            view.layer.shadowOffset  = CGSize(width: 5, height: 2)
-            view.layer.shadowOpacity = Float(0.3)
-            
-        }
+        Utils.UI.addShadows(to: [scoresStatsRoundView!, fruitView!])
         
     }
     
@@ -86,10 +78,10 @@ class AtomicScoreView: UIView {
         
         scoreStatsLabel.text = data[i]
         
-        scoreStatsLabel.textColor              = i % 2 != 0 ? score.colorLight : score.colorDark
-        scoresStatsRoundView.backgroundColor      = i % 2 != 0 ? score.colorDark : score.colorLight
+        scoreStatsLabel.textColor               = i % 2 != 0 ? score.colorLight : score.colorDark
+        scoresStatsRoundView.backgroundColor    = i % 2 != 0 ? score.colorDark : score.colorLight
         
-        borderView.layer.borderColor    = scoresStatsRoundView.backgroundColor?.cgColor
+        borderView.layer.borderColor            = scoresStatsRoundView.backgroundColor?.cgColor
         
         rotateRandom(minRange: -1.0...(-0.5), maxRange: 0.5...1.0)
         
