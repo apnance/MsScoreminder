@@ -204,7 +204,7 @@ struct ScoreManager {
                     
                 default:
                     
-                    percentile = (((scoreCount - i).double / scoreCount.double) * 100).roundTo(1).description.rTrimTo(4)
+                    percentile = (( rank.double / scoreCount.double ) * 100).roundTo(1).description.rTrimTo(4)
                     percentile = "\(percentile)%"
                     
                 }
