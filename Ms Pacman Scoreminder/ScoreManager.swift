@@ -188,7 +188,6 @@ struct ScoreManager {
             
             if score == data {
                 
-            
                 let scoreCount = scores.count
                 let rank = i + 1
                 var percentile = String()
@@ -228,36 +227,28 @@ struct ScoreManager {
         
         switch prefs.scoreSortFilter {
             
-        case .highsHighFirst:
-            return scoresHighSorted.sub(start: 0, end: end)
-            
-        case .highsNewFirst:
-            return scoresHighSorted.sub(start: 0, end: end).sorted{ $0.date > $1.date }
-            
-        case .recents:
-            return scoresDateSorted.sub(start: 0, end: end)
-            
-        case .lowsLowFirst:
-            return scoresLowSorted.sub(start: 0, end: end)
-
-        case .lowsNewFirst:
-            return scoresLowSorted.sub(start: 0, end: end).sorted{ $0.date > $1.date }
-
-            
+            case .highsHighFirst:
+                return scoresHighSorted.sub(start: 0, end: end)
+                
+            case .highsNewFirst:
+                return scoresHighSorted.sub(start: 0, end: end).sorted{ $0.date > $1.date }
+                
+            case .recents:
+                return scoresDateSorted.sub(start: 0, end: end)
+                
+            case .lowsLowFirst:
+                return scoresLowSorted.sub(start: 0, end: end)
+                
+            case .lowsNewFirst:
+                return scoresLowSorted.sub(start: 0, end: end).sorted{ $0.date > $1.date }
+                
         }
         
         
     }
-    func getFilterLabel() -> String {
-        
-        String(describing: prefs.scoreSortFilter)
-        
-    }
-    func getScores(forDateString date: String) -> [Score] {
-        
-        data[date] ?? [Score]()
-        
-    }
+    func getFilterLabel() -> String { String(describing: prefs.scoreSortFilter) }
+    
+    func getScores(forDateString date: String) -> [Score] { data[date] ?? [Score]() }
     
     // Converts data to [["Date", "Score", "Level"]]
     func getScoreArray() -> (score: [[String]], headers: [String]) {
@@ -294,7 +285,8 @@ struct ScoreManager {
         let headers = ["Date", "Score", "Level"]
         if data.count > 0 {
             
-            report = Report.columnateAutoWidth(data, headers: headers, title: "Scores for \(Date().simple)")
+            report = Report.columnateAutoWidth(data, headers: headers,
+                                               title: "Scores for \(Date().simple)")
             
         }
         
@@ -321,7 +313,9 @@ struct ScoreManager {
         
         if rowData.count > 0 {
             
-            report = Report.columnateAutoWidth(rowData, headers: headers, title: "Levels Reached")
+            report = Report.columnateAutoWidth(rowData,
+                                               headers: headers,
+                                               title: "Levels Reached")
             
         }
         
@@ -368,7 +362,9 @@ extension ScoreManager {
             let scoreVal = Int(rowData[1])!
             let level = Int(rowData[2]) ?? -1
 
-            let score = Score(date: dateString.simpleDate, score: scoreVal, level: level)
+            let score = Score(date: dateString.simpleDate,
+                              score: scoreVal,
+                              level: level)
         
             
             if scoreMan.data[dateString] == nil {
