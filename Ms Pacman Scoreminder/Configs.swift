@@ -19,6 +19,19 @@ struct Configs {
         
     }
     
+    struct UI {
+        
+        struct Shadow {
+            
+            static let defaultOpacity = 0.3
+            
+            static let defaultWidth     = 5
+            static let defaultHeight    = 2
+            
+        }
+            
+    }
+    
     struct File {
                 
         static let maxBackupCount = 5

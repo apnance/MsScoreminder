@@ -13,7 +13,7 @@ struct Utils {
 
         /// Adds drop shadows to all elements contained in internal views array
         static func addShadows(to: [UIView],
-                               withOpacity opacity: Double = 0.3) {
+                               withOpacity opacity: Double = Configs.UI.Shadow.defaultOpacity) {
             
             to.forEach{ addShadows(to: $0,
                                    withOpacity: opacity) }
@@ -22,10 +22,11 @@ struct Utils {
         
         /// Adds drop shadows to all `UIView`
         static func addShadows(to: UIView,
-                               withOpacity opacity: Double = 0.3) {
+                               withOpacity opacity: Double = Configs.UI.Shadow.defaultOpacity) {
             
             to.layer.shadowColor   = UIColor.black.cgColor
-            to.layer.shadowOffset  = CGSize(width: 5, height: 2)
+            to.layer.shadowOffset  = CGSize(width: Configs.UI.Shadow.defaultWidth,
+                                            height: Configs.UI.Shadow.defaultHeight)
             to.layer.shadowOpacity = Float(opacity)
             
         }
