@@ -31,6 +31,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var highscoreLabel: UILabel!
     @IBOutlet weak var highDateLabel: UILabel!
     @IBOutlet weak var highLevelIcon: UIImageView!
+    @IBOutlet weak var highLevelIconContainerView: RoundView!
     @IBOutlet weak var scoreInput: UITextField!
     @IBOutlet weak var levelSelector: UISegmentedControl!
     @IBOutlet weak var totalMoneySpentLabel: UITextField!
@@ -301,15 +302,10 @@ class ViewController: UIViewController {
         Utils.UI.addShadows(to: [scoresView!,
                                  roundView!,
                                  deleteScoreContainerView!,
-                     deleteScoreLabel!]
-        
-        for view in views {
-            
-            view.layer.shadowColor   = UIColor.black.cgColor
-            view.layer.shadowOffset  = CGSize(width: 5, height: 2)
-            view.layer.shadowOpacity = Float(0.3)
-            
-        }
+                                 deleteScoreLabel!,
+                                 scoresView!,
+                                 highLevelIconContainerView!,
+                                 highLevelIcon!])
         
     }
     

@@ -112,24 +112,36 @@
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ms_icon_0" translatesAutoresizingMaskIntoConstraints="NO" id="Qqy-7X-lm2" userLabel="High Level Fruit Icon">
-                                        <rect key="frame" x="289.5" y="206" width="50" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fkC-iS-l62" customClass="RoundView" customModule="APNUtils">
+                                        <rect key="frame" x="286" y="203" width="35" height="35"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ms_icon_0" translatesAutoresizingMaskIntoConstraints="NO" id="Qqy-7X-lm2" userLabel="High Level Fruit Icon">
+                                                <rect key="frame" x="-7.5" y="-7.5" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="dD8-Hp-boG"/>
+                                                    <constraint firstAttribute="width" constant="50" id="fdG-kh-rfm"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="dD8-Hp-boG"/>
-                                            <constraint firstAttribute="width" constant="50" id="fdG-kh-rfm"/>
+                                            <constraint firstAttribute="width" constant="35" id="2Ou-QM-as5"/>
+                                            <constraint firstAttribute="height" constant="35" id="XrK-he-ctu"/>
+                                            <constraint firstItem="Qqy-7X-lm2" firstAttribute="centerX" secondItem="fkC-iS-l62" secondAttribute="centerX" id="mDd-Ju-D00"/>
+                                            <constraint firstItem="Qqy-7X-lm2" firstAttribute="centerY" secondItem="fkC-iS-l62" secondAttribute="centerY" id="pT8-2m-8ht"/>
                                         </constraints>
-                                    </imageView>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="GTZ-MZ-Xia" firstAttribute="centerX" secondItem="TCV-YU-Iab" secondAttribute="centerX" id="BCO-GW-vWT"/>
                                     <constraint firstItem="MRU-de-pwA" firstAttribute="centerX" secondItem="TCV-YU-Iab" secondAttribute="centerX" id="FEX-Be-Zco"/>
-                                    <constraint firstItem="Qqy-7X-lm2" firstAttribute="top" secondItem="MRU-de-pwA" secondAttribute="bottom" constant="-14" id="Iof-In-fMU"/>
                                     <constraint firstAttribute="bottom" secondItem="MRU-de-pwA" secondAttribute="bottom" constant="49" id="NzS-UG-s8n"/>
                                     <constraint firstAttribute="bottom" secondItem="GTZ-MZ-Xia" secondAttribute="bottom" constant="-5" id="WGF-VC-fkB"/>
+                                    <constraint firstItem="fkC-iS-l62" firstAttribute="leading" secondItem="GTZ-MZ-Xia" secondAttribute="trailing" constant="-16.5" id="WYc-Rr-kjN"/>
                                     <constraint firstAttribute="bottom" secondItem="ycv-3o-wBM" secondAttribute="bottom" constant="68" id="ao8-y8-5Vo"/>
                                     <constraint firstItem="GTZ-MZ-Xia" firstAttribute="top" secondItem="8cG-qg-LKh" secondAttribute="bottom" constant="13.5" id="dPl-yG-loM"/>
-                                    <constraint firstItem="Qqy-7X-lm2" firstAttribute="leading" secondItem="GTZ-MZ-Xia" secondAttribute="trailing" constant="-13" id="deH-mj-eCM"/>
+                                    <constraint firstItem="GTZ-MZ-Xia" firstAttribute="top" secondItem="fkC-iS-l62" secondAttribute="top" constant="5" id="kWc-At-QDz"/>
                                     <constraint firstItem="8cG-qg-LKh" firstAttribute="centerX" secondItem="TCV-YU-Iab" secondAttribute="centerX" constant="-6" id="waC-9d-1w6"/>
                                     <constraint firstItem="ycv-3o-wBM" firstAttribute="centerX" secondItem="TCV-YU-Iab" secondAttribute="centerX" id="yGx-oT-kJt"/>
                                 </constraints>
@@ -276,6 +288,7 @@
                         <outlet property="deleteScoreLabel" destination="Kwh-Xz-ZGz" id="vJr-X4-M58"/>
                         <outlet property="highDateLabel" destination="8cG-qg-LKh" id="MeD-LS-z9V"/>
                         <outlet property="highLevelIcon" destination="Qqy-7X-lm2" id="jr9-31-dyi"/>
+                        <outlet property="highLevelIconContainerView" destination="fkC-iS-l62" id="aYq-93-uTf"/>
                         <outlet property="highscoreLabel" destination="GTZ-MZ-Xia" id="9Hw-Yc-wDe"/>
                         <outlet property="highscoreView" destination="TCV-YU-Iab" id="GGO-PW-2lu"/>
                         <outlet property="levelSelector" destination="ZjU-v8-9Gv" id="ZnC-SN-tUM"/>
