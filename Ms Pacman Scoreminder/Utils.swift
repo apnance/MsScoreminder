@@ -24,10 +24,10 @@ struct Utils {
         static func addShadows(to: UIView,
                                withOpacity opacity: Double = Configs.UI.Shadow.defaultOpacity) {
             
+            to.layer.shadowOpacity = Float(opacity)
             to.layer.shadowColor   = UIColor.black.cgColor
             to.layer.shadowOffset  = CGSize(width: Configs.UI.Shadow.defaultWidth,
                                             height: Configs.UI.Shadow.defaultHeight)
-            to.layer.shadowOpacity = Float(opacity)
             
         }
         
