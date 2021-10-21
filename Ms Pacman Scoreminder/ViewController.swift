@@ -104,7 +104,7 @@ class ViewController: UIViewController {
                 
             }
             
-            scoreCycler.dataMax = scoreMan.getDataCount() - 1
+            scoreCycler.dataMax = scoreMan.getStatCount() - 1
             
             return /*EXIT*/
             
@@ -251,7 +251,7 @@ class ViewController: UIViewController {
             
             let scoreView = AtomicScoreView.new(delegate: self,
                                                 withScore: score,
-                                                andData: scoreMan.getData(score))
+                                                andData: scoreMan.getStats(score))
             
             scoreViews.append(scoreView)
             
@@ -476,7 +476,7 @@ extension ViewController: AtomicScoreViewDelegate {
         
         let scoreView = AtomicScoreView.new(delegate: nil,
                                             withScore: score,
-                                            andData: scoreMan.getData(score))
+                                            andData: scoreMan.getStats(score))
         
         deleteScoreContainerView.removeAllSubviews()
         deleteScoreContainerView.translatesAutoresizingMaskIntoConstraints = true

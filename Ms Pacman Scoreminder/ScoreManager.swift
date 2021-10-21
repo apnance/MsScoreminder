@@ -178,13 +178,11 @@ struct ScoreManager {
     
     }
     
-    // TODO: Clean Up - rename getDataCount -> getStatCount
     /// Returns the number of elements in the `[String]` returned by `getStats(:)`
-    func getDataCount() -> Int { getData(scores.first!).count }
+    func getStatCount() -> Int { getStats(scores.first!).count }
     
-    // TODO: Clean Up - rename getData -> getStats
     /// Returns a `[String]` of ready to display score stats.
-    func getData(_ score: Score) -> [String] {
+    func getStats(_ score: Score) -> [String] {
                 
         for (i, data) in scoresHighSorted.enumerated() {
             
