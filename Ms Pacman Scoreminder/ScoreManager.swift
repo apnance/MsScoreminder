@@ -37,9 +37,9 @@ struct ScoreManager {
         
     }
     
-    private var scoresDateSorted: [Score] { scores.sorted{ $0.date > $1.date } }
-    private var scoresHighSorted: [Score] { scores.sorted{ $0.score > $1.score } }
-    private var scoresLowSorted: [Score] { scores.sorted{ $0.score < $1.score } }
+    private var scoresDateSorted:   [Score] { scores.sorted{ $0.date > $1.date } }
+    private var scoresHighSorted:   [Score] { scores.sorted{ $0.score > $1.score } }
+    private var scoresLowSorted:    [Score] { scores.sorted{ $0.score < $1.score } }
     
     init() { data = [String : [Score]]() }
     
@@ -119,7 +119,7 @@ struct ScoreManager {
     }
     
     mutating func tallyStats() {
-
+        
         gamesCount = 0
                 
         levelTally = Array(repeating: 0, count: Score.levelCount)
@@ -294,7 +294,6 @@ struct ScoreManager {
         
     }
     
-    
     mutating func getLevelReport() -> String {
         
         var rowData = [[String]]()
@@ -320,26 +319,6 @@ struct ScoreManager {
         }
         
         return report
-        
-    }
-    
-}
-
-extension ScoreManager: CustomStringConvertible {
-    
-    var description: String {
-        var i = 0
-        var descr = ""
-        
-        for scores in data.values {
-            
-            descr += "\(i) : \(scores)\n"
-            
-            i += 1
-            
-        }
-        
-        return descr
         
     }
     
@@ -487,9 +466,9 @@ extension ScoreManager {
                                         """
                                             Reverting to default data, all current\
                                             data is being backed up.
-
+                                        
                                             Backup Count: \(csvCount)
-
+                                        
                                             See Files App
                                         """)
             
@@ -508,4 +487,24 @@ extension ScoreManager {
         
     }
   
+}
+
+extension ScoreManager: CustomStringConvertible {
+    
+    var description: String {
+        var i = 0
+        var descr = ""
+        
+        for scores in data.values {
+            
+            descr += "\(i) : \(scores)\n"
+            
+            i += 1
+            
+        }
+        
+        return descr
+        
+    }
+    
 }
