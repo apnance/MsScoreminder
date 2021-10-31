@@ -31,6 +31,15 @@ struct Score {
         
     }
     
+    static func contrastColorFor(level: Int) -> UIColor {
+        
+        switch level {
+            case 0,1,3,4 : return UIColor.white
+            default: return UIColor.black
+        }
+        
+    }
+    
     static func stringFor(level: Int) -> String {
         
         levels[level]
@@ -55,17 +64,10 @@ struct Score {
     
     var displayScore: String { score.delimited }
     var levelString: String { Score.stringFor(level: level) }
-    var colorLight: UIColor { Score.colorFor(level: level) }
-    var colorDark: UIColor {
-        
-        switch level {
-            case 0,1,3,4 : return UIColor.white
-            default: return UIColor.black
-        }
-        
-    }
-    
     var levelIcon: UIImage { UIImage(named: "ms_icon_\(level)")! }
+    
+    var colorLight: UIColor { Score.colorFor(level: level) }
+    var colorDark: UIColor { Score.contrastColorFor(level: level) }
     
 }
 
