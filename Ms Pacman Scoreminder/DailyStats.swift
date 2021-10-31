@@ -38,7 +38,7 @@ extension DailyStats: CustomStringConvertible {
     
     var description: String {
         
-        "\(date.simple) - rank(\(rank.0)/\(rank.1)) - avg score: \(averageScore) - game count: \(gameCount)"
+        "\(date.simple) - rank: \(rank.0)/\(rank.1) - avg score: \(averageScore) - avg level: \(averageLevel) - game count: \(gameCount)"
         
     }
     
