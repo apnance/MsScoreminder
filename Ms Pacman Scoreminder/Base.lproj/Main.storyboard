@@ -14,9 +14,8 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="ViewController" customModule="Ms_Scoreminder" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SsP-ad-Wjl">
                                 <rect key="frame" x="25" y="119" width="364" height="966"/>
@@ -45,6 +44,14 @@
                                     <constraint firstItem="fpz-Ml-hZL" firstAttribute="centerX" secondItem="SsP-ad-Wjl" secondAttribute="centerX" id="I7a-cn-wYa"/>
                                     <constraint firstItem="lGR-By-8Ok" firstAttribute="centerX" secondItem="SsP-ad-Wjl" secondAttribute="centerX" id="pR9-48-ehJ"/>
                                     <constraint firstItem="lGR-By-8Ok" firstAttribute="bottom" secondItem="fpz-Ml-hZL" secondAttribute="bottom" constant="-13" id="vmy-TN-6AV"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tfc-k3-1dv" customClass="DailySummaryView" customModule="Ms_Scoreminder" customModuleProvider="target">
+                                <rect key="frame" x="241" y="37.5" width="130" height="130"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="130" id="vVw-bP-x8U"/>
+                                    <constraint firstAttribute="height" constant="130" id="ytp-nz-WJo"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="2Bs-Ux-Man">
@@ -268,8 +275,10 @@
                             <constraint firstItem="lGR-By-8Ok" firstAttribute="top" secondItem="ZyG-9R-Myt" secondAttribute="bottom" constant="8" id="FCo-bk-sjk"/>
                             <constraint firstItem="OjF-A8-gQq" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="IGv-Pb-lik"/>
                             <constraint firstItem="ZyG-9R-Myt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="Iku-o5-2zb"/>
+                            <constraint firstItem="ycv-3o-wBM" firstAttribute="centerY" secondItem="tfc-k3-1dv" secondAttribute="centerY" constant="17" id="JDh-MO-bYl"/>
                             <constraint firstItem="SsP-ad-Wjl" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="25" id="KrG-ma-NRx"/>
                             <constraint firstItem="SsP-ad-Wjl" firstAttribute="top" secondItem="TCV-YU-Iab" secondAttribute="bottom" constant="-150" id="MkI-Ji-Zq1"/>
+                            <constraint firstItem="tfc-k3-1dv" firstAttribute="leading" secondItem="ycv-3o-wBM" secondAttribute="centerX" constant="34" id="N57-1G-wZB"/>
                             <constraint firstAttribute="bottom" secondItem="OjF-A8-gQq" secondAttribute="bottom" id="WgH-0H-gfK"/>
                             <constraint firstAttribute="trailing" secondItem="SsP-ad-Wjl" secondAttribute="trailing" constant="25" id="Xgf-aD-vNW"/>
                             <constraint firstItem="2Bs-Ux-Man" firstAttribute="top" secondItem="TCV-YU-Iab" secondAttribute="bottom" constant="7" id="ap2-yv-bG9"/>
@@ -283,6 +292,7 @@
                     </view>
                     <connections>
                         <outlet property="backgroundStripeView" destination="SsP-ad-Wjl" id="Ood-df-EjZ"/>
+                        <outlet property="dailySummaryView" destination="tfc-k3-1dv" id="4tQ-ZB-rqG"/>
                         <outlet property="deleteContainerView" destination="OjF-A8-gQq" id="Awk-Xm-i2p"/>
                         <outlet property="deleteScoreContainerView" destination="n4R-5x-sl0" id="HN1-WD-DW6"/>
                         <outlet property="deleteScoreLabel" destination="Kwh-Xz-ZGz" id="vJr-X4-M58"/>
@@ -304,7 +314,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="198.55072463768118" y="-52.232142857142854"/>
+            <point key="canvasLocation" x="445" y="-212"/>
         </scene>
     </scenes>
     <designables>

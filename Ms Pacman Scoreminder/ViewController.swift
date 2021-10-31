@@ -41,6 +41,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var scoresView: UIView!
     @IBOutlet weak var scoresFilterLabel: UILabel!
     
+    @IBOutlet weak var dailySummaryView: DailySummaryView!
+    
     @IBOutlet weak var roundView: RoundView!
     @IBOutlet weak var deleteContainerView: UIView!
     @IBOutlet weak var deleteScoreContainerView: UIView!
@@ -73,7 +75,13 @@ class ViewController: UIViewController {
         
     }
     
-    override func viewDidAppear(_ animated: Bool) { scoreMan.warningsCheck() }
+    override func viewDidAppear(_ animated: Bool) {
+        
+        // TODO: Clean Up - investigate removing dailySummaryView.setNeedsLayout()
+        dailySummaryView.setNeedsLayout()
+        scoreMan.warningsCheck()
+        
+    }
     override func viewWillDisappear(_ animated: Bool) { scoreMan.save() }
     
     // MARK: UI
@@ -93,7 +101,7 @@ class ViewController: UIViewController {
     }
     
     private func cycleScores() {
-
+        
         if timer == nil {
             
             timer = APNTimer(name: "scores",
@@ -208,6 +216,8 @@ class ViewController: UIViewController {
             
             self.highLevelIcon.rotateRandom(minAngle: 0, maxAngle: 5)
             
+            self.dailySummaryView.load(self.scoreMan.getDailyStats(Date()))
+            
             if let high = self.scoreMan.getHighscore() {
                 
                 self.highscoreLabel.text         = high.displayScore
@@ -299,13 +309,14 @@ class ViewController: UIViewController {
     /// Adds drop shadows to all elements contained in internal views array
     private func addShadows() {
         
-        Utils.UI.addShadows(to: [scoresView!,
-                                 roundView!,
-                                 deleteScoreContainerView!,
-                                 deleteScoreLabel!,
-                                 scoresView!,
-                                 highLevelIconContainerView!,
-                                 highLevelIcon!])
+        Utils.UI.addShadows(to: [scoresView,
+                                 dailySummaryView,
+                                 roundView,
+                                 deleteScoreContainerView,
+                                 deleteScoreLabel,
+                                 scoresView,
+                                 highLevelIconContainerView,
+                                 highLevelIcon])
         
     }
     

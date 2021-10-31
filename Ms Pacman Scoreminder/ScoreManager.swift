@@ -8,17 +8,19 @@
 import APNUtils
 
 typealias CSV = String
+typealias DateString = String
 
 struct ScoreManager {
-
+    
     private var highScore: Score?
     private var gamesCount  = 0
     private var prefs       = Preferences.shared
     
     // Array for tracking number of games played to each level.
     private var levelTally: [Int]?
+    private var needsTally = true
     
-    private var data: [ String : [Score] ]
+    private var data: [ DateString : [Score] ]
     private var scores: [Score] {
         
         var scoreArray = [Score]()
@@ -37,14 +39,16 @@ struct ScoreManager {
         
     }
     
-    private var scoresDateSorted:   [Score] { scores.sorted{ $0.date > $1.date } }
-    private var scoresHighSorted:   [Score] { scores.sorted{ $0.score > $1.score } }
-    private var scoresLowSorted:    [Score] { scores.sorted{ $0.score < $1.score } }
+    private var scoresDateSorted    = [Score]()
+    private var scoresHighSorted    = [Score]()
+    private var scoresLowSorted     = [Score]()
     
     init() { data = [String : [Score]]() }
     
     // Adds or updates score in the data hash
     mutating func set(_ score: Score) {
+        
+        needsTally = true
         
         guard var currData = data[score.date.simple]
         else {
@@ -53,7 +57,7 @@ struct ScoreManager {
             
             save()
             
-            tallyStats()
+            tallyAllStats()
             
             return /*EXIT*/
             
@@ -62,14 +66,14 @@ struct ScoreManager {
         for i in 0..<currData.count {
             
             if currData[i] == score {
-
+                
                 currData[i] = score
                 
                 self.data[score.date.simple] = currData
-            
+                
                 save()
                 
-                tallyStats()
+                tallyAllStats()
                 
                 return /*EXIT*/
                 
@@ -83,7 +87,7 @@ struct ScoreManager {
         
         save()
         
-        tallyStats()
+        tallyAllStats()
         
     }
     
@@ -95,17 +99,19 @@ struct ScoreManager {
     
     mutating func remove(_ score: Score) {
         
+        needsTally = true
+        
         guard var data = data[score.date.simple]
         else { return /*EXIT*/ }
         
         for i in 0..<data.count {
             
             if data[i] == score {
-                        
+                
                 data.remove(at: i)
                 self.data[score.date.simple] = data
                 
-                tallyStats()
+                tallyAllStats()
                 save()
                 
                 return /*EXIT*/
@@ -114,41 +120,8 @@ struct ScoreManager {
             
         }
         
-        tallyStats()
+        tallyAllStats()
         
-    }
-    
-    mutating func tallyStats() {
-        
-        gamesCount = 0
-                
-        levelTally = Array(repeating: 0, count: Score.levelCount)
-        
-        var highScore: Score?
-        var high = 0
-        
-        for dayScores in data.values {
-                        
-            for score in dayScores {
-            
-                // General Stats
-                gamesCount += 1
-                levelTally![score.level] += 1
-                
-                // High Score
-                if score.score > high {
-                    
-                    high = score.score
-                    highScore = score
-                    
-                }
-                
-            }
-            
-        }
-        
-        self.highScore = highScore
-            
     }
     
     mutating func getMoneySpent() -> String {
@@ -164,18 +137,18 @@ struct ScoreManager {
     
     mutating func getGamesCount() -> Int {
         
-        if gamesCount == 0 { tallyStats() }
+        if gamesCount == 0 { tallyAllStats() }
         
         return gamesCount
         
     }
     
     mutating func getHighscore() -> Score? {
-
-        if highScore == nil { tallyStats() }
+        
+        if highScore == nil { tallyAllStats() }
         
         return highScore
-    
+        
     }
     
     /// Returns the number of elements in the `[String]` returned by `getStats(:)`
@@ -183,7 +156,7 @@ struct ScoreManager {
     
     /// Returns a `[String]` of ready to display score stats.
     func getStats(_ score: Score) -> [String] {
-                
+        
         for (i, data) in scoresHighSorted.enumerated() {
             
             if score == data {
@@ -227,21 +200,21 @@ struct ScoreManager {
         
         switch prefs.scoreSortFilter {
             
-            case .highsHighFirst:
-                return scoresHighSorted.sub(start: 0, end: end)
-                
-            case .highsNewFirst:
-                return scoresHighSorted.sub(start: 0, end: end).sorted{ $0.date > $1.date }
-                
-            case .recents:
-                return scoresDateSorted.sub(start: 0, end: end)
-                
-            case .lowsLowFirst:
-                return scoresLowSorted.sub(start: 0, end: end)
-                
-            case .lowsNewFirst:
-                return scoresLowSorted.sub(start: 0, end: end).sorted{ $0.date > $1.date }
-                
+        case .highsHighFirst:
+            return scoresHighSorted.sub(start: 0, end: end)
+            
+        case .highsNewFirst:
+            return scoresHighSorted.sub(start: 0, end: end).sorted{ $0.date > $1.date }
+            
+        case .recents:
+            return scoresDateSorted.sub(start: 0, end: end)
+            
+        case .lowsLowFirst:
+            return scoresLowSorted.sub(start: 0, end: end)
+            
+        case .lowsNewFirst:
+            return scoresLowSorted.sub(start: 0, end: end).sorted{ $0.date > $1.date }
+            
         }
         
         
@@ -254,7 +227,7 @@ struct ScoreManager {
     func getScoreArray() -> (score: [[String]], headers: [String]) {
         
         var scoreArray = [[String]]()
-                
+        
         let scores = scoresDateSorted
         
         for score in scores {
@@ -298,7 +271,7 @@ struct ScoreManager {
         
         var rowData = [[String]]()
         
-        if levelTally == nil { tallyStats() }
+        if levelTally == nil { tallyAllStats() }
         
         for (level, count) in levelTally!.enumerated() {
             
@@ -322,6 +295,111 @@ struct ScoreManager {
         
     }
     
+    
+    private var dailyStats = [DailyStats]()
+    
+    mutating func tallyAllStats() {
+        
+        if !needsTally { return /*EXIT*/ }
+        
+        needsTally = false
+        
+        tallyScoreStats()
+        tallyDailyStats()
+        
+    }
+    
+    mutating private func tallyScoreStats() {
+        
+        levelTally = Array(repeating: 0, count: Score.levelCount)
+        
+        var highScore: Score?
+        var high = 0
+        
+        for dayScores in data.values {
+            
+            for score in dayScores {
+                
+                // General Stats
+                gamesCount += 1
+                levelTally![score.level] += 1
+                
+                // High Score
+                if score.score > high {
+                    
+                    high = score.score
+                    highScore = score
+                    
+                }
+                
+            }
+            
+        }
+        
+        self.gamesCount = scores.count
+        self.highScore  = highScore
+        
+        scoresDateSorted    = scores.sorted{ $0.date > $1.date }
+        scoresHighSorted    = scores.sorted{ $0.score > $1.score }
+        scoresLowSorted     = scores.sorted{ $0.score < $1.score }
+        
+    }
+    
+    mutating private func tallyDailyStats() {
+        
+        var dailies = [DailyStats]()
+        
+        for dateString in data.keys {
+            
+            guard let scores = data[dateString],
+                  scores.count > 0
+            else { continue  /*EXIT*/ }
+            
+            var daily = DailyStats()
+            
+            var sum = 0
+            scores.forEach{ sum += $0.score }
+            
+            daily.date = dateString.simpleDate
+            daily.averageScore = sum / scores.count
+            daily.gameCount = scores.count
+            
+            dailies.append(daily)
+            
+        }
+        
+        // sort
+        dailyStats = dailies.sorted{$0 > $1}
+
+        // set ranks
+        for i in 0...dailyStats.lastUsableIndex {
+            
+            dailyStats[i].rank = (i + 1, dailyStats.count)
+            
+        }
+        
+    }
+    
+    mutating func getDailyStats(_ date: DateString) -> DailyStats? {
+        
+        getDailyStats(date.simpleDate)
+        
+    }
+    
+    mutating func getDailyStats(_ date: Date) -> DailyStats? {
+        
+        tallyAllStats()
+        
+        for daily in dailyStats {
+            
+            if daily.date.simple == date.simple { return daily /*EXIT*/ }
+            
+        }
+        
+        return nil
+        
+    }
+    
 }
 
 // MARK: - Data Storage
@@ -337,14 +415,14 @@ extension ScoreManager {
             let rowData = data.split(separator: ",")
             
             let dateString = String(rowData[0])
-                                        
+            
             let scoreVal = Int(rowData[1])!
             let level = Int(rowData[2]) ?? -1
-
+            
             let score = Score(date: dateString.simpleDate,
                               score: scoreVal,
                               level: level)
-        
+            
             
             if scoreMan.data[dateString] == nil {
                 
@@ -355,7 +433,7 @@ extension ScoreManager {
                 scoreMan.data[dateString]!.append(score)
                 
             }
-                        
+            
         }
         
         return scoreMan
@@ -384,8 +462,8 @@ extension ScoreManager {
         do {
             
             try csv.write(toFile: toFile,
-                           atomically: true,
-                           encoding: String.Encoding.utf8)
+                          atomically: true,
+                          encoding: String.Encoding.utf8)
             
             NSLog("Saved data to: \(toFile)")
             
@@ -397,17 +475,17 @@ extension ScoreManager {
         }
         
     }
-        
+    
     mutating func open() {
         
         var csv: CSV!
-
+        
         let savedData       = FileManager.default.contents(atPath: Configs.File.currentDataPath)
         let saveDataExists  = savedData != nil
         let useDefaults     = Configs.Test.shouldRevertToDefaultData || !saveDataExists
-
+        
         if saveDataExists {
-
+            
             csv = String(decoding: savedData!,
                          as: UTF8.self)
             
@@ -421,7 +499,7 @@ extension ScoreManager {
             } else {
                 
                 NSLog("Loading: \(Configs.File.currentDataPath)")
-
+                
             }
             
         }
@@ -440,6 +518,8 @@ extension ScoreManager {
         }
         
         self = ScoreManager.importData(from: csv)
+        
+        tallyAllStats()
         
     }
     
@@ -486,7 +566,7 @@ extension ScoreManager {
         }
         
     }
-  
+    
 }
 
 extension ScoreManager: CustomStringConvertible {
