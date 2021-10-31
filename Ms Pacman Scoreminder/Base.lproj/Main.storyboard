@@ -35,7 +35,7 @@
                                             <constraint firstAttribute="height" constant="20" id="fJx-45-y9o"/>
                                         </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="10"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="9"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                 </subviews>
@@ -46,7 +46,7 @@
                                     <constraint firstItem="lGR-By-8Ok" firstAttribute="bottom" secondItem="fpz-Ml-hZL" secondAttribute="bottom" constant="-13" id="vmy-TN-6AV"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tfc-k3-1dv" customClass="DailySummaryView" customModule="Ms_Scoreminder" customModuleProvider="target">
+                            <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tfc-k3-1dv" customClass="DailySummaryView" customModule="Ms_Scoreminder" customModuleProvider="target">
                                 <rect key="frame" x="241" y="37.5" width="130" height="130"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
