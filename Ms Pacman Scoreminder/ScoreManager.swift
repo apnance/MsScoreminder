@@ -114,9 +114,6 @@ struct ScoreManager {
         
         tallyAllStats()
         
-// TODO: Clean Up - delete
-//        if gamesCount == 0 { tallyAllStats() }
-        
         return gamesCount
         
     }
@@ -124,9 +121,6 @@ struct ScoreManager {
     mutating func getHighscore() -> Score? {
         
         tallyAllStats()
-        
-// TODO: Clean Up - delete
-//        if highScore == nil { tallyAllStats() }
         
         return highScore
         
@@ -175,40 +169,6 @@ struct ScoreManager {
         
     }
     
-    mutating func filter(count: Int) -> [Score] {
-        
-        tallyAllStats()
-        
-        let end = min(count, gamesCount) - 1
-        
-        if end < 0 { return [] }
-        
-        switch prefs.scoreSortFilter {
-            
-        case .highsHighFirst:
-            return scoresHighSorted.sub(start: 0, end: end)
-            
-        case .highsNewFirst:
-            return scoresHighSorted.sub(start: 0, end: end).sorted{ $0.date > $1.date }
-            
-        case .recents:
-            return scoresDateSorted.sub(start: 0, end: end)
-            
-        case .lowsLowFirst:
-            return scoresLowSorted.sub(start: 0, end: end)
-            
-        case .lowsNewFirst:
-            return scoresLowSorted.sub(start: 0, end: end).sorted{ $0.date > $1.date }
-            
-        }
-        
-        
-    }
-    func getFilterLabel() -> String { String(describing: prefs.scoreSortFilter) }
-    
-    // TODO: Clean Up - need to call tallyAllStats here?
-    func getScores(forDateString date: String) -> [Score] { data[date] ?? [Score]() }
-    
     // Converts data to [["Date", "Score", "Level"]]
     mutating func getScoreArray() -> (score: [[String]], headers: [String]) {
         
@@ -234,7 +194,7 @@ struct ScoreManager {
         
         tallyAllStats()
         
-        let rawData = getScores(forDateString: date)
+        let rawData = data[date] ?? [Score]()
         
         var data = [[String]]()
         
@@ -398,12 +358,39 @@ struct ScoreManager {
         
     }
     
-    
-    func cylecFilter() {
+    mutating func filter(count: Int) -> [Score] {
         
-        prefs.scoreSortFilter.cycleNext()
+        tallyAllStats()
+        
+        let end = min(count, gamesCount) - 1
+        
+        if end < 0 { return [] }
+        
+        switch prefs.scoreSortFilter {
+            
+        case .highsHighFirst:
+            return scoresHighSorted.sub(start: 0, end: end)
+            
+        case .highsNewFirst:
+            return scoresHighSorted.sub(start: 0, end: end).sorted{ $0.date > $1.date }
+            
+        case .recents:
+            return scoresDateSorted.sub(start: 0, end: end)
+            
+        case .lowsLowFirst:
+            return scoresLowSorted.sub(start: 0, end: end)
+            
+        case .lowsNewFirst:
+            return scoresLowSorted.sub(start: 0, end: end).sorted{ $0.date > $1.date }
+            
+        }
+        
         
     }
+    
+    func getFilterLabel() -> String { String(describing: prefs.scoreSortFilter) }
+    
+    func cylecFilter() { prefs.scoreSortFilter.cycleNext() }
     
 }
 
