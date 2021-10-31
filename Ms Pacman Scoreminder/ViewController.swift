@@ -75,13 +75,8 @@ class ViewController: UIViewController {
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        
-        // TODO: Clean Up - investigate removing dailySummaryView.setNeedsLayout()
-        dailySummaryView.setNeedsLayout()
-        scoreMan.warningsCheck()
-        
-    }
+    override func viewDidAppear(_ animated: Bool) { scoreMan.warningsCheck() }
+    
     override func viewWillDisappear(_ animated: Bool) { scoreMan.save() }
     
     // MARK: UI
