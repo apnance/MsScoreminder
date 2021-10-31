@@ -16,7 +16,10 @@ class DailySummaryView: RoundView {
     @IBOutlet weak var stat2Label: UILabel!
     @IBOutlet weak var stat3Label: UILabel!
     
-    // MARK: - Actions
+    @IBOutlet weak var averageLevelContainerView: UIView!
+    @IBOutlet weak var averageLevelBGView: RoundView!
+    @IBOutlet weak var averageLevelIconImageView: UIImageView!
+    @IBOutlet weak var averageLevelLabel: UILabel!
     
     
     // MARK: - Overrides
@@ -47,7 +50,6 @@ class DailySummaryView: RoundView {
     }
     
     
-    
     // MARK: - Custom Methods
     func load(_ stats: DailyStats?) {
         
@@ -64,9 +66,12 @@ class DailySummaryView: RoundView {
                 }
                 
             }
+            
             return /*EXIT*/
             
         }
+        
+        uiInit(with: stats)
         
         if alpha != 0.75 {
             
@@ -79,14 +84,32 @@ class DailySummaryView: RoundView {
             }
             
         }
-        
+                
+    }
+    
+    private func uiInit(with stats: DailyStats) {
         
         dateLabel.text  = stats.date.simple
         stat1Label.text = "\(stats.rank.0.delimited) of \(stats.rank.1.delimited)"
         stat2Label.text = stats.averageScore.delimited
         stat3Label.text = stats.gameCount.delimited
         
+        averageLevelLabel.layer.borderWidth = 1
+        averageLevelLabel.layer.cornerRadius = 3
+        averageLevelLabel.textColor = .black
+        averageLevelLabel.layer.borderColor = UIColor.black.cgColor
+        averageLevelLabel.backgroundColor = .white
+        
+        averageLevelBGView.backgroundColor = UIColor(named: "Pink")
+        averageLevelBGView.layer.borderWidth = 2.5
+        averageLevelBGView.layer.borderColor = UIColor(named:"Banana")!.cgColor
+        averageLevelBGView.setRadius()
+        
+        averageLevelIconImageView.image = Score.iconFor(level: stats.averageLevel)
+        
+        Utils.UI.addShadows(to: averageLevelContainerView)
+        averageLevelContainerView.rotateRandom(minAngle: -5, maxAngle: 5)
+        
     }
-    
     
 }

@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -13,36 +14,36 @@
         <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB" customClass="DailySummaryView" customModule="Ms_Scoreminder" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
             <subviews>
-                <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="i5a-g7-rYI" customClass="RoundView" customModule="APNUtils">
+                <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="i5a-g7-rYI" userLabel="White Round BG View" customClass="RoundView" customModule="APNUtils">
                     <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" id="P7E-fx-I5x">
-                    <rect key="frame" x="4.5" y="22.5" width="121" height="55"/>
+                    <rect key="frame" x="6.5" y="23.5" width="121" height="55"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10-28-21" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="HJX-wW-L12">
-                            <rect key="frame" x="0.0" y="0.0" width="121" height="23"/>
+                            <rect key="frame" x="0.0" y="0.0" width="121" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="19"/>
+                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="24"/>
                             <color key="textColor" name="Pink"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" id="czO-3n-MsD" userLabel="Day's Rank">
-                            <rect key="frame" x="0.0" y="23.5" width="121" height="10"/>
+                            <rect key="frame" x="0.0" y="24.5" width="121" height="10"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rank" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MW5-Fj-lY0">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day's Rank" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MW5-Fj-lY0">
                                     <rect key="frame" x="0.0" y="0.0" width="58.5" height="10"/>
-                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="8"/>
-                                    <color key="textColor" name="Blue"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="8"/>
+                                    <color key="textColor" name="Orange"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22 of 405" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="5Kb-zK-98i">
                                     <rect key="frame" x="62.5" y="0.0" width="58.5" height="10"/>
-                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="8"/>
-                                    <color key="textColor" name="Orange"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="8"/>
+                                    <color key="textColor" name="Blue"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -53,14 +54,14 @@
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average Score" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="SHe-K4-jIe">
                                     <rect key="frame" x="0.0" y="0.0" width="58.5" height="10"/>
-                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="8"/>
-                                    <color key="textColor" name="Blue"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="8"/>
+                                    <color key="textColor" name="Orange"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99,999" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0Dk-Iy-12d">
                                     <rect key="frame" x="62.5" y="0.0" width="58.5" height="10"/>
-                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="8"/>
-                                    <color key="textColor" name="Orange"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="8"/>
+                                    <color key="textColor" name="Blue"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -69,16 +70,16 @@
                             <rect key="frame" x="0.0" y="45" width="121" height="10"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Games Played" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0eU-oA-ndr">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Games" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0eU-oA-ndr">
                                     <rect key="frame" x="0.0" y="0.0" width="58.5" height="10"/>
-                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="8"/>
-                                    <color key="textColor" name="Blue"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="8"/>
+                                    <color key="textColor" name="Orange"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="DFk-gR-wBm">
                                     <rect key="frame" x="62.5" y="0.0" width="58.5" height="10"/>
-                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="8"/>
-                                    <color key="textColor" name="Orange"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="8"/>
+                                    <color key="textColor" name="Blue"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -86,6 +87,30 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </stackView>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oI4-dr-7lR">
+                    <rect key="frame" x="52" y="-6" width="32" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KgZ-Zm-g9D" userLabel="BG View" customClass="RoundView" customModule="APNUtils">
+                            <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" systemColor="tintColor"/>
+                        </view>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ms_icon_5" translatesAutoresizingMaskIntoConstraints="NO" id="ykN-oG-qYu">
+                            <rect key="frame" x="2" y="-1" width="32" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="avg lvl" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="SQM-Nm-fwA">
+                            <rect key="frame" x="2" y="20" width="27.5" height="8"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" systemColor="systemYellowColor"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="6"/>
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
@@ -94,6 +119,10 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="averageLevelBGView" destination="KgZ-Zm-g9D" id="ies-YE-MCa"/>
+                <outlet property="averageLevelContainerView" destination="oI4-dr-7lR" id="OSw-lK-2Bf"/>
+                <outlet property="averageLevelIconImageView" destination="ykN-oG-qYu" id="xoL-sx-OT2"/>
+                <outlet property="averageLevelLabel" destination="SQM-Nm-fwA" id="hAo-4C-z6q"/>
                 <outlet property="dateLabel" destination="HJX-wW-L12" id="clZ-tf-Lzc"/>
                 <outlet property="stat1Label" destination="5Kb-zK-98i" id="5ym-KP-6fy"/>
                 <outlet property="stat2Label" destination="0Dk-Iy-12d" id="Soc-TY-9kI"/>
@@ -103,6 +132,7 @@
         </view>
     </objects>
     <resources>
+        <image name="ms_icon_5" width="174" height="174"/>
         <namedColor name="Blue">
             <color red="0.063000001013278961" green="0.51099997758865356" blue="0.7850000262260437" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -112,5 +142,11 @@
         <namedColor name="Pink">
             <color red="0.94499999284744263" green="0.19300000369548798" blue="0.49599999189376831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

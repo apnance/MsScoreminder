@@ -61,7 +61,7 @@ struct ScoreManager {
                 self.data[score.date.simple] = currData
                 
                 save()
-                                
+                
                 return /*EXIT*/
                 
             }
@@ -315,11 +315,20 @@ struct ScoreManager {
             
             var daily = DailyStats()
             
-            var sum = 0
-            scores.forEach{ sum += $0.score }
+            var scoreSum = 0
+            var levelSum = 0
+            
+            scores.forEach{
+                
+                scoreSum += $0.score
+                levelSum += $0.level
+                
+            }
             
             daily.date          = dateString.simpleDate
-            daily.averageScore  = sum / scores.count
+            daily.averageScore  = scoreSum / scores.count
+            daily.averageLevel  = Int((levelSum.double / scores.count.double).rounded())
+            
             daily.gameCount     = scores.count
             
             dailies.append(daily)
