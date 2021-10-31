@@ -15,40 +15,31 @@ struct ScoreManager {
     private var highScore: Score?
     private var gamesCount  = 0
     private var prefs       = Preferences.shared
-    
-    // Array for tracking number of games played to each level.
-    private var levelTally: [Int]?
+
+    /// A bit flag, setting to true causes all stats to be re-calculated next time data is to be read.
+    /// - important: set this to true any time `data` is changed, do not set to false, this should only
+    /// be done at end of call to tallyAllStats.
     private var needsTally = true
+
+    /// Underlying data model driving entire app
+    /// - important: needsTally bit flag set to true when data.didSet is called
+    private var data: [ DateString : [Score] ] { didSet { needsTally = true } }
     
-    private var data: [ DateString : [Score] ]
-    private var scores: [Score] {
-        
-        var scoreArray = [Score]()
-        
-        for dayScores in data.values {
-            
-            for score in dayScores {
-                
-                scoreArray.append(score)
-                
-            }
-            
-        }
-        
-        return scoreArray
-        
-    }
-    
+    private var scores = [Score]()
     private var scoresDateSorted    = [Score]()
     private var scoresHighSorted    = [Score]()
     private var scoresLowSorted     = [Score]()
+    
+    /// Summary of stats for each day's data in `data`
+    private var dailyStats = [DailyStats]()
+    
+    /// Array for tracking number of games played to each level.
+    private var levelTally: [Int]?
     
     init() { data = [String : [Score]]() }
     
     // Adds or updates score in the data hash
     mutating func set(_ score: Score) {
-        
-        needsTally = true
         
         guard var currData = data[score.date.simple]
         else {
@@ -56,9 +47,7 @@ struct ScoreManager {
             self.data[score.date.simple] = [score]
             
             save()
-            
-            tallyAllStats()
-            
+                        
             return /*EXIT*/
             
         }
@@ -72,9 +61,7 @@ struct ScoreManager {
                 self.data[score.date.simple] = currData
                 
                 save()
-                
-                tallyAllStats()
-                
+                                
                 return /*EXIT*/
                 
             }
@@ -86,20 +73,11 @@ struct ScoreManager {
         self.data[score.date.simple] = currData
         
         save()
-        
-        tallyAllStats()
-        
+                
     }
     
-    func cylecFilter() {
-        
-        prefs.scoreSortFilter.cycleNext()
-        
-    }
-    
-    mutating func remove(_ score: Score) {
-        
-        needsTally = true
+    /// Deletes a score from `data`
+    mutating func delete(_ score: Score) {
         
         guard var data = data[score.date.simple]
         else { return /*EXIT*/ }
@@ -111,7 +89,6 @@ struct ScoreManager {
                 data.remove(at: i)
                 self.data[score.date.simple] = data
                 
-                tallyAllStats()
                 save()
                 
                 return /*EXIT*/
@@ -119,8 +96,6 @@ struct ScoreManager {
             }
             
         }
-        
-        tallyAllStats()
         
     }
     
@@ -137,7 +112,10 @@ struct ScoreManager {
     
     mutating func getGamesCount() -> Int {
         
-        if gamesCount == 0 { tallyAllStats() }
+        tallyAllStats()
+        
+// TODO: Clean Up - delete
+//        if gamesCount == 0 { tallyAllStats() }
         
         return gamesCount
         
@@ -145,17 +123,22 @@ struct ScoreManager {
     
     mutating func getHighscore() -> Score? {
         
-        if highScore == nil { tallyAllStats() }
+        tallyAllStats()
+        
+// TODO: Clean Up - delete
+//        if highScore == nil { tallyAllStats() }
         
         return highScore
         
     }
     
     /// Returns the number of elements in the `[String]` returned by `getStats(:)`
-    func getStatCount() -> Int { getStats(scores.first!).count }
+    mutating func getStatCount() -> Int { getStats(scores.first!).count }
     
     /// Returns a `[String]` of ready to display score stats.
-    func getStats(_ score: Score) -> [String] {
+    mutating func getStats(_ score: Score) -> [String] {
+        
+        tallyAllStats()
         
         for (i, data) in scoresHighSorted.enumerated() {
             
@@ -194,6 +177,8 @@ struct ScoreManager {
     
     mutating func filter(count: Int) -> [Score] {
         
+        tallyAllStats()
+        
         let end = min(count, gamesCount) - 1
         
         if end < 0 { return [] }
@@ -221,10 +206,13 @@ struct ScoreManager {
     }
     func getFilterLabel() -> String { String(describing: prefs.scoreSortFilter) }
     
+    // TODO: Clean Up - need to call tallyAllStats here?
     func getScores(forDateString date: String) -> [Score] { data[date] ?? [Score]() }
     
     // Converts data to [["Date", "Score", "Level"]]
-    func getScoreArray() -> (score: [[String]], headers: [String]) {
+    mutating func getScoreArray() -> (score: [[String]], headers: [String]) {
+        
+        tallyAllStats()
         
         var scoreArray = [[String]]()
         
@@ -242,7 +230,9 @@ struct ScoreManager {
         
     }
     
-    func getScoreReport(forDateString date: String = Date().simple) -> String {
+    mutating func getScoreReport(forDateString date: String = Date().simple) -> String {
+        
+        tallyAllStats()
         
         let rawData = getScores(forDateString: date)
         
@@ -269,10 +259,10 @@ struct ScoreManager {
     
     mutating func getLevelReport() -> String {
         
+        tallyAllStats()
+        
         var rowData = [[String]]()
-        
-        if levelTally == nil { tallyAllStats() }
-        
+                
         for (level, count) in levelTally!.enumerated() {
             
             let percent = ((count.double / gamesCount.double) * 100).roundTo(1)
@@ -295,9 +285,9 @@ struct ScoreManager {
         
     }
     
-    
-    private var dailyStats = [DailyStats]()
-    
+    /// Calculates all stats and only executes when needsTally is set to `true`
+    /// - important: Should be called before any attempt is made to read from `data`, `scores`, or `dailyStats`
+    /// - important: `needsTally` should be set to true any time data is changed.
     mutating func tallyAllStats() {
         
         if !needsTally { return /*EXIT*/ }
@@ -309,6 +299,7 @@ struct ScoreManager {
         
     }
     
+    /// - important: do not call directly, call `tallyAllStats` instead
     mutating private func tallyScoreStats() {
         
         levelTally = Array(repeating: 0, count: Score.levelCount)
@@ -316,9 +307,15 @@ struct ScoreManager {
         var highScore: Score?
         var high = 0
         
+        // reset scores
+        scores = [Score]()
+        
         for dayScores in data.values {
             
             for score in dayScores {
+
+                // update scores
+                scores.append(score)
                 
                 // General Stats
                 gamesCount += 1
@@ -345,6 +342,7 @@ struct ScoreManager {
         
     }
     
+    /// - important: do not call directly, call `tallyAllStats` instead
     mutating private func tallyDailyStats() {
         
         var dailies = [DailyStats]()
@@ -360,9 +358,9 @@ struct ScoreManager {
             var sum = 0
             scores.forEach{ sum += $0.score }
             
-            daily.date = dateString.simpleDate
-            daily.averageScore = sum / scores.count
-            daily.gameCount = scores.count
+            daily.date          = dateString.simpleDate
+            daily.averageScore  = sum / scores.count
+            daily.gameCount     = scores.count
             
             dailies.append(daily)
             
@@ -370,7 +368,7 @@ struct ScoreManager {
         
         // sort
         dailyStats = dailies.sorted{$0 > $1}
-
+        
         // set ranks
         for i in 0...dailyStats.lastUsableIndex {
             
@@ -397,6 +395,13 @@ struct ScoreManager {
         }
         
         return nil
+        
+    }
+    
+    
+    func cylecFilter() {
+        
+        prefs.scoreSortFilter.cycleNext()
         
     }
     

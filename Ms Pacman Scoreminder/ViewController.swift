@@ -382,7 +382,7 @@ class ViewController: UIViewController {
         guard let score = score
         else { return /*EXIT*/ }
         
-        scoreMan.remove(score)
+        scoreMan.delete(score)
         
         scoreToDelete = nil
         uiVolatile()
