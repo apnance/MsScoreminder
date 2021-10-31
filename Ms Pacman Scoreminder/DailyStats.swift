@@ -16,6 +16,23 @@ struct DailyStats {
     
 }
 
+extension DailyStats: Equatable, Comparable {
+    
+    static func == (lhs: DailyStats, rhs: DailyStats) -> Bool {
+        
+        lhs.date.simple == rhs.date.simple
+        
+    }
+    
+    
+    static func < (lhs: DailyStats, rhs: DailyStats) -> Bool {
+        
+        lhs.averageScore < rhs.averageScore
+        
+    }
+    
+}
+
 extension DailyStats: CustomStringConvertible {
     
     var description: String {
