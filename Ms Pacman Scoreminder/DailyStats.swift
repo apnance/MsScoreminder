@@ -12,6 +12,7 @@ struct DailyStats {
     var date: Date = Date()
     var rank: (Int, Int) = (-123,-1234)
     var averageScore: Int = -12345
+    var averageLevel: Int = -123
     var gameCount: Int = -12345
     
 }
