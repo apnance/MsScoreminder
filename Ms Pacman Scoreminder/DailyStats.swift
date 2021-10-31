@@ -16,3 +16,12 @@ struct DailyStats {
     
 }
 
+extension DailyStats: CustomStringConvertible {
+    
+    var description: String {
+        
+        "\(date.simple) - rank(\(rank.0)/\(rank.1)) - avg score: \(averageScore) - game count: \(gameCount)"
+        
+    }
+    
+}
