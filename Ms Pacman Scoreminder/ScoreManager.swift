@@ -11,7 +11,7 @@ typealias CSV = String
 typealias DateString = String
 
 struct ScoreManager {
-    
+
     private var highScore: Score?
     private var gamesCount  = 0
     private var prefs       = Preferences.shared
@@ -25,7 +25,7 @@ struct ScoreManager {
     /// - important: needsTally bit flag set to true when data.didSet is called
     private var data: [ DateString : [Score] ] { didSet { needsTally = true } }
     
-    private var scores = [Score]()
+    private var scores              = [Score]()
     private var scoresDateSorted    = [Score]()
     private var scoresHighSorted    = [Score]()
     private var scoresLowSorted     = [Score]()
@@ -40,63 +40,63 @@ struct ScoreManager {
     
     // Adds or updates score in the data hash
     mutating func set(_ score: Score) {
-        
+
         guard var currData = data[score.date.simple]
         else {
-            
+
             self.data[score.date.simple] = [score]
-            
+
             save()
-                        
+
             return /*EXIT*/
-            
+
         }
-        
+
         for i in 0..<currData.count {
-            
+
             if currData[i] == score {
-                
+
                 currData[i] = score
-                
+
                 self.data[score.date.simple] = currData
-                
+
                 save()
-                
+
                 return /*EXIT*/
-                
+
             }
-            
+
         }
-        
+
         currData.append(score)
-        
+
         self.data[score.date.simple] = currData
-        
+
         save()
-                
+
     }
-    
+
     /// Deletes a score from `data`
     mutating func delete(_ score: Score) {
-        
+
         guard var data = data[score.date.simple]
         else { return /*EXIT*/ }
-        
+
         for i in 0..<data.count {
-            
+
             if data[i] == score {
-                
+
                 data.remove(at: i)
                 self.data[score.date.simple] = data
-                
+
                 save()
-                
+
                 return /*EXIT*/
-                
+
             }
-            
+
         }
-        
+
     }
     
     mutating func getMoneySpent() -> String {
@@ -253,10 +253,10 @@ struct ScoreManager {
         if !needsTally { return /*EXIT*/ }
         
         needsTally = false
-        
-        tallyScoreStats()
-        tallyDailyStats()
-        
+            
+            tallyScoreStats()
+            tallyDailyStats()
+            
     }
     
     /// - important: do not call directly, call `tallyAllStats` instead
@@ -438,7 +438,7 @@ extension ScoreManager {
         }
         
         return scoreMan
-        
+                
     }
     
     func getCSV() -> CSV {
@@ -483,7 +483,7 @@ extension ScoreManager {
         
         let savedData       = FileManager.default.contents(atPath: Configs.File.currentDataPath)
         let saveDataExists  = savedData != nil
-        let useDefaults     = Configs.Test.shouldRevertToDefaultData || !saveDataExists
+        let useDefaults     = Configs.Test.shouldReloadData || !saveDataExists
         
         if saveDataExists {
             

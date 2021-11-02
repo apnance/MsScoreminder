@@ -36,8 +36,10 @@ struct Configs {
                 
         static let maxBackupCount = 5
         
+        // file path
         private static let basePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path + "/"
-        static let defaultDataPath = Bundle.main.url(forResource:"DefaultData", withExtension: "csv")!.relativePath
+        static let fileName = Test.forceLoadDataNamed
+        static let defaultDataPath = Bundle.main.url(forResource: fileName, withExtension: "csv")!.relativePath
         static let currentDataPath = basePath + "Current.csv"
         
         /// Generates a unique backup file name based on current date/time
@@ -57,20 +59,24 @@ struct Configs {
         /// in format: 'Backup-MM.dd.yy-HH.mm.ssss.csv'
         static func generateBackupFilePath() -> String {
             
-            
-            return basePath + generateBackupFileName()
+            basePath + generateBackupFileName()
             
         }
     }
     
     struct Test {
-        
-        /// Setting to true causes Scoreminder to replace any data on device with a copy of the default data.
+
+        /// Setting this property to the name of a file in `.documentDirectory` causes Scoreminder
+        /// to replace any data on device with a copy of the that file.
+        ///
         /// Doing so also causes a backup file to be written to your documents directory(viewable in
         /// iOS's Files app) before reverting to default values.
         ///
-        /// - important: Set to false when not testing.
-        static let shouldRevertToDefaultData = false
+        /// - important: Set to empty string  when not testing.
+        fileprivate static let forceLoadDataNamed = "TestData" //use "DefaultData", "TestData", or ""
+        
+        /// Flag indicating if the data loader should force load data over existing data.
+        static var shouldReloadData: Bool { !forceLoadDataNamed.isEmpty }
         
     }
     
