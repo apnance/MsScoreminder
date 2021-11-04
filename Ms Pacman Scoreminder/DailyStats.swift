@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Data model describing aggregate scores for a given day.
 struct DailyStats {
     
     var date: Date = Date()
@@ -24,7 +25,6 @@ extension DailyStats: Equatable, Comparable {
         lhs.date.simple == rhs.date.simple
         
     }
-    
     
     static func < (lhs: DailyStats, rhs: DailyStats) -> Bool {
         
