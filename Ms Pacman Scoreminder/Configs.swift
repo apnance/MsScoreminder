@@ -33,39 +33,58 @@ struct Configs {
     }
     
     struct File {
-                
+        
         static let maxBackupCount = 5
         
-        // file path
-        private static let basePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path + "/"
-        static let fileName = Test.forceLoadDataNamed
-        static let defaultDataPath = Bundle.main.url(forResource: fileName, withExtension: "csv")!.relativePath
-        static let currentDataPath = basePath + "Current.csv"
+        struct Name {
+            
+            static let defaultData      = "DefaultData"
+            static let testData         = "TestData"
+            static let nilData: String? = nil
+            
+            static let final            = Test.forceLoadDataNamed ?? File.Name.defaultData
+
+        }
         
-        /// Generates a unique backup file name based on current date/time
-        /// in format: 'Backup-MM.dd.yy-HH.mm.ssss.csv'
-        static func generateBackupFileName() -> String {
+        
+        struct Path {
             
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MM.dd.yy-HH.mm.ssss"
+            // file path
+            private static let base = FileManager.default.urls(for: .documentDirectory,
+                                                                  in: .userDomainMask).first!.path + "/"
+            static let defaultData  = Bundle.main.url(forResource: Configs.File.Name.final,
+                                                      withExtension: "csv")!.relativePath
+            static let currentData  = base + "Current.csv"
             
-            let date = dateFormatter.string(from: Date())
+            /// Generates a unique backup file name based on current date/time
+            /// in format: 'Backup-MM.dd.yy-HH.mm.ssss.csv'
+            static func generateBackupFileName() -> String {
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "MM.dd.yy-HH.mm.ssss"
+                
+                let date = dateFormatter.string(from: Date())
+                
+                return "Backup-\(date).csv"
+                
+            }
             
-            return "Backup-\(date).csv"
+            /// Generates a unique backup filepath appending filename
+            /// in format: 'Backup-MM.dd.yy-HH.mm.ssss.csv'
+            static func generateBackupFilePath() -> String {
+                
+                base + generateBackupFileName()
+                
+            }
             
         }
         
-        /// Generates a unique backup filepath appending filename
-        /// in format: 'Backup-MM.dd.yy-HH.mm.ssss.csv'
-        static func generateBackupFilePath() -> String {
-            
-            basePath + generateBackupFileName()
-            
-        }
     }
     
     struct Test {
-
+        
+        // force loading data
+        
         /// Setting this property to the name of a file in `.documentDirectory` causes Scoreminder
         /// to replace any data on device with a copy of the that file.
         ///
@@ -73,10 +92,11 @@ struct Configs {
         /// iOS's Files app) before reverting to default values.
         ///
         /// - important: Set to empty string  when not testing.
-        fileprivate static let forceLoadDataNamed = "TestData" //use "DefaultData", "TestData", or ""
+        /// - ex. use Configs.File.Name.defaultData, Configs.File.Name.testData, or Configs.File.Name.nilData to avoid force loading data
+        fileprivate static let forceLoadDataNamed: String? = Configs.File.Name.nilData
         
         /// Flag indicating if the data loader should force load data over existing data.
-        static var shouldReloadData: Bool { !forceLoadDataNamed.isEmpty }
+        static var shouldReloadData: Bool { forceLoadDataNamed != nil }
         
     }
     

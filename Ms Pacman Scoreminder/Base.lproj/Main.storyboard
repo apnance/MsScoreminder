@@ -55,7 +55,7 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="2Bs-Ux-Man">
-                                <rect key="frame" x="45" y="276" width="324" height="84.5"/>
+                                <rect key="frame" x="45" y="276" width="324" height="79.5"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Score" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="xi2-KO-0v3">
                                         <rect key="frame" x="0.0" y="0.0" width="324" height="45.5"/>
@@ -68,10 +68,10 @@
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="postal-code"/>
                                     </textField>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="top" segmentControlStyle="plain" momentary="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZjU-v8-9Gv">
-                                        <rect key="frame" x="0.0" y="54.5" width="324" height="31"/>
+                                        <rect key="frame" x="0.0" y="54.5" width="324" height="26"/>
                                         <color key="backgroundColor" name="Banana"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="3Tt-aO-hEA"/>
+                                            <constraint firstAttribute="height" constant="25" id="3Tt-aO-hEA"/>
                                         </constraints>
                                         <segments>
                                             <segment title="" image="ms_icon_4"/>
@@ -154,7 +154,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZyG-9R-Myt" userLabel="Container View">
-                                <rect key="frame" x="30" y="375.5" width="354" height="461.5"/>
+                                <rect key="frame" x="30" y="370.5" width="354" height="466.5"/>
                                 <subviews>
                                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High Scores" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZZ-vR-qwz">
                                         <rect key="frame" x="121.5" y="0.0" width="111" height="21.5"/>
@@ -163,7 +163,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kw7-ga-S1C" userLabel="Scores View">
-                                        <rect key="frame" x="0.0" y="25" width="354" height="436.5"/>
+                                        <rect key="frame" x="0.0" y="25" width="354" height="441.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>

@@ -108,11 +108,11 @@ class ViewController: UIViewController {
                 
             }
             
-            scoreCycler.dataMax = scoreMan.getStatCount() - 1
-            
             return /*EXIT*/
             
         }
+        
+        scoreCycler.dataMax = scoreMan.getStatCount() - 1
         
         if scoreCycler.num > 34 {
             
@@ -209,6 +209,8 @@ class ViewController: UIViewController {
         
         DispatchQueue.main.async {
             
+            self.scoreMan.tally()
+            
             self.highLevelIcon.rotateRandom(minAngle: 0, maxAngle: 5)
             
             self.dailySummaryView.load(self.scoreMan.getDailyStats(Date()))
@@ -220,13 +222,13 @@ class ViewController: UIViewController {
                 
                 self.highLevelIcon.image = UIImage(named: "ms_icon_\(high.level)")
                 
-                self.highscoreView.isHidden = false
+                self.highscoreView.isHidden     = false
                 
-                self.totalMoneySpentLabel.text = self.scoreMan.getMoneySpent()
-                
-                self.uiScore()
+                self.totalMoneySpentLabel.text  = self.scoreMan.getMoneySpent()
                 
             } else { self.highscoreView.isHidden = true }
+            
+            self.uiScore()
             
         }
         
@@ -257,7 +259,7 @@ class ViewController: UIViewController {
             
             let scoreView = AtomicScoreView.new(delegate: self,
                                                 withScore: score,
-                                                andData: scoreMan.getStats(score))
+                                                andData: scoreMan.getDisplayStats(score))
             
             scoreViews.append(scoreView)
             
@@ -279,7 +281,7 @@ class ViewController: UIViewController {
             } else {
                 
                 xO += scoresView.frame.width / colCount.double
-
+                
             }
             
         }
@@ -410,7 +412,7 @@ extension ViewController: MFMailComposeViewControllerDelegate {
                
                mail.addAttachmentData(data as Data,
                                       mimeType: "text/csv",
-                                      fileName: "\(Configs.File.generateBackupFileName())")
+                                      fileName: "\(Configs.File.Path.generateBackupFileName())")
                
            }
               
@@ -478,7 +480,7 @@ extension ViewController: AtomicScoreViewDelegate {
         
         let scoreView = AtomicScoreView.new(delegate: nil,
                                             withScore: score,
-                                            andData: scoreMan.getStats(score))
+                                            andData: scoreMan.getDisplayStats(score))
         
         deleteScoreContainerView.removeAllSubviews()
         deleteScoreContainerView.translatesAutoresizingMaskIntoConstraints = true
