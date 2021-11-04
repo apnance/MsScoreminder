@@ -23,7 +23,7 @@ struct Score {
                                      "Banana5",
                                      "Banana6"]
     
-    static var levelCount: Int { 9 }
+    static var levelCount = { levelNames.count }()
     
     static func colorFor(level: Int) -> UIColor {
         
