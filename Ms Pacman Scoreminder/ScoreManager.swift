@@ -24,12 +24,12 @@ class ScoreManager {
     // Adds or updates score in the data hash
     func set(_ score: Score) {
         
-        var currData = stats.getDataFor(score.date.simple)
+        var currData = getDataFor(score.date.simple)
         let date = score.date.simple
         
         if currData.count == 0 {
             
-            stats.setData(date,
+            setData(date,
                           using: [score])
             
             save()
@@ -44,7 +44,7 @@ class ScoreManager {
                 
                 currData[i] = score
                 
-                stats.setData(date,
+                setData(date,
                               using: currData)
                 
                 save()
@@ -57,7 +57,7 @@ class ScoreManager {
         
         currData.append(score)
         
-        stats.setData(date,
+        setData(date,
                       using: currData)
         
         save()
@@ -68,7 +68,7 @@ class ScoreManager {
     func delete(_ score: Score) {
         
         let date = score.date.simple
-        var scores = stats.getDataFor(date)
+        var scores = getDataFor(date)
         
         if scores.count == 0 { return /*EXIT*/ }
         
@@ -78,7 +78,7 @@ class ScoreManager {
                 
                 scores.remove(at: i)
                 
-                stats.setData(date, using: scores)
+                setData(date, using: scores)
                 
                 save()
                 
@@ -107,7 +107,7 @@ class ScoreManager {
     /// Returns the number of elements in the `[String]` returned by `getStats(:)`
     func getStatCount() -> Int {
         
-        if let sample = stats.getScores(sortedBy: .date).first {
+        if let sample = getScores(sortedBy: .date).first {
             
             return getDisplayStats(sample).count
             
@@ -118,7 +118,8 @@ class ScoreManager {
     /// Returns a `[String]` of ready to display score stats.
     func getDisplayStats(_ score: Score) -> [String] {
         
-        let scores = stats.getScores(sortedBy: .high)
+        let scores = getScores(sortedBy: .high)
+        
         for (i, data) in scores.enumerated() {
             
             if score == data {
@@ -159,7 +160,7 @@ class ScoreManager {
         
         var scoreArray = [[String]]()
         
-        let scores = stats.getScores(sortedBy: .date)
+        let scores = getScores(sortedBy: .date)
         
         for score in scores {
             
@@ -175,7 +176,7 @@ class ScoreManager {
     
     func getScoreReport(forDateString date: DateString = Date().simple) -> String {
         
-        let rawData = stats.getDataFor(date)
+        let rawData = getDataFor(date)
         
         var data = [[String]]()
         
@@ -231,7 +232,7 @@ class ScoreManager {
         
         if stats.needsTally {
             
-            stats.clearNeedsTally()
+            clearNeedsTally()
             
             tallyScoreStats()
             tallyDailyStats()
@@ -251,7 +252,7 @@ class ScoreManager {
         // build scores
         var scores = [Score]()
         
-        for dayScores in stats.getData().values {
+        for dayScores in getScores().values {
             
             for score in dayScores {
                 
@@ -259,7 +260,6 @@ class ScoreManager {
                 scores.append(score)
                 
                 // General Stats
-                //                stats.gamesCount += 1
                 stats.levelTally![score.level] += 1
                 
                 // High Score
@@ -274,7 +274,7 @@ class ScoreManager {
             
         }
         
-        stats.setScores(scores)
+        setScores(scores)
         stats.gamesCount = scores.count
         stats.highScore  = highScore
         
@@ -287,7 +287,7 @@ class ScoreManager {
         
         for date in stats.dates {
             
-            let scores = stats.getDataFor(date)
+            let scores = getDataFor(date)
             
             if scores.count == 0 { return /*EXIT*/ }
             
@@ -324,25 +324,7 @@ class ScoreManager {
             
         }
         
-        stats.setDailys(dailies)
-        
-    }
-    
-    func getDailyStats(_ date: DateString) -> DailyStats? {
-        
-        getDailyStats(date.simpleDate)
-        
-    }
-    
-    func getDailyStats(_ date: Date) -> DailyStats? {
-        
-        for daily in stats.dailyStats {
-            
-            if daily.date.simple == date.simple { return daily /*EXIT*/ }
-            
-        }
-        
-        return nil
+        setDailys(dailies)
         
     }
     
@@ -355,23 +337,23 @@ class ScoreManager {
         switch prefs.scoreSortFilter {
             
         case .highsHighFirst:
-            return stats.getScores(sortedBy: .high).sub(start: 0,
+            return getScores(sortedBy: .high).sub(start: 0,
                                                         end: end)
             
         case .highsNewFirst:
-            return stats.getScores(sortedBy: .high).sub(start: 0,
+            return getScores(sortedBy: .high).sub(start: 0,
                                                         end: end).sorted{ $0.date > $1.date }
             
         case .recents:
-            return stats.getScores(sortedBy: .date).sub(start: 0,
+            return getScores(sortedBy: .date).sub(start: 0,
                                                         end: end)
             
         case .lowsLowFirst:
-            return stats.getScores(sortedBy: .low).sub(start: 0,
+            return getScores(sortedBy: .low).sub(start: 0,
                                                        end: end)
             
         case .lowsNewFirst:
-            return stats.getScores(sortedBy: .low).sub(start: 0,
+            return getScores(sortedBy: .low).sub(start: 0,
                                                        end: end).sorted{ $0.date > $1.date }
             
         }
@@ -401,7 +383,7 @@ extension ScoreManager {
             let scoreVal    = Int(rowData[1])!
             let level       = Int(rowData[2]) ?? -1
             
-            var scores      = stats.getDataFor(date)
+            var scores      = getDataFor(date)
             
             let score       = Score(date: date.simpleDate,
                                     score: scoreVal,
@@ -409,7 +391,7 @@ extension ScoreManager {
             
             scores.append(score)
             
-            stats.setData(date, using: scores)
+            setData(date, using: scores)
             
         }
         
@@ -422,7 +404,7 @@ extension ScoreManager {
         
         var output = ""
         
-        let scores = stats.getScores(sortedBy: .date)
+        let scores = getScores(sortedBy: .date)
         
         for score in scores {
                         
@@ -553,7 +535,7 @@ extension ScoreManager: CustomStringConvertible {
         var i = 0
         var descr = ""
         
-        for scores in stats.getData().values {
+        for scores in getScores().values {
             
             descr += "\(i) : \(scores)\n"
             i += 1

@@ -18,10 +18,9 @@ struct Stats{
     fileprivate var scoresHighSorted    = [Score]()
     fileprivate var scoresLowSorted     = [Score]()
     
-    fileprivate(set) var dailyStats          = [DailyStats]()
+    fileprivate var dailyStats     = [DailyStats]()
     
     var levelTally: [Int]!
-
     
     var highScore: Score!
     var gamesCount  = 0
@@ -35,22 +34,26 @@ struct Stats{
         
     }
     
+}
+
+extension ScoreManager {
+
     // TODO: Clean Up - rename getDataFor -> getScoresFor
-    func getData() -> [DateString : [Score] ] { return data }
-    func getDataFor(_ date: DateString) -> [Score] { data[date] ?? [] }
+    func getScores() -> [DateString : [Score] ] { return stats.data }
+    func getDataFor(_ date: DateString) -> [Score] { stats.data[date] ?? [] }
 
 
-    mutating func setData(_ date: DateString, using: [Score]) {
+    func setData(_ date: DateString, using: [Score]) {
 
-        data[date] = using
+        stats.data[date] = using
 
-        if data[date]?.count == 0 {
+        if stats.data[date]?.count == 0 {
 
-            data.removeValue(forKey: date)
+            stats.data.removeValue(forKey: date)
 
         }
 
-        needsTally = true
+        stats.needsTally = true
 
     }
 
@@ -58,77 +61,44 @@ struct Stats{
 
         switch sortedBy {
 
-        case .date: return scoresDateSorted
+        case .date: return stats.scoresDateSorted
 
-        case .high: return scoresHighSorted
+        case .high: return stats.scoresHighSorted
 
-        case .low: return scoresLowSorted
+        case .low: return stats.scoresLowSorted
 
         }
 
     }
 
-    mutating func setScores(_ scores: [Score]) {
+    func setScores(_ scores: [Score]) {
+
+        stats.scoresDateSorted    = scores.sorted{ $0.date > $1.date }
+        stats.scoresHighSorted    = scores.sorted{ $0.score > $1.score }
+        stats.scoresLowSorted     = scores.sorted{ $0.score < $1.score }
+
+    }
+    
+    func getDailyStats(_ date: DateString) -> DailyStats? {
         
-        scoresDateSorted    = scores.sorted{ $0.date > $1.date }
-        scoresHighSorted    = scores.sorted{ $0.score > $1.score }
-        scoresLowSorted     = scores.sorted{ $0.score < $1.score }
+        getDailyStats(date.simpleDate)
         
     }
     
+    func getDailyStats(_ date: Date) -> DailyStats? {
+        
+        for daily in stats.dailyStats {
+            
+            if daily.date.simple == date.simple { return daily /*EXIT*/ }
+            
+        }
+        
+        return nil
+        
+    }
     
-    mutating func setDailys(_ dailies: [DailyStats]) { dailyStats = dailies }
-    
-    mutating func clearNeedsTally() { needsTally = false }
-    
-}
+    func setDailys(_ dailies: [DailyStats]) { stats.dailyStats = dailies }
 
-//extension ScoreManager {
-//
-//    // TODO: Clean Up - rename getDataFor -> getScoresFor
-//    func getData() -> [DateString : [Score] ] { return stats.data }
-//    func getDataFor(_ date: DateString) -> [Score] { stats.data[date] ?? [] }
-//
-//
-//    func setData(_ date: DateString, using: [Score]) {
-//
-//        stats.data[date] = using
-//
-//        if stats.data[date]?.count == 0 {
-//
-//            stats.data.removeValue(forKey: date)
-//
-//        }
-//
-//        stats.needsTally = true
-//
-//    }
-//
-//    func getScores(sortedBy: ScoreSortOrder) -> [Score] {
-//
-//        switch sortedBy {
-//
-//        case .date: return stats.scoresDateSorted
-//
-//        case .high: return stats.scoresHighSorted
-//
-//        case .low: return stats.scoresLowSorted
-//
-//        }
-//
-//    }
-//
-//    func setScores(_ scores: [Score]) {
-//
-//        stats.scoresDateSorted    = scores.sorted{ $0.date > $1.date }
-//        stats.scoresHighSorted    = scores.sorted{ $0.score > $1.score }
-//        stats.scoresLowSorted     = scores.sorted{ $0.score < $1.score }
-//
-//    }
-//
-//
-//    func setDailys(_ dailies: [DailyStats]) { stats.dailyStats = dailies }
-//
-//    func clearNeedsTally() { stats.needsTally = false }
-//
-//}
+    func clearNeedsTally() { stats.needsTally = false }
+
+}
