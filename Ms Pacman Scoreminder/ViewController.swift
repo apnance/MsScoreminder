@@ -143,9 +143,7 @@ class ViewController: UIViewController {
         outlineLabel(deleteScoreLabel)
         outlineLabel(highscoreLabel)
         addShadows()
-        
-        totalMoneySpentLabel.textColor = UIColor(named: "Banana")
-        
+                
         let dismissDeleteTap = UITapGestureRecognizer(target: self,
                                                       action: #selector(handleDismissDeleteUITap(sender:)))
         mainView.addGestureRecognizer(dismissDeleteTap)

@@ -23,7 +23,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="$25.25" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lGR-By-8Ok">
                                         <rect key="frame" x="149.5" y="726" width="65" height="22"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="textColor" name="Banana"/>
+                                        <color key="textColor" name="Pear"/>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -102,25 +102,25 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GTZ-MZ-Xia">
-                                        <rect key="frame" x="112" y="208" width="190.5" height="66"/>
+                                        <rect key="frame" x="112" y="199" width="190.5" height="66"/>
                                         <fontDescription key="fontDescription" type="system" weight="black" pointSize="55"/>
                                         <color key="textColor" name="Banana"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRU-de-pwA">
-                                        <rect key="frame" x="146" y="192.5" width="122.5" height="27.5"/>
-                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="23"/>
+                                        <rect key="frame" x="138.5" y="180" width="137.5" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="25"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09/21/21" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cG-qg-LKh">
-                                        <rect key="frame" x="178" y="182.5" width="46.5" height="12"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09/21/21" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cG-qg-LKh">
+                                        <rect key="frame" x="226" y="256.5" width="46.5" height="12"/>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="10"/>
-                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" name="Banana"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fkC-iS-l62" customClass="RoundView" customModule="APNUtils">
-                                        <rect key="frame" x="286" y="203" width="35" height="35"/>
+                                        <rect key="frame" x="286" y="196" width="35" height="35"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ms_icon_0" translatesAutoresizingMaskIntoConstraints="NO" id="Qqy-7X-lm2" userLabel="High Level Fruit Icon">
                                                 <rect key="frame" x="-7.5" y="-7.5" width="50" height="50"/>
@@ -143,13 +143,13 @@
                                 <constraints>
                                     <constraint firstItem="GTZ-MZ-Xia" firstAttribute="centerX" secondItem="TCV-YU-Iab" secondAttribute="centerX" id="BCO-GW-vWT"/>
                                     <constraint firstItem="MRU-de-pwA" firstAttribute="centerX" secondItem="TCV-YU-Iab" secondAttribute="centerX" id="FEX-Be-Zco"/>
-                                    <constraint firstAttribute="bottom" secondItem="MRU-de-pwA" secondAttribute="bottom" constant="49" id="NzS-UG-s8n"/>
-                                    <constraint firstAttribute="bottom" secondItem="GTZ-MZ-Xia" secondAttribute="bottom" constant="-5" id="WGF-VC-fkB"/>
+                                    <constraint firstAttribute="bottom" secondItem="MRU-de-pwA" secondAttribute="bottom" constant="59" id="NzS-UG-s8n"/>
+                                    <constraint firstAttribute="bottom" secondItem="GTZ-MZ-Xia" secondAttribute="bottom" constant="4" id="WGF-VC-fkB"/>
                                     <constraint firstItem="fkC-iS-l62" firstAttribute="leading" secondItem="GTZ-MZ-Xia" secondAttribute="trailing" constant="-16.5" id="WYc-Rr-kjN"/>
                                     <constraint firstAttribute="bottom" secondItem="ycv-3o-wBM" secondAttribute="bottom" constant="68" id="ao8-y8-5Vo"/>
-                                    <constraint firstItem="GTZ-MZ-Xia" firstAttribute="top" secondItem="8cG-qg-LKh" secondAttribute="bottom" constant="13.5" id="dPl-yG-loM"/>
-                                    <constraint firstItem="GTZ-MZ-Xia" firstAttribute="top" secondItem="fkC-iS-l62" secondAttribute="top" constant="5" id="kWc-At-QDz"/>
-                                    <constraint firstItem="8cG-qg-LKh" firstAttribute="centerX" secondItem="TCV-YU-Iab" secondAttribute="centerX" constant="-6" id="waC-9d-1w6"/>
+                                    <constraint firstItem="GTZ-MZ-Xia" firstAttribute="top" secondItem="8cG-qg-LKh" secondAttribute="bottom" constant="-69.5" id="dPl-yG-loM"/>
+                                    <constraint firstItem="GTZ-MZ-Xia" firstAttribute="top" secondItem="fkC-iS-l62" secondAttribute="top" constant="3" id="kWc-At-QDz"/>
+                                    <constraint firstItem="8cG-qg-LKh" firstAttribute="centerX" secondItem="TCV-YU-Iab" secondAttribute="centerX" constant="42.25" id="waC-9d-1w6"/>
                                     <constraint firstItem="ycv-3o-wBM" firstAttribute="centerX" secondItem="TCV-YU-Iab" secondAttribute="centerX" id="yGx-oT-kJt"/>
                                 </constraints>
                             </view>
@@ -338,6 +338,9 @@
         </namedColor>
         <namedColor name="Blue">
             <color red="0.063000001013278961" green="0.51099997758865356" blue="0.7850000262260437" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Pear">
+            <color red="0.74000000953674316" green="0.97500002384185791" blue="0.14599999785423279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Pink">
             <color red="0.94499999284744263" green="0.19300000369548798" blue="0.49599999189376831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
