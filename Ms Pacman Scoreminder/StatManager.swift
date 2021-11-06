@@ -1,5 +1,5 @@
 //
-//  ScoreData.swift
+//  StatManager.swift
 //  Ms Pacman Scoreminder
 //
 //  Created by Aaron Nance on 9/21/21.
@@ -10,7 +10,7 @@ import APNUtils
 typealias CSV = String
 typealias DateString = String
 
-class ScoreManager {
+class StatManager {
     
     private var prefs       = Preferences.shared
     var stats: Stats!
@@ -367,7 +367,7 @@ class ScoreManager {
 }
 
 // MARK: - Data Storage
-extension ScoreManager {
+extension StatManager {
     
     func importData(from csv: CSV) {
         
@@ -529,7 +529,7 @@ extension ScoreManager {
     
 }
 
-extension ScoreManager: CustomStringConvertible {
+extension StatManager: CustomStringConvertible {
     
     var description: String {
         var i = 0

@@ -36,7 +36,7 @@ struct Stats{
     
 }
 
-extension ScoreManager {
+extension StatManager {
 
     // TODO: Clean Up - rename getDataFor -> getScoresFor
     func getScores() -> [DateString : [Score] ] { return stats.data }

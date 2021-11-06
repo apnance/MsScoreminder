@@ -11,7 +11,7 @@ import MessageUI
 class ViewController: UIViewController {
     
     // MARK: - Properties
-    var scoreMan = ScoreManager()
+    var statMan = StatManager()
     private var scoreToDelete: Score?
     private let (w, h, p) = (100.0, 50.0, 10.0)
     
@@ -69,15 +69,15 @@ class ViewController: UIViewController {
         
         super.viewDidLoad()
         
-        scoreMan.open()
+        statMan.open()
         
         uiInit()
         
     }
     
-    override func viewDidAppear(_ animated: Bool) { scoreMan.warningsCheck() }
+    override func viewDidAppear(_ animated: Bool) { statMan.warningsCheck() }
     
-    override func viewWillDisappear(_ animated: Bool) { scoreMan.save() }
+    override func viewWillDisappear(_ animated: Bool) { statMan.save() }
     
     // MARK: UI
     private func uiInit() {
@@ -112,7 +112,7 @@ class ViewController: UIViewController {
             
         }
         
-        scoreCycler.dataMax = scoreMan.getStatCount() - 1
+        scoreCycler.dataMax = statMan.getStatCount() - 1
         
         if scoreCycler.num > 34 {
             
@@ -207,13 +207,13 @@ class ViewController: UIViewController {
         
         DispatchQueue.main.async {
             
-            self.scoreMan.tally()
+            self.statMan.tally()
             
             self.highLevelIcon.rotateRandom(minAngle: 0, maxAngle: 5)
             
-            self.dailySummaryView.load(self.scoreMan.getDailyStats(Date()))
+            self.dailySummaryView.load(self.statMan.getDailyStats(Date()))
             
-            if let high = self.scoreMan.getHighscore() {
+            if let high = self.statMan.getHighscore() {
                 
                 self.highscoreLabel.text         = high.displayScore
                 self.highDateLabel.text          = high.date.simple
@@ -222,7 +222,7 @@ class ViewController: UIViewController {
                 
                 self.highscoreView.isHidden     = false
                 
-                self.totalMoneySpentLabel.text  = self.scoreMan.getMoneySpent()
+                self.totalMoneySpentLabel.text  = self.statMan.getMoneySpent()
                 
             } else { self.highscoreView.isHidden = true }
             
@@ -240,8 +240,8 @@ class ViewController: UIViewController {
                                    dashPattern: [0.1,12],
                                    lineCap: .round)
         
-        let scores = scoreMan.filter(count: 18)
-        scoresFilterLabel.text = scoreMan.getFilterLabel()
+        let scores = statMan.filter(count: 18)
+        scoresFilterLabel.text = statMan.getFilterLabel()
         
         let colCount = Int(scoresView.frame.width) / Int(w)
         var col = 1
@@ -257,7 +257,7 @@ class ViewController: UIViewController {
             
             let scoreView = AtomicScoreView.new(delegate: self,
                                                 withScore: score,
-                                                andData: scoreMan.getDisplayStats(score))
+                                                andData: statMan.getDisplayStats(score))
             
             scoreViews.append(scoreView)
             
@@ -333,7 +333,7 @@ class ViewController: UIViewController {
             
         }
         
-        scoreMan.set(Score(date: Date(),
+        statMan.set(Score(date: Date(),
                            score: Int(scoreText)!,
                            level: levelSelector.selectedSegmentIndex))
                 
@@ -355,7 +355,7 @@ class ViewController: UIViewController {
     
     @objc fileprivate func cycleFilter() {
         
-        scoreMan.cylecFilter()
+        statMan.cylecFilter()
         uiScore()
         
     }
@@ -382,7 +382,7 @@ class ViewController: UIViewController {
         guard let score = score
         else { return /*EXIT*/ }
         
-        scoreMan.delete(score)
+        statMan.delete(score)
         
         scoreToDelete = nil
         uiVolatile()
@@ -406,7 +406,7 @@ extension ViewController: MFMailComposeViewControllerDelegate {
            mail.mailComposeDelegate = self
            
            // Attachment
-           if let data = scoreMan.getCSV().data(using: .utf8) {
+           if let data = statMan.getCSV().data(using: .utf8) {
                
                mail.addAttachmentData(data as Data,
                                       mimeType: "text/csv",
@@ -426,7 +426,7 @@ extension ViewController: MFMailComposeViewControllerDelegate {
     
     private func buildHTML() -> String {
         
-        let levelReport = scoreMan.getLevelReport().replacingOccurrences(of: "\n",
+        let levelReport = statMan.getLevelReport().replacingOccurrences(of: "\n",
                                                                          with: "<br/>")
         
         return  """
@@ -478,7 +478,7 @@ extension ViewController: AtomicScoreViewDelegate {
         
         let scoreView = AtomicScoreView.new(delegate: nil,
                                             withScore: score,
-                                            andData: scoreMan.getDisplayStats(score))
+                                            andData: statMan.getDisplayStats(score))
         
         deleteScoreContainerView.removeAllSubviews()
         deleteScoreContainerView.translatesAutoresizingMaskIntoConstraints = true
