@@ -140,7 +140,8 @@ class StatManager {
                     
                 default:
                     
-                    percentile = (( rank.double / scoreCount.double ) * 100).roundTo(1).description.rTrimTo(4)
+                    percentile = (((scoreCount - (rank - 1)).double / scoreCount.double ) * 100).roundTo(1).description.rTrimTo(4)
+                    
                     percentile = "\(percentile)%"
                     
                 }
@@ -289,7 +290,7 @@ class StatManager {
             
             let scores = getDataFor(date)
             
-            if scores.count == 0 { return /*EXIT*/ }
+            if scores.count < 2 { continue /*CONTINUE*/ }
             
             var daily = DailyStats()
             

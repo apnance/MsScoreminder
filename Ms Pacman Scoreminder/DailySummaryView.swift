@@ -84,13 +84,13 @@ class DailySummaryView: RoundView {
             }
             
         }
-                
+        
     }
     
     private func uiInit(with stats: DailyStats) {
         
         dateLabel.text  = stats.date.simple
-        stat1Label.text = "\(stats.rank.0.delimited) of \(stats.rank.1.delimited)"
+        stat1Label.text = getRankText(stats)
         stat2Label.text = stats.averageScore.delimited
         stat3Label.text = stats.gameCount.delimited
         
@@ -109,6 +109,16 @@ class DailySummaryView: RoundView {
         
         Utils.UI.addShadows(to: averageLevelContainerView)
         averageLevelContainerView.rotateRandom(minAngle: -5, maxAngle: 5)
+        
+    }
+    
+    private func getRankText(_ stats: DailyStats) -> String {
+        
+        let percentile = (((stats.rank.1 - (stats.rank.0 - 1)).double / stats.rank.1.double ) * 100).roundTo(1).description.rTrimTo(4)
+        
+        let output = "\(stats.rank.0.delimited)/\(stats.rank.1.delimited) (\(percentile)%)"
+        
+        return output
         
     }
     
