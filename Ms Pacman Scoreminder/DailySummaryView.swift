@@ -7,7 +7,6 @@
 
 import APNUtils
 
-
 class DailySummaryView: RoundView {
     
     // MARK: - Outlets
@@ -114,9 +113,8 @@ class DailySummaryView: RoundView {
     
     private func getRankText(_ stats: DailyStats) -> String {
         
-        let percentile = (((stats.rank.1 - (stats.rank.0 - 1)).double / stats.rank.1.double ) * 100).roundTo(1).description.rTrimTo(4)
-        
-        let output = "\(stats.rank.0.delimited)/\(stats.rank.1.delimited) (\(percentile)%)"
+        let percentile = StatManager.percentile(stats.rank.0, of: stats.rank.1)
+        let output = "\(stats.rank.0.delimited)/\(stats.rank.1.delimited) (\(percentile))"
         
         return output
         

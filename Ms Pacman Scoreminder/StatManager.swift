@@ -140,9 +140,7 @@ class StatManager {
                     
                 default:
                     
-                    percentile = (((scoreCount - (rank - 1)).double / scoreCount.double ) * 100).roundTo(1).description.rTrimTo(4)
-                    
-                    percentile = "\(percentile)%"
+                    percentile = StatManager.percentile(rank, of: scoreCount)
                     
                 }
                 
@@ -525,6 +523,13 @@ extension StatManager {
             }
             
         }
+        
+    }
+    
+    static func percentile(_ num: Int, of: Int) -> String {
+        
+        let len = (num == 1) ? 3 : 4
+        return num.percentile(of: of, roundedTo: 1).description.rTrimTo(len)
         
     }
     
