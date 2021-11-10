@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9313DE432731A40E00460712 /* TestData.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9313DE422731A40E00460712 /* TestData.csv */; };
+		9313DE4C273B418F00460712 /* EmailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9313DE4B273B418E00460712 /* EmailManager.swift */; };
 		9316244A26FA4C8D004C06B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9316244926FA4C8D004C06B7 /* AppDelegate.swift */; };
 		9316244C26FA4C8D004C06B7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9316244B26FA4C8D004C06B7 /* SceneDelegate.swift */; };
 		9316244E26FA4C8D004C06B7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9316244D26FA4C8D004C06B7 /* ViewController.swift */; };
@@ -81,6 +82,7 @@
 
 /* Begin PBXFileReference section */
 		9313DE422731A40E00460712 /* TestData.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestData.csv; sourceTree = "<group>"; };
+		9313DE4B273B418E00460712 /* EmailManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailManager.swift; sourceTree = "<group>"; };
 		9316244626FA4C8D004C06B7 /* Ms Scoreminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ms Scoreminder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9316244926FA4C8D004C06B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9316244B26FA4C8D004C06B7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				93B6D0E92700258C005ADF3F /* iOS */,
 				937B2B4026FBA8E70081CC6A /* StatManager.swift */,
 				9316244D26FA4C8D004C06B7 /* ViewController.swift */,
+				9313DE4B273B418E00460712 /* EmailManager.swift */,
 			);
 			name = C;
 			sourceTree = "<group>";
@@ -231,8 +234,8 @@
 			isa = PBXGroup;
 			children = (
 				932F7E2526FAD323001147B7 /* Configs.swift */,
-				9316245726FA4C90004C06B7 /* Info.plist */,
 				931800ED2721F957002D21E2 /* Utils.swift */,
+				9316245726FA4C90004C06B7 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				9316247F26FA5B02004C06B7 /* Score.swift in Sources */,
 				93B6D0EE270231A4005ADF3F /* AtomicScoreView.swift in Sources */,
 				93ACBFEA272CDCD4000BBC2C /* DailyStats.swift in Sources */,
+				9313DE4C273B418F00460712 /* EmailManager.swift in Sources */,
 				9316244E26FA4C8D004C06B7 /* ViewController.swift in Sources */,
 				9316244A26FA4C8D004C06B7 /* AppDelegate.swift in Sources */,
 				93345AD42730698D0090154B /* Stats.swift in Sources */,
