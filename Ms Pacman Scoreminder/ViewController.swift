@@ -398,11 +398,12 @@ extension ViewController: MFMailComposeViewControllerDelegate {
         
        if MFMailComposeViewController.canSendMail() {
            
-          let mail = MFMailComposeViewController()
+           let mail = MFMailComposeViewController()
            
            mail.setToRecipients(["apnance@gmail.com"])
            mail.setSubject("Ms. Score : Save Data : \(Date().simple)")
-           mail.setMessageBody(buildHTML(), isHTML: true)
+           mail.setMessageBody(EmailManager.buildSummaryHTML(using: statMan),
+                               isHTML: true)
            mail.mailComposeDelegate = self
            
            // Attachment
@@ -421,27 +422,6 @@ extension ViewController: MFMailComposeViewControllerDelegate {
            NSLog("Email cannot be sent")
            
        }
-        
-    }
-    
-    private func buildHTML() -> String {
-        
-        let levelReport = statMan.getLevelReport().replacingOccurrences(of: "\n",
-                                                                         with: "<br/>")
-        
-        return  """
-                <html>\
-                <style>
-                body { background-color: #F0317E; font-size: 14pt; color: #FEE732; font-weight: 900;}
-                .date { color: #1082C8; }
-                .report { font-size: 8pt; color: black; }
-                </style>\
-                <body><br/><center>
-                   Score Data : <span class="date">\(Date().simple)</span>
-                    <br/><br/><span class="report">\(levelReport)</span>
-                </center></body>\
-                </html>
-                """
         
     }
     

@@ -9,6 +9,7 @@ import APNUtils
 
 typealias CSV = String
 typealias DateString = String
+typealias HTML = String
 
 class StatManager {
     
@@ -170,57 +171,6 @@ class StatManager {
         }
         
         return (scoreArray, ["Date", "Score", "Level"])
-        
-    }
-    
-    func getScoreReport(forDateString date: DateString = Date().simple) -> String {
-        
-        let rawData = getDataFor(date)
-        
-        var data = [[String]]()
-        
-        for datum in rawData {
-            
-            data.append([datum.date.simple, datum.displayScore, datum.levelString])
-            
-        }
-        
-        var report = ""
-        let headers = ["Date", "Score", "Level"]
-        if data.count > 0 {
-            
-            report = Report.columnateAutoWidth(data, headers: headers,
-                                               title: "Scores for \(Date().simple)")
-            
-        }
-        
-        return report
-        
-    }
-    
-    func getLevelReport() -> String {
-        
-        var rowData = [[String]]()
-        
-        for (level, count) in stats.levelTally!.enumerated() {
-            
-            let percent = ((count.double / stats.gamesCount.double) * 100).roundTo(1)
-            rowData.append([Score.nameFor(level: level), "\(count)", "\(percent)%"])
-            
-        }
-        
-        var report = ""
-        let headers = ["Level", "Count", "Percent"]
-        
-        if rowData.count > 0 {
-            
-            report = Report.columnateAutoWidth(rowData,
-                                               headers: headers,
-                                               title: "Levels Reached")
-            
-        }
-        
-        return report
         
     }
     
