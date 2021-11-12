@@ -25,10 +25,10 @@ class StatManager {
     // Adds or updates score in the data hash
     func set(_ score: Score) {
         
-        var currData = getDataFor(score.date.simple)
+        var currScores = getScoresFor(score.date.simple)
         let date = score.date.simple
         
-        if currData.count == 0 {
+        if currScores.count == 0 {
             
             setData(date,
                           using: [score])
@@ -39,14 +39,14 @@ class StatManager {
             
         }
         
-        for i in 0..<currData.count {
+        for i in 0..<currScores.count {
             
-            if currData[i] == score {
+            if currScores[i] == score {
                 
-                currData[i] = score
+                currScores[i] = score
                 
                 setData(date,
-                              using: currData)
+                              using: currScores)
                 
                 save()
                 
@@ -56,10 +56,10 @@ class StatManager {
             
         }
         
-        currData.append(score)
+        currScores.append(score)
         
         setData(date,
-                      using: currData)
+                      using: currScores)
         
         save()
         
@@ -69,7 +69,7 @@ class StatManager {
     func delete(_ score: Score) {
         
         let date = score.date.simple
-        var scores = getDataFor(date)
+        var scores = getScoresFor(date)
         
         if scores.count == 0 { return /*EXIT*/ }
         
@@ -236,7 +236,7 @@ class StatManager {
         
         for date in stats.dates {
             
-            let scores = getDataFor(date)
+            let scores = getScoresFor(date)
             
             if scores.count < 2 { continue /*CONTINUE*/ }
             
@@ -332,7 +332,7 @@ extension StatManager {
             let scoreVal    = Int(rowData[1])!
             let level       = Int(rowData[2]) ?? -1
             
-            var scores      = getDataFor(date)
+            var scores      = getScoresFor(date)
             
             let score       = Score(date: date.simpleDate,
                                     score: scoreVal,
