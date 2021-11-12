@@ -17,21 +17,56 @@
                 <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="i5a-g7-rYI" userLabel="White Round BG View" customClass="RoundView" customModule="APNUtils">
                     <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DnQ-WQ-T8W">
+                            <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOE-DG-4vG">
+                                    <rect key="frame" x="-5" y="0.0" width="130" height="130"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="141"/>
+                                    <color key="textColor" name="Banana"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.34999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BN3-pG-8Ro">
+                                    <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="70"/>
+                                    <color key="textColor" name="Orange"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="pOE-DG-4vG" secondAttribute="trailing" constant="5" id="71R-hR-RRZ"/>
+                                <constraint firstAttribute="bottom" secondItem="pOE-DG-4vG" secondAttribute="bottom" id="KrK-UC-dd4"/>
+                                <constraint firstItem="pOE-DG-4vG" firstAttribute="top" secondItem="DnQ-WQ-T8W" secondAttribute="top" id="Y68-8E-KHl"/>
+                                <constraint firstItem="pOE-DG-4vG" firstAttribute="leading" secondItem="DnQ-WQ-T8W" secondAttribute="leading" constant="-5" id="hJK-sT-pIB"/>
+                            </constraints>
+                        </view>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="DnQ-WQ-T8W" firstAttribute="top" secondItem="i5a-g7-rYI" secondAttribute="top" id="bHQ-za-1NP"/>
+                        <constraint firstAttribute="trailing" secondItem="DnQ-WQ-T8W" secondAttribute="trailing" id="hQV-oC-rTC"/>
+                        <constraint firstItem="DnQ-WQ-T8W" firstAttribute="leading" secondItem="i5a-g7-rYI" secondAttribute="leading" id="xli-jv-ATV"/>
+                        <constraint firstAttribute="bottom" secondItem="DnQ-WQ-T8W" secondAttribute="bottom" id="y4i-xH-4Gb"/>
+                    </constraints>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" id="P7E-fx-I5x">
                     <rect key="frame" x="6.5" y="23.5" width="121" height="55"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10-28-21" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="HJX-wW-L12">
-                            <rect key="frame" x="0.0" y="0.0" width="121" height="24"/>
+                            <rect key="frame" x="0.0" y="0.0" width="121" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="24"/>
+                            <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="24"/>
                             <color key="textColor" name="Pink"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" id="czO-3n-MsD" userLabel="Day's Rank">
-                            <rect key="frame" x="0.0" y="24.5" width="121" height="10"/>
+                            <rect key="frame" x="0.0" y="25" width="121" height="10"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day's Rank" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MW5-Fj-lY0">
@@ -49,7 +84,7 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" id="DtP-pA-7pd" userLabel="Games Played Stack View">
-                            <rect key="frame" x="0.0" y="34.5" width="121" height="10"/>
+                            <rect key="frame" x="0.0" y="35" width="121" height="10"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average Score" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="SHe-K4-jIe">
@@ -123,6 +158,9 @@
                 <outlet property="averageLevelContainerView" destination="oI4-dr-7lR" id="OSw-lK-2Bf"/>
                 <outlet property="averageLevelIconImageView" destination="ykN-oG-qYu" id="xoL-sx-OT2"/>
                 <outlet property="averageLevelLabel" destination="SQM-Nm-fwA" id="hAo-4C-z6q"/>
+                <outlet property="bestDayContainerView" destination="DnQ-WQ-T8W" id="5UU-Os-B1l"/>
+                <outlet property="bestDayRank" destination="BN3-pG-8Ro" id="fD1-G2-4ed"/>
+                <outlet property="bestDayStarLabel" destination="pOE-DG-4vG" id="W9T-db-bca"/>
                 <outlet property="dateLabel" destination="HJX-wW-L12" id="clZ-tf-Lzc"/>
                 <outlet property="stat1Label" destination="5Kb-zK-98i" id="5ym-KP-6fy"/>
                 <outlet property="stat2Label" destination="0Dk-Iy-12d" id="Soc-TY-9kI"/>
@@ -133,8 +171,11 @@
     </objects>
     <resources>
         <image name="ms_icon_5" width="174" height="174"/>
+        <namedColor name="Banana">
+            <color red="0.99699997901916504" green="0.90600001811981201" blue="0.19799999892711639" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Blue">
-            <color red="0.063000001013278961" green="0.51099997758865356" blue="0.7850000262260437" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.062745098039215685" green="0.50980392156862742" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Orange">
             <color red="0.98600000143051147" green="0.51399999856948853" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

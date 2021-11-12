@@ -19,7 +19,9 @@ class DailySummaryView: RoundView {
     @IBOutlet weak var averageLevelBGView: RoundView!
     @IBOutlet weak var averageLevelIconImageView: UIImageView!
     @IBOutlet weak var averageLevelLabel: UILabel!
-    
+    @IBOutlet weak var bestDayContainerView: UIView!
+    @IBOutlet weak var bestDayStarLabel: UILabel!
+    @IBOutlet weak var bestDayRank: UILabel!
     
     // MARK: - Overrides
     override func awakeAfter(using coder: NSCoder) -> Any? {
@@ -105,6 +107,11 @@ class DailySummaryView: RoundView {
         averageLevelBGView.setRadius()
         
         averageLevelIconImageView.image = Score.iconFor(level: stats.averageLevel)
+        
+        bestDayContainerView.alpha = 1.0
+        bestDayStarLabel.alpha  = stats.rank.0 <= 10 ? 1.0 : 0.0
+
+        bestDayRank.text            = stats.rank.0.description
         
         Utils.UI.addShadows(to: averageLevelContainerView)
         averageLevelContainerView.rotateRandom(minAngle: -5, maxAngle: 5)

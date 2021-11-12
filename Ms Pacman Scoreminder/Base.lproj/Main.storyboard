@@ -21,14 +21,14 @@
                                 <rect key="frame" x="25" y="119" width="364" height="966"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="$25.25" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lGR-By-8Ok">
-                                        <rect key="frame" x="149.5" y="726" width="65" height="22"/>
+                                        <rect key="frame" x="152" y="726" width="60" height="23.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" name="Pear"/>
-                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
+                                        <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="v1.?" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fpz-Ml-hZL">
-                                        <rect key="frame" x="157" y="741" width="50" height="20"/>
+                                        <rect key="frame" x="157" y="742.5" width="50" height="20"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="EOf-1R-Sgw"/>
@@ -57,14 +57,14 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="2Bs-Ux-Man">
                                 <rect key="frame" x="45" y="276" width="324" height="79.5"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Score" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="xi2-KO-0v3">
+                                    <textField opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Score" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="xi2-KO-0v3">
                                         <rect key="frame" x="0.0" y="0.0" width="324" height="45.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45.5" id="OnZ-uL-ekY"/>
                                         </constraints>
-                                        <color key="textColor" name="Banana"/>
-                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="37"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="37"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="postal-code"/>
                                     </textField>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="top" segmentControlStyle="plain" momentary="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZjU-v8-9Gv">
@@ -102,25 +102,25 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GTZ-MZ-Xia">
-                                        <rect key="frame" x="112" y="199" width="190.5" height="66"/>
-                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="55"/>
+                                        <rect key="frame" x="127.5" y="197.5" width="159.5" height="67.5"/>
+                                        <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="53"/>
                                         <color key="textColor" name="Banana"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRU-de-pwA">
-                                        <rect key="frame" x="138.5" y="180" width="137.5" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="25"/>
+                                        <rect key="frame" x="135.5" y="169.5" width="143" height="39.5"/>
+                                        <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="31"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09/21/21" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cG-qg-LKh">
-                                        <rect key="frame" x="226" y="256.5" width="46.5" height="12"/>
+                                        <rect key="frame" x="226" y="255" width="46.5" height="12"/>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="10"/>
                                         <color key="textColor" name="Banana"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fkC-iS-l62" customClass="RoundView" customModule="APNUtils">
-                                        <rect key="frame" x="286" y="196" width="35" height="35"/>
+                                        <rect key="frame" x="270.5" y="194.5" width="35" height="35"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ms_icon_0" translatesAutoresizingMaskIntoConstraints="NO" id="Qqy-7X-lm2" userLabel="High Level Fruit Icon">
                                                 <rect key="frame" x="-7.5" y="-7.5" width="50" height="50"/>
@@ -143,7 +143,7 @@
                                 <constraints>
                                     <constraint firstItem="GTZ-MZ-Xia" firstAttribute="centerX" secondItem="TCV-YU-Iab" secondAttribute="centerX" id="BCO-GW-vWT"/>
                                     <constraint firstItem="MRU-de-pwA" firstAttribute="centerX" secondItem="TCV-YU-Iab" secondAttribute="centerX" id="FEX-Be-Zco"/>
-                                    <constraint firstAttribute="bottom" secondItem="MRU-de-pwA" secondAttribute="bottom" constant="59" id="NzS-UG-s8n"/>
+                                    <constraint firstAttribute="bottom" secondItem="MRU-de-pwA" secondAttribute="bottom" constant="60" id="NzS-UG-s8n"/>
                                     <constraint firstAttribute="bottom" secondItem="GTZ-MZ-Xia" secondAttribute="bottom" constant="4" id="WGF-VC-fkB"/>
                                     <constraint firstItem="fkC-iS-l62" firstAttribute="leading" secondItem="GTZ-MZ-Xia" secondAttribute="trailing" constant="-16.5" id="WYc-Rr-kjN"/>
                                     <constraint firstAttribute="bottom" secondItem="ycv-3o-wBM" secondAttribute="bottom" constant="68" id="ao8-y8-5Vo"/>
@@ -157,8 +157,8 @@
                                 <rect key="frame" x="30" y="370.5" width="354" height="466.5"/>
                                 <subviews>
                                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High Scores" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZZ-vR-qwz">
-                                        <rect key="frame" x="121.5" y="0.0" width="111" height="21.5"/>
-                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="18"/>
+                                        <rect key="frame" x="131.5" y="0.0" width="91" height="23"/>
+                                        <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="18"/>
                                         <color key="textColor" name="Banana"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -183,8 +183,8 @@
                                         <rect key="frame" x="107" y="348" width="200" height="200"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DELETE SCORE?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kwh-Xz-ZGz">
-                                                <rect key="frame" x="-13" y="36" width="226.5" height="33.5"/>
-                                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="28"/>
+                                                <rect key="frame" x="26.5" y="36" width="147.5" height="29.5"/>
+                                                <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="23"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -219,7 +219,7 @@
                                                 </constraints>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n4R-5x-sl0">
-                                                <rect key="frame" x="5" y="66.5" width="190" height="72.5"/>
+                                                <rect key="frame" x="5" y="62.5" width="190" height="76.5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="190" id="bid-du-t0c"/>
@@ -337,7 +337,7 @@
             <color red="0.99699997901916504" green="0.90600001811981201" blue="0.19799999892711639" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Blue">
-            <color red="0.063000001013278961" green="0.51099997758865356" blue="0.7850000262260437" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.062745098039215685" green="0.50980392156862742" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Pear">
             <color red="0.74000000953674316" green="0.97500002384185791" blue="0.14599999785423279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
