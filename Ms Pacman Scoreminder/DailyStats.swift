@@ -16,6 +16,10 @@ struct DailyStats {
     var averageLevel: Int = -123
     var gameCount: Int = -12345
     
+    var areLow: Bool {      rank.0 == rank.1 }
+    var areHigh: Bool {     rank.0 == 1 }
+    var areToday: Bool {    date.simple == Date().simple }
+    
 }
 
 extension DailyStats: Equatable, Comparable {

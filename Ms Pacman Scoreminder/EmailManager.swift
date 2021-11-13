@@ -72,7 +72,7 @@ struct EmailManager {
         
         var dailyStatsHTML = ""
 
-        if let dailyStats = statMan.getDailyStats(Date()) {
+        if let dailyStats = statMan.getDailyStats(Date()).first {
             
             let percentile = StatManager.percentile(dailyStats.rank.0, of: dailyStats.rank.1)
             let rank = "\(dailyStats.rank.0.oridinalDescription) of \(dailyStats.rank.1)"

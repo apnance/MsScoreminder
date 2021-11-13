@@ -211,7 +211,7 @@ class ViewController: UIViewController {
             
             self.highLevelIcon.rotateRandom(minAngle: 0, maxAngle: 5)
             
-            self.dailySummaryView.load(self.statMan.getDailyStats(Date()))
+            self.dailySummaryView.cycleDisplay(self.statMan.getDailyStats(Date()))
             
             if let high = self.statMan.getHighscore() {
                 

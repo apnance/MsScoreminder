@@ -18,7 +18,7 @@ struct Stats{
     fileprivate var scoresHighSorted    = [Score]()
     fileprivate var scoresLowSorted     = [Score]()
     
-    fileprivate var dailyStats     = [DailyStats]()
+    fileprivate var dailyStats          = [DailyStats]()
     
     var levelTally: [Int]!
     
@@ -77,23 +77,35 @@ extension StatManager {
         
     }
     
-    func getDailyStats(_ date: DateString) -> DailyStats? {
+
+    /// Returns `[DailyStatss]` containing the highest average score, lowest average score,
+    /// and today's stats(if available).
+    func getDailyStats(_ date: DateString) -> [DailyStats] {
         
         getDailyStats(date.simpleDate)
         
     }
-    
-    func getDailyStats(_ date: Date) -> DailyStats? {
+
+    /// Returns `[DailyStatss]` containing the highest average score, lowest average score,
+    /// and today's stats(if available).
+    func getDailyStats(_ date: Date) -> [DailyStats] {
+        
+        var returnStats = [DailyStats]()
         
         for daily in stats.dailyStats {
             
-            if daily.date.simple == date.simple { return daily /*EXIT*/ }
+            if daily.areToday || daily.areLow || daily.areHigh {
+                
+                returnStats.append(daily)
+                
+            }
             
         }
         
-        return nil
+        return returnStats.sorted{ $0.date > $1.date }
         
     }
+
     
     func setDailys(_ dailies: [DailyStats]) { stats.dailyStats = dailies }
     

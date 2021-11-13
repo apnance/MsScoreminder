@@ -9,6 +9,10 @@ import APNUtils
 
 class DailySummaryView: RoundView {
     
+    private var stats = [DailyStats]()
+    private var currStats = 0
+    private var timer: APNTimer?
+
     // MARK: - Outlets
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var stat1Label: UILabel!
@@ -52,10 +56,33 @@ class DailySummaryView: RoundView {
     
     
     // MARK: - Custom Methods
-    func load(_ stats: DailyStats?) {
+    func cycleDisplay(_ stats: [DailyStats]) {
         
-        guard let stats = stats
-        else {
+        self.stats = stats
+        self.currStats = 0
+        
+        load()
+        
+        if timer == nil {
+            
+            timer = APNTimer(name: "dailies",
+                             repeatInterval: 3.0) {
+                
+                _ in
+                
+                self.load()
+                
+            }
+            
+            return /*EXIT*/
+            
+        }
+        
+    }
+  
+    private func load() {
+
+        if stats.count < 1 {
             
             if alpha != 0 {
                 
@@ -72,23 +99,25 @@ class DailySummaryView: RoundView {
             
         }
         
-        uiInit(with: stats)
+        uiInit()
         
         if alpha != 0.75 {
             
             UIView.animate(withDuration: 0.8,
-                           delay: 0,
-                           options: UIView.AnimationOptions.curveEaseIn) {
-                
-                self.alpha = 0.8
-                
-            }
+                           delay: 0.0,
+                           options: UIView.AnimationOptions.curveEaseIn,
+                           animations: {self.alpha = 0.8 } )
             
         }
         
     }
-    
-    private func uiInit(with stats: DailyStats) {
+  
+    private func uiInit() {
+        
+        // reset counter?
+        currStats = currStats > stats.lastUsableIndex ? 0 : currStats
+        
+        let stats = self.stats[currStats]
         
         dateLabel.text  = stats.date.simple
         stat1Label.text = getRankText(stats)
@@ -115,6 +144,9 @@ class DailySummaryView: RoundView {
         
         Utils.UI.addShadows(to: averageLevelContainerView)
         averageLevelContainerView.rotateRandom(minAngle: -5, maxAngle: 5)
+        
+        // advance counter
+        currStats += 1
         
     }
     
