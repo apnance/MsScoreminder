@@ -11,8 +11,8 @@ class DailySummaryView: RoundView {
     
     private var stats = [DailyStats]()
     private var currStats = 0
-    private var timer: APNTimer?
-
+    private var initialized: Bool = false
+    
     // MARK: - Outlets
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var stat1Label: UILabel!
@@ -56,31 +56,25 @@ class DailySummaryView: RoundView {
     
     
     // MARK: - Custom Methods
-    func cycleDisplay(_ stats: [DailyStats]) {
+    func load(_ stats: [DailyStats]) {
         
         self.stats = stats
         self.currStats = 0
         
-        load()
-        
-        if timer == nil {
+        if !initialized {
             
-            timer = APNTimer(name: "dailies",
-                             repeatInterval: 3.0) {
-                
-                _ in
-                
-                self.load()
-                
-            }
-            
-            return /*EXIT*/
+            initialized = true
+                    
+            let tap = UITapGestureRecognizer(target: self, action: #selector(cycle))
+            self.addGestureRecognizer(tap)
             
         }
         
+        cycle()
+        
     }
   
-    private func load() {
+    @objc private func cycle() {
 
         if stats.count < 1 {
             
