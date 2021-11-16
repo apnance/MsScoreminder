@@ -58,11 +58,11 @@ struct Score {
         
     }
     
-    /// Zero-based highest level attained.
-    var level: Int
     var date: Date
     var score: Int
-    
+    /// Zero-based highest level attained.
+    var level: Int
+
     var displayScore: String { score.delimited }
     var levelString: String { Score.stringFor(level: level) }
     var levelIcon: UIImage { UIImage(named: "ms_icon_\(level)")! }
