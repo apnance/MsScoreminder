@@ -78,13 +78,13 @@ struct EmailManager {
             let rank = "\(dailyStats.rank.0.oridinalDescription) of \(dailyStats.rank.1)"
             
             dailyStatsHTML =    """
-                                    \(twoCol("Date: ", col2: Date().simple))
-                                    \(twoCol("Rank: ", col2: rank))
-                                    \(twoCol("Percentile: ", col2: percentile))
+                                    \(twoCol("Date: ",          col2: Date().simple))
+                                    \(twoCol("Rank: ",          col2: rank))
+                                    \(twoCol("Percentile: ",    col2: percentile))
                                 
-                                    \(twoCol("Avg. Score: ", col2: dailyStats.averageScore.delimited))
-                                    \(twoCol("Avg. Level: ", col2: dailyStats.averageLevel.description))
-                                    \(twoCol("Games Played: ", col2: dailyStats.gameCount.description))
+                                    \(twoCol("Avg. Score: ",    col2: dailyStats.averageScore.delimited))
+                                    \(twoCol("Avg. Level: ",    col2: Score.nameFor(level: dailyStats.averageLevel + 1)))
+                                    \(twoCol("Games: ",         col2: String(describing: dailyStats.gameCount)))
                                 """
             
         }
