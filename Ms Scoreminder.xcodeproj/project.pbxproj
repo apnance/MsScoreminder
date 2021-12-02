@@ -31,6 +31,7 @@
 		937B2B4E26FD56D00081CC6A /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 937B2B4D26FD56D00081CC6A /* Colors.xcassets */; };
 		93A497A3270E21F700D5AB5F /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A497A2270E21F700D5AB5F /* Preferences.swift */; };
 		93ACBFEA272CDCD4000BBC2C /* DailyStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ACBFE9272CDCD4000BBC2C /* DailyStats.swift */; };
+		93B67B5D274DD741007C302C /* PlayStreak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B67B5C274DD741007C302C /* PlayStreak.swift */; };
 		93B6D0EC27021DAD005ADF3F /* AtomicScoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93B6D0EB27021DAD005ADF3F /* AtomicScoreView.xib */; };
 		93B6D0EE270231A4005ADF3F /* AtomicScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B6D0ED270231A4005ADF3F /* AtomicScoreView.swift */; };
 /* End PBXBuildFile section */
@@ -111,6 +112,7 @@
 		937B2B4F26FE2F650081CC6A /* Ms Pacman ScoreminderDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Ms Pacman ScoreminderDebug.entitlements"; sourceTree = "<group>"; };
 		93A497A2270E21F700D5AB5F /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		93ACBFE9272CDCD4000BBC2C /* DailyStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyStats.swift; sourceTree = "<group>"; };
+		93B67B5C274DD741007C302C /* PlayStreak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayStreak.swift; sourceTree = "<group>"; };
 		93B6D0EB27021DAD005ADF3F /* AtomicScoreView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AtomicScoreView.xib; sourceTree = "<group>"; };
 		93B6D0ED270231A4005ADF3F /* AtomicScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicScoreView.swift; sourceTree = "<group>"; };
 		93E93B1826FA71C600461F78 /* APNUtils.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = APNUtils.xcodeproj; path = ../../Frameworks/APNUtils/APNUtils.xcodeproj; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				93A497A2270E21F700D5AB5F /* Preferences.swift */,
 				93ACBFE9272CDCD4000BBC2C /* DailyStats.swift */,
 				93345AD32730698D0090154B /* Stats.swift */,
+				93B67B5C274DD741007C302C /* PlayStreak.swift */,
 			);
 			name = M;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 				93ACBFEA272CDCD4000BBC2C /* DailyStats.swift in Sources */,
 				9313DE4C273B418F00460712 /* EmailManager.swift in Sources */,
 				9316244E26FA4C8D004C06B7 /* ViewController.swift in Sources */,
+				93B67B5D274DD741007C302C /* PlayStreak.swift in Sources */,
 				9316244A26FA4C8D004C06B7 /* AppDelegate.swift in Sources */,
 				93345AD42730698D0090154B /* Stats.swift in Sources */,
 				93A497A3270E21F700D5AB5F /* Preferences.swift in Sources */,
