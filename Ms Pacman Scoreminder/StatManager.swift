@@ -13,7 +13,7 @@ typealias HTML = String
 
 class StatManager {
     
-    private var prefs       = Preferences.shared
+    private var prefs = Preferences.shared
     var stats: Stats!
     
     init() {
@@ -115,7 +115,7 @@ class StatManager {
         } else { return 0 }
         
     }
-    
+        
     /// Returns a `[String]` of ready to display score stats.
     func getDisplayStats(_ score: Score) -> [String] {
         
@@ -201,7 +201,7 @@ class StatManager {
         // build scores
         var scores = [Score]()
         
-        for dayScores in getScores().values {
+        for dayScores in scoreData.values {
             
             for score in dayScores {
                 
@@ -491,7 +491,7 @@ extension StatManager: CustomStringConvertible {
         var i = 0
         var descr = ""
         
-        for scores in getScores().values {
+        for scores in getScoreData().values {
             
             descr += "\(i) : \(scores)\n"
             i += 1

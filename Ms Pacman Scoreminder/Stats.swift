@@ -38,7 +38,7 @@ struct Stats{
 
 extension StatManager {
     
-    func getScores() -> [DateString : [Score] ] { return stats.data }
+    func getScoreData() -> [DateString : [Score] ] { return stats.data }
     func getScoresFor(_ date: DateString) -> [Score] { stats.data[date] ?? [] }
     
     func setData(_ date: DateString, using: [Score]) {
@@ -105,7 +105,7 @@ extension StatManager {
         return returnStats.sorted{ $0.date > $1.date }
         
     }
-
+    
     
     func setDailys(_ dailies: [DailyStats]) { stats.dailyStats = dailies }
     
