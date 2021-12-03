@@ -21,6 +21,12 @@ struct Configs {
     
     struct UI {
         
+        struct Timing {
+            
+            static let roundUIFadeTime = 0.39
+            
+        }
+        
         struct Shadow {
             
             static let defaultOpacity = 0.3
@@ -28,6 +34,11 @@ struct Configs {
             static let defaultWidth     = 5
             static let defaultHeight    = 2
             
+        }
+        
+        struct Rotations {
+            static let summaryView = 35.0
+            static let streaksView = -summaryView
         }
             
     }
