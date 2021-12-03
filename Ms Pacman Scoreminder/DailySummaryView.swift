@@ -42,7 +42,7 @@ class DailySummaryView: RoundView {
             view.autoresizingMask = self.autoresizingMask
             view.translatesAutoresizingMaskIntoConstraints = self.translatesAutoresizingMaskIntoConstraints
             
-            view.rotate(angle: 35)
+            view.rotate(angle: Configs.UI.Rotations.summaryView)
             
             view.alpha = 0
             
@@ -80,7 +80,7 @@ class DailySummaryView: RoundView {
             
             if alpha != 0 {
                 
-                UIView.animate(withDuration: 0.39,
+                UIView.animate(withDuration: Configs.UI.Timing.roundUIFadeTime,
                                delay: 0) {
                     
                     self.alpha = 0.0
