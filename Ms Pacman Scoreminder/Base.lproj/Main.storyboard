@@ -46,6 +46,114 @@
                                     <constraint firstItem="lGR-By-8Ok" firstAttribute="bottom" secondItem="fpz-Ml-hZL" secondAttribute="bottom" constant="-13" id="vmy-TN-6AV"/>
                                 </constraints>
                             </view>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFo-KC-Pry" userLabel="Streaks Container View" customClass="RoundView" customModule="APNUtils">
+                                <rect key="frame" x="32" y="40" width="130" height="130"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2VS-2R-Jin" userLabel="Streaks Stack View">
+                                        <rect key="frame" x="5" y="5" width="120" height="100"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" distribution="fillProportionally" spacing="-14" translatesAutoresizingMaskIntoConstraints="NO" id="bz8-aT-QL1" userLabel="Longest Streak Stack View">
+                                                <rect key="frame" x="0.0" y="0.0" width="120" height="50"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999" textAlignment="right" lineBreakMode="tailTruncation" minimumScaleFactor="0.29999999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="DXE-m4-uSE">
+                                                        <rect key="frame" x="0.0" y="0.0" width="54" height="50"/>
+                                                        <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="52"/>
+                                                        <color key="textColor" name="Apple"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="fillEqually" spacing="-8" translatesAutoresizingMaskIntoConstraints="NO" id="hgl-9X-pji">
+                                                        <rect key="frame" x="40" y="0.0" width="80" height="50"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="Longest" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8aN-71-kDY">
+                                                                <rect key="frame" x="0.0" y="0.0" width="80" height="22"/>
+                                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="9"/>
+                                                                <color key="textColor" name="Apple"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="Feb 29, 21" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="YVn-fx-IL5">
+                                                                <rect key="frame" x="0.0" y="14" width="80" height="22"/>
+                                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="8"/>
+                                                                <color key="textColor" name="Pink"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="Feb 29, 21" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="aiA-1a-tWG">
+                                                                <rect key="frame" x="0.0" y="28" width="80" height="22"/>
+                                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="8"/>
+                                                                <color key="textColor" name="Pink"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="80" id="SMp-0f-yK3"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="1zS-DA-oZg"/>
+                                                    <constraint firstAttribute="width" constant="120" id="yr1-aT-X6q"/>
+                                                </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" distribution="fillProportionally" spacing="-10" translatesAutoresizingMaskIntoConstraints="NO" id="guH-An-kIK" userLabel="Current Streak Stack View">
+                                                <rect key="frame" x="0.0" y="50" width="120" height="50"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="fillEqually" spacing="-8" translatesAutoresizingMaskIntoConstraints="NO" id="lvP-8u-aXN">
+                                                        <rect key="frame" x="0.0" y="0.0" width="65" height="50"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="Current" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9mx-Ym-55c">
+                                                                <rect key="frame" x="0.0" y="0.0" width="65" height="22"/>
+                                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="9"/>
+                                                                <color key="textColor" name="Orange"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="Feb 29, 21" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="aJD-sf-JGz">
+                                                                <rect key="frame" x="0.0" y="14" width="65" height="22"/>
+                                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="8"/>
+                                                                <color key="textColor" name="Pink"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="Feb 29, 21" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="zUE-xE-y8d">
+                                                                <rect key="frame" x="0.0" y="28" width="65" height="22"/>
+                                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="8"/>
+                                                                <color key="textColor" name="Pink"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="65" id="37O-dj-uKG"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999" lineBreakMode="tailTruncation" minimumScaleFactor="0.30000001192092896" translatesAutoresizingMaskIntoConstraints="NO" id="yAz-0b-kQv">
+                                                        <rect key="frame" x="55" y="0.0" width="65" height="50"/>
+                                                        <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="52"/>
+                                                        <color key="textColor" name="Orange"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="120" id="Aqk-tz-CiW"/>
+                                                    <constraint firstAttribute="height" constant="50" id="wah-8i-HLb"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.14999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Streaks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v77-Yr-UNX">
+                                        <rect key="frame" x="8.5" y="31.5" width="113.5" height="43.5"/>
+                                        <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="34"/>
+                                        <color key="textColor" name="Pretzel"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="0.81404164295322845" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="v77-Yr-UNX" firstAttribute="centerY" secondItem="yFo-KC-Pry" secondAttribute="centerY" constant="-11.75" id="8nJ-Bh-gPm"/>
+                                    <constraint firstItem="2VS-2R-Jin" firstAttribute="centerX" secondItem="yFo-KC-Pry" secondAttribute="centerX" id="BXj-tS-Bss"/>
+                                    <constraint firstItem="2VS-2R-Jin" firstAttribute="centerY" secondItem="yFo-KC-Pry" secondAttribute="centerY" constant="-10" id="GJ4-DH-Z9Y"/>
+                                    <constraint firstAttribute="width" constant="130" id="HtI-np-bXM"/>
+                                    <constraint firstItem="v77-Yr-UNX" firstAttribute="centerX" secondItem="yFo-KC-Pry" secondAttribute="centerX" id="M0O-Wh-qhp"/>
+                                    <constraint firstAttribute="height" constant="130" id="UqR-SO-tQN"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tfc-k3-1dv" customClass="DailySummaryView" customModule="Ms_Scoreminder" customModuleProvider="target">
                                 <rect key="frame" x="241" y="37.5" width="130" height="130"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -283,6 +391,8 @@
                             <constraint firstAttribute="trailing" secondItem="SsP-ad-Wjl" secondAttribute="trailing" constant="25" id="Xgf-aD-vNW"/>
                             <constraint firstItem="2Bs-Ux-Man" firstAttribute="top" secondItem="TCV-YU-Iab" secondAttribute="bottom" constant="7" id="ap2-yv-bG9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="SsP-ad-Wjl" secondAttribute="bottom" constant="-223" id="d35-DH-3yq"/>
+                            <constraint firstItem="yFo-KC-Pry" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="d8o-71-Ij3"/>
+                            <constraint firstItem="yFo-KC-Pry" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="40" id="eE3-Jj-njQ"/>
                             <constraint firstItem="TCV-YU-Iab" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="lAf-gf-WKs"/>
                             <constraint firstItem="ZyG-9R-Myt" firstAttribute="top" secondItem="2Bs-Ux-Man" secondAttribute="bottom" constant="15" id="sJA-vq-cQz"/>
                             <constraint firstItem="2Bs-Ux-Man" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="232" id="sjh-Qa-xtP"/>
@@ -296,6 +406,7 @@
                         <outlet property="deleteContainerView" destination="OjF-A8-gQq" id="Awk-Xm-i2p"/>
                         <outlet property="deleteScoreContainerView" destination="n4R-5x-sl0" id="HN1-WD-DW6"/>
                         <outlet property="deleteScoreLabel" destination="Kwh-Xz-ZGz" id="vJr-X4-M58"/>
+                        <outlet property="emailButton" destination="ggF-iH-bax" id="geH-IX-Qua"/>
                         <outlet property="highDateLabel" destination="8cG-qg-LKh" id="MeD-LS-z9V"/>
                         <outlet property="highLevelIcon" destination="Qqy-7X-lm2" id="jr9-31-dyi"/>
                         <outlet property="highLevelIconContainerView" destination="fkC-iS-l62" id="aYq-93-uTf"/>
@@ -308,6 +419,13 @@
                         <outlet property="scoresContainerView" destination="ZyG-9R-Myt" id="lgG-67-PCa"/>
                         <outlet property="scoresFilterLabel" destination="qZZ-vR-qwz" id="Oso-D3-fu1"/>
                         <outlet property="scoresView" destination="Kw7-ga-S1C" id="QMM-I0-bJ2"/>
+                        <outlet property="streakCurrentCount" destination="yAz-0b-kQv" id="gzc-Ty-8hd"/>
+                        <outlet property="streakCurrentDate1" destination="aJD-sf-JGz" id="CRt-Lc-KBe"/>
+                        <outlet property="streakCurrentDate2" destination="zUE-xE-y8d" id="hDY-hj-hRm"/>
+                        <outlet property="streakLongestCount" destination="DXE-m4-uSE" id="Kvc-sY-zk2"/>
+                        <outlet property="streakLongestDate1" destination="YVn-fx-IL5" id="gIi-XA-uGk"/>
+                        <outlet property="streakLongestDate2" destination="aiA-1a-tWG" id="1Oj-YR-nnc"/>
+                        <outlet property="streaksContainerView" destination="yFo-KC-Pry" id="sNb-Ql-6YY"/>
                         <outlet property="totalMoneySpentLabel" destination="lGR-By-8Ok" id="9ic-vw-xd1"/>
                         <outlet property="versionLabel" destination="fpz-Ml-hZL" id="8lk-Tl-mfz"/>
                     </connections>
@@ -333,17 +451,26 @@
         <image name="ms_icon_0" width="174" height="174"/>
         <image name="ms_icon_4" width="174" height="174"/>
         <image name="ms_marquee" width="754.66668701171875" height="520.66668701171875"/>
+        <namedColor name="Apple">
+            <color red="0.84899997711181641" green="0.15000000596046448" blue="0.16699999570846558" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Banana">
             <color red="0.99699997901916504" green="0.90600001811981201" blue="0.19799999892711639" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Blue">
             <color red="0.062745098039215685" green="0.50980392156862742" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="Orange">
+            <color red="0.98600000143051147" green="0.51399999856948853" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Pear">
             <color red="0.74000000953674316" green="0.97500002384185791" blue="0.14599999785423279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Pink">
             <color red="0.94499999284744263" green="0.19300000369548798" blue="0.49599999189376831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Pretzel">
+            <color red="0.64399999380111694" green="0.39300000667572021" blue="0.18700000643730164" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

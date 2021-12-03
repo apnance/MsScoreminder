@@ -199,6 +199,7 @@ class StatManager {
         var high = 0
         
         // build scores
+        let scoreData = getScoreData()
         var scores = [Score]()
         
         for dayScores in scoreData.values {
@@ -222,6 +223,9 @@ class StatManager {
             }
             
         }
+        
+        // streaks
+        setStreaks(with: Array(scoreData.keys))
         
         setScores(scores)
         stats.gamesCount = scores.count

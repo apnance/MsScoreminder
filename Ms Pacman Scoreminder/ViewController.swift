@@ -49,6 +49,19 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var deleteScoreLabel: UILabel!
     
+    @IBOutlet weak var emailButton: RoundButton!
+    
+    // Streaks
+    @IBOutlet weak var streaksContainerView: RoundView!
+    @IBOutlet weak var streakLongestCount: UILabel!
+    @IBOutlet weak var streakLongestDate1: UILabel!
+    @IBOutlet weak var streakLongestDate2: UILabel!
+    
+    @IBOutlet weak var streakCurrentCount: UILabel!
+    @IBOutlet weak var streakCurrentDate1: UILabel!
+    @IBOutlet weak var streakCurrentDate2: UILabel!
+
+
     // MARK: Actions
     @IBAction func didTapDeleteYesNoButton(_ sender: UIButton) {
         
@@ -70,7 +83,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         statMan.open()
-        
         uiInit()
         
     }
@@ -136,6 +148,9 @@ class ViewController: UIViewController {
     
     private func uiMisc() {
         
+        // hide streaks initially
+        streaksContainerView.alpha = 0
+        
         // version
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "-?-"
         versionLabel.text = "v\(appVersion)"
@@ -152,6 +167,8 @@ class ViewController: UIViewController {
                                                     action: #selector(cycleFilter))
         scoresContainerView.addGestureRecognizer(cycleFilterTap)
         
+        streaksContainerView.rotate(angle: Configs.UI.Rotations.streaksView)
+                            
     }
     
     /// Styles the large pink/yellow background stripe.
@@ -226,6 +243,27 @@ class ViewController: UIViewController {
                 
             } else { self.highscoreView.isHidden = true }
             
+            
+            if let streaks = self.statMan.getStreaks() {
+
+                if self.streaksContainerView.alpha == 0 {
+                    UIView.animate(withDuration: Configs.UI.Timing.roundUIFadeTime) {
+                        
+                        self.streaksContainerView.alpha = 1.0
+                        
+                    }
+                }
+                
+                self.streakLongestCount.text = streaks.longest.length.description
+                self.streakLongestDate1.text = streaks.longest.start?.simple ?? "-"
+                self.streakLongestDate2.text = streaks.longest.end?.simple ?? "-"
+                
+                self.streakCurrentCount.text = streaks.current.length.description
+                self.streakCurrentDate1.text = streaks.current.start?.simple ?? Date.now.simple
+                self.streakCurrentDate2.text = streaks.current.end?.simple ?? Date.now.simple
+                
+            }
+            
             self.uiScore()
             
         }
@@ -251,7 +289,6 @@ class ViewController: UIViewController {
         scoreViews = []
         scoresView.removeAllSubviews()
         scoreViews = []
-        
         
         for score in scores {
             

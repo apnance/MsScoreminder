@@ -25,6 +25,8 @@ struct Stats{
     var highScore: Score!
     var gamesCount  = 0
     
+    fileprivate var streaks: StreakSet?
+    
     var dates: [DateString] { Array(data.keys) }
     
     init() {
@@ -77,7 +79,6 @@ extension StatManager {
         
     }
     
-
     /// Returns `[DailyStatss]` containing the highest average score, lowest average score,
     /// and today's stats(if available).
     func getDailyStats(_ date: DateString) -> [DailyStats] {
@@ -106,8 +107,40 @@ extension StatManager {
         
     }
     
-    
     func setDailys(_ dailies: [DailyStats]) { stats.dailyStats = dailies }
+    
+    /// Returns `StreakSet` of current consecutive days played streak and longest consecutive days played.
+    func getStreaks() -> StreakSet? { stats.streaks }
+    
+//TODO: add streaks to email
+    
+    func setStreaks(with dates: [DateString]) {
+        
+        let dates = dates.map{$0.simpleDate}.sorted{$0 < $1}
+        
+        var current = PlayStreak()
+        var longest = PlayStreak()
+        
+        for date in dates {
+            
+            current = current.extend(with: date)
+            longest = longest.length <= current.length ? current : longest
+            
+        }
+        
+        if current.end?.daysFrom(earlierDate: Date.now) != 0 {
+            
+            current = PlayStreak(nil, nil)
+            
+        }
+        
+        // TODO: Clean Up - delete Current/Longest printouts
+        print("Current: \(current)")
+        print("Longest: \(longest)")
+        
+        stats.streaks = (current, longest)
+        
+    }
     
     func clearNeedsTally() { stats.needsTally = false }
     
