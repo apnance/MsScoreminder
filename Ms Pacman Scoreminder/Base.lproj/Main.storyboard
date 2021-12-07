@@ -413,7 +413,6 @@
                         <outlet property="highscoreView" destination="TCV-YU-Iab" id="GGO-PW-2lu"/>
                         <outlet property="levelSelector" destination="ZjU-v8-9Gv" id="ZnC-SN-tUM"/>
                         <outlet property="mainView" destination="8bC-Xf-vdC" id="J7W-rz-fVF"/>
-                        <outlet property="marquee" destination="ycv-3o-wBM" id="awy-Gs-dPq"/>
                         <outlet property="roundView" destination="JbC-vR-Can" id="Hpu-ph-BWa"/>
                         <outlet property="scoreInput" destination="xi2-KO-0v3" id="VaV-bv-tqo"/>
                         <outlet property="scoresContainerView" destination="ZyG-9R-Myt" id="lgG-67-PCa"/>
