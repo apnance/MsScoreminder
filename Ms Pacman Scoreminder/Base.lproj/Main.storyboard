@@ -138,7 +138,7 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.14999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Streaks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v77-Yr-UNX">
-                                        <rect key="frame" x="8.5" y="31.5" width="113.5" height="43.5"/>
+                                        <rect key="frame" x="8.5" y="38.5" width="113.5" height="43.5"/>
                                         <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="34"/>
                                         <color key="textColor" name="Pretzel"/>
                                         <nil key="highlightedColor"/>
@@ -146,7 +146,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.81404164295322845" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="v77-Yr-UNX" firstAttribute="centerY" secondItem="yFo-KC-Pry" secondAttribute="centerY" constant="-11.75" id="8nJ-Bh-gPm"/>
+                                    <constraint firstItem="v77-Yr-UNX" firstAttribute="centerY" secondItem="yFo-KC-Pry" secondAttribute="centerY" constant="-4.75" id="8nJ-Bh-gPm"/>
                                     <constraint firstItem="2VS-2R-Jin" firstAttribute="centerX" secondItem="yFo-KC-Pry" secondAttribute="centerX" id="BXj-tS-Bss"/>
                                     <constraint firstItem="2VS-2R-Jin" firstAttribute="centerY" secondItem="yFo-KC-Pry" secondAttribute="centerY" constant="-10" id="GJ4-DH-Z9Y"/>
                                     <constraint firstAttribute="width" constant="130" id="HtI-np-bXM"/>
@@ -162,12 +162,11 @@
                                     <constraint firstAttribute="height" constant="130" id="ytp-nz-WJo"/>
                                 </constraints>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="2Bs-Ux-Man">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="2Bs-Ux-Man" userLabel="Score Levelselector Stack View">
                                 <rect key="frame" x="45" y="276" width="324" height="79.5"/>
                                 <subviews>
                                     <textField opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Score" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="xi2-KO-0v3">
                                         <rect key="frame" x="0.0" y="0.0" width="324" height="45.5"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45.5" id="OnZ-uL-ekY"/>
                                         </constraints>
@@ -199,10 +198,10 @@
                                     </segmentedControl>
                                 </subviews>
                             </stackView>
-                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TCV-YU-Iab">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TCV-YU-Iab">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="269"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ms_marquee" translatesAutoresizingMaskIntoConstraints="NO" id="ycv-3o-wBM">
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ms_marquee" translatesAutoresizingMaskIntoConstraints="NO" id="ycv-3o-wBM">
                                         <rect key="frame" x="54" y="38" width="306" height="163"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="306" id="bik-oh-iM4"/>
@@ -355,7 +354,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggF-iH-bax" customClass="RoundButton" customModule="APNUtils">
-                                <rect key="frame" x="15" y="44" width="35" height="35"/>
+                                <rect key="frame" x="323" y="236" width="35" height="35"/>
                                 <color key="backgroundColor" name="Banana"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="Kxh-9h-aoe"/>
@@ -376,7 +375,6 @@
                             <constraint firstItem="TCV-YU-Iab" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="4dK-Oi-YLW"/>
                             <constraint firstItem="2Bs-Ux-Man" firstAttribute="trailing" secondItem="SsP-ad-Wjl" secondAttribute="trailing" constant="-20" id="AIT-e9-TMa"/>
                             <constraint firstAttribute="trailing" secondItem="OjF-A8-gQq" secondAttribute="trailing" id="AjW-yn-A6k"/>
-                            <constraint firstItem="ggF-iH-bax" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Bmj-RX-qns"/>
                             <constraint firstAttribute="bottomMargin" secondItem="ZyG-9R-Myt" secondAttribute="bottom" constant="25" id="C8y-JA-aQD"/>
                             <constraint firstItem="OjF-A8-gQq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="CTi-zU-nlK"/>
                             <constraint firstItem="TCV-YU-Iab" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="Cg8-nc-lRf"/>
@@ -389,6 +387,8 @@
                             <constraint firstItem="tfc-k3-1dv" firstAttribute="leading" secondItem="ycv-3o-wBM" secondAttribute="centerX" constant="34" id="N57-1G-wZB"/>
                             <constraint firstAttribute="bottom" secondItem="OjF-A8-gQq" secondAttribute="bottom" id="WgH-0H-gfK"/>
                             <constraint firstAttribute="trailing" secondItem="SsP-ad-Wjl" secondAttribute="trailing" constant="25" id="Xgf-aD-vNW"/>
+                            <constraint firstItem="xi2-KO-0v3" firstAttribute="top" secondItem="ggF-iH-bax" secondAttribute="bottom" constant="5" id="YQe-iR-H0v"/>
+                            <constraint firstItem="ggF-iH-bax" firstAttribute="leading" secondItem="xi2-KO-0v3" secondAttribute="trailing" constant="-46" id="ad5-SU-LO1"/>
                             <constraint firstItem="2Bs-Ux-Man" firstAttribute="top" secondItem="TCV-YU-Iab" secondAttribute="bottom" constant="7" id="ap2-yv-bG9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="SsP-ad-Wjl" secondAttribute="bottom" constant="-223" id="d35-DH-3yq"/>
                             <constraint firstItem="yFo-KC-Pry" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="d8o-71-Ij3"/>
@@ -396,7 +396,6 @@
                             <constraint firstItem="TCV-YU-Iab" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="lAf-gf-WKs"/>
                             <constraint firstItem="ZyG-9R-Myt" firstAttribute="top" secondItem="2Bs-Ux-Man" secondAttribute="bottom" constant="15" id="sJA-vq-cQz"/>
                             <constraint firstItem="2Bs-Ux-Man" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="232" id="sjh-Qa-xtP"/>
-                            <constraint firstItem="ggF-iH-bax" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="15" id="sl1-ga-tOL"/>
                             <constraint firstItem="2Bs-Ux-Man" firstAttribute="leading" secondItem="SsP-ad-Wjl" secondAttribute="leading" constant="20" id="zpD-oV-VeI"/>
                         </constraints>
                     </view>
@@ -414,6 +413,7 @@
                         <outlet property="highscoreView" destination="TCV-YU-Iab" id="GGO-PW-2lu"/>
                         <outlet property="levelSelector" destination="ZjU-v8-9Gv" id="ZnC-SN-tUM"/>
                         <outlet property="mainView" destination="8bC-Xf-vdC" id="J7W-rz-fVF"/>
+                        <outlet property="marquee" destination="ycv-3o-wBM" id="awy-Gs-dPq"/>
                         <outlet property="roundView" destination="JbC-vR-Can" id="Hpu-ph-BWa"/>
                         <outlet property="scoreInput" destination="xi2-KO-0v3" id="VaV-bv-tqo"/>
                         <outlet property="scoresContainerView" destination="ZyG-9R-Myt" id="lgG-67-PCa"/>
