@@ -245,7 +245,7 @@ class ViewController: UIViewController {
             
             
             if let streaks = self.statMan.getStreaks() {
-
+                
                 if self.streaksContainerView.alpha == 0 {
                     UIView.animate(withDuration: Configs.UI.Timing.roundUIFadeTime) {
                         
