@@ -168,7 +168,7 @@ class ViewController: UIViewController {
         scoresContainerView.addGestureRecognizer(cycleFilterTap)
         
         streaksContainerView.rotate(angle: Configs.UI.Rotations.streaksView)
-                            
+        
     }
     
     /// Styles the large pink/yellow background stripe.
@@ -331,7 +331,7 @@ class ViewController: UIViewController {
             NSAttributedString.Key.foregroundColor : UIColor(named: "Pink")!,
             NSAttributedString.Key.font : label.font!,
             NSAttributedString.Key.strokeWidth : -3.5,
-
+            
         ] as [NSAttributedString.Key : Any]
         
         label.attributedText = NSMutableAttributedString(string: label.attributedText?.string ?? label.text ?? "-?-", attributes: strokeTextAttributes)
