@@ -66,7 +66,7 @@
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="Longest" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8aN-71-kDY">
                                                                 <rect key="frame" x="0.0" y="0.0" width="80" height="22"/>
-                                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="9"/>
+                                                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="9"/>
                                                                 <color key="textColor" name="Apple"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -101,7 +101,7 @@
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="Current" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9mx-Ym-55c">
                                                                 <rect key="frame" x="0.0" y="0.0" width="65" height="22"/>
-                                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="9"/>
+                                                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="9"/>
                                                                 <color key="textColor" name="Orange"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
