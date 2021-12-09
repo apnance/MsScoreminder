@@ -31,7 +31,7 @@ class StatManager {
         if currScores.count == 0 {
             
             setData(date,
-                          using: [score])
+                    using: [score])
             
             save()
             
