@@ -30,6 +30,9 @@ struct PlayStreak {
         
     }
     
+    /// Returns a `Bool` indicating whether the `PlayStreak` includes today(`true`)
+    var isCurrent: Bool { return end?.simple == Date().simple }
+    
     init(_ d1: Date? = nil, _ d2: Date? = nil) {
         
         start   = d1
