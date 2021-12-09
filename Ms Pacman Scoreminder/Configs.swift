@@ -24,6 +24,7 @@ struct Configs {
         struct Timing {
             
             static let roundUIFadeTime = 0.39
+            static let runLoopInterval = 0.06
             
         }
         

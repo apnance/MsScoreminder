@@ -112,7 +112,7 @@ class ViewController: UIViewController {
         if timer == nil {
             
             timer = APNTimer(name: "scores",
-                             repeatInterval: 0.06) {
+                             repeatInterval: Configs.UI.Timing.runLoopInterval) {
                 
                 _ in
                 
