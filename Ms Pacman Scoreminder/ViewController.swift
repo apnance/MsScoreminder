@@ -258,9 +258,10 @@ class ViewController: UIViewController {
                 self.streakLongestDate1.text = streaks.longest.start?.simple ?? "-"
                 self.streakLongestDate2.text = streaks.longest.end?.simple ?? "-"
                 
-                self.streakCurrentCount.text = streaks.current.length.description
-                self.streakCurrentDate1.text = streaks.current.start?.simple ?? Date.now.simple
-                self.streakCurrentDate2.text = streaks.current.end?.simple ?? Date.now.simple
+                self.streakCurrentOrRecent.text = streaks.recent.isCurrent ? "Current" : "Recent"
+                self.streakCurrentCount.text = streaks.recent.length.description
+                self.streakCurrentDate1.text = streaks.recent.start?.simple ?? Date.now.simple
+                self.streakCurrentDate2.text = streaks.recent.end?.simple ?? Date.now.simple
                 
             }
             

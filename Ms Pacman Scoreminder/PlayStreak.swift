@@ -7,7 +7,7 @@
 
 import Foundation
 
-typealias StreakSet = (current: PlayStreak, longest: PlayStreak)
+typealias StreakSet = (recent: PlayStreak, longest: PlayStreak)
 
 struct PlayStreak {
     
