@@ -41,12 +41,14 @@ class AtomicScoreView: UIView {
     private func load(score: Score, data: [String]) {
         
         self.data = data
-        
         self.score = score
-        scoreView.text  = score.score.delimited
-        dateView.text   = score.date.simple
-        dateView.textColor = score.date.isToday ? .white : UIColor(named:"Banana")
-        fruitView.image = score.levelIcon
+        
+        scoreView.text      = score.score.delimited
+        
+        dateView.text       = score.date.simple
+        dateView.textColor  = score.date.isToday ? .white : UIColor(named:"Banana")
+        
+        fruitView.image     = score.levelIcon
         
         layer.cornerRadius              = frame.height / 5.0
         
@@ -54,7 +56,7 @@ class AtomicScoreView: UIView {
         borderView.layer.borderWidth    = frame.height / 8.0
         
         scoreStatsLabel.rotate(angle: -22.5)
-
+        
         addShadows()
         
         // Interaction
