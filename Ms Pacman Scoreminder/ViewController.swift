@@ -23,6 +23,7 @@ class ViewController: UIViewController {
     
     private var scoreViews = [AtomicScoreView]()
     private var timer: APNTimer?
+    private var lastDailyRunDate = Date().simple
     
     // MARK: - Outlets
     @IBOutlet var mainView: UIView!
@@ -57,6 +58,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var streakLongestDate1: UILabel!
     @IBOutlet weak var streakLongestDate2: UILabel!
     
+    @IBOutlet weak var streakCurrentOrRecent: UILabel!
     @IBOutlet weak var streakCurrentCount: UILabel!
     @IBOutlet weak var streakCurrentDate1: UILabel!
     @IBOutlet weak var streakCurrentDate2: UILabel!
@@ -101,13 +103,16 @@ class ViewController: UIViewController {
         uiScoreInput()
         uiBuildLevelSelector()
         
-        cycleScores()
+        runLoop()
         
         uiVolatile()
         
     }
     
-    private func cycleScores() {
+    /// A method that is called at repeating interval defined  in `Configs.UI.Timing.runLoopInterval`
+    ///
+    /// - note: useful game-loop-like repeated UI updates.
+    private func runLoop() {
         
         if timer == nil {
             
@@ -116,13 +121,16 @@ class ViewController: UIViewController {
                 
                 _ in
                 
-                self.cycleScores()
+                self.runLoop()
                 
             }
             
             return /*EXIT*/
             
         }
+        
+        // daily UI
+        uiRepeatDaily()
         
         scoreCycler.dataMax = statMan.getStatCount() - 1
         
@@ -143,6 +151,21 @@ class ViewController: UIViewController {
         }
         
         scoreCycler.num += scoreCycler.incr
+        
+    }
+    
+    /// Code to be run once every new day.  Used to update stats such as streaks that should change with
+    /// the changing of the day.
+    private func uiRepeatDaily() {
+        
+        let currenDate = Date().simple
+        
+        if lastDailyRunDate != currenDate {
+            
+            lastDailyRunDate = currenDate
+            uiVolatile()
+            
+        }
         
     }
     

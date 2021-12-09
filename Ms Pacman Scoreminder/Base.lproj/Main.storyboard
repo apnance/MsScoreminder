@@ -421,6 +421,7 @@
                         <outlet property="streakCurrentCount" destination="yAz-0b-kQv" id="gzc-Ty-8hd"/>
                         <outlet property="streakCurrentDate1" destination="aJD-sf-JGz" id="CRt-Lc-KBe"/>
                         <outlet property="streakCurrentDate2" destination="zUE-xE-y8d" id="hDY-hj-hRm"/>
+                        <outlet property="streakCurrentOrRecent" destination="9mx-Ym-55c" id="lDA-hT-HgN"/>
                         <outlet property="streakLongestCount" destination="DXE-m4-uSE" id="Kvc-sY-zk2"/>
                         <outlet property="streakLongestDate1" destination="YVn-fx-IL5" id="gIi-XA-uGk"/>
                         <outlet property="streakLongestDate2" destination="aiA-1a-tWG" id="1Oj-YR-nnc"/>
