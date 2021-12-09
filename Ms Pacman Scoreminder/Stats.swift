@@ -112,7 +112,7 @@ extension StatManager {
     /// Returns `StreakSet` of current consecutive days played streak and longest consecutive days played.
     func getStreaks() -> StreakSet? { stats.streaks }
     
-//TODO: add streaks to email
+    //TODO: add streaks to email
     
     func setStreaks(with dates: [DateString]) {
         
@@ -125,12 +125,6 @@ extension StatManager {
             
             current = current.extend(with: date)
             longest = longest.length <= current.length ? current : longest
-            
-        }
-        
-        if current.end?.daysFrom(earlierDate: Date.now) != 0 {
-            
-            current = PlayStreak(nil, nil)
             
         }
         
