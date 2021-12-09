@@ -13,6 +13,7 @@ class DailySummaryView: RoundView {
     private var currStats = 0
     private var initialized: Bool = false
     
+    
     // MARK: - Outlets
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var stat1Label: UILabel!
@@ -27,6 +28,7 @@ class DailySummaryView: RoundView {
     @IBOutlet weak var bestDayStarLabel: UILabel!
     @IBOutlet weak var bestDayRank: UILabel!
     
+    
     // MARK: - Overrides
     override func awakeAfter(using coder: NSCoder) -> Any? {
         
@@ -36,7 +38,7 @@ class DailySummaryView: RoundView {
                                            bundle: Bundle.main)
             
             let view = nib.instantiate(withOwner: nil,
-                                            options: nil).first as! DailySummaryView
+                                       options: nil).first as! DailySummaryView
             
             view.frame = self.frame
             view.autoresizingMask = self.autoresizingMask
@@ -49,7 +51,7 @@ class DailySummaryView: RoundView {
             return view
             
         }
-     
+        
         return self
         
     }
@@ -65,7 +67,8 @@ class DailySummaryView: RoundView {
             
             initialized = true
                     
-            let tap = UITapGestureRecognizer(target: self, action: #selector(cycle))
+            let tap = UITapGestureRecognizer(target: self,
+                                             action: #selector(cycle))
             self.addGestureRecognizer(tap)
             
         }
@@ -75,7 +78,7 @@ class DailySummaryView: RoundView {
     }
   
     @objc private func cycle() {
-
+        
         if stats.count < 1 {
             
             if alpha != 0 {
@@ -100,7 +103,7 @@ class DailySummaryView: RoundView {
             UIView.animate(withDuration: 0.8,
                            delay: 0.0,
                            options: UIView.AnimationOptions.curveEaseIn,
-                           animations: {self.alpha = 0.8 } )
+                           animations: { self.alpha = 0.8 } )
             
         }
         
@@ -131,8 +134,8 @@ class DailySummaryView: RoundView {
         
         averageLevelIconImageView.image = Score.iconFor(level: stats.averageLevel)
         
-        bestDayContainerView.alpha = 1.0
-        bestDayStarLabel.alpha  = stats.rank.0 <= 10 ? 1.0 : 0.0
+        bestDayContainerView.alpha  = 1.0
+        bestDayStarLabel.alpha      = stats.rank.0 <= 10 ? 1.0 : 0.0
 
         bestDayRank.text            = stats.rank.0.description
         
