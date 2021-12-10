@@ -106,7 +106,7 @@ class ViewController: UIViewController {
         runLoop()
         
         uiVolatile()
-        
+        	
     }
     
     /// A method that is called at repeating interval defined  in `Configs.UI.Timing.runLoopInterval`
@@ -132,6 +132,7 @@ class ViewController: UIViewController {
         // daily UI
         uiRepeatDaily()
         
+        // cycle scores
         scoreCycler.dataMax = statMan.getStatCount() - 1
         
         if scoreCycler.num > 34 {
