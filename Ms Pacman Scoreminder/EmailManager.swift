@@ -67,6 +67,17 @@ struct EmailManager {
     
     static func buildSummaryHTML(using statMan: StatManager) -> HTML {
         
+        func buildStreakHTML() -> String {
+            
+            if let recent = statMan.getStreaks()?.recent,
+               recent.isCurrent {
+                
+                return "\(twoCol("Streak: ", col2: recent.durationDescription))" /*EXIT*/
+                
+            } else { return "" /*EXIT*/ }
+            
+        }
+        
         let levelSummaryHTML = buildLevelSummaryHTML(using: statMan)
         
         var dailyStatsHTML = ""
@@ -84,6 +95,7 @@ struct EmailManager {
                                     \(twoCol("Avg. Score: ",    col2: dailyStats.averageScore.delimited))
                                     \(twoCol("Avg. Level: ",    col2: Score.nameFor(level: dailyStats.averageLevel + 1)))
                                     \(twoCol("Games: ",         col2: String(describing: dailyStats.gameCount)))
+                                    \(buildStreakHTML())
                                 """
             
         }

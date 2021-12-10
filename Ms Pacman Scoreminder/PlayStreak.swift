@@ -85,4 +85,6 @@ extension PlayStreak: CustomStringConvertible {
         
     }
     
+    var durationDescription: String { "\(length) days"}
+    
 }
