@@ -22,13 +22,13 @@
                             <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★" textAlignment="center" lineBreakMode="clip" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOE-DG-4vG">
-                                    <rect key="frame" x="-5" y="0.0" width="130" height="130"/>
+                                    <rect key="frame" x="-7" y="0.0" width="144" height="130"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="141"/>
                                     <color key="textColor" name="Banana"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.45000000000000001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2" textAlignment="center" lineBreakMode="tailTruncation" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BN3-pG-8Ro">
+                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.34999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2" textAlignment="center" lineBreakMode="tailTruncation" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BN3-pG-8Ro">
                                     <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -39,10 +39,9 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="pOE-DG-4vG" secondAttribute="trailing" constant="5" id="71R-hR-RRZ"/>
+                                <constraint firstItem="pOE-DG-4vG" firstAttribute="centerX" secondItem="DnQ-WQ-T8W" secondAttribute="centerX" id="CpQ-HF-nZ7"/>
                                 <constraint firstAttribute="bottom" secondItem="pOE-DG-4vG" secondAttribute="bottom" id="KrK-UC-dd4"/>
                                 <constraint firstItem="pOE-DG-4vG" firstAttribute="top" secondItem="DnQ-WQ-T8W" secondAttribute="top" id="Y68-8E-KHl"/>
-                                <constraint firstItem="pOE-DG-4vG" firstAttribute="leading" secondItem="DnQ-WQ-T8W" secondAttribute="leading" constant="-5" id="hJK-sT-pIB"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -58,62 +57,62 @@
                     <rect key="frame" x="6.5" y="23.5" width="121" height="55"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10-28-21" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="HJX-wW-L12">
-                            <rect key="frame" x="0.0" y="0.0" width="121" height="25"/>
+                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10-28-21" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HJX-wW-L12">
+                            <rect key="frame" x="0.0" y="0.0" width="121" height="26.5"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="24"/>
+                            <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="26"/>
                             <color key="textColor" name="Pink"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" id="czO-3n-MsD" userLabel="Day's Rank">
-                            <rect key="frame" x="0.0" y="25" width="121" height="10"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" id="czO-3n-MsD" userLabel="Day's Rank">
+                            <rect key="frame" x="0.0" y="26.5" width="121" height="9.5"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day's Rank" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MW5-Fj-lY0">
-                                    <rect key="frame" x="0.0" y="0.0" width="58.5" height="10"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="8"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day's Rank" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MW5-Fj-lY0">
+                                    <rect key="frame" x="0.0" y="0.0" width="59.5" height="9.5"/>
+                                    <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="7"/>
                                     <color key="textColor" name="Orange"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22 of 405" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="5Kb-zK-98i">
-                                    <rect key="frame" x="62.5" y="0.0" width="58.5" height="10"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="8"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1/3 (100)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Kb-zK-98i">
+                                    <rect key="frame" x="61.5" y="0.0" width="59.5" height="9.5"/>
+                                    <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="7"/>
                                     <color key="textColor" name="Blue"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                         </stackView>
-                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" id="DtP-pA-7pd" userLabel="Games Played Stack View">
-                            <rect key="frame" x="0.0" y="35" width="121" height="10"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" id="DtP-pA-7pd" userLabel="Games Played Stack View">
+                            <rect key="frame" x="0.0" y="36" width="121" height="9.5"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average Score" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="SHe-K4-jIe">
-                                    <rect key="frame" x="0.0" y="0.0" width="58.5" height="10"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="8"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average Score" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SHe-K4-jIe">
+                                    <rect key="frame" x="0.0" y="0.0" width="59.5" height="9.5"/>
+                                    <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="7"/>
                                     <color key="textColor" name="Orange"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99,999" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0Dk-Iy-12d">
-                                    <rect key="frame" x="62.5" y="0.0" width="58.5" height="10"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="8"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99,999" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Dk-Iy-12d">
+                                    <rect key="frame" x="61.5" y="0.0" width="59.5" height="9.5"/>
+                                    <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="7"/>
                                     <color key="textColor" name="Blue"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                         </stackView>
-                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="4" id="pCh-gl-PTV" userLabel="Games Played Stack View">
-                            <rect key="frame" x="0.0" y="45" width="121" height="10"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="2" id="pCh-gl-PTV" userLabel="Games Played Stack View">
+                            <rect key="frame" x="0.0" y="45.5" width="121" height="9.5"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Games" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0eU-oA-ndr">
-                                    <rect key="frame" x="0.0" y="0.0" width="58.5" height="10"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="8"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Games" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0eU-oA-ndr">
+                                    <rect key="frame" x="0.0" y="0.0" width="59.5" height="9.5"/>
+                                    <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="7"/>
                                     <color key="textColor" name="Orange"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="DFk-gR-wBm">
-                                    <rect key="frame" x="62.5" y="0.0" width="58.5" height="10"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="8"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DFk-gR-wBm">
+                                    <rect key="frame" x="61.5" y="0.0" width="59.5" height="9.5"/>
+                                    <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="7"/>
                                     <color key="textColor" name="Blue"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -139,7 +138,7 @@
                             <rect key="frame" x="2" y="20" width="27.5" height="8"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" systemColor="systemYellowColor"/>
-                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="6"/>
+                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="6"/>
                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
