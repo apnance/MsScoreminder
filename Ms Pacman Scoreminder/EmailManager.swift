@@ -149,9 +149,9 @@ struct EmailManager {
                     font-weight: bold;
                 
                 }
-                .header1 { color: white; }
-                .header2 { color: white; }
-                .header3 { color: white; }
+                .header1 { color: #BCF824; } /* pear color */
+                .header2 { color: #BCF824; } /* pear color */
+                .header3 { color: #BCF824; } /* pear color */
                 
                 * { box-sizing: border-box; }
                 .row { display: flex; }
@@ -168,7 +168,7 @@ struct EmailManager {
                 }
                 .col2_2 {
                     text-align: left;
-                    color: #1082C8;
+                    color: white;
                 }
                 .col1_3, .col2_3, .col3_3 {
                     font-size: 8pt;
@@ -183,12 +183,12 @@ struct EmailManager {
                 .col2_3 {
                     flex: 20%;
                     text-align: center;
-                    color: #1082C8;
+                    color: white;
                 }
                 .col3_3 {
                     flex: 40%;
                     text-align: left;
-                    color: #1082C8;
+                    color: white;
                 }
                 </style>\
                 <body>
