@@ -65,7 +65,7 @@ struct EmailManager {
         
     }
     
-    static func buildSummaryHTML(using statMan: StatManager) -> HTML {
+    static private func buildDailyStatsHTML(using statMan: StatManager) -> HTML {
         
         func buildStreakHTML() -> String {
             
@@ -78,27 +78,35 @@ struct EmailManager {
             
         }
         
-        let levelSummaryHTML = buildLevelSummaryHTML(using: statMan)
-        
-        var dailyStatsHTML = ""
-        
-        if let dailyStats = statMan.getDailyStats(Date()).first {
+        if let dailyStats = statMan.getDailyStats(Date()).first,
+           dailyStats.areToday {
             
             let percentile = StatManager.percentile(dailyStats.rank.0, of: dailyStats.rank.1)
             let rank = "\(dailyStats.rank.0.oridinalDescription) of \(dailyStats.rank.1)"
             
-            dailyStatsHTML =    """
-                                    \(twoCol("Date: ",          col2: Date().simple))
-                                    \(twoCol("Rank: ",          col2: rank))
-                                    \(twoCol("Percentile: ",    col2: percentile))
-                                
-                                    \(twoCol("Avg. Score: ",    col2: dailyStats.averageScore.delimited))
-                                    \(twoCol("Avg. Level: ",    col2: Score.nameFor(level: dailyStats.averageLevel + 1)))
-                                    \(twoCol("Games: ",         col2: String(describing: dailyStats.gameCount)))
-                                    \(buildStreakHTML())
-                                """
+            return """
+                        \(twoCol("Date: ",          col2: Date().simple))
+                        \(twoCol("Rank: ",          col2: rank))
+                        \(twoCol("Percentile: ",    col2: percentile))
+                    
+                        \(twoCol("Avg. Score: ",    col2: dailyStats.averageScore.delimited))
+                        \(twoCol("Avg. Level: ",    col2: Score.nameFor(level: dailyStats.averageLevel + 1)))
+                        \(twoCol("Games: ",         col2: String(describing: dailyStats.gameCount)))
+                        \(buildStreakHTML())
+                    """
+            
+        } else {
+            
+            return ""
             
         }
+        
+    }
+    
+    static func buildSummaryHTML(using statMan: StatManager) -> HTML {
+        
+        let levelSummaryHTML    = buildLevelSummaryHTML(using: statMan)
+        let dailyStatsHTML      = buildDailyStatsHTML(using: statMan)
         
         return  """
                 <meta name="color-scheme" content="only">
