@@ -7,6 +7,7 @@
 
 import APNUtils
 import MessageUI
+import WebKit
 
 class ViewController: UIViewController {
     
@@ -24,6 +25,7 @@ class ViewController: UIViewController {
     private var scoreViews = [AtomicScoreView]()
     private var timer: APNTimer?
     private var lastDailyRunDate = Date().simple
+    
     
     // MARK: - Outlets
     @IBOutlet var mainView: UIView!
@@ -51,19 +53,19 @@ class ViewController: UIViewController {
     @IBOutlet weak var deleteScoreLabel: UILabel!
     
     @IBOutlet weak var emailButton: RoundButton!
+    @IBOutlet weak var htmlTestView: WKWebView!
     
     // Streaks
     @IBOutlet weak var streaksContainerView: RoundView!
     @IBOutlet weak var streakLongestCount: UILabel!
     @IBOutlet weak var streakLongestDate1: UILabel!
     @IBOutlet weak var streakLongestDate2: UILabel!
-    
     @IBOutlet weak var streakCurrentOrRecent: UILabel!
     @IBOutlet weak var streakCurrentCount: UILabel!
     @IBOutlet weak var streakCurrentDate1: UILabel!
     @IBOutlet weak var streakCurrentDate2: UILabel!
-
-
+    
+    
     // MARK: Actions
     @IBAction func didTapDeleteYesNoButton(_ sender: UIButton) {
         
@@ -487,6 +489,16 @@ extension ViewController: MFMailComposeViewControllerDelegate {
        } else {
            
            NSLog("Email cannot be sent")
+           
+           // toggle html test view
+           htmlTestView.isHidden = !htmlTestView.isHidden
+           
+           if !htmlTestView.isHidden {
+               
+               htmlTestView.loadHTMLString(EmailManager.buildSummaryHTML(using: statMan),
+                                           baseURL: nil)
+               
+           }
            
        }
         
