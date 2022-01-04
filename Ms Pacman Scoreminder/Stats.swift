@@ -128,10 +128,6 @@ extension StatManager {
             
         }
         
-        // TODO: Clean Up - delete Current/Longest printouts
-        print("Current: \(current)")
-        print("Longest: \(longest)")
-        
         stats.streaks = (current, longest)
         
     }
