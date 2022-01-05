@@ -647,8 +647,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.3;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.aaron.nance.Ms-Scoreminder-v1.4.3";
+				MARKETING_VERSION = 1.4.4;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aaron.nance.Ms-Scoreminder-v1.4.4";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -670,8 +670,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.3;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.aaron.nance.Ms-Scoreminder-v1.4.3";
+				MARKETING_VERSION = 1.4.4;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aaron.nance.Ms-Scoreminder-v1.4.4";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
