@@ -140,7 +140,7 @@ class DailySummaryView: RoundView {
         bestDayRank.text            = stats.rank.0.description
         
         Utils.UI.addShadows(to: averageLevelContainerView)
-        averageLevelContainerView.rotateRandom(minAngle: -5, maxAngle: 5)
+        averageLevelContainerView.rotateRandom(minAngle: 5, maxAngle: 8)
         
         // advance counter
         currStats += 1
