@@ -374,6 +374,7 @@ class ViewController: UIViewController {
     private func addShadows() {
         
         Utils.UI.addShadows(to: [scoresView,
+                                 streaksContainerView,
                                  dailySummaryView,
                                  roundView,
                                  deleteScoreContainerView,
