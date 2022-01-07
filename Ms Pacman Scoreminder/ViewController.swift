@@ -190,9 +190,9 @@ class ViewController: UIViewController {
         outlineLabel(highscoreLabel)
         addShadows()
                 
-        let dismissDeleteTap = UITapGestureRecognizer(target: self,
-                                                      action: #selector(handleDismissDeleteUITap(sender:)))
-        mainView.addGestureRecognizer(dismissDeleteTap)
+        let dismissPopUpUITap = UITapGestureRecognizer(target: self,
+                                                       action: #selector(dismissPopUpUI(sender:)))
+        mainView.addGestureRecognizer(dismissPopUpUITap)
         
         let cycleFilterTap = UITapGestureRecognizer(target: self,
                                                     action: #selector(cycleFilter))
@@ -216,6 +216,7 @@ class ViewController: UIViewController {
     /// Initializes scoreInput
     private func uiScoreInput() {
         
+        scoreInput.delegate = self
         scoreInput.layer.borderColor = UIColor.clear.cgColor
         scoreInput.addTarget(self,
                              action: #selector(scoreDidChange),
@@ -390,7 +391,7 @@ class ViewController: UIViewController {
     /// Handles user taps on levelSelector
     @objc func selectLevel(sender: UISegmentedControl) {
         
-        handleDismissDeleteUITap(sender: self)
+        dismissPopUpUI(sender: self)
         
         let scoreText = scoreInput.text!
         
@@ -431,11 +432,13 @@ class ViewController: UIViewController {
     }
     
     // MARK: Deletion
-    @objc func handleDismissDeleteUITap(sender: Any) {
+    @objc func dismissPopUpUI(sender: Any) {
         
         scoreInput.resignFirstResponder()
         
-        showDeleteConfirmation(false) // Hide
+        // Hide
+        showDeleteConfirmation(false)
+        htmlTestView.isHidden = true
         
     }
     
@@ -465,6 +468,8 @@ class ViewController: UIViewController {
 extension ViewController: MFMailComposeViewControllerDelegate {
     
     func btnSendMail() {
+        
+        scoreInput.resignFirstResponder()
         
        if MFMailComposeViewController.canSendMail() {
            
@@ -547,6 +552,17 @@ extension ViewController: AtomicScoreViewDelegate {
         scoreView.center = deleteScoreContainerView.frame.center
         
         showDeleteConfirmation(true)
+        
+    }
+    
+}
+
+// MARK: - UITextFieldDelegate
+extension ViewController: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+    
+        htmlTestView.isHidden = true // Hide
         
     }
     
