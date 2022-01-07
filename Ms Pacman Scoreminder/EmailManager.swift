@@ -90,7 +90,7 @@ struct EmailManager {
                         \(twoCol("Percentile: ",    col2: percentile))
                     
                         \(twoCol("Avg. Score: ",    col2: dailyStats.averageScore.delimited))
-                        \(twoCol("Avg. Level: ",    col2: Score.nameFor(level: dailyStats.averageLevel + 1)))
+                        \(twoCol("Avg. Level: ",    col2: Score.nameFor(level: dailyStats.averageLevel)))
                         \(twoCol("Games: ",         col2: String(describing: dailyStats.gameCount)))
                         \(buildStreakHTML())
                     """
