@@ -105,7 +105,9 @@ class StatManager {
     
     func getHighscore() -> Score? { stats.highScore }
     
-    /// Returns the number of elements in the `[String]` returned by `getStats(:)`
+    /// Returns the number of elements in the `[String]` returned by `getDisplayStats(:)`
+    /// 
+    /// - note: this is not to be confused with the total number of games played (cf `getTotalGamesPlayed()`)
     func getStatCount() -> Int {
         
         if let sample = getScores(sortedBy: .date).first {
