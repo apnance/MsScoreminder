@@ -14,7 +14,7 @@ struct DailyStats {
     var rank: (Int, Int) = (-123,-1234)
     var averageScore: Int = -12345
     var averageLevel: Int = -123
-    var gameCount: Int = -12345
+    var gamesPlayed: Int = -12345
     
     var areLow: Bool {      rank.0 == rank.1 }
     var areHigh: Bool {     rank.0 == 1 }
@@ -42,7 +42,7 @@ extension DailyStats: CustomStringConvertible {
     
     var description: String {
         
-        "\(date.simple) - rank: \(rank.0)/\(rank.1) - avg score: \(averageScore) - avg level: \(averageLevel) - game count: \(gameCount)"
+        "\(date.simple) - rank: \(rank.0)/\(rank.1) - avg score: \(averageScore) - avg level: \(averageLevel) - game count: \(gamesPlayed)"
         
     }
     

@@ -119,7 +119,7 @@ class DailySummaryView: RoundView {
         dateLabel.text  = stats.date.simple
         stat1Label.text = getRankText(stats)
         stat2Label.text = stats.averageScore.delimited
-        stat3Label.text = stats.gameCount.delimited
+        stat3Label.text = stats.gamesPlayed.delimited
         
         averageLevelLabel.layer.borderWidth = 1
         averageLevelLabel.layer.cornerRadius = 3

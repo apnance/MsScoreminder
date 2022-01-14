@@ -260,7 +260,7 @@ class StatManager {
             daily.averageScore  = scoreSum / scores.count
             daily.averageLevel  = Int((levelSum.double / scores.count.double).rounded())
             
-            daily.gameCount     = scores.count
+            daily.gamesPlayed     = scores.count
             
             dailies.append(daily)
             
