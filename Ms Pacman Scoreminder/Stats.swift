@@ -9,7 +9,7 @@ import APNUtils
 
 enum ScoreSortOrder { case date, high, low }
 
-struct Stats{
+struct Stats {
     
     fileprivate var data = [ DateString : [Score] ]()
     fileprivate(set) var needsTally: Bool
@@ -56,6 +56,8 @@ extension StatManager {
         stats.needsTally = true
         
     }
+    
+    func getTotalGamesPlayed() -> Int { stats.gamesCount }
     
     func getScores(sortedBy: ScoreSortOrder) -> [Score] {
         

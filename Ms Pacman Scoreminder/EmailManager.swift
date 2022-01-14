@@ -83,6 +83,7 @@ struct EmailManager {
             
             let percentile = StatManager.percentile(dailyStats.rank.0, of: dailyStats.rank.1)
             let rank = "\(dailyStats.rank.0.oridinalDescription) of \(dailyStats.rank.1)"
+            let games = "\(dailyStats.gamesPlayed) today, \(statMan.getTotalGamesPlayed()) total"
             
             return """
                         \(twoCol("Date: ",          col2: Date().simple))
@@ -91,7 +92,7 @@ struct EmailManager {
                     
                         \(twoCol("Avg. Score: ",    col2: dailyStats.averageScore.delimited))
                         \(twoCol("Avg. Level: ",    col2: Score.nameFor(level: dailyStats.averageLevel)))
-                        \(twoCol("Games: ",         col2: String(describing: dailyStats.gameCount)))
+                        \(twoCol("Games: ",         col2: games))
                         \(buildStreakHTML())
                     """
             
