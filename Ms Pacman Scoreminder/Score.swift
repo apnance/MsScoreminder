@@ -7,6 +7,8 @@
 
 import APNUtils
 
+enum ScoreType { case average, single }
+
 struct Score {
     
     private static let levels = ["*", "$", "@", "&", "#", "¿", ")", ")2", ")3", ")4", ")5", ")6"]
@@ -62,7 +64,8 @@ struct Score {
     var score: Int
     /// Zero-based highest level attained.
     var level: Int
-
+    var scoreType: ScoreType = .single
+    
     var displayScore: String { score.delimited }
     var levelString: String { Score.stringFor(level: level) }
     var levelIcon: UIImage { UIImage(named: "ms_icon_\(level)")! }
