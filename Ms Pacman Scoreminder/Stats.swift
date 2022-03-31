@@ -7,7 +7,7 @@
 
 import APNUtils
 
-enum ScoreSortOrder { case date, high, low }
+enum ScoreSortOrder { case date, high, low, avgDate, avgHigh, avgLow }
 
 struct Stats {
     
@@ -68,7 +68,22 @@ extension StatManager {
             case .high: return stats.scoresHighSorted
                 
             case .low: return stats.scoresLowSorted
-            
+                
+            case .avgDate: return stats.dailyStats.sorted{ $0.date > $1.date }.map{ Score(date: $0.date,
+                                                                                          score: $0.averageScore,
+                                                                                          level: $0.averageLevel,
+                                                                                          scoreType: .average) }
+                
+            case .avgHigh: return stats.dailyStats.sorted{ $0.averageScore > $1.averageScore }.map{Score(date: $0.date,
+                                                                                                         score: $0.averageScore,
+                                                                                                         level: $0.averageLevel,
+                                                                                                         scoreType: .average) }
+                
+            case .avgLow: return stats.dailyStats.sorted{ $0.averageScore < $1.averageScore }.map{Score(date: $0.date,
+                                                                                                        score: $0.averageScore,
+                                                                                                        level: $0.averageLevel,
+                                                                                                        scoreType: .average) }
+                
         }
         
     }

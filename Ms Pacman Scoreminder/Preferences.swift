@@ -14,21 +14,30 @@ enum ScoreSortFilter: Codable, CustomStringConvertible {
     case highsNewFirst
     case lowsLowFirst
     case lowsNewFirst
+    case avgRecents
+    case avgHighsHighFirst
+    case avgHighsNewFirst
+    case avgLowsLowFirst
+    case avgLowsNewFirst
     
     mutating func cycleNext() {
         
         switch self {
             
-            case .recents: self         = .highsHighFirst
+            // singles
+            case .recents:              self = .highsHighFirst
+            case .highsHighFirst:       self = .highsNewFirst
+            case .highsNewFirst:        self = .lowsLowFirst
+            case .lowsLowFirst:         self = .lowsNewFirst
+            case .lowsNewFirst:         self = .avgRecents
+            
+            // averages
+            case .avgRecents:           self = .avgHighsHighFirst
+            case .avgHighsHighFirst:    self = .avgHighsNewFirst
+            case .avgHighsNewFirst:     self = .avgLowsLowFirst
+            case .avgLowsLowFirst:      self = .avgLowsNewFirst
+            case .avgLowsNewFirst:      self = .recents
                 
-            case .highsHighFirst: self  = .highsNewFirst
-            
-            case .highsNewFirst: self   = .lowsLowFirst
-                
-            case .lowsLowFirst: self    = .lowsNewFirst
-            
-            case .lowsNewFirst: self    = .recents
-            
         }
         
     }
@@ -37,15 +46,19 @@ enum ScoreSortFilter: Codable, CustomStringConvertible {
         
         switch self {
             
-            case .recents:          return "Recent Scores"
-                
-            case .highsHighFirst:   return "Top Scores"
-
-            case .highsNewFirst:    return "Top Scores by Date"
-                
-            case .lowsLowFirst:     return "Low Scores"
-
-            case .lowsNewFirst:     return "Low Scores by Date"
+            // singles
+            case .recents:              return "Recent Scores"
+            case .highsHighFirst:       return "Top Scores"
+            case .highsNewFirst:        return "Top Scores by Date"
+            case .lowsLowFirst:         return "Low Scores"
+            case .lowsNewFirst:         return "Low Scores by Date"
+            
+            // averages
+            case .avgRecents:           return "Recent Daily Averages"
+            case .avgHighsHighFirst:    return "Top Daily Averages"
+            case .avgHighsNewFirst:     return "Top Daily Averages by Date"
+            case .avgLowsLowFirst:      return "Low Daily Averages"
+            case .avgLowsNewFirst:      return "Low Daily Averages by Date"
             
         }
         

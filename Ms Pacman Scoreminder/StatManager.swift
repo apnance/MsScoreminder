@@ -121,8 +121,10 @@ class StatManager {
     /// Returns a `[String]` of ready to display score stats.
     func getDisplayStats(_ score: Score) -> [String] {
         
-        let scores = getScores(sortedBy: .high)
+        let sortBy: ScoreSortOrder = (score.scoreType == .average ? .avgHigh : .high)
         
+        let scores = getScores(sortedBy: sortBy)
+                
         for (i, data) in scores.enumerated() {
             
             if score == data {
@@ -310,6 +312,28 @@ class StatManager {
         case .lowsNewFirst:
             return getScores(sortedBy: .low).sub(start: 0,
                                                        end: end).sorted{ $0.date > $1.date }
+                
+            // TODO: Clean Up - reformat entire switch statement
+            case .avgRecents:
+                return getScores(sortedBy: .avgDate).sub(start: 0,
+                                                     end: end)
+                
+                
+            case .avgHighsHighFirst:
+                return getScores(sortedBy: .avgHigh).sub(start: 0,
+                                                      end: end)
+                
+            case .avgHighsNewFirst:
+                return getScores(sortedBy: .avgHigh).sub(start: 0,
+                                                      end: end).sorted{ $0.date > $1.date }
+                
+            case .avgLowsLowFirst:
+                return getScores(sortedBy: .avgLow).sub(start: 0,
+                                                      end: end)
+                
+            case .avgLowsNewFirst:
+                return getScores(sortedBy: .low).sub(start: 0,
+                                                     end: end).sorted{ $0.date > $1.date }
             
         }
         
