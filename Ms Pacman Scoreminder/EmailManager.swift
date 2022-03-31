@@ -78,7 +78,7 @@ struct EmailManager {
             
         }
         
-        if let dailyStats = statMan.getDailyStats(Date()).first,
+        if let dailyStats = statMan.getDailyStatsSummary(Date()).first,
            dailyStats.areToday {
             
             let percentile = StatManager.percentile(dailyStats.rank.0, of: dailyStats.rank.1)
