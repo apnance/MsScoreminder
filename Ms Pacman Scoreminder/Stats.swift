@@ -14,9 +14,15 @@ struct Stats {
     fileprivate var data = [ DateString : [Score] ]()
     fileprivate(set) var needsTally: Bool
     
+    // singles
     fileprivate var scoresDateSorted    = [Score]()
     fileprivate var scoresHighSorted    = [Score]()
     fileprivate var scoresLowSorted     = [Score]()
+    
+    // averages
+    fileprivate var avgScoresDateSorted = [Score]()
+    fileprivate var avgScoresHighSorted = [Score]()
+    fileprivate var avgScoresLowSorted  = [Score]()
     
     fileprivate var dailyStats          = [DailyStats]()
     
@@ -62,27 +68,16 @@ extension StatManager {
     func getScores(sortedBy: ScoreSortOrder) -> [Score] {
         
         switch sortedBy {
-            
-            case .date: return stats.scoresDateSorted
                 
-            case .high: return stats.scoresHighSorted
+            // singles
+            case .date:     return stats.scoresDateSorted
+            case .high:     return stats.scoresHighSorted
+            case .low:      return stats.scoresLowSorted
                 
-            case .low: return stats.scoresLowSorted
-                
-            case .avgDate: return stats.dailyStats.sorted{ $0.date > $1.date }.map{ Score(date: $0.date,
-                                                                                          score: $0.averageScore,
-                                                                                          level: $0.averageLevel,
-                                                                                          scoreType: .average) }
-                
-            case .avgHigh: return stats.dailyStats.sorted{ $0.averageScore > $1.averageScore }.map{Score(date: $0.date,
-                                                                                                         score: $0.averageScore,
-                                                                                                         level: $0.averageLevel,
-                                                                                                         scoreType: .average) }
-                
-            case .avgLow: return stats.dailyStats.sorted{ $0.averageScore < $1.averageScore }.map{Score(date: $0.date,
-                                                                                                        score: $0.averageScore,
-                                                                                                        level: $0.averageLevel,
-                                                                                                        scoreType: .average) }
+            // averages
+            case .avgDate:  return stats.avgScoresDateSorted
+            case .avgHigh:  return stats.avgScoresHighSorted
+            case .avgLow:   return stats.avgScoresLowSorted
                 
         }
         
@@ -116,7 +111,26 @@ extension StatManager {
         
     }
     
-    func setDailys(_ dailies: [DailyStats]) { stats.dailyStats = dailies }
+    func setDailys(_ dailies: [DailyStats]) {
+        
+        stats.dailyStats = dailies
+        
+        stats.avgScoresDateSorted = dailies.sorted{ $0.date > $1.date }.map{ Score(date: $0.date,
+                                                                                   score: $0.averageScore,
+                                                                                   level: $0.averageLevel,
+                                                                                   scoreType: .average) }
+        
+        stats.avgScoresHighSorted = dailies.sorted{ $0.averageScore > $1.averageScore }.map{Score(date: $0.date,
+                                                                                                  score: $0.averageScore,
+                                                                                                  level: $0.averageLevel,
+                                                                                                  scoreType: .average) }
+        
+        stats.avgScoresLowSorted = dailies.sorted{ $0.averageScore < $1.averageScore }.map{Score(date: $0.date,
+                                                                                                 score: $0.averageScore,
+                                                                                                 level: $0.averageLevel,
+                                                                                                 scoreType: .average) }
+        
+    }
     
     /// Returns `StreakSet` of current consecutive days played streak and longest consecutive days played.
     func getStreaks() -> StreakSet? { stats.streaks }
