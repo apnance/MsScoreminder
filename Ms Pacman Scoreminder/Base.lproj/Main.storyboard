@@ -269,8 +269,39 @@
                                         <color key="textColor" name="Banana"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="pii-L0-PwK" userLabel="Filter Controls">
+                                        <rect key="frame" x="10" y="23" width="334" height="20"/>
+                                        <subviews>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="d4r-1W-jEE" userLabel="Filter Type">
+                                                <rect key="frame" x="0.0" y="0.0" width="86" height="21"/>
+                                                <segments>
+                                                    <segment title="R"/>
+                                                    <segment title="H"/>
+                                                    <segment title="L"/>
+                                                </segments>
+                                            </segmentedControl>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Vnt-bR-Qfa" userLabel="Avg Sorted">
+                                                <rect key="frame" x="107" y="0.0" width="115" height="21"/>
+                                                <segments>
+                                                    <segment title="Avg"/>
+                                                    <segment title="Single"/>
+                                                </segments>
+                                            </segmentedControl>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Hbp-Q9-muc" userLabel="Date Sorted">
+                                                <rect key="frame" x="237" y="0.0" width="97" height="21"/>
+                                                <segments>
+                                                    <segment title="Def"/>
+                                                    <segment title="Date"/>
+                                                </segments>
+                                            </segmentedControl>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="n5K-gJ-oWd"/>
+                                        </constraints>
+                                    </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kw7-ga-S1C" userLabel="Scores View">
-                                        <rect key="frame" x="0.0" y="25" width="354" height="441.5"/>
+                                        <rect key="frame" x="0.0" y="50" width="354" height="416.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <wkWebView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FyJ-yg-YC1">
@@ -282,17 +313,21 @@
                                         </wkWebViewConfiguration>
                                     </wkWebView>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="pii-L0-PwK" firstAttribute="top" secondItem="qZZ-vR-qwz" secondAttribute="bottom" id="1nl-LL-44b"/>
                                     <constraint firstItem="FyJ-yg-YC1" firstAttribute="leading" secondItem="ZyG-9R-Myt" secondAttribute="leading" constant="5" id="ATz-Q4-HcV"/>
                                     <constraint firstItem="FyJ-yg-YC1" firstAttribute="top" secondItem="ZyG-9R-Myt" secondAttribute="top" constant="30" id="EUH-Yg-pEG"/>
+                                    <constraint firstAttribute="trailing" secondItem="pii-L0-PwK" secondAttribute="trailing" constant="10" id="FBm-H7-amL"/>
                                     <constraint firstItem="Kw7-ga-S1C" firstAttribute="leading" secondItem="ZyG-9R-Myt" secondAttribute="leading" id="L5E-yd-ON7"/>
                                     <constraint firstAttribute="trailing" secondItem="FyJ-yg-YC1" secondAttribute="trailing" constant="5" id="NJ3-hf-kff"/>
                                     <constraint firstItem="qZZ-vR-qwz" firstAttribute="top" secondItem="ZyG-9R-Myt" secondAttribute="top" id="RLX-xD-Kia"/>
-                                    <constraint firstItem="Kw7-ga-S1C" firstAttribute="top" secondItem="ZyG-9R-Myt" secondAttribute="top" constant="25" id="Rll-Lc-7F2"/>
+                                    <constraint firstItem="Kw7-ga-S1C" firstAttribute="top" secondItem="ZyG-9R-Myt" secondAttribute="top" constant="50" id="Rll-Lc-7F2"/>
                                     <constraint firstAttribute="trailing" secondItem="Kw7-ga-S1C" secondAttribute="trailing" id="UN1-t7-y2I"/>
                                     <constraint firstItem="qZZ-vR-qwz" firstAttribute="centerX" secondItem="ZyG-9R-Myt" secondAttribute="centerX" id="cQk-Ss-NEh"/>
                                     <constraint firstAttribute="bottom" secondItem="FyJ-yg-YC1" secondAttribute="bottom" constant="5" id="gkV-t9-Ju5"/>
                                     <constraint firstAttribute="bottom" secondItem="Kw7-ga-S1C" secondAttribute="bottom" id="gxR-ML-Dry"/>
+                                    <constraint firstItem="pii-L0-PwK" firstAttribute="leading" secondItem="ZyG-9R-Myt" secondAttribute="leading" constant="10" id="wc9-Qi-9gr"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OjF-A8-gQq">
@@ -412,8 +447,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="avgSorted" destination="Vnt-bR-Qfa" id="ulI-x9-IMv"/>
                         <outlet property="backgroundStripeView" destination="SsP-ad-Wjl" id="Ood-df-EjZ"/>
                         <outlet property="dailySummaryView" destination="tfc-k3-1dv" id="4tQ-ZB-rqG"/>
+                        <outlet property="dataSelector" destination="d4r-1W-jEE" id="uop-HD-EdR"/>
+                        <outlet property="dateSorted" destination="Hbp-Q9-muc" id="J9f-SX-KIB"/>
                         <outlet property="deleteContainerView" destination="OjF-A8-gQq" id="Awk-Xm-i2p"/>
                         <outlet property="deleteScoreContainerView" destination="n4R-5x-sl0" id="HN1-WD-DW6"/>
                         <outlet property="deleteScoreLabel" destination="Kwh-Xz-ZGz" id="vJr-X4-M58"/>

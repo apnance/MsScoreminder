@@ -44,6 +44,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var scoresView: UIView!
     @IBOutlet weak var scoresFilterLabel: UILabel!
     
+    // filter UI
+    @IBOutlet weak var dataSelector: UISegmentedControl!
+    @IBOutlet weak var avgSorted: UISegmentedControl!
+    @IBOutlet weak var dateSorted: UISegmentedControl!
+    
     @IBOutlet weak var dailySummaryView: DailySummaryView!
     
     @IBOutlet weak var roundView: RoundView!
@@ -104,6 +109,7 @@ class ViewController: UIViewController {
         uiBGStripe()
         uiScoreInput()
         uiBuildLevelSelector()
+        uiBuildFilterSelectors()
         uiVolatile()
         uiLoop()
         
@@ -194,10 +200,6 @@ class ViewController: UIViewController {
                                                        action: #selector(dismissPopUpUI(sender:)))
         mainView.addGestureRecognizer(dismissPopUpUITap)
         
-        let cycleFilterTap = UITapGestureRecognizer(target: self,
-                                                    action: #selector(cycleFilter))
-        scoresContainerView.addGestureRecognizer(cycleFilterTap)
-        
         streaksContainerView.rotate(angle: Configs.UI.Rotations.streaksView)
         
     }
@@ -248,6 +250,48 @@ class ViewController: UIViewController {
         levelSelector.addTarget(self,
                                 action: #selector(selectLevel(sender:)),
                                 for: .valueChanged)
+        
+    }
+    
+    private func uiBuildFilterSelectors() {
+        
+        let filter = statMan.prefs.scoreSortFilter
+        
+        let normalAtts      =  [NSAttributedString.Key.font: UIFont(name: "Futura-Bold", size: 8) as Any,
+                                NSAttributedString.Key.foregroundColor: UIColor(named:"Banana") as Any]
+        let selectedAtts    = [NSAttributedString.Key.font: UIFont(name: "Futura-Bold", size: 8) as Any,
+                               NSAttributedString.Key.foregroundColor: UIColor.white as Any]
+        
+        dataSelector.selectedSegmentIndex = filter.type == .recents ? 0 : (filter.type == .highs ? 1 : 2 )
+        
+        dataSelector.addTarget(self,
+                               action: #selector(filter(sender:)),
+                               for: .valueChanged)
+        
+        dataSelector.selectedSegmentTintColor = UIColor(named: "Blue")
+        
+        dataSelector.setTitleTextAttributes(normalAtts, for: .normal)
+        dataSelector.setTitleTextAttributes(selectedAtts, for: .selected)
+        
+        avgSorted.selectedSegmentIndex = filter.isAverage ? 0 : 1
+        avgSorted.addTarget(self,
+                            action: #selector(filter(sender:)),
+                            for: .valueChanged)
+        
+        avgSorted.selectedSegmentTintColor = UIColor(named: "Blue")
+        avgSorted.setTitleTextAttributes(normalAtts, for: .normal)
+        avgSorted.setTitleTextAttributes(selectedAtts, for: .selected)
+        
+        dateSorted.selectedSegmentIndex = filter.isDateSorted ? 1 : 0
+        dateSorted.addTarget(self,
+                             action: #selector(filter(sender:)),
+                             for: .valueChanged)
+        
+        dateSorted.selectedSegmentTintColor = UIColor(named: "Blue")
+        dateSorted.setTitleTextAttributes(normalAtts, for: .normal)
+        dateSorted.setTitleTextAttributes(selectedAtts, for: .selected)
+        
+        dateSorted.alpha = filter == .recents || filter == .avgRecents ? 0 : 1
         
     }
     
@@ -412,6 +456,33 @@ class ViewController: UIViewController {
         
     }
     
+    @objc func filter(sender: UISegmentedControl) {
+        
+        dismissPopUpUI(sender: self)
+
+        var filterType = FilterType.recents
+        
+        switch dataSelector.selectedSegmentIndex {
+                
+            case 1: filterType = .highs
+                
+            case 2: filterType = .lows
+                
+            default: filterType = .recents
+                
+        }
+        
+        let showDailies = avgSorted.selectedSegmentIndex == 0 ? true : false
+        let dateSort = dateSorted.selectedSegmentIndex == 0 ? false : true
+        
+        dateSorted.alpha = filterType == .recents ? 0 : 1
+        
+        statMan.setFilter(filterType, daily: showDailies, dateSorted: dateSort)
+        
+        uiScore()
+        
+    }
+    
     /// Handles changes to scoreInput
     @objc func scoreDidChange() {
         
@@ -421,13 +492,6 @@ class ViewController: UIViewController {
         levelSelector.isEnabled = (score % 10) == 0
         
         levelSelector.alpha = !levelSelector.isEnabled ? 0 : 1
-        
-    }
-    
-    @objc fileprivate func cycleFilter() {
-        
-        statMan.cylecFilter()
-        uiScore()
         
     }
     

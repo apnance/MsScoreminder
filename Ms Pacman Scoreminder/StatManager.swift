@@ -13,7 +13,7 @@ typealias HTML = String
 
 class StatManager {
     
-    private var prefs = Preferences.shared
+    private (set) var prefs = Preferences.shared
     var stats: Stats!
     
     init() {
@@ -340,7 +340,15 @@ class StatManager {
     
     func getFilterLabel() -> String { String(describing: prefs.scoreSortFilter) }
         
-    func cylecFilter() { prefs.scoreSortFilter.cycleNext() }
+    func setFilter(_ type: FilterType,
+                   daily: Bool,
+                   dateSorted: Bool) {
+        
+        prefs.scoreSortFilter.setFilter(type,
+                                        daily: daily,
+                                        dateSorted: dateSorted)
+        
+    }
     
 }
 

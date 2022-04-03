@@ -7,6 +7,8 @@
 
 import APNUtils
 
+enum FilterType { case recents, highs, lows }
+
 enum ScoreSortFilter: Codable, CustomStringConvertible {
     
     case recents
@@ -20,24 +22,78 @@ enum ScoreSortFilter: Codable, CustomStringConvertible {
     case avgLowsLowFirst
     case avgLowsNewFirst
     
-    mutating func cycleNext() {
+    var type: FilterType {
         
         switch self {
-            
-            // singles
-            case .recents:              self = .highsHighFirst
-            case .highsHighFirst:       self = .highsNewFirst
-            case .highsNewFirst:        self = .lowsLowFirst
-            case .lowsLowFirst:         self = .lowsNewFirst
-            case .lowsNewFirst:         self = .avgRecents
-            
-            // averages
-            case .avgRecents:           self = .avgHighsHighFirst
-            case .avgHighsHighFirst:    self = .avgHighsNewFirst
-            case .avgHighsNewFirst:     self = .avgLowsLowFirst
-            case .avgLowsLowFirst:      self = .avgLowsNewFirst
-            case .avgLowsNewFirst:      self = .recents
                 
+            case    .recents,
+                    .avgRecents : return .recents
+                
+            case    .highsHighFirst,
+                    .highsNewFirst,
+                    .avgHighsHighFirst,
+                    .avgHighsNewFirst : return .highs
+                
+            case    .lowsLowFirst,
+                    .lowsNewFirst,
+                    .avgLowsLowFirst, .
+                    avgLowsNewFirst : return .lows
+                
+        }
+        
+    }
+    
+    var isDateSorted : Bool {
+        
+        self == .highsNewFirst ||
+        self == .lowsNewFirst ||
+        self == .avgHighsNewFirst ||
+        self == .avgLowsNewFirst
+        
+    }
+    
+    var isAverage: Bool {
+        
+        self == .avgRecents ||
+        self == .avgHighsHighFirst ||
+        self == .avgHighsNewFirst ||
+        self == .avgLowsLowFirst ||
+        self == .avgLowsNewFirst
+        
+    }
+    
+    mutating func setFilter(_ type: FilterType, daily: Bool, dateSorted: Bool) {
+        
+        if daily {
+            
+            switch type {
+                    
+                case .recents :
+                    
+                    self = .avgRecents
+                    
+                case .highs :
+                    self = dateSorted ? .avgHighsNewFirst : .avgHighsHighFirst
+                    
+                case .lows:
+                    self = dateSorted ? .avgLowsNewFirst : .avgLowsLowFirst
+                    
+            }
+
+        } else {
+            
+            switch type {
+                    
+                case .recents : self = .recents
+                    
+                case .highs :
+                    self = dateSorted ? .highsNewFirst : .highsHighFirst
+                    
+                case .lows:
+                    self = dateSorted ? .lowsNewFirst : .lowsLowFirst
+                    
+            }
+            
         }
         
     }
