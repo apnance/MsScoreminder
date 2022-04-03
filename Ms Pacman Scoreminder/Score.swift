@@ -7,7 +7,13 @@
 
 import APNUtils
 
-enum ScoreType { case average, single }
+enum ScoreType {
+    
+    case average, single
+    
+    var isDeletable: Bool { return self != .average }
+    
+}
 
 struct Score {
     

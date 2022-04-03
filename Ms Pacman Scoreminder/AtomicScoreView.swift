@@ -69,7 +69,11 @@ class AtomicScoreView: UIView {
         
     }
     
-    @objc func handleTap() { delegate?.didTap(score: score) }
+    @objc func handleTap() {
+        
+        if score.scoreType.isDeletable { delegate?.didTap(score: score) }
+        
+    }
     
     private func addShadows() {
         
