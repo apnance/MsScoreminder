@@ -62,7 +62,9 @@ enum ScoreSortFilter: Codable, CustomStringConvertible {
         
     }
     
-    mutating func setFilter(_ type: FilterType, daily: Bool, dateSorted: Bool) {
+    mutating func setFilter(_ type: FilterType,
+                            daily: Bool,
+                            dateSorted: Bool) {
         
         if daily {
             
@@ -73,13 +75,15 @@ enum ScoreSortFilter: Codable, CustomStringConvertible {
                     self = .avgRecents
                     
                 case .highs :
+                    
                     self = dateSorted ? .avgHighsNewFirst : .avgHighsHighFirst
                     
                 case .lows:
+                    
                     self = dateSorted ? .avgLowsNewFirst : .avgLowsLowFirst
                     
             }
-
+            
         } else {
             
             switch type {
