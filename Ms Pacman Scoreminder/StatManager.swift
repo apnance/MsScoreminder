@@ -340,7 +340,7 @@ class StatManager {
     
     func getFilterLabel() -> String { String(describing: prefs.scoreSortFilter) }
         
-    func setFilter(_ type: FilterType,
+    func setFilter(_ type: ScoreSortFilter.FilterType,
                    daily: Bool,
                    dateSorted: Bool) {
         

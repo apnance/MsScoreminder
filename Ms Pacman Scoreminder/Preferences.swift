@@ -7,9 +7,9 @@
 
 import APNUtils
 
-enum FilterType { case recents, highs, lows }
-
 enum ScoreSortFilter: Codable, CustomStringConvertible {
+    
+    enum FilterType { case recents, highs, lows }
     
     case recents
     case highsHighFirst

@@ -460,7 +460,7 @@ class ViewController: UIViewController {
         
         dismissPopUpUI(sender: self)
 
-        var filterType = FilterType.recents
+        var filterType = ScoreSortFilter.FilterType.recents
         
         switch dataSelector.selectedSegmentIndex {
                 
