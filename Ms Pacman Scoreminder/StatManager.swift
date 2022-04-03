@@ -292,55 +292,54 @@ class StatManager {
         if end < 0 { return [] }
         
         switch prefs.scoreSortFilter {
-            
-        case .highsHighFirst:
-            return getScores(sortedBy: .high).sub(start: 0,
-                                                        end: end)
-            
-        case .highsNewFirst:
-            return getScores(sortedBy: .high).sub(start: 0,
-                                                        end: end).sorted{ $0.date > $1.date }
-            
-        case .recents:
-            return getScores(sortedBy: .date).sub(start: 0,
-                                                        end: end)
-            
-        case .lowsLowFirst:
-            return getScores(sortedBy: .low).sub(start: 0,
-                                                       end: end)
-            
-        case .lowsNewFirst:
-            return getScores(sortedBy: .low).sub(start: 0,
-                                                       end: end).sorted{ $0.date > $1.date }
                 
-            // TODO: Clean Up - reformat entire switch statement
+            case .highsHighFirst:
+                return getScores(sortedBy: .high).sub(start: 0,
+                                                      end: end)
+                
+            case .highsNewFirst:
+                return getScores(sortedBy: .high).sub(start: 0,
+                                                      end: end).sorted{ $0.date > $1.date }
+                
+            case .recents:
+                return getScores(sortedBy: .date).sub(start: 0,
+                                                      end: end)
+                
+            case .lowsLowFirst:
+                return getScores(sortedBy: .low).sub(start: 0,
+                                                     end: end)
+                
+            case .lowsNewFirst:
+                return getScores(sortedBy: .low).sub(start: 0,
+                                                     end: end).sorted{ $0.date > $1.date }
+                
             case .avgRecents:
                 return getScores(sortedBy: .avgDate).sub(start: 0,
-                                                     end: end)
+                                                         end: end)
                 
                 
             case .avgHighsHighFirst:
                 return getScores(sortedBy: .avgHigh).sub(start: 0,
-                                                      end: end)
+                                                         end: end)
                 
             case .avgHighsNewFirst:
                 return getScores(sortedBy: .avgHigh).sub(start: 0,
-                                                      end: end).sorted{ $0.date > $1.date }
+                                                         end: end).sorted{ $0.date > $1.date }
                 
             case .avgLowsLowFirst:
                 return getScores(sortedBy: .avgLow).sub(start: 0,
-                                                      end: end)
+                                                        end: end)
                 
             case .avgLowsNewFirst:
                 return getScores(sortedBy: .low).sub(start: 0,
                                                      end: end).sorted{ $0.date > $1.date }
-            
+                
         }
         
     }
     
     func getFilterLabel() -> String { String(describing: prefs.scoreSortFilter) }
-    
+        
     func cylecFilter() { prefs.scoreSortFilter.cycleNext() }
     
 }
