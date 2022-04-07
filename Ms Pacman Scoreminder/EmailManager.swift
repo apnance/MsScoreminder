@@ -8,25 +8,25 @@
 import Foundation
 
 struct EmailManager {
+    
+    static private var colCounts = Set<Int>()
+    
+    static private func colClassName(_ col: Int,
+                                     of totalCols: Int) -> String {
         
-    static private func twoCol(_ col1: String,
-                        col2: String) -> HTML {
-        
-        """
-        <div class="row">
-            <div class="col1_2">\(col1)</div>
-            <div class="col2_2">\(col2)</div>
-        </div>
-        """
+        "col\(col)_\(totalCols)"
         
     }
     
-    static private func threeCol(_ col1: String,
-                          col2: String,
-                          col3: String,
-                          textClasses: [String] = []) -> HTML {
+    static private func columnar(_ data: [String],_ textClasses: [String] = []) -> HTML {
         
-        var spanClasses = Array(repeating: "", count: 3)
+        if textClasses.count > 0 { assert(data.count == textClasses.count) }
+        
+        let cols = data.count
+        
+        colCounts.insert(cols)
+        
+        var spanClasses = Array(repeating: "", count: cols)
         
         for (i, tc) in textClasses.enumerated() {
             
@@ -35,30 +35,107 @@ struct EmailManager {
             spanClasses[i] = " class =\"\(tc)\""
             
         }
-                
-        return  """
-                <div class="row">
-                    <div class="col1_3"><span\(spanClasses[0])>\(col1)</span></div>
-                    <div class="col2_3"><span\(spanClasses[1])>\(col2)</span></div>
-                    <div class="col3_3"><span\(spanClasses[2])>\(col3)</span></div>
-                </div>
-                """
+            
+        var output = "<div class=\"row\">"
+        for (i, datum) in data.enumerated() {
+            
+            let colClass = colClassName(i + 1, of: cols)
+            
+            output += "<div class=\"\(colClass)\"><span\(spanClasses[i])>\(datum)</span></div>\n"
+            
+        }
+        output += "</div>\n"
+        
+        return output
+        
+    }
+    
+    static private func buildColumnStyles() -> String {
+        
+        var output = ""
+        
+        for colCount in colCounts {
+            
+            switch colCount {
+                    
+                case 0: break /*do nothing*/
+                    
+                case 1:
+                    
+                    output +=   """
+                                .col1_1 {
+                                    flex: 100%;
+                                    padding: 0px;
+                                    text-align: center;
+                                    color: white;
+                                    padding-left: 10px;
+                                    font-size: 8.5pt;
+                                    font-weight: bold;
+                                
+                                }
+                                
+                                """
+                    
+                default:
+                    
+                    for i in 1...colCount {
+                        
+                        let isInterrior = (i != 1 && i != colCount)
+                        
+                        let align = i == 1 ? "right" : (i == colCount ? "left" : "center")
+                        
+                        let fractionalWidth = colCount > 2 ? min(100/colCount, 20) : 0
+                        let edgeWidth = (100 - (fractionalWidth * (colCount - 2))) / 2
+                        
+                        let percentWidth = isInterrior ? fractionalWidth : edgeWidth
+                        let color = i == 1 ? "#FEE732" : "white"
+                        let paddingLeft = i == colCount ? "10px" : "0px"
+                        let paddingRight = i == 1 ? "10px" : "0px"
+                        let font = "bold 8.5pt Futura"
+                        
+                        output +=   """
+                                    .col\(i)_\(colCount) {
+                                        flex: \(percentWidth)%;
+                                        text-align: \(align);
+                                        color: \(color);
+                                        padding-left: \(paddingLeft);
+                                        padding-right: \(paddingRight);
+                                        font: \(font);
+                                    }
+                                    
+                                    """
+                        
+                    }
+                    
+            }
+        }
+        
+        return output
         
     }
     
     static private func buildLevelSummaryHTML(using statMan: StatManager) -> HTML {
         
-        var html = threeCol("Level",
-                            col2: "Count",
-                            col3: "Percent",
-                            textClasses: ["header1", "header2", "header3"])
+        var html = columnar(["Level", "Count", "Percent", "Today"],
+                            ["header", "header", "header", "header"])
+        
+        let dailyStats =  statMan.getDaily(for: Date())
         
         for (level, count) in statMan.stats.levelTally!.enumerated() {
             
             let percent = ((count.double / statMan.stats.gamesCount.double) * 100).roundTo(1)
+            var gamesPlayedIndicator = ""
             
-            html += threeCol(Score.nameFor(level: level), col2: String(describing: count), col3: "\(percent)%")
-                        
+            if let playedCount = dailyStats?.levelsReached[level] {
+                gamesPlayedIndicator = String(repeating: "°",
+                                         count: playedCount)
+            }
+            
+            html += columnar([Score.nameFor(level: level),
+                              count.description,
+                              percent.description,
+                              gamesPlayedIndicator])
+            
         }
         
         return html
@@ -72,7 +149,8 @@ struct EmailManager {
             if let recent = statMan.getStreaks()?.recent,
                recent.isCurrent {
                 
-                return "\(twoCol("Streak: ", col2: recent.durationDescription))" /*EXIT*/
+                return "\(columnar(["Streak: ", recent.durationDescription]))" /*EXIT*/
+                
                 
             } else { return "" /*EXIT*/ }
             
@@ -86,13 +164,13 @@ struct EmailManager {
             let games = "\(dailyStats.gamesPlayed) today, \(statMan.getTotalGamesPlayed()) total"
             
             return """
-                        \(twoCol("Date: ",          col2: Date().simple))
-                        \(twoCol("Rank: ",          col2: rank))
-                        \(twoCol("Percentile: ",    col2: percentile))
+                        \(columnar(["Date: ",       Date().simple]))
+                        \(columnar(["Rank: ",       rank]))
+                        \(columnar(["Percentile: ", percentile]))
                     
-                        \(twoCol("Avg. Score: ",    col2: dailyStats.averageScore.delimited))
-                        \(twoCol("Avg. Level: ",    col2: Score.nameFor(level: dailyStats.averageLevel)))
-                        \(twoCol("Games: ",         col2: games))
+                        \(columnar(["Avg. Score: ", dailyStats.averageScore.delimited]))
+                        \(columnar(["Avg. Level: ", Score.nameFor(level: dailyStats.averageLevel)]))
+                        \(columnar(["Games: ",      games]))
                         \(buildStreakHTML())
                     """
             
@@ -108,6 +186,7 @@ struct EmailManager {
         
         let levelSummaryHTML    = buildLevelSummaryHTML(using: statMan)
         let dailyStatsHTML      = buildDailyStatsHTML(using: statMan)
+        let colStyles           = buildColumnStyles()
         
         return  """
                 <meta name="color-scheme" content="only">
@@ -153,52 +232,17 @@ struct EmailManager {
                     padding: 10px;
                 
                 }
-                .header1, .header2, .header3 {
+                .header {
                     font-size: 8.5pt;
                     font-weight: bold;
-                
+                    color: #BCF824; /* pear color */
                 }
-                .header1 { color: #BCF824; } /* pear color */
-                .header2 { color: #BCF824; } /* pear color */
-                .header3 { color: #BCF824; } /* pear color */
                 
                 * { box-sizing: border-box; }
                 .row { display: flex; }
                 
-                /* Create two equal columns that sits next to each other */
-                .col1_2, .col2_2 {
-                    flex: 50%;
-                    padding: 0px;
-                    padding-left: 10px;
-                }
-                .col1_2 {
-                    text-align: right;
-                    color: #FEE732;
-                }
-                .col2_2 {
-                    text-align: left;
-                    color: white;
-                }
-                .col1_3, .col2_3, .col3_3 {
-                    font-size: 8pt;
-                    color: black;
-                    padding: 0px;
-                }
-                .col1_3 {
-                    flex: 40%;
-                    text-align: right;
-                    color: #FEE732;
-                }
-                .col2_3 {
-                    flex: 20%;
-                    text-align: center;
-                    color: white;
-                }
-                .col3_3 {
-                    flex: 40%;
-                    text-align: left;
-                    color: white;
-                }
+                /* Flex Column Styles */
+                \(colStyles)
                 </style>\
                 <body>
                     <div class="roundedBox">

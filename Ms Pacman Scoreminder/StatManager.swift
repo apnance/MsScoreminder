@@ -258,6 +258,8 @@ class StatManager {
                 scoreSum += $0.score
                 levelSum += $0.level
                 
+                daily.levelsReached[$0.level] += 1
+                
             }
             
             daily.date          = date.simpleDate

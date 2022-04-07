@@ -111,6 +111,18 @@ extension StatManager {
         
     }
     
+    func getDaily(for date: Date) -> DailyStats? {
+        
+        for daily in stats.dailyStats {
+            
+            if daily.areToday { return daily /*EXIT*/ }
+                
+        }
+        
+        return nil
+        
+    }
+    
     func setDailys(_ dailies: [DailyStats]) {
         
         stats.dailyStats = dailies
