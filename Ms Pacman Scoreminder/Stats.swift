@@ -93,7 +93,7 @@ extension StatManager {
     
     /// Returns `[DailyStats]` containing the highest average score, lowest average score,
     /// and today's average score(if available - i.e. more than 1 game played today).
-    func getDailyStatsSummary(_ date: Date) -> [DailyStats] {
+    func getDailyStatsSummary() -> [DailyStats] {
         
         var returnStats = [DailyStats]()
         
