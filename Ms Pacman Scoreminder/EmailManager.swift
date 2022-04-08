@@ -87,6 +87,7 @@ struct EmailManager {
                         let fractionalWidth = colCount > 2 ? min(100/colCount, 20) : 0
                         let edgeWidth = (100 - (fractionalWidth * (colCount - 2))) / 2
                         
+                        let className = colClassName(i, of: colCount)
                         let percentWidth = isInterrior ? fractionalWidth : edgeWidth
                         let color = i == 1 ? "#FEE732" : "white"
                         let paddingLeft = i == colCount ? "10px" : "0px"
@@ -94,7 +95,7 @@ struct EmailManager {
                         let font = "bold 8.5pt Futura"
                         
                         output +=   """
-                                    .col\(i)_\(colCount) {
+                                    .\(className) {
                                         flex: \(percentWidth)%;
                                         text-align: \(align);
                                         color: \(color);
