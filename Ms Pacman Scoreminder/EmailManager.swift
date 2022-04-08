@@ -81,14 +81,12 @@ struct EmailManager {
                     for i in 1...colCount {
                         
                         let isInterrior = (i != 1 && i != colCount)
-                        
-                        let align = i == 1 ? "right" : (i == colCount ? "left" : "center")
-                        
                         let fractionalWidth = colCount > 2 ? min(100/colCount, 20) : 0
                         let edgeWidth = (100 - (fractionalWidth * (colCount - 2))) / 2
                         
                         let className = colClassName(i, of: colCount)
                         let percentWidth = isInterrior ? fractionalWidth : edgeWidth
+                        let textAlign = i == 1 ? "right" : (i == colCount ? "left" : "center")
                         let color = i == 1 ? "#FEE732" : "white"
                         let paddingLeft = i == colCount ? "10px" : "0px"
                         let paddingRight = i == 1 ? "10px" : "0px"
@@ -97,7 +95,7 @@ struct EmailManager {
                         output +=   """
                                     .\(className) {
                                         flex: \(percentWidth)%;
-                                        text-align: \(align);
+                                        text-align: \(textAlign);
                                         color: \(color);
                                         padding-left: \(paddingLeft);
                                         padding-right: \(paddingRight);
