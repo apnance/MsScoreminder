@@ -18,7 +18,7 @@ struct EmailManager {
         
     }
     
-    static private func columnar(_ data: [String],_ textClasses: [String] = []) -> HTML {
+    static private func columnate(_ data: [String],_ textClasses: [String] = []) -> HTML {
         
         if textClasses.count > 0 { assert(data.count == textClasses.count) }
         
@@ -116,7 +116,7 @@ struct EmailManager {
     
     static private func buildLevelSummaryHTML(using statMan: StatManager) -> HTML {
         
-        var html = columnar(["Level", "Count", "Percent", "Today"],
+        var html = columnate(["Level", "Count", "Percent", "Today"],
                             ["header", "header", "header", "header"])
         
         let dailyStats =  statMan.getDaily(for: Date())
@@ -131,10 +131,8 @@ struct EmailManager {
                                          count: playedCount)
             }
             
-            html += columnar([Score.nameFor(level: level),
-                              count.description,
-                              percent.description,
-                              gamesPlayedIndicator])
+            html += columnate([Score.nameFor(level: level), count.description, percent.description, gamesPlayedIndicator],
+                              ["","","","pacDot"])
             
         }
         
@@ -149,7 +147,7 @@ struct EmailManager {
             if let recent = statMan.getStreaks()?.recent,
                recent.isCurrent {
                 
-                return "\(columnar(["Streak: ", recent.durationDescription]))" /*EXIT*/
+                return "\(columnate(["Streak: ", recent.durationDescription]))" /*EXIT*/
                 
                 
             } else { return "" /*EXIT*/ }
@@ -164,13 +162,13 @@ struct EmailManager {
             let games = "\(dailyStats.gamesPlayed) today, \(statMan.getTotalGamesPlayed()) total"
             
             return """
-                        \(columnar(["Date: ",       Date().simple]))
-                        \(columnar(["Rank: ",       rank]))
-                        \(columnar(["Percentile: ", percentile]))
-                    
-                        \(columnar(["Avg. Score: ", dailyStats.averageScore.delimited]))
-                        \(columnar(["Avg. Level: ", Score.nameFor(level: dailyStats.averageLevel)]))
-                        \(columnar(["Games: ",      games]))
+                        \(columnate(["Date: ",       Date().simple]))
+                        \(columnate(["Rank: ",       rank]))
+                        \(columnate(["Percentile: ", percentile]))
+                        
+                        \(columnate(["Avg. Score: ", dailyStats.averageScore.delimited]))
+                        \(columnate(["Avg. Level: ", Score.nameFor(level: dailyStats.averageLevel)]))
+                        \(columnate(["Games: ",      games]))
                         \(buildStreakHTML())
                     """
             
