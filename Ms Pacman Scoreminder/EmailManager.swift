@@ -126,7 +126,7 @@ struct EmailManager {
             var gamesPlayedIndicator = ""
             
             if let playedCount = dailyStats?.levelsReached[level] {
-                gamesPlayedIndicator = String(repeating: "°",
+                gamesPlayedIndicator = String(repeating: "●",
                                          count: playedCount)
             }
             
@@ -234,7 +234,11 @@ struct EmailManager {
                     font-weight: bold;
                     color: #BCF824; /* pear color */
                 }
-                
+                .pacDot {
+                    font-size: 8.5pt;
+                    font-weight: bold;
+                    color: white;
+                }
                 * { box-sizing: border-box; }
                 .row { display: flex; }
                 
