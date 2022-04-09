@@ -9,8 +9,48 @@ import Foundation
 
 struct EmailManager {
     
+    /// Keeps track of the types of columnar output columnate has generated.  This is used to generate the CSS
+    /// needed to accompany the HTML output.
     static private var colCounts = Set<Int>()
     
+    /// Builds flex-aligned columnar HTML with column content specified in `columnText` and class
+    /// overrides for each column's CSS style in `columnClassOverrides`
+    static private func columnate(_ columnText: [String],
+                                  _ columnClassOverrides: [String] = []) -> HTML {
+        
+        let cols = columnText.count
+        colCounts.insert(cols)
+        var spanClasses = Array(repeating: "", count: cols)
+        
+        for i in 0..<columnClassOverrides.count   {
+            
+            if i >= cols { break /*BREAK*/ }
+            
+            spanClasses[i] = " class =\"\(columnClassOverrides[i])\""
+            
+            
+        }
+        
+        var output = "<div class=\"row\">"
+        
+        for (i, datum) in columnText.enumerated() {
+            
+            let colClass = colClassName(i + 1, of: cols)
+            
+            output += "<div class=\"\(colClass)\"><span\(spanClasses[i])>\(datum)</span></div>\n"
+            
+        }
+        
+        output += "</div>\n"
+        
+        return output
+        
+    }
+    
+    /// Returns a string representing the CSS classname to use for the column number `col` of a total of
+    /// `totalCols`
+    ///
+    /// eg. column 1 of 3 would have class name of col1_3
     static private func colClassName(_ col: Int,
                                      of totalCols: Int) -> String {
         
@@ -18,38 +58,7 @@ struct EmailManager {
         
     }
     
-    static private func columnate(_ data: [String],_ textClasses: [String] = []) -> HTML {
-        
-        if textClasses.count > 0 { assert(data.count == textClasses.count) }
-        
-        let cols = data.count
-        
-        colCounts.insert(cols)
-        
-        var spanClasses = Array(repeating: "", count: cols)
-        
-        for (i, tc) in textClasses.enumerated() {
-            
-            if i > spanClasses.lastUsableIndex { break /*BREAK*/ }
-            
-            spanClasses[i] = " class =\"\(tc)\""
-            
-        }
-            
-        var output = "<div class=\"row\">"
-        for (i, datum) in data.enumerated() {
-            
-            let colClass = colClassName(i + 1, of: cols)
-            
-            output += "<div class=\"\(colClass)\"><span\(spanClasses[i])>\(datum)</span></div>\n"
-            
-        }
-        output += "</div>\n"
-        
-        return output
-        
-    }
-    
+    /// Builds the CSS necessary to display the columnar HTML created by `columnate()`
     static private func buildColumnStyles() -> String {
         
         var output = ""
@@ -107,6 +116,7 @@ struct EmailManager {
                     }
                     
             }
+            
         }
         
         return output
@@ -116,9 +126,9 @@ struct EmailManager {
     static private func buildLevelSummaryHTML(using statMan: StatManager) -> HTML {
         
         var html = columnate(["Level", "Count", "Percent", "Today"],
-                            ["header", "header", "header", "header"])
+                             ["header", "header", "header", "header"])
         
-        let dailyStats =  statMan.getDaily(for: Date())
+        let dailyStats = statMan.getDaily(for: Date())
         
         for (level, count) in statMan.stats.levelTally!.enumerated() {
             
@@ -127,7 +137,7 @@ struct EmailManager {
             
             if let playedCount = dailyStats?.levelsReached[level] {
                 gamesPlayedIndicator = String(repeating: "●",
-                                         count: playedCount)
+                                              count: playedCount)
             }
             
             html += columnate([Score.nameFor(level: level), count.description, percent.description, gamesPlayedIndicator],
