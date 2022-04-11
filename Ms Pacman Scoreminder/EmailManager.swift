@@ -125,7 +125,7 @@ struct EmailManager {
     
     static private func buildLevelSummaryHTML(using statMan: StatManager) -> HTML {
         
-        var html = columnate(["Level", "Count", "Percent", "Today"],
+        var html = columnate(["LEVEL", "COUNT", "PERCENT", "TODAY"],
                              ["header", "header", "header", "header"])
         
         let dailyStats = statMan.getDaily(for: Date())
@@ -156,7 +156,7 @@ struct EmailManager {
             if let recent = statMan.getStreaks()?.recent,
                recent.isCurrent {
                 
-                return "\(columnate(["Streak: ", recent.durationDescription]))" /*EXIT*/
+                return "\(columnate(["STREAK", recent.durationDescription]))" /*EXIT*/
                 
                 
             } else { return "" /*EXIT*/ }
@@ -171,13 +171,13 @@ struct EmailManager {
             let games = "\(dailyStats.gamesPlayed) today, \(statMan.getTotalGamesPlayed()) total"
             
             return """
-                        \(columnate(["Date: ",       Date().simple]))
-                        \(columnate(["Rank: ",       rank]))
-                        \(columnate(["Percentile: ", percentile]))
+                        \(columnate(["DATE",       Date().simple]))
+                        \(columnate(["RANK",       rank]))
+                        \(columnate(["PERCENTILE", percentile]))
                         
-                        \(columnate(["Avg. Score: ", dailyStats.averageScore.delimited]))
-                        \(columnate(["Avg. Level: ", Score.nameFor(level: dailyStats.averageLevel)]))
-                        \(columnate(["Games: ",      games]))
+                        \(columnate(["AVG SCORE", dailyStats.averageScore.delimited]))
+                        \(columnate(["AVG LEVEL", Score.nameFor(level: dailyStats.averageLevel)]))
+                        \(columnate(["GAMES",      games]))
                         \(buildStreakHTML())
                     """
             

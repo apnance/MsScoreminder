@@ -92,7 +92,7 @@
                             <rect key="frame" x="0.0" y="26.5" width="121" height="9.5"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day's Rank" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MW5-Fj-lY0">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DAY'S RANK" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MW5-Fj-lY0">
                                     <rect key="frame" x="0.0" y="0.0" width="59.5" height="9.5"/>
                                     <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="7"/>
                                     <color key="textColor" name="Orange"/>
@@ -110,7 +110,7 @@
                             <rect key="frame" x="0.0" y="36" width="121" height="9.5"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average Score" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SHe-K4-jIe">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AVG SCORE" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SHe-K4-jIe">
                                     <rect key="frame" x="0.0" y="0.0" width="59.5" height="9.5"/>
                                     <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="7"/>
                                     <color key="textColor" name="Orange"/>
@@ -128,7 +128,7 @@
                             <rect key="frame" x="0.0" y="45.5" width="121" height="9.5"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Games" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0eU-oA-ndr">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GAMES" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0eU-oA-ndr">
                                     <rect key="frame" x="0.0" y="0.0" width="59.5" height="9.5"/>
                                     <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="7"/>
                                     <color key="textColor" name="Orange"/>
