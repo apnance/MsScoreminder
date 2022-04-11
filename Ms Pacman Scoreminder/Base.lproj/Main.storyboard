@@ -165,7 +165,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="2Bs-Ux-Man" userLabel="Score Levelselector Stack View">
                                 <rect key="frame" x="45" y="276" width="324" height="79.5"/>
                                 <subviews>
-                                    <textField opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Score" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="xi2-KO-0v3">
+                                    <textField opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="●●Enter Score●●" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="xi2-KO-0v3">
                                         <rect key="frame" x="0.0" y="0.0" width="324" height="45.5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45.5" id="OnZ-uL-ekY"/>
