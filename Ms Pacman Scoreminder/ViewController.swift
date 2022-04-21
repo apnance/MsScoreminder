@@ -31,11 +31,12 @@ class ViewController: UIViewController {
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var marquee: UIImageView!
     @IBOutlet weak var backgroundStripeView: UIView!
-    @IBOutlet weak var highscoreView: UIView!
-    @IBOutlet weak var highscoreLabel: UILabel!
-    @IBOutlet weak var highDateLabel: UILabel!
-    @IBOutlet weak var highLevelIcon: UIImageView!
-    @IBOutlet weak var highLevelIconContainerView: RoundView!
+    @IBOutlet weak var marqueeScoreView: UIView!
+    @IBOutlet weak var marqueeScoreScoreLabel: UILabel!
+    @IBOutlet weak var marqueeScoreTitleLabel: UILabel!
+    @IBOutlet weak var marqueeScoreDateLabel: UILabel!
+    @IBOutlet weak var marqueeLevelIcon: UIImageView!
+    @IBOutlet weak var marqueeLevelIconContainerView: RoundView!
     @IBOutlet weak var scoreInput: UITextField!
     @IBOutlet weak var levelSelector: UISegmentedControl!
     @IBOutlet weak var totalMoneySpentLabel: UITextField!
@@ -107,11 +108,14 @@ class ViewController: UIViewController {
         showDeleteConfirmation(false)
         
         uiMisc()
+        
+        
         uiBGStripe()
         uiScoreInput()
         uiBuildLevelSelector()
         uiBuildFilterSelectors()
         uiVolatile()
+        uiRotateMarquee()
         uiLoop()
         
     }
@@ -136,11 +140,97 @@ class ViewController: UIViewController {
             
         }
         
-        // daily UI
+        // once-daily UI
         uiRepeatDaily()
         
         // scores
         uiScoreCycler()
+        
+    }
+    
+    fileprivate func uiHideScore(_ shouldHide: Bool) {
+        
+        marqueeScoreScoreLabel.isHidden   = shouldHide
+        marqueeScoreTitleLabel.isHidden   = shouldHide
+        marqueeScoreDateLabel.isHidden    = shouldHide
+        marqueeLevelIcon.isHidden     = shouldHide
+        
+    }
+    
+    fileprivate func uiRotateMarquee(phase: Int = -1,
+                                     targetAlpha: Double = 1,
+                                     delay: Double = 0.0) {
+        
+        
+        DispatchQueue.main.async {
+
+            var phase = phase  // do not modify phase outside of setUI()
+            
+            let phaseContent = [(title: "HIGH SCORE",
+                                 score: self.statMan.getHighscore(),
+                                 delay: Configs.UI.Timing.marqueeHighDelay),
+                                (title: "AVERAGE SCORE",
+                                 score: self.statMan.getAvgScore(),
+                                 delay: Configs.UI.Timing.marqueeAveDelay),
+                                (title: "LOW SCORE",
+                                 score: self.statMan.getLowscore(),
+                                 delay: Configs.UI.Timing.marqueeLowDelay)]
+            
+            func setUI() {
+                
+                if phase == -1 { self.uiHideScore(false) }
+                
+                phase = phase == phaseContent.lastUsableIndex ? 0 : phase + 1
+                
+                let content = phaseContent[phase]
+                
+                if let score = content.score {
+                    
+                    self.marqueeScoreScoreLabel.text    = score.displayScore
+                    self.marqueeScoreTitleLabel.text    = content.title
+                    self.marqueeScoreDateLabel.text     = score.date.simple
+                    self.marqueeLevelIcon.image         = UIImage(named: "ms_icon_\(score.level)")
+                    
+                }
+                
+            }
+            
+            if phase == -1 { setUI() }
+            
+            UIView.animate(withDuration: Configs.UI.Timing.marqueeFadeDuration,
+                           delay: delay,
+                           options: .allowAnimatedContent,
+                           animations: {
+                
+                self.marqueeScoreScoreLabel.alpha  = targetAlpha
+                self.marqueeLevelIcon.alpha    = targetAlpha
+                self.marqueeScoreDateLabel.alpha   = targetAlpha
+                self.marqueeScoreTitleLabel.alpha  = targetAlpha
+                
+            }) {
+                
+                (success: Bool)
+                in
+                
+                if targetAlpha == 0 {   // Has faded, time to switch to next score type
+                    
+                    setUI()
+                    
+                    self.uiRotateMarquee(phase: phase,
+                                         targetAlpha: 1,
+                                         delay: 0.1)
+                    
+                } else {                // Fade out
+                    
+                    self.uiRotateMarquee(phase: phase,
+                                         targetAlpha: 0,
+                                         delay: phaseContent[phase].delay)
+                    
+                }
+                
+            }
+            
+        }
         
     }
     
@@ -186,6 +276,9 @@ class ViewController: UIViewController {
     
     private func uiMisc() {
         
+        // hide score initially
+        uiHideScore(true)
+        
         // hide streaks initially
         streaksContainerView.alpha = 0
         
@@ -194,7 +287,7 @@ class ViewController: UIViewController {
         versionLabel.text = "v\(appVersion)"
         
         outlineLabel(deleteScoreLabel)
-        outlineLabel(highscoreLabel)
+        outlineLabel(marqueeScoreScoreLabel)
         addShadows()
         
         let dismissPopUpUITap = UITapGestureRecognizer(target: self,
@@ -303,32 +396,29 @@ class ViewController: UIViewController {
             
             self.statMan.tally()
             
-            self.highLevelIcon.rotateRandom(minAngle: 0, maxAngle: 5)
+            self.marqueeLevelIcon.rotateRandom(minAngle: 0, maxAngle: 5)
             
             self.dailySummaryView.load(self.statMan.getDailyStatsSummary())
             
             if let high = self.statMan.getHighscore() {
                 
-                self.highscoreLabel.text         = high.displayScore
-                self.highDateLabel.text          = high.date.simple
-                
-                self.highLevelIcon.image = UIImage(named: "ms_icon_\(high.level)")
-                
-                self.highscoreView.isHidden     = false
+                self.marqueeScoreView.isHidden     = false
                 
                 self.totalMoneySpentLabel.text  = self.statMan.getMoneySpent()
                 
-            } else { self.highscoreView.isHidden = true }
+            } else { self.marqueeScoreView.isHidden = true }
             
             
             if let streaks = self.statMan.getStreaks() {
                 
                 if self.streaksContainerView.alpha == 0 {
+                    
                     UIView.animate(withDuration: Configs.UI.Timing.roundUIFadeTime) {
                         
                         self.streaksContainerView.alpha = 1.0
                         
                     }
+                    
                 }
                 
                 self.streakLongestCount.text = streaks.longest.length.description
@@ -427,8 +517,8 @@ class ViewController: UIViewController {
                                  deleteScoreContainerView,
                                  deleteScoreLabel,
                                  scoresView,
-                                 highLevelIconContainerView,
-                                 highLevelIcon])
+                                 marqueeLevelIconContainerView,
+                                 marqueeLevelIcon])
         
     }
     

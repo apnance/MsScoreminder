@@ -104,6 +104,8 @@ class StatManager {
     }
     
     func getHighscore() -> Score? { stats.highScore }
+    func getLowscore()  -> Score? { stats.lowScore }
+    func getAvgScore()  -> Score? { stats.avgScore }
     
     /// Returns the number of elements in the `[String]` returned by `getDisplayStats(:)`
     ///
@@ -198,11 +200,22 @@ class StatManager {
     private func tallyScoreStats() {
         
         stats.levelTally = Array(repeating: 0, count: Score.levelCount)
-        
+
+        // high
         var highScore: Score?
         var high = 0
         
-        // build scores
+        // low
+        var lowScore: Score?
+        var low = Int.max
+
+        // average
+        var scoreSum = 0
+        var levelSum = 0
+        var totalScores = 0
+        
+        
+        // Build Scores
         let scoreData = getScoreData()
         var scores = [Score]()
         
@@ -210,30 +223,66 @@ class StatManager {
             
             for score in dayScores {
                 
-                // update scores
+                scoreSum    += score.score
+                levelSum    += score.level
+                totalScores += 1
+                
+                // Update Scores
                 scores.append(score)
                 
                 // General Stats
                 stats.levelTally![score.level] += 1
                 
-                // High Score
+                // High/Low Scores
                 if score.score > high {
                     
                     high = score.score
                     highScore = score
                     
+                } else if score.score == high {
+                    
+                    // TODO: Clean Up - get rid of test for nil and move date test up w/ score.score == high
+                    if highScore != nil &&
+                        highScore!.date < score.date {
+                        
+                        high        = score.score
+                        highScore   = score
+                        
+                    }
+                    
+                } else if score.score < low {
+                    
+                        low         = score.score
+                        lowScore    = score
+                    
+                } else if score.score == low {
+                    
+                    // TODO: Clean Up - get rid of test for nil and move date test up w/ score.score == low
+                    if lowScore != nil &&
+                        lowScore!.date < score.date {
+                        
+                        low         = score.score
+                        lowScore    = score
+                        
+                    }
+                        
                 }
                 
             }
             
         }
         
-        // streaks
+        // Streaks
         setStreaks(with: Array(scoreData.keys))
         
         setScores(scores)
-        stats.gamesCount = scores.count
-        stats.highScore  = highScore
+        
+        stats.gamesCount    = scores.count
+        stats.highScore     = highScore
+        stats.lowScore      = lowScore
+        stats.avgScore      = Score(date: Date(),
+                                    score: scoreSum / totalScores,
+                                    level: levelSum / totalScores)
         
     }
     

@@ -26,6 +26,11 @@ struct Configs {
             static let roundUIFadeTime = 0.39
             static let uiLoopInterval = 0.06
             
+            static let marqueeFadeDuration  = 0.3
+            static let marqueeHighDelay     = 5.0
+            static let marqueeAveDelay      = 3.5
+            static let marqueeLowDelay      = 3.5
+            
         }
         
         struct Shadow {
