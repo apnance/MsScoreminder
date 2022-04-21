@@ -27,8 +27,9 @@ struct Stats {
     fileprivate var dailyStats          = [DailyStats]()
     
     var levelTally: [Int]!
-    
     var highScore: Score!
+    var lowScore: Score!
+    var avgScore: Score!
     var gamesCount  = 0
     
     fileprivate var streaks: StreakSet?
@@ -110,7 +111,7 @@ extension StatManager {
         return returnStats.sorted{ $0.date > $1.date }
         
     }
-    
+
     func getDaily(for date: Date) -> DailyStats? {
         
         for daily in stats.dailyStats {
