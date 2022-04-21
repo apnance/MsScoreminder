@@ -200,20 +200,17 @@ class StatManager {
     private func tallyScoreStats() {
         
         stats.levelTally = Array(repeating: 0, count: Score.levelCount)
-
-        // high
-        var highScore: Score?
-        var high = 0
         
-        // low
+        var highScore: Score?
+        var high = Int.min
+        
         var lowScore: Score?
         var low = Int.max
-
-        // average
+        
+        // Average
         var scoreSum = 0
         var levelSum = 0
         var totalScores = 0
-        
         
         // Build Scores
         let scoreData = getScoreData()
@@ -222,6 +219,17 @@ class StatManager {
         for dayScores in scoreData.values {
             
             for score in dayScores {
+                
+                // Initialize Scores
+                if highScore == nil {
+                    
+                    highScore = score
+                    high = score.score
+                    
+                    lowScore = score
+                    low = score.score
+                    
+                }
                 
                 scoreSum    += score.score
                 levelSum    += score.level
@@ -233,39 +241,33 @@ class StatManager {
                 // General Stats
                 stats.levelTally![score.level] += 1
                 
-                // High/Low Scores
+                // Process Highs
                 if score.score > high {
                     
                     high = score.score
                     highScore = score
                     
-                } else if score.score == high {
                     
-                    // TODO: Clean Up - get rid of test for nil and move date test up w/ score.score == high
-                    if highScore != nil &&
-                        highScore!.date < score.date {
-                        
+                } else if   score.score == high
+                            && highScore!.date < score.date {
+                    
                         high        = score.score
                         highScore   = score
-                        
-                    }
+                   
+                }
+                
+                // Process Lows
+                if score.score < low {
                     
-                } else if score.score < low {
+                    low         = score.score
+                    lowScore    = score
                     
-                        low         = score.score
-                        lowScore    = score
+                } else if   score.score == low
+                            && lowScore!.date < score.date {
                     
-                } else if score.score == low {
+                    low         = score.score
+                    lowScore    = score
                     
-                    // TODO: Clean Up - get rid of test for nil and move date test up w/ score.score == low
-                    if lowScore != nil &&
-                        lowScore!.date < score.date {
-                        
-                        low         = score.score
-                        lowScore    = score
-                        
-                    }
-                        
                 }
                 
             }
