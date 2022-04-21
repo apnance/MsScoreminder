@@ -195,7 +195,7 @@ class ViewController: UIViewController {
         outlineLabel(deleteScoreLabel)
         outlineLabel(highscoreLabel)
         addShadows()
-                
+        
         let dismissPopUpUITap = UITapGestureRecognizer(target: self,
                                                        action: #selector(dismissPopUpUI(sender:)))
         mainView.addGestureRecognizer(dismissPopUpUITap)
@@ -431,7 +431,6 @@ class ViewController: UIViewController {
     }
     
     // MARK: Score Updates
-    
     /// Handles user taps on levelSelector
     @objc func selectLevel(sender: UISegmentedControl) {
         
@@ -449,7 +448,7 @@ class ViewController: UIViewController {
         }
         
         statMan.set(Score(date: Date(),
-                           score: Int(scoreText)!,
+                          score: Int(scoreText)!,
                           level: levelSelector.selectedSegmentIndex))
         
         NotificationManager.shared.setupTomorrow(withTitle: "Streak Alert",
@@ -468,7 +467,7 @@ class ViewController: UIViewController {
     @objc func filter(sender: UISegmentedControl) {
         
         dismissPopUpUI(sender: self)
-
+        
         var filterType = ScoreSortFilter.FilterType.recents
         
         switch dataSelector.selectedSegmentIndex {
@@ -544,42 +543,42 @@ extension ViewController: MFMailComposeViewControllerDelegate {
         
         scoreInput.resignFirstResponder()
         
-       if MFMailComposeViewController.canSendMail() {
-           
-           let mail = MFMailComposeViewController()
-           
-           mail.setToRecipients(["apnance@gmail.com"])
-           mail.setSubject("Ms. Score : Save Data : \(Date().simple)")
-           mail.setMessageBody(EmailManager.buildSummaryHTML(using: statMan),
-                               isHTML: true)
-           mail.mailComposeDelegate = self
-           
-           // Attachment
-           if let data = statMan.getCSV().data(using: .utf8) {
-               
-               mail.addAttachmentData(data as Data,
-                                      mimeType: "text/csv",
-                                      fileName: "\(Configs.File.Path.generateBackupFileName())")
-               
-           }
-              
-          present(mail, animated: true)
-           
-       } else {
-           
-           NSLog("Email cannot be sent")
-           
-           // toggle html test view
-           htmlTestView.isHidden = !htmlTestView.isHidden
-           
-           if !htmlTestView.isHidden {
-               
-               htmlTestView.loadHTMLString(EmailManager.buildSummaryHTML(using: statMan),
-                                           baseURL: nil)
-               
-           }
-           
-       }
+        if MFMailComposeViewController.canSendMail() {
+            
+            let mail = MFMailComposeViewController()
+            
+            mail.setToRecipients(["apnance@gmail.com"])
+            mail.setSubject("Ms. Score : Save Data : \(Date().simple)")
+            mail.setMessageBody(EmailManager.buildSummaryHTML(using: statMan),
+                                isHTML: true)
+            mail.mailComposeDelegate = self
+            
+            // Attachment
+            if let data = statMan.getCSV().data(using: .utf8) {
+                
+                mail.addAttachmentData(data as Data,
+                                       mimeType: "text/csv",
+                                       fileName: "\(Configs.File.Path.generateBackupFileName())")
+                
+            }
+            
+            present(mail, animated: true)
+            
+        } else {
+            
+            NSLog("Email cannot be sent")
+            
+            // toggle html test view
+            htmlTestView.isHidden = !htmlTestView.isHidden
+            
+            if !htmlTestView.isHidden {
+                
+                htmlTestView.loadHTMLString(EmailManager.buildSummaryHTML(using: statMan),
+                                            baseURL: nil)
+                
+            }
+            
+        }
         
     }
     
@@ -587,21 +586,21 @@ extension ViewController: MFMailComposeViewControllerDelegate {
                                didFinishWith result: MFMailComposeResult,
                                error: Error?) {
         
-       if let _ = error { self.dismiss(animated: true, completion: nil) }
+        if let _ = error { self.dismiss(animated: true, completion: nil) }
         
         switch result {
-            
-        case .cancelled: NSLog("Cancelled"); break
-            
-        case .sent: NSLog("Mail sent successfully"); break
-            
-        case .failed: NSLog("Sending mail failed"); break
-            
-        default: break
-            
-       }
+                
+            case .cancelled: NSLog("Cancelled"); break
+                
+            case .sent: NSLog("Mail sent successfully"); break
+                
+            case .failed: NSLog("Sending mail failed"); break
+                
+            default: break
+                
+        }
         
-       controller.dismiss(animated: true, completion: nil)
+        controller.dismiss(animated: true, completion: nil)
         
     }
     
@@ -634,7 +633,7 @@ extension ViewController: AtomicScoreViewDelegate {
 extension ViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-    
+        
         htmlTestView.isHidden = true // Hide
         
     }
