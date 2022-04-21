@@ -450,8 +450,17 @@ class ViewController: UIViewController {
         
         statMan.set(Score(date: Date(),
                            score: Int(scoreText)!,
-                           level: levelSelector.selectedSegmentIndex))
-                
+                          level: levelSelector.selectedSegmentIndex))
+        
+        NotificationManager.shared.setupTomorrow(withTitle: "Streak Alert",
+                                                 andBody: "Your daily streak is in jeopardy!",
+                                                 notificationID: "Streak Warning",
+                                                 hour:      8,
+                                                 minute:    2,
+                                                 second:    15,
+                                                 badgeNumber: 1,
+                                                 testMode: false)
+        
         uiVolatile()
         
     }
