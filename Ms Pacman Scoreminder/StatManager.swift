@@ -46,7 +46,7 @@ class StatManager {
                 currScores[i] = score
                 
                 setData(date,
-                              using: currScores)
+                        using: currScores)
                 
                 save()
                 
@@ -59,7 +59,7 @@ class StatManager {
         currScores.append(score)
         
         setData(date,
-                      using: currScores)
+                using: currScores)
         
         save()
         
@@ -119,14 +119,14 @@ class StatManager {
         } else { return 0 }
         
     }
-        
+    
     /// Returns a `[String]` of ready to display score stats.
     func getDisplayStats(_ score: Score) -> [String] {
         
         let sortBy: ScoreSortOrder = (score.scoreType == .average ? .avgHigh : .high)
         
         let scores = getScores(sortedBy: sortBy)
-                
+        
         for (i, data) in scores.enumerated() {
             
             if score == data {
@@ -136,19 +136,19 @@ class StatManager {
                 var percentile = String()
                 
                 switch rank {
-                    
-                case 1:
-                    
-                    percentile = " ★ "
-                    
-                case scoreCount:
-                    
-                    percentile = "LOW"
-                    
-                default:
-                    
-                    percentile = StatManager.percentile(rank, of: scoreCount)
-                    
+                        
+                    case 1:
+                        
+                        percentile = " ★ "
+                        
+                    case scoreCount:
+                        
+                        percentile = "LOW"
+                        
+                    default:
+                        
+                        percentile = StatManager.percentile(rank, of: scoreCount)
+                        
                 }
                 
                 return [rank.description, percentile] /*EXIT*/
@@ -190,6 +190,7 @@ class StatManager {
             clearNeedsTally()
             
             tallyScoreStats()
+            
             tallyDailyStats()
             
         }
@@ -249,11 +250,11 @@ class StatManager {
                     
                     
                 } else if   score.score == high
-                            && highScore!.date < score.date {
+                                && highScore!.date < score.date {
                     
-                        high        = score.score
-                        highScore   = score
-                   
+                    high        = score.score
+                    highScore   = score
+                    
                 }
                 
                 // Process Lows
@@ -263,7 +264,7 @@ class StatManager {
                     lowScore    = score
                     
                 } else if   score.score == low
-                            && lowScore!.date < score.date {
+                                && lowScore!.date < score.date {
                     
                     low         = score.score
                     lowScore    = score
@@ -392,7 +393,7 @@ class StatManager {
     }
     
     func getFilterLabel() -> String { String(describing: prefs.scoreSortFilter) }
-        
+    
     func setFilter(_ type: ScoreSortFilter.FilterType,
                    daily: Bool,
                    dateSorted: Bool) {
@@ -446,7 +447,7 @@ extension StatManager {
         let scores = getScores(sortedBy: .date)
         
         for score in scores {
-                        
+            
             output += "\(score.date.simple),\(score.score),\(score.level)\n"
             
         }
