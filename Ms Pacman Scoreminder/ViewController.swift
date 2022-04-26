@@ -543,14 +543,14 @@ class ViewController: UIViewController {
                           score: Int(scoreText)!,
                           level: levelSelector.selectedSegmentIndex))
         
-        NotificationManager.shared.setupTomorrow(withTitle: "Streak Alert",
-                                                 andBody: "Your daily streak is in jeopardy!",
-                                                 notificationID: "Streak Warning",
-                                                 hour:      8,
-                                                 minute:    2,
-                                                 second:    15,
-                                                 badgeNumber: 1,
-                                                 testMode: false)
+        NotificationManager.shared.tomorrow(withTitle:      Configs.Notifications.title,
+                                            andBody:        Configs.Notifications.body,
+                                            notificationID: Configs.Notifications.id,
+                                            hour:           Configs.Notifications.Time.hour,
+                                            minute:         Configs.Notifications.Time.minute,
+                                            second:         Configs.Notifications.Time.second,
+                                            badgeNumber:    Configs.Notifications.badgeNumber,
+                                            testMode:       Configs.Notifications.testMode)
         
         uiVolatile()
         

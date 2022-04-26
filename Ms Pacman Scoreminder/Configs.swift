@@ -19,6 +19,24 @@ struct Configs {
         
     }
     
+    struct Notifications {
+        
+        static let title        = "Streak Alert"
+        static let body         = "Your daily streak is in jeopardy!"
+        static let id           = "Streak Warning"
+        static let badgeNumber  = 1
+        static let testMode     = false
+        
+        struct Time {
+            
+            static let hour     = 7
+            static let minute   = 2
+            static let second   = 15
+            
+        }
+        
+    }
+    
     struct UI {
         
         struct Timing {
