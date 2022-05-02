@@ -296,7 +296,7 @@ class StatManager {
         
         for date in stats.dates {
             
-            let scores = getScoresFor(date)
+            let scores = getScoresFor(date.simple)
             
             if scores.count < 2 { continue /*CONTINUE*/ }
             
@@ -314,7 +314,7 @@ class StatManager {
                 
             }
             
-            daily.date          = date.simpleDate
+            daily.date          = date
             daily.averageScore  = scoreSum / scores.count
             daily.averageLevel  = Int((levelSum.double / scores.count.double).rounded())
             

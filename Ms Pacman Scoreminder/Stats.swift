@@ -34,7 +34,8 @@ struct Stats {
     
     fileprivate var streaks: StreakSet?
     
-    var dates: [DateString] { Array(data.keys) }
+    /// Returns a sorted array of Dates in simpleDate format
+    var dates: [Date] { data.keys.map{$0.simpleDate}.sorted() }
     
     init() {
         
