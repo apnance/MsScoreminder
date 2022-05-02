@@ -567,10 +567,29 @@ extension StatManager {
         
     }
     
-    static func percentile(_ num: Int, of: Int) -> String {
+    
+    static func rankCompare(_ rank1: (Int,Int), _ rank2: (Int,Int)) -> (Double, Int) {
         
-        let len = (num == 1) ? 3 : 4
-        return num.percentile(of: of, roundedTo: 1).description.rTrimTo(len)
+        let pct1 = percentile(rank1)
+        let pct2 = percentile(rank2)
+        let rank1 = rank1.0
+        let rank2 = rank2.0
+        
+        return (pct2 - pct1, rank2 - rank1)
+        
+    }
+    
+    private static func percentile(_ rank: (Int, Int)) -> Double {
+        
+        rank.0.percentile(of: rank.1, roundedTo: 1)
+        
+    }
+    
+    static func percentileDescription(_ rank: (Int, Int)) -> String {
+
+        let len = (rank.0 == 1) ? 3 : 4
+        
+        return percentile(rank).description.rTrimTo(len)
         
     }
     
