@@ -147,7 +147,7 @@ class StatManager {
                         
                     default:
                         
-                        percentile = StatManager.percentile(rank, of: scoreCount)
+                        percentile = StatManager.percentileDescription((rank,scoreCount))
                         
                 }
                 

@@ -58,6 +58,24 @@ struct EmailManager {
         
     }
     
+    static private func spanWrap(_ content: CustomStringConvertible, withClass cssClass: String) -> String {
+        
+        var description = content.description
+        
+        if let int = Int(description) {
+            
+            if int > 0 { description = "+" + description }
+            
+        } else if let dub = Double(description) {
+            
+            if dub > 0 { description = "+" + description }
+            
+        }
+        
+        return "<span class=\"\(cssClass)\"> (\(description))</span>"
+        
+    }
+    
     /// Builds the CSS necessary to display the columnar HTML created by `columnate()`
     static private func buildColumnStyles() -> String {
         
@@ -153,11 +171,17 @@ struct EmailManager {
         
         func buildStreakHTML() -> String {
             
-            if let recent = statMan.getStreaks()?.recent,
-               recent.isCurrent {
+            if let  streaks = statMan.getStreaks(),
+                    streaks.recent.isCurrent {
                 
-                return "\(columnate(["STREAK", recent.durationDescription]))" /*EXIT*/
+                var streakDescription = streaks.recent.durationDescription
                 
+                let streakDelta = streaks.recent.length - streaks.longest.length
+                
+                streakDescription += streakDelta < 0 ? spanWrap(streakDelta.delimited, withClass: "down") :
+                streakDelta > 0 ? spanWrap(streakDelta.delimited, withClass: "up")  : ""
+                
+                return "\(columnate(["STREAK", streakDescription]))" /*EXIT*/
                 
             } else { return "" /*EXIT*/ }
             
@@ -166,18 +190,48 @@ struct EmailManager {
         if let dailyStats = statMan.getDailyStatsSummary().first,
            dailyStats.areToday {
             
-            let percentile = StatManager.percentile(dailyStats.rank.0, of: dailyStats.rank.1)
-            let rank = "\(dailyStats.rank.0.oridinalDescription) of \(dailyStats.rank.1)"
+            var percentile = StatManager.percentileDescription(dailyStats.rank)
+            var rank = "\(dailyStats.rank.0.oridinalDescription) of \(dailyStats.rank.1)"
             let games = "\(dailyStats.gamesPlayed) today, \(statMan.getTotalGamesPlayed()) total"
+            var avgScore = dailyStats.averageScore.delimited
+            var avgLevel = Score.nameFor(level: dailyStats.averageLevel)
             
-            return """
-                        \(columnate(["DATE",       Date().simple]))
-                        \(columnate(["RANK",       rank]))
-                        \(columnate(["PERCENTILE", percentile]))
+            if let yesterdayStats  = statMan.getPreviousDaily() {
+                
+                let rankCompare = StatManager.rankCompare(dailyStats.rank,
+                                                          yesterdayStats.rank)
+               
+                let percentileDelta = -rankCompare.0
+                let percentileDeltaDisplay = percentileDelta.description.rTrimTo(5)
+                
+                let rankDelta       = rankCompare.1
+                
+                let scoreDelta      = dailyStats.averageScore - yesterdayStats.averageScore 
+                let levelDelta      = dailyStats.averageLevel - yesterdayStats.averageLevel
+                
+                rank += rankDelta < 0 ? spanWrap(rankDelta, withClass: "down") :
+                        rankDelta > 0 ? spanWrap(rankDelta, withClass: "up")  : ""
+                
+                percentile +=   percentileDelta < 0 ? spanWrap(percentileDeltaDisplay, withClass: "down") :
+                                percentileDelta > 0 ? spanWrap(percentileDeltaDisplay, withClass: "up")  : ""
+                
+                avgScore +=     scoreDelta < 0 ? spanWrap(scoreDelta.delimited, withClass: "down") :
+                                scoreDelta > 0 ? spanWrap(scoreDelta.delimited, withClass: "up")  : ""
+
+                avgLevel +=     levelDelta < 0 ? spanWrap(levelDelta, withClass: "down") :
+                                levelDelta > 0 ? spanWrap(levelDelta, withClass: "up")  : ""
+
+                
+            }
                         
-                        \(columnate(["AVG SCORE", dailyStats.averageScore.delimited]))
-                        \(columnate(["AVG LEVEL", Score.nameFor(level: dailyStats.averageLevel)]))
-                        \(columnate(["GAMES",      games]))
+            return """
+                        \(columnate(["DATE",        Date().simple]))
+                        \(columnate(["RANK",        rank]))
+                        \(columnate(["PERCENTILE",  percentile]))
+                        
+                        \(columnate(["AVG SCORE",   avgScore]))
+                        \(columnate(["AVG LEVEL",   avgLevel]))
+                        \(columnate(["GAMES",       games]))
                         \(buildStreakHTML())
                     """
             
@@ -239,16 +293,29 @@ struct EmailManager {
                     padding: 10px;
                 
                 }
+                
+                .down {
+                    font-size: 8.5pt;
+                    color: #DB0029; /* apple color */
+                }
+                
+                .up {
+                    font-size: 8.5pt;
+                    color: #BCF824; /* pear color */
+                }
+                
                 .header {
                     font-size: 8.5pt;
                     font-weight: bold;
                     color: #BCF824; /* pear color */
                 }
+                
                 .pacDot {
                     font-size: 8.5pt;
                     font-weight: bold;
                     color: white;
                 }
+                
                 * { box-sizing: border-box; }
                 .row { display: flex; }
                 

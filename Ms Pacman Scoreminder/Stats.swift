@@ -24,7 +24,8 @@ struct Stats {
     fileprivate var avgScoresHighSorted = [Score]()
     fileprivate var avgScoresLowSorted  = [Score]()
     
-    fileprivate var dailyStats          = [DailyStats]()
+    fileprivate var dailies             = [DailyStats]()
+    fileprivate var dailiesDateSorted: [DailyStats] { dailies.sorted{$0.date > $1.date } }
     
     var levelTally: [Int]!
     var highScore: Score!
@@ -99,7 +100,7 @@ extension StatManager {
         
         var returnStats = [DailyStats]()
         
-        for daily in stats.dailyStats {
+        for daily in stats.dailies {
             
             if daily.areToday || daily.areLow || daily.areHigh {
                 
@@ -113,9 +114,21 @@ extension StatManager {
         
     }
 
+//    HERE!!!
+//     TODO: Clean Up - BUG
+    //bug: fix bug causing average atomic score UI to show percentiles computed against single scores not average scores.
+    
+    /// Returns the second most recent `DailyStats`, akin to concept of "yesterday's" stats.
+    func getPreviousDaily() -> DailyStats? {
+        
+        stats.dailiesDateSorted.second
+        
+    }
+    
+    /// Returns the `DailyStats` for the specified `Date` or null if none found for that `Date`.
     func getDaily(for date: Date) -> DailyStats? {
         
-        for daily in stats.dailyStats {
+        for daily in stats.dailies {
             
             if daily.areToday { return daily /*EXIT*/ }
                 
@@ -127,7 +140,7 @@ extension StatManager {
     
     func setDailys(_ dailies: [DailyStats]) {
         
-        stats.dailyStats = dailies
+        stats.dailies = dailies
         
         stats.avgScoresDateSorted = dailies.sorted{ $0.date > $1.date }.map{ Score(date: $0.date,
                                                                                    score: $0.averageScore,

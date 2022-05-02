@@ -149,7 +149,7 @@ class DailySummaryView: RoundView {
     
     private func getRankText(_ stats: DailyStats) -> String {
         
-        let percentile = StatManager.percentile(stats.rank.0, of: stats.rank.1)
+        let percentile = StatManager.percentileDescription(stats.rank)
         let output = "\(stats.rank.0.delimited)/\(stats.rank.1.delimited) (\(percentile))"
         
         return output
