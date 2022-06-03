@@ -29,7 +29,8 @@ class ViewController: UIViewController {
     
     // MARK: - Outlets
     @IBOutlet var mainView: UIView!
-    @IBOutlet weak var marquee: UIImageView!
+    @IBOutlet weak var marqueeFG: UIImageView!
+    @IBOutlet weak var marqueeBG: UIImageView!
     @IBOutlet weak var backgroundStripeView: UIView!
     @IBOutlet weak var marqueeScoreView: UIView!
     @IBOutlet weak var marqueeScoreScoreLabel: UILabel!
@@ -509,8 +510,7 @@ class ViewController: UIViewController {
     /// Adds drop shadows to all elements contained in internal views array
     private func addShadows() {
         
-        Utils.UI.addShadows(to: [marquee,
-                                 scoresView,
+        Utils.UI.addShadows(to: [scoresView,
                                  streaksContainerView,
                                  dailySummaryView,
                                  roundView,
@@ -519,6 +519,11 @@ class ViewController: UIViewController {
                                  scoresView,
                                  marqueeLevelIconContainerView,
                                  marqueeLevelIcon])
+        
+        Utils.UI.addShadows(to: [marqueeFG,
+                                 marqueeBG,
+                                 marqueeScoreTitleLabel],
+                            withOpacity: 0.6)
         
     }
     

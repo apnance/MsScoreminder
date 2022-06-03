@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -201,7 +201,7 @@
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TCV-YU-Iab">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="269"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ms_marquee" translatesAutoresizingMaskIntoConstraints="NO" id="ycv-3o-wBM">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ms_marquee_2pt_background" translatesAutoresizingMaskIntoConstraints="NO" id="ycv-3o-wBM">
                                         <rect key="frame" x="54" y="38" width="306" height="163"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="306" id="bik-oh-iM4"/>
@@ -226,6 +226,13 @@
                                         <color key="textColor" name="Banana"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ms_marquee_2pt_foreground" translatesAutoresizingMaskIntoConstraints="NO" id="urF-mH-s3U" userLabel="MarqueeFG">
+                                        <rect key="frame" x="54" y="38" width="306" height="163"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="163" id="HzH-ak-lul"/>
+                                            <constraint firstAttribute="width" constant="306" id="gb8-wE-TQI"/>
+                                        </constraints>
+                                    </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fkC-iS-l62" customClass="RoundView" customModule="APNUtils">
                                         <rect key="frame" x="270.5" y="194.5" width="35" height="35"/>
                                         <subviews>
@@ -248,6 +255,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="urF-mH-s3U" firstAttribute="top" secondItem="ycv-3o-wBM" secondAttribute="bottom" constant="-163" id="AL0-Er-LsV"/>
                                     <constraint firstItem="GTZ-MZ-Xia" firstAttribute="centerX" secondItem="TCV-YU-Iab" secondAttribute="centerX" id="BCO-GW-vWT"/>
                                     <constraint firstItem="MRU-de-pwA" firstAttribute="centerX" secondItem="TCV-YU-Iab" secondAttribute="centerX" id="FEX-Be-Zco"/>
                                     <constraint firstAttribute="bottom" secondItem="MRU-de-pwA" secondAttribute="bottom" constant="60" id="NzS-UG-s8n"/>
@@ -256,6 +264,7 @@
                                     <constraint firstAttribute="bottom" secondItem="ycv-3o-wBM" secondAttribute="bottom" constant="68" id="ao8-y8-5Vo"/>
                                     <constraint firstItem="GTZ-MZ-Xia" firstAttribute="top" secondItem="8cG-qg-LKh" secondAttribute="bottom" constant="-69.5" id="dPl-yG-loM"/>
                                     <constraint firstItem="GTZ-MZ-Xia" firstAttribute="top" secondItem="fkC-iS-l62" secondAttribute="top" constant="3" id="kWc-At-QDz"/>
+                                    <constraint firstItem="urF-mH-s3U" firstAttribute="leading" secondItem="ycv-3o-wBM" secondAttribute="trailing" constant="-306" id="qU0-QX-squ"/>
                                     <constraint firstItem="8cG-qg-LKh" firstAttribute="centerX" secondItem="TCV-YU-Iab" secondAttribute="centerX" constant="42.25" id="waC-9d-1w6"/>
                                     <constraint firstItem="ycv-3o-wBM" firstAttribute="centerX" secondItem="TCV-YU-Iab" secondAttribute="centerX" id="yGx-oT-kJt"/>
                                 </constraints>
@@ -459,7 +468,8 @@
                         <outlet property="htmlTestView" destination="FyJ-yg-YC1" id="DEG-3f-6f8"/>
                         <outlet property="levelSelector" destination="ZjU-v8-9Gv" id="ZnC-SN-tUM"/>
                         <outlet property="mainView" destination="8bC-Xf-vdC" id="J7W-rz-fVF"/>
-                        <outlet property="marquee" destination="ycv-3o-wBM" id="n7H-ps-7Cn"/>
+                        <outlet property="marqueeBG" destination="ycv-3o-wBM" id="n7H-ps-7Cn"/>
+                        <outlet property="marqueeFG" destination="urF-mH-s3U" id="bMm-Cd-syV"/>
                         <outlet property="marqueeLevelIcon" destination="Qqy-7X-lm2" id="jr9-31-dyi"/>
                         <outlet property="marqueeLevelIconContainerView" destination="fkC-iS-l62" id="aYq-93-uTf"/>
                         <outlet property="marqueeScoreDateLabel" destination="8cG-qg-LKh" id="MeD-LS-z9V"/>
@@ -503,7 +513,8 @@
         <image name="envelope.fill" catalog="system" width="128" height="93"/>
         <image name="ms_icon_0" width="174" height="174"/>
         <image name="ms_icon_4" width="174" height="174"/>
-        <image name="ms_marquee" width="754.66668701171875" height="520.66668701171875"/>
+        <image name="ms_marquee_2pt_background" width="754.66668701171875" height="520.66668701171875"/>
+        <image name="ms_marquee_2pt_foreground" width="754.66668701171875" height="520.66668701171875"/>
         <namedColor name="Apple">
             <color red="0.84899997711181641" green="0.15000000596046448" blue="0.16699999570846558" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
