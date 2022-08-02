@@ -36,8 +36,8 @@ enum ScoreSortFilter: Codable, CustomStringConvertible {
                 
             case    .lowsLowFirst,
                     .lowsNewFirst,
-                    .avgLowsLowFirst, .
-                    avgLowsNewFirst : return .lows
+                    .avgLowsLowFirst,
+                    .avgLowsNewFirst : return .lows
                 
         }
         
@@ -105,30 +105,30 @@ enum ScoreSortFilter: Codable, CustomStringConvertible {
     var description: String {
         
         switch self {
-            
-            // singles
+                
+                // singles
             case .recents:              return "Recent Scores"
             case .highsHighFirst:       return "Top Scores"
             case .highsNewFirst:        return "Top Scores by Date"
             case .lowsLowFirst:         return "Low Scores"
             case .lowsNewFirst:         return "Low Scores by Date"
-            
-            // averages
+                
+                // averages
             case .avgRecents:           return "Recent Daily Averages"
             case .avgHighsHighFirst:    return "Top Daily Averages"
             case .avgHighsNewFirst:     return "Top Daily Averages by Date"
             case .avgLowsLowFirst:      return "Low Daily Averages"
             case .avgLowsNewFirst:      return "Low Daily Averages by Date"
-            
+                
         }
         
     }
     
 }
 
-/// - important: use shared singleton
+/// - important: use `shared` singleton
 class Preferences: Codable {
-        
+    
     /// singleton
     static var shared: Preferences = unarchive()
     
@@ -143,7 +143,7 @@ extension Preferences {
     private static func unarchive(resetArchive: Bool = false) -> Preferences {
         
         if let archived: Preferences = CodableArchiver.unarchive(file: Configs.Archive.Keys.preferences,
-                                                                  inSubDir: "") {
+                                                                 inSubDir: "") {
             print("Unarchive - succeeded.")
             return archived /*EXIT*/
             
