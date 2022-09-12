@@ -140,22 +140,22 @@ extension StatManager {
     
     func setDailys(_ dailies: [DailyStats]) {
         
-        stats.dailies = dailies
+        stats.dailies               = dailies
         
-        stats.avgScoresDateSorted = dailies.sorted{ $0.date > $1.date }.map{ Score(date: $0.date,
-                                                                                   score: $0.averageScore,
-                                                                                   level: $0.averageLevel,
-                                                                                   scoreType: .average) }
+        stats.avgScoresDateSorted   = dailies.sorted{ $0.date > $1.date }.map{ Score(date: $0.date,
+                                                                                     score: $0.averageScore,
+                                                                                     level: $0.averageLevel,
+                                                                                     averagedGameCount: $0.gamesPlayed) }
         
-        stats.avgScoresHighSorted = dailies.sorted{ $0.averageScore > $1.averageScore }.map{Score(date: $0.date,
-                                                                                                  score: $0.averageScore,
-                                                                                                  level: $0.averageLevel,
-                                                                                                  scoreType: .average) }
+        stats.avgScoresHighSorted   = dailies.sorted{ $0.averageScore > $1.averageScore }.map{Score(date: $0.date,
+                                                                                                    score: $0.averageScore,
+                                                                                                    level: $0.averageLevel,
+                                                                                                    averagedGameCount: $0.gamesPlayed) }
         
-        stats.avgScoresLowSorted = dailies.sorted{ $0.averageScore < $1.averageScore }.map{Score(date: $0.date,
-                                                                                                 score: $0.averageScore,
-                                                                                                 level: $0.averageLevel,
-                                                                                                 scoreType: .average) }
+        stats.avgScoresLowSorted    = dailies.sorted{ $0.averageScore < $1.averageScore }.map{Score(date: $0.date,
+                                                                                                    score: $0.averageScore,
+                                                                                                    level: $0.averageLevel,
+                                                                                                    averagedGameCount: $0.gamesPlayed) }
         
     }
     

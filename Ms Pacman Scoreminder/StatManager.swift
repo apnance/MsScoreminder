@@ -285,7 +285,8 @@ class StatManager {
         stats.lowScore      = lowScore
         stats.avgScore      = Score(date: Date(),
                                     score: scoreSum / totalScores,
-                                    level: levelSum / totalScores)
+                                    level: levelSum / totalScores,
+                                    averagedGameCount: totalScores)
         
     }
     

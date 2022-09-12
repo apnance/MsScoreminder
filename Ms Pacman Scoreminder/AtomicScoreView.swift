@@ -25,9 +25,10 @@ class AtomicScoreView: UIView {
         return scoreView
         
     }
-        
-    @IBOutlet var scoreView: UILabel!
+    
     @IBOutlet var dateView: UILabel!
+    @IBOutlet weak var averageGameCountLabel: UILabel!
+    @IBOutlet var scoreView: UILabel!
     @IBOutlet var fruitView: UIImageView!
     @IBOutlet weak var borderView: UIView!
     @IBOutlet weak var scoreStatsLabel: UILabel!
@@ -40,18 +41,29 @@ class AtomicScoreView: UIView {
   
     private func load(score: Score, data: [String]) {
         
-        self.data = data
-        self.score = score
+        self.data   = data
+        self.score  = score
         
-        scoreView.text      = score.score.delimited
-        
+        // date
         dateView.text       = score.date.simple
         dateView.textColor  = score.date.isToday ? .white : UIColor(named:"Banana")
         
+        // average game count
+        averageGameCountLabel.alpha         = score.scoreType == .average ? 1 : 0
+        averageGameCountLabel.text          = "/\(score.averagedGameCount.description)"
+        averageGameCountLabel.textColor     = .white
+        averageGameCountLabel.clipsToBounds = true
+        averageGameCountLabel.roundify()
+        
+        // score
+        scoreView.text      = score.score.delimited
+        scoreView.textColor = score.date.isToday ? .white : UIColor(named:"Banana")
+        
+        // fruit image
         fruitView.image     = score.levelIcon
         
+        // border
         layer.cornerRadius              = frame.height / 5.0
-        
         borderView.layer.cornerRadius   = frame.height / 5.0
         borderView.layer.borderWidth    = frame.height / 8.0
         
@@ -83,12 +95,17 @@ class AtomicScoreView: UIView {
     
     func updateDisplay(useData i: Int = 0) {
         
+        let colorFG = i % 2 != 0 ? score.colorLight : score.colorDark
+        let colorBG = i % 2 != 0 ? score.colorDark : score.colorLight
+        
         scoreStatsLabel.text = data[i]
+        scoreStatsLabel.textColor               = colorFG
+        scoresStatsRoundView.backgroundColor    = colorBG
         
-        scoreStatsLabel.textColor               = i % 2 != 0 ? score.colorLight : score.colorDark
-        scoresStatsRoundView.backgroundColor    = i % 2 != 0 ? score.colorDark : score.colorLight
+        averageGameCountLabel.textColor         = colorFG
+        averageGameCountLabel.backgroundColor   = colorBG
         
-        borderView.layer.borderColor            = scoresStatsRoundView.backgroundColor?.cgColor
+        borderView.layer.borderColor            = colorBG.cgColor
         
         rotateRandom(minRange: -1.0...(-0.5), maxRange: 0.5...1.0)
         

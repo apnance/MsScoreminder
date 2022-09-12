@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,6 +18,17 @@
                     <rect key="frame" x="0.0" y="0.0" width="100" height="51"/>
                     <color key="backgroundColor" name="Blue"/>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Emq-DK-VKw">
+                    <rect key="frame" x="85" y="36" width="15" height="15"/>
+                    <color key="backgroundColor" name="Cherry"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Emq-DK-VKw" secondAttribute="height" multiplier="1:1" id="6cz-KW-vS7"/>
+                        <constraint firstAttribute="height" constant="15" id="f2M-0X-vat"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="9"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="-8" translatesAutoresizingMaskIntoConstraints="NO" id="AqY-Su-Diw">
                     <rect key="frame" x="5" y="5" width="90" height="46"/>
                     <subviews>
@@ -70,6 +81,7 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="Emq-DK-VKw" secondAttribute="bottom" id="1HS-Jl-WMW"/>
                 <constraint firstAttribute="trailing" secondItem="AqY-Su-Diw" secondAttribute="trailing" constant="5" id="6YZ-Ol-7PE"/>
                 <constraint firstItem="ro1-2K-rxe" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="36" id="6Ze-pB-WXQ"/>
                 <constraint firstAttribute="trailing" secondItem="HIN-fb-Srb" secondAttribute="trailing" id="JbK-zQ-rcX"/>
@@ -78,6 +90,7 @@
                 <constraint firstItem="AqY-Su-Diw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="SAb-7x-bmr"/>
                 <constraint firstAttribute="bottom" secondItem="AqY-Su-Diw" secondAttribute="bottom" id="SuU-50-j7f"/>
                 <constraint firstItem="HIN-fb-Srb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="UMi-4U-LhB"/>
+                <constraint firstAttribute="trailing" secondItem="Emq-DK-VKw" secondAttribute="trailing" id="Vhe-Jb-58x"/>
                 <constraint firstAttribute="bottom" secondItem="HIN-fb-Srb" secondAttribute="bottom" id="mJ7-ga-geI"/>
                 <constraint firstItem="HIN-fb-Srb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="mP9-17-msq"/>
                 <constraint firstItem="ro1-2K-rxe" firstAttribute="centerY" secondItem="Csp-bg-MgK" secondAttribute="centerY" id="oqy-Os-OL9"/>
@@ -85,6 +98,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="averageGameCountLabel" destination="Emq-DK-VKw" id="B6K-kN-wLf"/>
                 <outlet property="borderView" destination="HIN-fb-Srb" id="2ac-qN-lmz"/>
                 <outlet property="dateView" destination="Csp-bg-MgK" id="9UN-i6-Bzm"/>
                 <outlet property="fruitView" destination="ro1-2K-rxe" id="3Hy-fV-r0I"/>
@@ -102,6 +116,9 @@
         </namedColor>
         <namedColor name="Blue">
             <color red="0.062745098039215685" green="0.50980392156862742" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Cherry">
+            <color red="0.86000001430511475" green="0.0" blue="0.16200000047683716" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
