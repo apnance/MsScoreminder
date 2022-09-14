@@ -401,9 +401,9 @@ class ViewController: UIViewController {
             
             self.dailySummaryView.load(self.statMan.getDailyStatsSummary())
             
-            if let high = self.statMan.getHighscore() {
+            if self.statMan.getHighscore() != nil {
                 
-                self.marqueeScoreView.isHidden     = false
+                self.marqueeScoreView.isHidden  = false
                 
                 self.totalMoneySpentLabel.text  = self.statMan.getMoneySpent()
                 
