@@ -49,11 +49,11 @@ class AtomicScoreView: UIView {
         dateView.textColor  = score.date.isToday ? .white : UIColor(named:"Banana")
         
         // average game count
-        averageGameCountLabel.alpha         = score.scoreType == .average ? 1 : 0
-        averageGameCountLabel.text          = "/\(score.averagedGameCount.description)"
-        averageGameCountLabel.textColor     = .white
-        averageGameCountLabel.clipsToBounds = true
-        averageGameCountLabel.roundify()
+        averageGameCountLabel.alpha                 = score.scoreType == .average ? 1 : 0
+        averageGameCountLabel.text                  = "/\(score.averagedGameCount.description)"
+        averageGameCountLabel.textColor             = .white
+        averageGameCountLabel.clipsToBounds         = true
+        averageGameCountLabel.layer.cornerRadius    = averageGameCountLabel.frame.height / 3.0
         
         // score
         scoreView.text      = score.score.delimited
