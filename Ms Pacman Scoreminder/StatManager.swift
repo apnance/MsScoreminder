@@ -222,7 +222,7 @@ class StatManager {
             for score in dayScores {
                 
                 // Initialize Scores
-                if highScore == nil {
+                if highScore.isNil {
                     
                     highScore = score
                     high = score.score
@@ -484,7 +484,7 @@ extension StatManager {
         var csv: CSV!
         
         let savedData       = FileManager.default.contents(atPath: Configs.File.Path.currentData)
-        let saveDataExists  = savedData != nil
+        let saveDataExists  = savedData.isNotNil
         let useDefaults     = Configs.Test.shouldReloadData || !saveDataExists
         
         if saveDataExists {

@@ -126,7 +126,7 @@ class ViewController: UIViewController {
     /// - note: useful game-loop-like repeated UI updates.
     private func uiLoop() {
         
-        if timer == nil {
+        if timer.isNil {
             
             timer = APNTimer(name: "scores",
                              repeatInterval: Configs.UI.Timing.uiLoopInterval) {
@@ -401,7 +401,7 @@ class ViewController: UIViewController {
             
             self.dailySummaryView.load(self.statMan.getDailyStatsSummary())
             
-            if self.statMan.getHighscore() != nil {
+            if self.statMan.getHighscore().isNotNil {
                 
                 self.marqueeScoreView.isHidden  = false
                 

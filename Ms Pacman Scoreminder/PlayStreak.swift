@@ -78,8 +78,8 @@ extension PlayStreak: CustomStringConvertible {
     
     var description: String {
         
-        let d1 = start  != nil ? start!.simple  : "nil"
-        let d2 = end    != nil ? end!.simple    : "nil"
+        let d1 = start.isNotNil ? start!.simple  : "nil"
+        let d2 = end.isNotNil   ? end!.simple    : "nil"
         
         return "\(d1) to \(d2) - length: \(length)"
         

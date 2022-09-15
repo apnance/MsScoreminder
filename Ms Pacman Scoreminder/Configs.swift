@@ -131,7 +131,7 @@ struct Configs {
         fileprivate static let forceLoadDataNamed: String? = Configs.File.Name.nilData
         
         /// Flag indicating if the data loader should force load data over existing data.
-        static var shouldReloadData: Bool { forceLoadDataNamed != nil }
+        static var shouldReloadData: Bool { forceLoadDataNamed.isNotNil }
         
     }
 }
