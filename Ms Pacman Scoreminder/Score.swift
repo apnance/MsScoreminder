@@ -29,7 +29,10 @@ struct Score {
                                      "Banana3",
                                      "Banana4",
                                      "Banana5",
-                                     "Banana6"]
+                                     "Banana6",
+                                     "Banana7",
+                                     "Banana8",
+                                     "Banana9"]
     
     static var levelCount = { levelNames.count }()
     
