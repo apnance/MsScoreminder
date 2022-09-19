@@ -17,7 +17,22 @@ enum ScoreType {
 
 struct Score {
     
-    private static let levels = ["*", "$", "@", "&", "#", "¿", ")", ")2", ")3", ")4", ")5", ")6"]
+    private static let levels = ["*",
+                                 "$",
+                                 "@",
+                                 "&",
+                                 "#",
+                                 "¿",
+                                 ")",
+                                 ")2",
+                                 ")3",
+                                 ")4",
+                                 ")5",
+                                 ")6",
+                                 ")7",
+                                 ")8",
+                                 ")9"]
+    
     private static let levelNames = ["Cherry",
                                      "Strawberry",
                                      "Orange",
@@ -78,7 +93,7 @@ struct Score {
     /// - note: Default value is 1 and indicates an unaveraged `Score`.
     private(set) var averagedGameCount: Int = 1
     var scoreType: ScoreType { averagedGameCount > 1 ? .average : .single }
-
+    
     var displayScore: String { score.delimited }
     var levelString: String { Score.stringFor(level: level) }
     var levelIcon: UIImage { UIImage(named: "ms_icon_\(level)")! }
