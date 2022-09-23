@@ -6,6 +6,7 @@
 //
 
 import APNUtils
+import APNGraph
 
 enum ScoreType {
     
@@ -118,6 +119,43 @@ extension Score: Equatable {
     static func == (lhs: Self, rhs: Self) -> Bool {
         
         lhs.score == rhs.score
+        
+    }
+    
+}
+
+extension Score : Graphable {
+    
+    typealias X = Date
+    typealias Y = Int
+    
+    var x: X {
+        get { self.date }
+        set { self.date = newValue }
+    }
+    
+    var y: Y {
+        get { self.score }
+        set { self.score = newValue }
+    }
+    
+    var pointColor: UIColor { Score.colorFor(level: level) }
+    
+    init(x: Date, y: Int) {
+        
+        self.date   = x
+        self.score  = y
+        self.level  = -1
+        
+    }
+    
+    init(date: Date,
+         score: Int,
+         level: Int) {
+        
+        self.date   = date
+        self.score  = score
+        self.level  = level
         
     }
     
