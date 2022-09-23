@@ -138,6 +138,8 @@ extension StatManager {
         
     }
     
+    func getAllDailies() -> [DailyStats] { stats.dailies }
+    
     func setDailys(_ dailies: [DailyStats]) {
         
         stats.dailies               = dailies
