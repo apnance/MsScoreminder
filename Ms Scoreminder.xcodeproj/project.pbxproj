@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -34,6 +34,7 @@
 		93B67B5D274DD741007C302C /* PlayStreak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B67B5C274DD741007C302C /* PlayStreak.swift */; };
 		93B6D0EC27021DAD005ADF3F /* AtomicScoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93B6D0EB27021DAD005ADF3F /* AtomicScoreView.xib */; };
 		93B6D0EE270231A4005ADF3F /* AtomicScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B6D0ED270231A4005ADF3F /* AtomicScoreView.swift */; };
+		93D98BD328DD315C00FD0F80 /* APNGraph in Frameworks */ = {isa = PBXBuildFile; productRef = 93D98BD228DD315C00FD0F80 /* APNGraph */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +116,7 @@
 		93B67B5C274DD741007C302C /* PlayStreak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayStreak.swift; sourceTree = "<group>"; };
 		93B6D0EB27021DAD005ADF3F /* AtomicScoreView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AtomicScoreView.xib; sourceTree = "<group>"; };
 		93B6D0ED270231A4005ADF3F /* AtomicScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicScoreView.swift; sourceTree = "<group>"; };
+		93D98BD128DD314F00FD0F80 /* APNGraph */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = APNGraph; path = ../../Frameworks/APNGraph; sourceTree = "<group>"; };
 		93E93B1826FA71C600461F78 /* APNUtils.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = APNUtils.xcodeproj; path = ../../Frameworks/APNUtils/APNUtils.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -124,6 +126,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				937B2B3D26FB7A070081CC6A /* APNUtils.framework in Frameworks */,
+				93D98BD328DD315C00FD0F80 /* APNGraph in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +150,7 @@
 		9316243D26FA4C8D004C06B7 = {
 			isa = PBXGroup;
 			children = (
+				93D98BC828DD301F00FD0F80 /* Packages */,
 				932CE9ED2705410D006A1CF8 /* Ms Scoreminder.entitlements */,
 				93E93B1826FA71C600461F78 /* APNUtils.xcodeproj */,
 				9316244826FA4C8D004C06B7 /* Ms Pacman Scoreminder */,
@@ -280,6 +284,14 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
+		93D98BC828DD301F00FD0F80 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				93D98BD128DD314F00FD0F80 /* APNGraph */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 		93E93B1926FA71C600461F78 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -306,6 +318,9 @@
 			dependencies = (
 			);
 			name = "Ms Scoreminder";
+			packageProductDependencies = (
+				93D98BD228DD315C00FD0F80 /* APNGraph */,
+			);
 			productName = "Ms Pacman Scoreminder";
 			productReference = 9316244626FA4C8D004C06B7 /* Ms Scoreminder.app */;
 			productType = "com.apple.product-type.application";
@@ -643,11 +658,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 56S32J5CWV;
 				INFOPLIST_FILE = "Ms Pacman Scoreminder/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.9;
+				MARKETING_VERSION = 1.4.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.aaron.nance.Ms-Scoreminder-v1.4.9";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -666,11 +682,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 56S32J5CWV;
 				INFOPLIST_FILE = "Ms Pacman Scoreminder/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.9;
+				MARKETING_VERSION = 1.4.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.aaron.nance.Ms-Scoreminder-v1.4.9";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -803,6 +820,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		93D98BD228DD315C00FD0F80 /* APNGraph */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = APNGraph;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9316243E26FA4C8D004C06B7 /* Project object */;
 }
