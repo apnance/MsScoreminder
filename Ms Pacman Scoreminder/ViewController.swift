@@ -6,6 +6,7 @@
 //
 
 import APNUtils
+import APNGraph
 import MessageUI
 import WebKit
 
@@ -73,6 +74,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var streakCurrentDate1: UILabel!
     @IBOutlet weak var streakCurrentDate2: UILabel!
     
+    @IBOutlet weak var graphImageView: UIImageView!
     
     // MARK: Actions
     @IBAction func didTapDeleteYesNoButton(_ sender: UIButton) {
@@ -110,7 +112,6 @@ class ViewController: UIViewController {
         
         uiMisc()
         
-        
         uiBGStripe()
         uiScoreInput()
         uiBuildLevelSelector()
@@ -118,6 +119,42 @@ class ViewController: UIViewController {
         uiVolatile()
         uiRotateMarquee()
         uiLoop()
+        
+        uiGraph()
+        
+    }
+    
+    /// Builds and displays a graph of all game scores
+    func uiGraph() {
+        
+        DispatchQueue.main.async { [self] in
+            
+            let stats = self.statMan.getAllDailies()
+            let scoresToGraph: [Score] = stats.map { Score(date: $0.date,
+                                                           score: $0.averageScore,
+                                                           level: $0.averageLevel,
+                                                           averagedGameCount: $0.gamesPlayed) }.sorted{$0.date < $1.date}.suffix(30)
+            
+            // TODO: Clean Up - flatMap may be overkill and this data may already be calculated, investigate
+            //let scoresToGraph = self.statMan.getScoreData().values.flatMap{$0}
+            
+            // TODO: Clean Up - delete
+            //scoresToGraph.forEach { print($0) }
+            
+            let graph                               = APNGraph<Score>(points: scoresToGraph)
+            
+            let strokeWidth = 2.0
+            
+            self.graphImageView.layer.borderColor   =  UIColor(named: "Banana")?.cgColor
+            self.graphImageView.layer.borderWidth   = 1.5
+            self.graphImageView.layer.cornerRadius  = 5
+            
+            self.graphImageView.backgroundColor     = UIColor.white
+            self.graphImageView.image               = graph.drawGraph(imageSize: self.graphImageView.frame.size,
+                                                                      dotDiameter: self.graphImageView.frame.width / scoresToGraph.count.double,
+                                                                      strokeColor: UIColor.black.pointSixAlpha,
+                                                                      strokeWidth: strokeWidth)
+        }
         
     }
     
