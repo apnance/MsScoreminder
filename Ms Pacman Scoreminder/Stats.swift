@@ -165,8 +165,10 @@ extension StatManager {
     func getStreaks() -> StreakSet? { stats.streaks }
     
     //TODO: add streaks to email
-    
     func setStreaks(with dates: [DateString]) {
+        
+        // This method is very inefecient, call only if there is no current streak
+        if stats.streaks?.recent.isCurrent ?? false { return /*EXIT*/ }
         
         let dates = dates.map{$0.simpleDate}.sorted{$0 < $1}
         
