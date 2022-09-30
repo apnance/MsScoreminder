@@ -55,12 +55,17 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var dailySummaryView: DailySummaryView!
     
+    // Delet Score UI
     @IBOutlet weak var roundView: RoundView!
     @IBOutlet weak var deleteContainerView: UIView!
     @IBOutlet weak var deleteScoreContainerView: UIView!
-    
     @IBOutlet weak var deleteScoreLabel: UILabel!
     
+    // Graph
+    @IBOutlet weak var graphContainerView: UIView!
+    
+    // Email
+    @IBOutlet weak var showGraphButton: UIImageView!
     @IBOutlet weak var emailButton: RoundButton!
     @IBOutlet weak var htmlTestView: WKWebView!
     
@@ -82,6 +87,12 @@ class ViewController: UIViewController {
         showDeleteConfirmation(false)
         
         if sender.tag == 1 { delete(score: scoreToDelete) }
+        
+    }
+    
+    @IBAction func didTapShowGraph(_ sender: UIButton) {
+        
+        graphContainerView.isHidden = false
         
     }
     
@@ -133,27 +144,30 @@ class ViewController: UIViewController {
             let scoresToGraph: [Score] = stats.map { Score(date: $0.date,
                                                            score: $0.averageScore,
                                                            level: $0.averageLevel,
-                                                           averagedGameCount: $0.gamesPlayed) }.sorted{$0.date < $1.date}.suffix(30)
+                                                           averagedGameCount: $0.gamesPlayed) }.sorted{$0.date < $1.date}.suffix(60)
             
-            // TODO: Clean Up - flatMap may be overkill and this data may already be calculated, investigate
-            //let scoresToGraph = self.statMan.getScoreData().values.flatMap{$0}
-            
-            // TODO: Clean Up - delete
-            //scoresToGraph.forEach { print($0) }
-            
-            let graph                               = APNGraph<Score>(points: scoresToGraph)
-            
-            let strokeWidth = 2.0
+            let graph           = APNGraph<Score>(points: scoresToGraph)
+            graph.attributes    = GraphAttributes(axisLineWidth: 0.5,
+                                                  axisLineColor: .black,
+                                                  axisSmallDimensionPercent: 0.4,
+                                                  axisLabelFontName: "Futura", //"Futura-Bold"
+                                                  axisLabelVerticalFontSize: 8,
+                                                  axisLabelHorizontalFontSize: 6,
+                                                  axisLabelFontColor: .red,
+                                                  axisTitleVertical: "Average Score",
+                                                  axisTitleHorizontal: "Date Played",
+                                                  dotDiameter: 15,
+                                                  dotOutlineColor: .black,
+                                                  dotOutlineWidth: 0.4)
             
             self.graphImageView.layer.borderColor   =  UIColor(named: "Banana")?.cgColor
             self.graphImageView.layer.borderWidth   = 1.5
-            self.graphImageView.layer.cornerRadius  = 5
+            self.graphImageView.layer.cornerRadius  = 10
             
             self.graphImageView.backgroundColor     = UIColor.white
-            self.graphImageView.image               = graph.drawGraph(imageSize: self.graphImageView.frame.size,
-                                                                      dotDiameter: self.graphImageView.frame.width / scoresToGraph.count.double,
-                                                                      strokeColor: UIColor.black.pointSixAlpha,
-                                                                      strokeWidth: strokeWidth)
+            
+            self.graphImageView.image               = graph.drawGraph(withSize: self.graphImageView.frame.size)
+            
         }
         
     }
@@ -446,7 +460,6 @@ class ViewController: UIViewController {
                 
             } else { self.marqueeScoreView.isHidden = true }
             
-            
             if let streaks = self.statMan.getStreaks() {
                 
                 if self.streaksContainerView.alpha == 0 {
@@ -644,7 +657,8 @@ class ViewController: UIViewController {
         
         // Hide
         showDeleteConfirmation(false)
-        htmlTestView.isHidden = true
+        htmlTestView.isHidden       = true
+        graphContainerView.isHidden = true
         
     }
     
