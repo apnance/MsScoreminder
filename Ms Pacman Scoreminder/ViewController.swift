@@ -5,10 +5,10 @@
 //  Created by Aaron Nance on 9/21/21.
 //
 
-import APNUtils
-import APNGraph
 import MessageUI
 import WebKit
+import APNUtil
+import APNGraph
 
 class ViewController: UIViewController {
     
@@ -63,9 +63,9 @@ class ViewController: UIViewController {
     
     // Graph
     @IBOutlet weak var graphContainerView: UIView!
+    @IBOutlet weak var showGraphButton: RoundButton!
     
     // Email
-    @IBOutlet weak var showGraphButton: UIImageView!
     @IBOutlet weak var emailButton: RoundButton!
     @IBOutlet weak var htmlTestView: WKWebView!
     

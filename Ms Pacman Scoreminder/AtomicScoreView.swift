@@ -5,7 +5,8 @@
 //  Created by Aaron Nance on 9/27/21.
 //
 
-import APNUtils
+import UIKit
+import APNUtil
 
 class AtomicScoreView: UIView {
     

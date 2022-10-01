@@ -5,7 +5,7 @@
 //  Created by Aaron Nance on 10/6/21.
 //
 
-import APNUtils
+import APNUtil
 
 enum ScoreSortFilter: Codable, CustomStringConvertible {
     

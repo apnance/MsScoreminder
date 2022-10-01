@@ -5,7 +5,8 @@
 //  Created by Aaron Nance on 11/1/21.
 //
 
-import APNUtils
+import UIKit
+import APNUtil
 
 enum ScoreSortOrder { case date, high, low, avgDate, avgHigh, avgLow }
 
