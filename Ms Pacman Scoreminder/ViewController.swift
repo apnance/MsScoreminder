@@ -90,11 +90,7 @@ class ViewController: UIViewController {
         
     }
     
-    @IBAction func didTapShowGraph(_ sender: UIButton) {
-        
-        graphContainerView.isHidden = false
-        
-    }
+    @IBAction func didTapShowGraph(_ sender: UIButton) { uiGraph() }
     
     @IBAction func didTapSend(_ sender: UIButton) {
         
@@ -131,8 +127,6 @@ class ViewController: UIViewController {
         uiRotateMarquee()
         uiLoop()
         
-        uiGraph()
-        
     }
     
     /// Builds and displays a graph of all game scores
@@ -167,6 +161,9 @@ class ViewController: UIViewController {
             self.graphImageView.backgroundColor     = UIColor.white
             
             self.graphImageView.image               = graph.drawGraph(withSize: self.graphImageView.frame.size)
+            
+            // Show
+            graphContainerView.isHidden = false
             
         }
         
