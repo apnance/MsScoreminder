@@ -160,10 +160,10 @@ class ViewController: UIViewController {
             
             self.graphImageView.backgroundColor     = UIColor.white
             
-            self.graphImageView.image               = graph.drawGraph(withSize: self.graphImageView.frame.size)
+            graph.drawGraph(in: self.graphImageView, shouldAnimate: true)
             
             // Show
-            graphContainerView.isHidden = false
+            graphContainerView.isHidden                 = false
             
         }
         
