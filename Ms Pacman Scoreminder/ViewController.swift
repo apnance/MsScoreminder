@@ -79,7 +79,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var streakCurrentDate1: UILabel!
     @IBOutlet weak var streakCurrentDate2: UILabel!
     
+    // Graph
     @IBOutlet weak var graphImageView: UIImageView!
+    @IBOutlet weak var graphTitleLabel: UILabel!
     
     // MARK: Actions
     @IBAction func didTapDeleteYesNoButton(_ sender: UIButton) {
@@ -135,10 +137,9 @@ class ViewController: UIViewController {
         DispatchQueue.main.async { [self] in
             
             let stats = self.statMan.getAllDailies()
-            let scoresToGraph: [Score] = stats.map { Score(date: $0.date,
-                                                           score: $0.averageScore,
-                                                           level: $0.averageLevel,
-                                                           averagedGameCount: $0.gamesPlayed) }.sorted{$0.date < $1.date}.suffix(60)
+            
+            let scoresToGraph = statMan.filter(count: 18)
+            graphTitleLabel.text = statMan.getFilterLabel()
             
             let graph           = APNGraph<Score>(points: scoresToGraph)
             graph.attributes    = GraphAttributes(axisLineWidth: 0.5,
