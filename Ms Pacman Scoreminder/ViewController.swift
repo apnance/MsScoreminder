@@ -138,7 +138,7 @@ class ViewController: UIViewController {
             
             let stats = self.statMan.getAllDailies()
             
-            let scoresToGraph = statMan.filter(count: 18)
+            let scoresToGraph = statMan.filter(count: Configs.UI.Display.graphPointCount)
             graphTitleLabel.text = statMan.getFilterLabel()
             
             let graph           = APNGraph<Score>(points: scoresToGraph)

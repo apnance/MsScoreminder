@@ -447,11 +447,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ArY-C0-C0k">
-                                        <rect key="frame" x="15" y="84" width="384" height="250"/>
+                                        <rect key="frame" x="25" y="84" width="364" height="250"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="250" id="Jei-Mv-XsR"/>
-                                            <constraint firstAttribute="width" constant="384" id="g2v-OG-8rj"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
@@ -471,6 +470,7 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="ZyG-9R-Myt" secondAttribute="trailing" constant="30" id="34g-yp-jUP"/>
                             <constraint firstItem="TCV-YU-Iab" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="4dK-Oi-YLW"/>
+                            <constraint firstItem="ArY-C0-C0k" firstAttribute="width" secondItem="SsP-ad-Wjl" secondAttribute="width" id="78S-nk-Ico"/>
                             <constraint firstItem="2Bs-Ux-Man" firstAttribute="trailing" secondItem="SsP-ad-Wjl" secondAttribute="trailing" constant="-20" id="AIT-e9-TMa"/>
                             <constraint firstAttribute="bottom" secondItem="pwm-N2-dS7" secondAttribute="bottom" id="Abf-Xx-yWQ"/>
                             <constraint firstAttribute="trailing" secondItem="OjF-A8-gQq" secondAttribute="trailing" id="AjW-yn-A6k"/>

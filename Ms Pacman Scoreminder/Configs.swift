@@ -39,6 +39,12 @@ struct Configs {
     
     struct UI {
         
+        struct Display {
+            
+            static let graphPointCount = 30
+            
+        }
+        
         struct Timing {
             
             static let roundUIFadeTime = 0.39
