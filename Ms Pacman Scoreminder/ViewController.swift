@@ -44,26 +44,22 @@ class ViewController: UIViewController {
     @IBOutlet weak var totalMoneySpentLabel: UITextField!
     @IBOutlet weak var versionLabel: UITextField!
     @IBOutlet weak var scoresContainerView: UIView!
-    
     @IBOutlet weak var scoresView: UIView!
     @IBOutlet weak var scoresFilterLabel: UILabel!
     
-    // filter UI
+    // Pop-Up
+    @IBOutlet weak var popUpScreenView: UIView!
+    
+    // Filter
     @IBOutlet weak var dataSelector: UISegmentedControl!
     @IBOutlet weak var avgSorted: UISegmentedControl!
     @IBOutlet weak var dateSorted: UISegmentedControl!
-    
     @IBOutlet weak var dailySummaryView: DailySummaryView!
     
-    // Delet Score UI
-    @IBOutlet weak var roundView: RoundView!
-    @IBOutlet weak var deleteContainerView: UIView!
+    // Delete Score
+    @IBOutlet weak var deleteUIContainerView: UIView!
     @IBOutlet weak var deleteScoreContainerView: UIView!
     @IBOutlet weak var deleteScoreLabel: UILabel!
-    
-    // Graph
-    @IBOutlet weak var graphContainerView: UIView!
-    @IBOutlet weak var showGraphButton: RoundButton!
     
     // Email
     @IBOutlet weak var emailButton: RoundButton!
@@ -80,6 +76,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var streakCurrentDate2: UILabel!
     
     // Graph
+    @IBOutlet weak var graphContainerView: UIView!
+    @IBOutlet weak var showGraphButton: RoundButton!
     @IBOutlet weak var graphImageView: UIImageView!
     @IBOutlet weak var graphTitleLabel: UILabel!
     
@@ -136,8 +134,6 @@ class ViewController: UIViewController {
         
         DispatchQueue.main.async { [self] in
             
-            let stats = self.statMan.getAllDailies()
-            
             let scoresToGraph = statMan.filter(count: Configs.UI.Display.graphPointCount)
             graphTitleLabel.text = statMan.getFilterLabel()
             
@@ -164,7 +160,7 @@ class ViewController: UIViewController {
             graph.drawGraph(in: self.graphImageView, shouldAnimate: true)
             
             // Show
-            graphContainerView.isHidden                 = false
+            showGraph(true)
             
         }
         
@@ -333,16 +329,14 @@ class ViewController: UIViewController {
         streaksContainerView.alpha = 0
         
         // version
-        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "-?-"
-        versionLabel.text = "v\(appVersion)"
+        versionLabel.text = "v\(Bundle.appVersion)"
         
         outlineLabel(deleteScoreLabel)
         outlineLabel(marqueeScoreScoreLabel)
         addShadows()
         
-        let dismissPopUpUITap = UITapGestureRecognizer(target: self,
-                                                       action: #selector(dismissPopUpUI(sender:)))
-        mainView.addGestureRecognizer(dismissPopUpUITap)
+        mainView.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                             action: #selector(dismissPopUpUI(sender:))))
         
         streaksContainerView.rotate(angle: Configs.UI.Rotations.streaksView)
         
@@ -561,7 +555,7 @@ class ViewController: UIViewController {
         Utils.UI.addShadows(to: [scoresView,
                                  streaksContainerView,
                                  dailySummaryView,
-                                 roundView,
+                                 deleteUIContainerView,
                                  deleteScoreContainerView,
                                  deleteScoreLabel,
                                  scoresView,
@@ -579,7 +573,7 @@ class ViewController: UIViewController {
     /// Handles user taps on levelSelector
     @objc func selectLevel(sender: UISegmentedControl) {
         
-        dismissPopUpUI(sender: self)
+        DispatchQueue.main.async { self.scoreInput.resignFirstResponder()}
         
         let scoreText = scoreInput.text!
         
@@ -611,8 +605,6 @@ class ViewController: UIViewController {
     
     @objc func filter(sender: UISegmentedControl) {
         
-        dismissPopUpUI(sender: self)
-        
         var filterType = ScoreSortFilter.FilterType.recents
         
         switch dataSelector.selectedSegmentIndex {
@@ -634,6 +626,9 @@ class ViewController: UIViewController {
         
         uiScore()
         
+        // Don't re-graph if graph isn't visible
+        if !graphContainerView.isHidden { uiGraph() }
+        
     }
     
     /// Handles changes to scoreInput
@@ -651,20 +646,34 @@ class ViewController: UIViewController {
     // MARK: Deletion
     @objc func dismissPopUpUI(sender: Any) {
         
+        // Dismiss keyboard
         scoreInput.resignFirstResponder()
         
         // Hide
         showDeleteConfirmation(false)
+        showGraph(false)
         htmlTestView.isHidden       = true
-        graphContainerView.isHidden = true
+        popUpScreenView.isHidden    = true
         
     }
     
     private func showDeleteConfirmation(_ shouldShow: Bool) {
         
+        // Dismiss keyboard
         scoreInput.resignFirstResponder()
         
-        deleteContainerView.isHidden = !shouldShow
+        deleteUIContainerView.isHidden  = !shouldShow
+        popUpScreenView.isHidden        = !shouldShow
+        
+    }
+    
+    func showGraph(_ shouldShow: Bool) {
+        
+        // Dismiss keyboard
+        scoreInput.resignFirstResponder()
+        
+        graphContainerView.isHidden = !shouldShow
+        popUpScreenView.isHidden    = !shouldShow
         
     }
     
