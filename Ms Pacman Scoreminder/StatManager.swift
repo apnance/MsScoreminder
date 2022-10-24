@@ -373,7 +373,6 @@ class StatManager {
                 return getScores(sortedBy: .avgDate).sub(start: 0,
                                                          end: end)
                 
-                
             case .avgHighsHighFirst:
                 return getScores(sortedBy: .avgHigh).sub(start: 0,
                                                          end: end)
@@ -387,7 +386,7 @@ class StatManager {
                                                         end: end)
                 
             case .avgLowsNewFirst:
-                return getScores(sortedBy: .low).sub(start: 0,
+                return getScores(sortedBy: .avgLow).sub(start: 0,
                                                      end: end).sorted{ $0.date > $1.date }
                 
         }
