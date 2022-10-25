@@ -340,7 +340,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.6599121094" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pwm-N2-dS7" userLabel="Graph Container View">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pwm-N2-dS7" userLabel="Graph Container View">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average Score by Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Zo-q5-ziH">
@@ -360,6 +360,36 @@
                                         <rect key="frame" x="37" y="383.5" width="340.5" height="35"/>
                                         <color key="backgroundColor" name="Pink"/>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0gY-IB-K7z" userLabel="Slider Control Container View" customClass="RoundView" customModule="APNUtil">
+                                        <rect key="frame" x="37" y="430" width="340.5" height="35"/>
+                                        <subviews>
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="l0V-ko-IEH" userLabel="Graph Point Count Slider">
+                                                <rect key="frame" x="8" y="3" width="324.5" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="29" id="roc-mM-N0n"/>
+                                                </constraints>
+                                                <connections>
+                                                    <action selector="graphPointSliderChanged:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="N1f-uV-IXB"/>
+                                                    <action selector="graphPointSliderChanged:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Uly-n0-6Oz"/>
+                                                </connections>
+                                            </slider>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="y48-Rx-SCM">
+                                                <rect key="frame" x="122.5" y="0.0" width="95.5" height="35"/>
+                                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="28"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" name="Pink"/>
+                                        <constraints>
+                                            <constraint firstItem="y48-Rx-SCM" firstAttribute="centerX" secondItem="0gY-IB-K7z" secondAttribute="centerX" id="6j1-Cu-fUq"/>
+                                            <constraint firstItem="l0V-ko-IEH" firstAttribute="leading" secondItem="0gY-IB-K7z" secondAttribute="leading" constant="10" id="Ce6-LX-mOp"/>
+                                            <constraint firstAttribute="trailing" secondItem="l0V-ko-IEH" secondAttribute="trailing" constant="10" id="Er2-WT-Tf4"/>
+                                            <constraint firstItem="y48-Rx-SCM" firstAttribute="height" secondItem="0gY-IB-K7z" secondAttribute="height" id="Hqd-nA-d58"/>
+                                            <constraint firstItem="y48-Rx-SCM" firstAttribute="centerY" secondItem="0gY-IB-K7z" secondAttribute="centerY" id="kKu-jD-HRk"/>
+                                            <constraint firstItem="l0V-ko-IEH" firstAttribute="centerY" secondItem="0gY-IB-K7z" secondAttribute="centerY" id="prE-iG-DwE"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -367,7 +397,11 @@
                                     <constraint firstItem="ArY-C0-C0k" firstAttribute="centerX" secondItem="pwm-N2-dS7" secondAttribute="centerX" id="LlV-0v-g3w"/>
                                     <constraint firstItem="8Zo-q5-ziH" firstAttribute="bottom" secondItem="ArY-C0-C0k" secondAttribute="top" id="OhM-it-csR"/>
                                     <constraint firstItem="8Zo-q5-ziH" firstAttribute="centerX" secondItem="pwm-N2-dS7" secondAttribute="centerX" id="hkB-G8-q4w"/>
+                                    <constraint firstItem="0gY-IB-K7z" firstAttribute="centerX" secondItem="rGJ-M0-qHl" secondAttribute="centerX" id="ldp-uJ-9tj"/>
+                                    <constraint firstItem="0gY-IB-K7z" firstAttribute="top" secondItem="rGJ-M0-qHl" secondAttribute="bottom" constant="11.5" id="qgM-me-CQJ"/>
+                                    <constraint firstItem="0gY-IB-K7z" firstAttribute="height" secondItem="rGJ-M0-qHl" secondAttribute="height" id="uLK-nx-J42"/>
                                     <constraint firstAttribute="trailing" secondItem="8Zo-q5-ziH" secondAttribute="trailing" constant="20" symbolic="YES" id="umQ-p9-goB"/>
+                                    <constraint firstItem="0gY-IB-K7z" firstAttribute="width" secondItem="rGJ-M0-qHl" secondAttribute="width" id="yr8-f0-Vdr"/>
                                 </constraints>
                             </view>
                             <stackView contentMode="scaleToFill" distribution="equalCentering" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="pii-L0-PwK" userLabel="Filter Controls">
@@ -522,6 +556,8 @@
                         <outlet property="emailButton" destination="ggF-iH-bax" id="geH-IX-Qua"/>
                         <outlet property="graphContainerView" destination="pwm-N2-dS7" id="tgC-Cv-yoM"/>
                         <outlet property="graphImageView" destination="ArY-C0-C0k" id="Kqn-Zw-k5M"/>
+                        <outlet property="graphPointCountLabel" destination="y48-Rx-SCM" id="UO2-dC-XRe"/>
+                        <outlet property="graphPointCountSlider" destination="l0V-ko-IEH" id="SsG-UW-nMl"/>
                         <outlet property="graphTitleLabel" destination="8Zo-q5-ziH" id="pxk-vT-7y5"/>
                         <outlet property="htmlTestView" destination="FyJ-yg-YC1" id="DEG-3f-6f8"/>
                         <outlet property="levelSelector" destination="ZjU-v8-9Gv" id="ZnC-SN-tUM"/>
