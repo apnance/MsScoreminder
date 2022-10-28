@@ -341,55 +341,55 @@ class StatManager {
         
     }
     
-    func filter(count: Int) -> [Score] {
-        
-        let end = min(count, stats.gamesCount) - 1
-        
-        if end < 0 { return [] }
+    /// Returns an `Array` of all `Score` filtered on current value of `prefs.scoreSortFilter`
+    func filterAll() -> [Score] {
         
         switch prefs.scoreSortFilter {
                 
             case .highsHighFirst:
-                return getScores(sortedBy: .high).sub(start: 0,
-                                                      end: end)
+                return getScores(sortedBy: .high)
                 
             case .highsNewFirst:
-                return getScores(sortedBy: .high).sub(start: 0,
-                                                      end: end).sorted{ $0.date > $1.date }
+                return getScores(sortedBy: .high).sorted{ $0.date > $1.date }
                 
             case .recents:
-                return getScores(sortedBy: .date).sub(start: 0,
-                                                      end: end)
+                return getScores(sortedBy: .date)
                 
             case .lowsLowFirst:
-                return getScores(sortedBy: .low).sub(start: 0,
-                                                     end: end)
+                return getScores(sortedBy: .low)
                 
             case .lowsNewFirst:
-                return getScores(sortedBy: .low).sub(start: 0,
-                                                     end: end).sorted{ $0.date > $1.date }
+                return getScores(sortedBy: .low).sorted{ $0.date > $1.date }
                 
             case .avgRecents:
-                return getScores(sortedBy: .avgDate).sub(start: 0,
-                                                         end: end)
+                return getScores(sortedBy: .avgDate)
                 
             case .avgHighsHighFirst:
-                return getScores(sortedBy: .avgHigh).sub(start: 0,
-                                                         end: end)
+                return getScores(sortedBy: .avgHigh)
                 
             case .avgHighsNewFirst:
-                return getScores(sortedBy: .avgHigh).sub(start: 0,
-                                                         end: end).sorted{ $0.date > $1.date }
+                return getScores(sortedBy: .avgHigh).sorted{ $0.date > $1.date }
                 
             case .avgLowsLowFirst:
-                return getScores(sortedBy: .avgLow).sub(start: 0,
-                                                        end: end)
+                return getScores(sortedBy: .avgLow)
                 
             case .avgLowsNewFirst:
-                return getScores(sortedBy: .avgLow).sub(start: 0,
-                                                     end: end).sorted{ $0.date > $1.date }
+                return getScores(sortedBy: .avgLow).sorted{ $0.date > $1.date }
                 
         }
+        
+    }
+    
+    /// Returns the first `count` `Score`s from `filterAll()`
+    func filter(count: Int) -> [Score] {
+        
+        let data = filterAll()
+        
+        let end = min(count, data.count) - 1
+        
+        if end < 0 { return [] }
+        
+        return data.sub(start: 0, end: end)
         
     }
     
