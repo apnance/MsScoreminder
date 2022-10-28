@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
@@ -16,20 +16,20 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="ViewController" customModule="Ms_Scoreminder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SsP-ad-Wjl">
-                                <rect key="frame" x="25" y="123" width="364" height="962"/>
+                                <rect key="frame" x="25" y="122" width="340" height="911"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="$25.25" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lGR-By-8Ok">
-                                        <rect key="frame" x="152" y="722" width="60" height="23.5"/>
+                                        <rect key="frame" x="140" y="671" width="60" height="23.333333333333371"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" name="Pear"/>
                                         <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="v1.?" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fpz-Ml-hZL">
-                                        <rect key="frame" x="157" y="738.5" width="50" height="20"/>
+                                        <rect key="frame" x="145" y="687.33333333333337" width="50" height="20"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="EOf-1R-Sgw"/>
@@ -139,7 +139,7 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.14999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Streaks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v77-Yr-UNX">
-                                        <rect key="frame" x="8.5" y="38.5" width="113.5" height="43.5"/>
+                                        <rect key="frame" x="8.3333333333333357" y="38.666666666666671" width="113.33333333333331" height="43.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="34"/>
                                         <color key="textColor" name="Pretzel"/>
                                         <nil key="highlightedColor"/>
@@ -156,7 +156,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tfc-k3-1dv" customClass="DailySummaryView" customModule="Ms_Scoreminder" customModuleProvider="target">
-                                <rect key="frame" x="241" y="41.5" width="130" height="130"/>
+                                <rect key="frame" x="229" y="40.666666666666657" width="130" height="130"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="130" id="vVw-bP-x8U"/>
@@ -164,7 +164,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggF-iH-bax" customClass="RoundButton" customModule="APNUtil">
-                                <rect key="frame" x="319" y="240" width="35" height="35"/>
+                                <rect key="frame" x="295" y="239" width="35" height="35"/>
                                 <color key="backgroundColor" name="Banana"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="Kxh-9h-aoe"/>
@@ -178,7 +178,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yhi-ft-33M" userLabel="Show Graph Button" customClass="RoundButton" customModule="APNUtil">
-                                <rect key="frame" x="60" y="240" width="35" height="35"/>
+                                <rect key="frame" x="60" y="239" width="35" height="35"/>
                                 <color key="backgroundColor" name="Banana"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="Hs9-Ca-C8u"/>
@@ -194,10 +194,10 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="2Bs-Ux-Man" userLabel="Score Levelselector Stack View">
-                                <rect key="frame" x="45" y="280" width="324" height="70.5"/>
+                                <rect key="frame" x="45" y="279" width="300" height="70.666666666666686"/>
                                 <subviews>
                                     <textField opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="●●Enter Score●●" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="xi2-KO-0v3">
-                                        <rect key="frame" x="0.0" y="0.0" width="324" height="45.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="45.666666666666664"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45.5" id="OnZ-uL-ekY"/>
                                         </constraints>
@@ -206,7 +206,7 @@
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="postal-code"/>
                                     </textField>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="top" segmentControlStyle="plain" momentary="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZjU-v8-9Gv">
-                                        <rect key="frame" x="0.0" y="48.5" width="324" height="23"/>
+                                        <rect key="frame" x="0.0" y="48.666666666666686" width="300" height="23"/>
                                         <color key="backgroundColor" name="Banana"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="22" id="3Tt-aO-hEA"/>
@@ -230,45 +230,45 @@
                                 </subviews>
                             </stackView>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TCV-YU-Iab">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="273"/>
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="272"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ms_marquee_2pt_background" translatesAutoresizingMaskIntoConstraints="NO" id="ycv-3o-wBM">
-                                        <rect key="frame" x="54" y="42" width="306" height="163"/>
+                                        <rect key="frame" x="42" y="41" width="306" height="163"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="306" id="bik-oh-iM4"/>
                                             <constraint firstAttribute="height" constant="163" id="p5Q-dv-DpL"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GTZ-MZ-Xia">
-                                        <rect key="frame" x="127.5" y="201.5" width="159.5" height="67.5"/>
+                                        <rect key="frame" x="115.33333333333333" y="200.33333333333334" width="159.66666666666669" height="67.666666666666657"/>
                                         <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="53"/>
                                         <color key="textColor" name="Banana"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HIGH SCORE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRU-de-pwA">
-                                        <rect key="frame" x="127.5" y="173.5" width="159.5" height="39.5"/>
+                                        <rect key="frame" x="115.33333333333333" y="172.33333333333334" width="159.33333333333337" height="39.666666666666657"/>
                                         <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="31"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09/21/21" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cG-qg-LKh">
-                                        <rect key="frame" x="226" y="259" width="46.5" height="12"/>
+                                        <rect key="frame" x="214" y="258" width="46.333333333333314" height="12"/>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="10"/>
                                         <color key="textColor" name="Banana"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ms_marquee_2pt_foreground" translatesAutoresizingMaskIntoConstraints="NO" id="urF-mH-s3U" userLabel="MarqueeFG">
-                                        <rect key="frame" x="54" y="42" width="306" height="163"/>
+                                        <rect key="frame" x="42" y="41" width="306" height="163"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="163" id="HzH-ak-lul"/>
                                             <constraint firstAttribute="width" constant="306" id="gb8-wE-TQI"/>
                                         </constraints>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fkC-iS-l62" customClass="RoundView" customModule="APNUtil">
-                                        <rect key="frame" x="270.5" y="198.5" width="35" height="35"/>
+                                        <rect key="frame" x="258.33333333333331" y="197.33333333333334" width="35" height="35"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ms_icon_0" translatesAutoresizingMaskIntoConstraints="NO" id="Qqy-7X-lm2" userLabel="High Level Fruit Icon">
-                                                <rect key="frame" x="-7.5" y="-7.5" width="50" height="50"/>
+                                                <rect key="frame" x="-7.3333333333333144" y="-7.3333333333333428" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="dD8-Hp-boG"/>
                                                     <constraint firstAttribute="width" constant="50" id="fdG-kh-rfm"/>
@@ -301,20 +301,20 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZyG-9R-Myt" userLabel="Score UI Container View">
-                                <rect key="frame" x="30" y="365.5" width="354" height="471.5"/>
+                                <rect key="frame" x="30" y="364.66666666666674" width="330" height="420.33333333333326"/>
                                 <subviews>
                                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High Scores" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZZ-vR-qwz">
-                                        <rect key="frame" x="131.5" y="0.0" width="91" height="23"/>
+                                        <rect key="frame" x="119.66666666666666" y="0.0" width="91" height="23"/>
                                         <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="18"/>
                                         <color key="textColor" name="Banana"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kw7-ga-S1C" userLabel="Scores View">
-                                        <rect key="frame" x="0.0" y="55" width="354" height="416.5"/>
+                                        <rect key="frame" x="0.0" y="55" width="330" height="365.33333333333331"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <wkWebView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FyJ-yg-YC1">
-                                        <rect key="frame" x="5" y="30" width="344" height="436.5"/>
+                                        <rect key="frame" x="5" y="30" width="320" height="385.33333333333331"/>
                                         <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <wkWebViewConfiguration key="configuration">
                                             <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -337,57 +337,65 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bFj-cR-DpG" userLabel="PopUp Screen View">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.6599121094" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pwm-N2-dS7" userLabel="Graph Container View">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average Score by Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Zo-q5-ziH">
-                                        <rect key="frame" x="20" y="100.5" width="374" height="23"/>
+                                        <rect key="frame" x="20" y="99.666666666666671" width="350" height="23"/>
                                         <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="18"/>
                                         <color key="textColor" name="Banana"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ArY-C0-C0k">
-                                        <rect key="frame" x="30" y="123.5" width="354" height="250"/>
+                                        <rect key="frame" x="30" y="122.66666666666669" width="330" height="250"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="250" id="Jei-Mv-XsR"/>
                                         </constraints>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rGJ-M0-qHl" userLabel="Controls Background View" customClass="RoundView" customModule="APNUtil">
-                                        <rect key="frame" x="37" y="383.5" width="340.5" height="35"/>
+                                        <rect key="frame" x="35.333333333333343" y="382.66666666666669" width="319.33333333333326" height="35"/>
                                         <color key="backgroundColor" name="Pink"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0gY-IB-K7z" userLabel="Slider Control Container View" customClass="RoundView" customModule="APNUtil">
-                                        <rect key="frame" x="37" y="430" width="340.5" height="35"/>
+                                        <rect key="frame" x="35.333333333333343" y="429" width="319.33333333333326" height="35"/>
                                         <subviews>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="l0V-ko-IEH" userLabel="Graph Point Count Slider">
-                                                <rect key="frame" x="8" y="3" width="324.5" height="30"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tlB-Is-blg" userLabel="Pac Pellets View">
+                                                <rect key="frame" x="17.666666666666657" y="0.0" width="284" height="35"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.20000000000000001" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="l0V-ko-IEH" userLabel="Graph Point Count Slider">
+                                                <rect key="frame" x="8" y="3" width="303.33333333333331" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="29" id="roc-mM-N0n"/>
                                                 </constraints>
                                                 <connections>
-                                                    <action selector="graphPointSliderChanged:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="N1f-uV-IXB"/>
-                                                    <action selector="graphPointSliderChanged:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Uly-n0-6Oz"/>
+                                                    <action selector="didChangeGraphPointSlider:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9PJ-UG-rvp"/>
+                                                    <action selector="didChangeGraphPointSlider:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="VZg-5H-5wC"/>
                                                 </connections>
                                             </slider>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="y48-Rx-SCM">
-                                                <rect key="frame" x="122.5" y="0.0" width="95.5" height="35"/>
+                                                <rect key="frame" x="112" y="0.0" width="95.333333333333314" height="35"/>
                                                 <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="28"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" name="Banana"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" name="Pink"/>
                                         <constraints>
+                                            <constraint firstItem="tlB-Is-blg" firstAttribute="width" secondItem="l0V-ko-IEH" secondAttribute="width" multiplier="0.95" id="5on-s0-rij"/>
                                             <constraint firstItem="y48-Rx-SCM" firstAttribute="centerX" secondItem="0gY-IB-K7z" secondAttribute="centerX" id="6j1-Cu-fUq"/>
                                             <constraint firstItem="l0V-ko-IEH" firstAttribute="leading" secondItem="0gY-IB-K7z" secondAttribute="leading" constant="10" id="Ce6-LX-mOp"/>
                                             <constraint firstAttribute="trailing" secondItem="l0V-ko-IEH" secondAttribute="trailing" constant="10" id="Er2-WT-Tf4"/>
                                             <constraint firstItem="y48-Rx-SCM" firstAttribute="height" secondItem="0gY-IB-K7z" secondAttribute="height" id="Hqd-nA-d58"/>
+                                            <constraint firstItem="tlB-Is-blg" firstAttribute="height" secondItem="0gY-IB-K7z" secondAttribute="height" id="Re6-tp-ocb"/>
+                                            <constraint firstItem="tlB-Is-blg" firstAttribute="centerX" secondItem="0gY-IB-K7z" secondAttribute="centerX" id="SYe-fr-TQA"/>
                                             <constraint firstItem="y48-Rx-SCM" firstAttribute="centerY" secondItem="0gY-IB-K7z" secondAttribute="centerY" id="kKu-jD-HRk"/>
                                             <constraint firstItem="l0V-ko-IEH" firstAttribute="centerY" secondItem="0gY-IB-K7z" secondAttribute="centerY" id="prE-iG-DwE"/>
+                                            <constraint firstItem="tlB-Is-blg" firstAttribute="centerY" secondItem="0gY-IB-K7z" secondAttribute="centerY" id="yJh-Vr-Sxo"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -405,25 +413,25 @@
                                 </constraints>
                             </view>
                             <stackView contentMode="scaleToFill" distribution="equalCentering" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="pii-L0-PwK" userLabel="Filter Controls">
-                                <rect key="frame" x="44.5" y="391" width="325.5" height="20"/>
+                                <rect key="frame" x="43" y="390" width="304" height="20"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="d4r-1W-jEE" userLabel="Filter Type">
-                                        <rect key="frame" x="0.0" y="0.0" width="86" height="21"/>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="d4r-1W-jEE" userLabel="Filter Type">
+                                        <rect key="frame" x="0.0" y="0.0" width="83.666666666666671" height="21"/>
                                         <segments>
                                             <segment title="R"/>
                                             <segment title="H"/>
                                             <segment title="L"/>
                                         </segments>
                                     </segmentedControl>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Vnt-bR-Qfa" userLabel="Avg Sorted">
-                                        <rect key="frame" x="102.5" y="0.0" width="115" height="21"/>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Vnt-bR-Qfa" userLabel="Avg Sorted">
+                                        <rect key="frame" x="94.666666666666657" y="0.0" width="115" height="21"/>
                                         <segments>
                                             <segment title="Avg"/>
                                             <segment title="Single"/>
                                         </segments>
                                     </segmentedControl>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Hbp-Q9-muc" userLabel="Date Sorted">
-                                        <rect key="frame" x="228.5" y="0.0" width="97" height="21"/>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Hbp-Q9-muc" userLabel="Date Sorted">
+                                        <rect key="frame" x="220.66666666666671" y="0.0" width="83.333333333333343" height="21"/>
                                         <segments>
                                             <segment title="Def"/>
                                             <segment title="Date"/>
@@ -436,10 +444,10 @@
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JbC-vR-Can" customClass="RoundView" customModule="APNUtil">
-                                <rect key="frame" x="107" y="348" width="200" height="200"/>
+                                <rect key="frame" x="95" y="322" width="200" height="200"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DELETE SCORE?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kwh-Xz-ZGz">
-                                        <rect key="frame" x="26.5" y="36" width="147.5" height="29.5"/>
+                                        <rect key="frame" x="26.333333333333329" y="36" width="147.33333333333337" height="29.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="23"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -448,7 +456,7 @@
                                         <rect key="frame" x="40" y="148" width="120" height="28"/>
                                         <subviews>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fBa-B0-nnn" customClass="RoundButton" customModule="APNUtil">
-                                                <rect key="frame" x="0.0" y="0.0" width="53.5" height="28"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="53.666666666666664" height="28"/>
                                                 <color key="backgroundColor" name="Banana"/>
                                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="13"/>
                                                 <color key="tintColor" name="Pink"/>
@@ -459,7 +467,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="38Q-XI-Laj" customClass="RoundButton" customModule="APNUtil">
-                                                <rect key="frame" x="66.5" y="0.0" width="53.5" height="28"/>
+                                                <rect key="frame" x="66.666666666666657" y="0.0" width="53.333333333333343" height="28"/>
                                                 <color key="backgroundColor" name="Pink"/>
                                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="12"/>
                                                 <color key="tintColor" name="Banana"/>
@@ -475,7 +483,7 @@
                                         </constraints>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n4R-5x-sl0">
-                                        <rect key="frame" x="5" y="62.5" width="190" height="76.5"/>
+                                        <rect key="frame" x="5" y="62.333333333333321" width="190" height="76.666666666666686"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="190" id="bid-du-t0c"/>
@@ -558,6 +566,7 @@
                         <outlet property="graphImageView" destination="ArY-C0-C0k" id="Kqn-Zw-k5M"/>
                         <outlet property="graphPointCountLabel" destination="y48-Rx-SCM" id="UO2-dC-XRe"/>
                         <outlet property="graphPointCountSlider" destination="l0V-ko-IEH" id="SsG-UW-nMl"/>
+                        <outlet property="graphPointSliderPacPelletView" destination="tlB-Is-blg" id="kjO-bb-Psk"/>
                         <outlet property="graphTitleLabel" destination="8Zo-q5-ziH" id="pxk-vT-7y5"/>
                         <outlet property="htmlTestView" destination="FyJ-yg-YC1" id="DEG-3f-6f8"/>
                         <outlet property="levelSelector" destination="ZjU-v8-9Gv" id="ZnC-SN-tUM"/>
@@ -598,13 +607,13 @@
             <size key="intrinsicContentSize" width="30" height="27"/>
         </designable>
         <designable name="Yhi-ft-33M">
-            <size key="intrinsicContentSize" width="22" height="22"/>
+            <size key="intrinsicContentSize" width="21.666666666666668" height="22"/>
         </designable>
         <designable name="fBa-B0-nnn">
             <size key="intrinsicContentSize" width="30" height="28"/>
         </designable>
         <designable name="ggF-iH-bax">
-            <size key="intrinsicContentSize" width="22.5" height="22"/>
+            <size key="intrinsicContentSize" width="22.333333333333332" height="22"/>
         </designable>
     </designables>
     <resources>

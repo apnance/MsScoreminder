@@ -141,6 +141,8 @@ extension Score : Graphable {
     }
     
     var pointColor: UIColor { Score.colorFor(level: level) }
+    var pointBorderColor: UIColor { .black.pointEightAlpha }
+    var pointImageName: String? { "ms_graph_icon_\(level)" }
     
     init(x: Date, y: Int) {
         

@@ -80,8 +80,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var showGraphButton: RoundButton!
     @IBOutlet weak var graphImageView: UIImageView!
     @IBOutlet weak var graphTitleLabel: UILabel!
+    @IBOutlet weak var graphPointCountSlider: UISlider!
+    @IBOutlet weak var graphPointCountLabel: UILabel!
+    @IBOutlet weak var graphPointSliderPacPelletView: UIView!
     
     // MARK: Actions
+    // Delete UI
     @IBAction func didTapDeleteYesNoButton(_ sender: UIButton) {
         
         showDeleteConfirmation(false)
@@ -90,13 +94,13 @@ class ViewController: UIViewController {
         
     }
     
-    @IBAction func didTapShowGraph(_ sender: UIButton) { uiGraph() }
+    // Mail
+    @IBAction func didTapSend(_ sender: UIButton) { btnSendMail() }
     
-    @IBAction func didTapSend(_ sender: UIButton) {
-        
-        btnSendMail()
-        
-    }
+    // Graph
+    @IBAction func didTapShowGraph(_ sender: UIButton) { uiGraph() }
+    @IBAction func didChangeGraphPointSlider(_ sender: Any) { uiGraph() }
+    
     
     // MARK: - Overrides
     override func viewDidLoad() {
@@ -108,7 +112,12 @@ class ViewController: UIViewController {
         
     }
     
-    override func viewDidAppear(_ animated: Bool) { statMan.warningsCheck() }
+    override func viewDidAppear(_ animated: Bool) {
+        
+        statMan.warningsCheck()
+        uiGraphSlider()
+        
+    }
     
     override func viewWillDisappear(_ animated: Bool) { statMan.save() }
     
@@ -118,7 +127,6 @@ class ViewController: UIViewController {
         showDeleteConfirmation(false)
         
         uiMisc()
-        
         uiBGStripe()
         uiScoreInput()
         uiBuildLevelSelector()
@@ -134,22 +142,29 @@ class ViewController: UIViewController {
         
         DispatchQueue.main.async { [self] in
             
-            let scoresToGraph = statMan.filter(count: Configs.UI.Display.graphPointCount)
-            graphTitleLabel.text = statMan.getFilterLabel()
+            let allFiltered             = statMan.filterAll()
+            let percent                 = graphPointCountSlider.value.double
+            let count                   = max(1, Int(allFiltered.count.double * percent))
             
-            let graph           = APNGraph<Score>(points: scoresToGraph)
-            graph.attributes    = GraphAttributes(axisLineWidth: 0.5,
-                                                  axisLineColor: .black,
-                                                  axisSmallDimensionPercent: 0.4,
-                                                  axisLabelFontName: "Futura", //"Futura-Bold"
-                                                  axisLabelVerticalFontSize: 8,
-                                                  axisLabelHorizontalFontSize: 6,
-                                                  axisLabelFontColor: .red,
-                                                  axisTitleVertical: "Average Score",
-                                                  axisTitleHorizontal: "Date Played",
-                                                  dotDiameter: 15,
-                                                  dotOutlineColor: .black,
-                                                  dotOutlineWidth: 0.4)
+            graphPointCountLabel.text   = String(describing: count)
+            
+            let trimmedScores           = Array(allFiltered.prefix(count))
+            
+            graphTitleLabel.text        = statMan.getFilterLabel()
+            
+            let graph                   = APNGraph<Score>(points: trimmedScores)
+            graph.attributes            = GraphAttributes(axisLineWidth: 0.5,
+                                                          axisLineColor: .black,
+                                                          axisSmallDimensionPercent: 0.4,
+                                                          axisLabelFontName: "Futura", //"Futura-Bold"
+                                                          axisLabelVerticalFontSize: 8,
+                                                          axisLabelHorizontalFontSize: 6,
+                                                          axisLabelFontColor: .red,
+                                                          axisTitleVertical: "Average Score",
+                                                          axisTitleHorizontal: "Date Played",
+                                                          dotDiameter: 15,
+                                                          dotOutlineColor: .black,
+                                                          dotOutlineWidth: 0.4)
             
             self.graphImageView.layer.borderColor   =  UIColor(named: "Banana")?.cgColor
             self.graphImageView.layer.borderWidth   = 1.5
@@ -163,6 +178,22 @@ class ViewController: UIViewController {
             showGraph(true)
             
         }
+        
+    }
+    
+    /// Initializes graphPointCountSlider UI
+    /// - important: This method must be called after constraints are finalized(i.e. in viewDidAppear() or later).
+    func uiGraphSlider() {
+        
+        graphPointCountSlider.setThumbImage(UIImage(named:"ms_icon_ms_pacman"), for: .normal)
+        graphPointCountSlider.maximumTrackTintColor = .clear
+        graphPointCountSlider.minimumTrackTintColor = UIColor(named: "Pink")
+        
+        graphPointSliderPacPelletView.addDashedLine(.white,
+                                                    width: 3.5,
+                                                    dashPattern: [0.1,12],
+                                                    lineCap: .round,
+                                                    isHorizontal: true)
         
     }
     
@@ -248,10 +279,10 @@ class ViewController: UIViewController {
                            options: .allowAnimatedContent,
                            animations: {
                 
-                self.marqueeScoreScoreLabel.alpha  = targetAlpha
-                self.marqueeLevelIcon.alpha    = targetAlpha
-                self.marqueeScoreDateLabel.alpha   = targetAlpha
-                self.marqueeScoreTitleLabel.alpha  = targetAlpha
+                self.marqueeScoreScoreLabel.alpha   = targetAlpha
+                self.marqueeLevelIcon.alpha         = targetAlpha
+                self.marqueeScoreDateLabel.alpha    = targetAlpha
+                self.marqueeScoreTitleLabel.alpha   = targetAlpha
                 
             }) {
                 
@@ -339,7 +370,7 @@ class ViewController: UIViewController {
                                                              action: #selector(dismissPopUpUI(sender:))))
         
         streaksContainerView.rotate(angle: Configs.UI.Rotations.streaksView)
-        
+                
     }
     
     /// Styles the large pink/yellow background stripe.
@@ -393,12 +424,12 @@ class ViewController: UIViewController {
     
     private func uiBuildFilterSelectors() {
         
-        let filter = statMan.prefs.scoreSortFilter
+        let filter          = statMan.prefs.scoreSortFilter
         
-        let normalAtts      =  [NSAttributedString.Key.font: UIFont(name: "Futura-Bold", size: 8) as Any,
-                                NSAttributedString.Key.foregroundColor: UIColor(named:"Banana") as Any]
-        let selectedAtts    = [NSAttributedString.Key.font: UIFont(name: "Futura-Bold", size: 8) as Any,
-                               NSAttributedString.Key.foregroundColor: UIColor.white as Any]
+        let normalAtts      =   [NSAttributedString.Key.font: UIFont(name: "Futura-Bold", size: 8) as Any,
+                                 NSAttributedString.Key.foregroundColor: UIColor(named:"Banana") as Any]
+        let selectedAtts    =   [NSAttributedString.Key.font: UIFont(name: "Futura-Bold", size: 8) as Any,
+                                 NSAttributedString.Key.foregroundColor: UIColor.white as Any]
         
         dataSelector.selectedSegmentIndex = filter.type == .recents ? 0 : (filter.type == .highs ? 1 : 2 )
         
