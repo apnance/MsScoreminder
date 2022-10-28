@@ -373,8 +373,10 @@
                                                     <constraint firstAttribute="height" constant="29" id="roc-mM-N0n"/>
                                                 </constraints>
                                                 <connections>
+                                                    <action selector="beginChangingGraphPointSlider:" destination="BYZ-38-t0r" eventType="touchDown" id="iLW-C3-UbY"/>
                                                     <action selector="didChangeGraphPointSlider:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9PJ-UG-rvp"/>
                                                     <action selector="didChangeGraphPointSlider:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="VZg-5H-5wC"/>
+                                                    <action selector="isChangingGraphPointSlider:" destination="BYZ-38-t0r" eventType="valueChanged" id="azS-26-tWR"/>
                                                 </connections>
                                             </slider>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="y48-Rx-SCM">

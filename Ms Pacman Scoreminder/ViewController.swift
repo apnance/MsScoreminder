@@ -17,7 +17,6 @@ class ViewController: UIViewController {
     private var scoreToDelete: Score?
     private let (w, h, p) = (100.0, 50.0, 10.0)
     
-    
     private var scoreCycler  = (num: -34,
                                 incr: 1,
                                 dataCurrent: 1,
@@ -99,6 +98,11 @@ class ViewController: UIViewController {
     
     // Graph
     @IBAction func didTapShowGraph(_ sender: UIButton) { uiGraph() }
+    /// Starts the process of updating slider UI, is high overhead and should only be called on touch down.
+    @IBAction func beginChangingGraphPointSlider(_ sender: UISlider) { uiPointCountLabel() }
+    /// Updates point count label UI with low overhead and should be called continuously throughout the changing of the slider position.
+    @IBAction func isChangingGraphPointSlider(_ sender: UISlider) { uiPointCountLabel(refreshData: false) }
+    /// Triggers a call to uiGraph and should only be called once at the end of the slider interaction during a touch up event.
     @IBAction func didChangeGraphPointSlider(_ sender: Any) { uiGraph() }
     
     
@@ -135,18 +139,33 @@ class ViewController: UIViewController {
         
     }
     
+    
+    /// Manages the syncing of `graphPointCountLabel` with `graphPointCountSlider`'s position.
+    /// - Parameter refreshData: Flag triggering or suppressing the refreshing of statMan.filterAll() data.  Default is `true`
+    /// - Returns: The count of filtered `Score`s currently selected.
+    @discardableResult func uiPointCountLabel(refreshData: Bool = true) -> Int {
+        
+        let data    = statMan.filterAll(refreshData: refreshData)
+        let percent = graphPointCountSlider.value.double
+        let count   = max(1, Int(data.count.double * percent))
+        
+        DispatchQueue.main.async {
+            
+            self.graphPointCountLabel.text = String(describing: count)
+            
+        }
+        
+        return count
+        
+    }
+    
     /// Builds and displays a graph of all game scores
     func uiGraph() {
         
         DispatchQueue.main.async { [self] in
             
-            let allFiltered             = statMan.filterAll()
-            let percent                 = graphPointCountSlider.value.double
-            let count                   = max(1, Int(allFiltered.count.double * percent))
-            
-            graphPointCountLabel.text   = String(describing: count)
-            
-            let trimmedScores           = Array(allFiltered.prefix(count))
+            let count                   = uiPointCountLabel()
+            let trimmedScores           = Array(statMan.filterAll(refreshData: false).prefix(count))
             
             graphTitleLabel.text        = statMan.getFilterLabel()
             

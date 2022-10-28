@@ -341,49 +341,59 @@ class StatManager {
         
     }
     
-    /// Returns an `Array` of all `Score` filtered on current value of `prefs.scoreSortFilter`
-    func filterAll() -> [Score] {
+    /// A backing property for filterAll caching the out ouptut of the most recently run filterAll() call.
+    private var _filteredAll = [Score]()
+    
+    /// Returns an `Array` of all `Score`s filtered on current value of `prefs.scoreSortFilter` caching this value in filteredAllCached property for repeated reference.
+    /// - important: to ensure data is uptodate, set `refreshData` to `true`.  Use `refreshData = false` for repetitive calls with no intervening stat/filter changes.
+    func filterAll(refreshData: Bool) -> [Score] {
         
-        switch prefs.scoreSortFilter {
-                
-            case .highsHighFirst:
-                return getScores(sortedBy: .high)
-                
-            case .highsNewFirst:
-                return getScores(sortedBy: .high).sorted{ $0.date > $1.date }
-                
-            case .recents:
-                return getScores(sortedBy: .date)
-                
-            case .lowsLowFirst:
-                return getScores(sortedBy: .low)
-                
-            case .lowsNewFirst:
-                return getScores(sortedBy: .low).sorted{ $0.date > $1.date }
-                
-            case .avgRecents:
-                return getScores(sortedBy: .avgDate)
-                
-            case .avgHighsHighFirst:
-                return getScores(sortedBy: .avgHigh)
-                
-            case .avgHighsNewFirst:
-                return getScores(sortedBy: .avgHigh).sorted{ $0.date > $1.date }
-                
-            case .avgLowsLowFirst:
-                return getScores(sortedBy: .avgLow)
-                
-            case .avgLowsNewFirst:
-                return getScores(sortedBy: .avgLow).sorted{ $0.date > $1.date }
-                
+        if refreshData || _filteredAll.count < 1 {
+            
+            switch prefs.scoreSortFilter {
+                    
+                case .highsHighFirst:
+                    _filteredAll = getScores(sortedBy: .high)
+                    
+                case .highsNewFirst:
+                    _filteredAll = getScores(sortedBy: .high).sorted{ $0.date > $1.date }
+                    
+                case .recents:
+                    _filteredAll = getScores(sortedBy: .date)
+                    
+                case .lowsLowFirst:
+                    _filteredAll = getScores(sortedBy: .low)
+                    
+                case .lowsNewFirst:
+                    _filteredAll = getScores(sortedBy: .low).sorted{ $0.date > $1.date }
+                    
+                case .avgRecents:
+                    _filteredAll = getScores(sortedBy: .avgDate)
+                    
+                case .avgHighsHighFirst:
+                    _filteredAll = getScores(sortedBy: .avgHigh)
+                    
+                case .avgHighsNewFirst:
+                    _filteredAll = getScores(sortedBy: .avgHigh).sorted{ $0.date > $1.date }
+                    
+                case .avgLowsLowFirst:
+                    _filteredAll = getScores(sortedBy: .avgLow)
+                    
+                case .avgLowsNewFirst:
+                    _filteredAll = getScores(sortedBy: .avgLow).sorted{ $0.date > $1.date }
+                    
+            }
+            
         }
+        
+        return _filteredAll
         
     }
     
-    /// Returns the first `count` `Score`s from `filterAll()`
+    /// Returns the first `count` of *uncached* `Score`s from `filterAll()`
     func filter(count: Int) -> [Score] {
         
-        let data = filterAll()
+        let data = filterAll(refreshData: true)
         
         let end = min(count, data.count) - 1
         
