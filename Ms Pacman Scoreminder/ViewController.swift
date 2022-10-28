@@ -124,8 +124,6 @@ class ViewController: UIViewController {
     // MARK: UI
     private func uiInit() {
         
-        showDeleteConfirmation(false)
-        
         uiMisc()
         uiBGStripe()
         uiScoreInput()
@@ -353,13 +351,16 @@ class ViewController: UIViewController {
     
     private func uiMisc() {
         
-        // hide score initially
+        // Hide Delete Confirmation
+        showDeleteConfirmation(false)
+        
+        // Hide Score Initially
         uiHideScore(true)
         
-        // hide streaks initially
+        // Hide Streaks Initially
         streaksContainerView.alpha = 0
         
-        // version
+        // Version
         versionLabel.text = "v\(Bundle.appVersion)"
         
         outlineLabel(deleteScoreLabel)
