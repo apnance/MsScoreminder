@@ -364,11 +364,12 @@
                                         <rect key="frame" x="35.333333333333343" y="429" width="319.33333333333326" height="35"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tlB-Is-blg" userLabel="Pac Pellets View">
-                                                <rect key="frame" x="17.666666666666657" y="0.0" width="284" height="35"/>
+                                                <rect key="frame" x="17.666666666666657" y="0.33333333333331439" width="284" height="35"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.20000000000000001" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="l0V-ko-IEH" userLabel="Graph Point Count Slider">
                                                 <rect key="frame" x="8" y="3" width="303.33333333333331" height="30"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="29" id="roc-mM-N0n"/>
                                                 </constraints>
@@ -397,7 +398,7 @@
                                             <constraint firstItem="tlB-Is-blg" firstAttribute="centerX" secondItem="0gY-IB-K7z" secondAttribute="centerX" id="SYe-fr-TQA"/>
                                             <constraint firstItem="y48-Rx-SCM" firstAttribute="centerY" secondItem="0gY-IB-K7z" secondAttribute="centerY" id="kKu-jD-HRk"/>
                                             <constraint firstItem="l0V-ko-IEH" firstAttribute="centerY" secondItem="0gY-IB-K7z" secondAttribute="centerY" id="prE-iG-DwE"/>
-                                            <constraint firstItem="tlB-Is-blg" firstAttribute="centerY" secondItem="0gY-IB-K7z" secondAttribute="centerY" id="yJh-Vr-Sxo"/>
+                                            <constraint firstItem="tlB-Is-blg" firstAttribute="centerY" secondItem="0gY-IB-K7z" secondAttribute="centerY" constant="0.29999999999999999" id="yJh-Vr-Sxo"/>
                                         </constraints>
                                     </view>
                                 </subviews>

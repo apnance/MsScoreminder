@@ -170,7 +170,7 @@ class ViewController: UIViewController {
             graphTitleLabel.text        = statMan.getFilterLabel()
             
             let graph                   = APNGraph<Score>(points: trimmedScores)
-            graph.attributes            = GraphAttributes(axisLineWidth: 0.5,
+            graph.attributes            = GraphAttributes(axisLineWidth: 0.2,
                                                           axisLineColor: .black,
                                                           axisSmallDimensionPercent: 0.4,
                                                           axisLabelFontName: "Futura", //"Futura-Bold"
