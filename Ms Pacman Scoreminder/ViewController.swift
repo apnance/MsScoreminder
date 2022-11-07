@@ -169,19 +169,19 @@ class ViewController: UIViewController {
             
             graphTitleLabel.text        = statMan.getFilterLabel()
             
-            let graph                   = APNGraph<Score>(points: trimmedScores)
-            graph.attributes            = GraphAttributes(axisLineWidth: 0.2,
-                                                          axisLineColor: .black,
-                                                          axisSmallDimensionPercent: 0.4,
-                                                          axisLabelFontName: "Futura", //"Futura-Bold"
-                                                          axisLabelVerticalFontSize: 8,
-                                                          axisLabelHorizontalFontSize: 6,
-                                                          axisLabelFontColor: .red,
-                                                          axisTitleVertical: "Average Score",
-                                                          axisTitleHorizontal: "Date Played",
-                                                          dotDiameter: 15,
-                                                          dotOutlineColor: .black,
-                                                          dotOutlineWidth: 0.4)
+            let graph               = APNGraph<Score>(points: trimmedScores)
+            graph.attributes        = APNGraphAttributes(axisLineWidth: 0.2,
+                                                         axisLineColor: .black,
+                                                         axisSmallDimensionPercent: 0.4,
+                                                         axisLabelFontName: "Futura", //"Futura-Bold"
+                                                         axisLabelVerticalFontSize: 8,
+                                                         axisLabelHorizontalFontSize: 6,
+                                                         axisLabelFontColor: .red,
+                                                         axisTitleVertical: "Average Score",
+                                                         axisTitleHorizontal: "Date Played",
+                                                         dotDiameter: 15,
+                                                         dotOutlineColor: .black,
+                                                         dotOutlineWidth: 0.4)
             
             self.graphImageView.layer.borderColor   =  UIColor(named: "Banana")?.cgColor
             self.graphImageView.layer.borderWidth   = 1.5

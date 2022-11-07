@@ -125,7 +125,7 @@ extension Score: Equatable {
     
 }
 
-extension Score : Graphable {
+extension Score : APNGraphable {
     
     typealias X = Date
     typealias Y = Int
