@@ -47,13 +47,33 @@ struct Configs {
         
         struct Timing {
             
-            static let roundUIFadeTime = 0.39
-            static let uiLoopInterval = 0.06
+            struct Curtain {
+                
+                static let revealTime: Double   = 1.5
+                static let revealDelayTime      = 0.001
+                
+            }
             
-            static let marqueeFadeDuration  = 0.3
-            static let marqueeHighDelay     = 5.0
-            static let marqueeAveDelay      = 3.5
-            static let marqueeLowDelay      = 3.5
+            struct Marquee {
+                
+                static let fadeDuration         = 0.3
+                static let highDelay            = 5.0
+                static let avgDelay             = 3.5
+                static let lowDelay             = 3.5
+                
+            }
+            
+            struct Loop {
+                
+                static let interval             = 0.06
+                
+            }
+            
+            struct RoundViewInfo {
+                
+                static let fadeTime             = 0.39
+                
+            }
             
         }
         

@@ -45,6 +45,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var scoresContainerView: UIView!
     @IBOutlet weak var scoresView: UIView!
     @IBOutlet weak var scoresFilterLabel: UILabel!
+    @IBOutlet weak var scoreFilterControlsStackView: UIStackView!
+    
+    // Launch Screen Replica "Curtain"
+    @IBOutlet weak var launchScreenReplicaCurtainView: UIView!
+    @IBOutlet weak var launchScreenReplicaSplashTitle: UILabel!
     
     // Pop-Up
     @IBOutlet weak var popUpScreenView: UIView!
@@ -93,15 +98,32 @@ class ViewController: UIViewController {
         
     }
     
+    @IBAction func didTapRangeFilterButton(_ sender: RoundButton) {
+        
+        switch sender.tag {
+                
+            case 0 : uiGraph(dateRange: .week)
+                
+            case 1 : uiGraph(dateRange: .month)
+                
+            case 2 : uiGraph(dateRange: .year)
+                
+            case 3 : uiGraph(dateRange: .all)
+                
+            default: fatalError()
+        }
+        
+    }
+    
     // Mail
     @IBAction func didTapSend(_ sender: UIButton) { btnSendMail() }
     
     // Graph
     @IBAction func didTapShowGraph(_ sender: UIButton) { uiGraph() }
     /// Starts the process of updating slider UI, is high overhead and should only be called on touch down.
-    @IBAction func beginChangingGraphPointSlider(_ sender: UISlider) { uiPointCountLabel() }
+    @IBAction func beginChangingGraphPointSlider(_ sender: UISlider) { uiManagePointCount() }
     /// Updates point count label UI with low overhead and should be called continuously throughout the changing of the slider position.
-    @IBAction func isChangingGraphPointSlider(_ sender: UISlider) { uiPointCountLabel(refreshData: false) }
+    @IBAction func isChangingGraphPointSlider(_ sender: UISlider) { uiManagePointCount(refreshData: false) }
     /// Triggers a call to uiGraph and should only be called once at the end of the slider interaction during a touch up event.
     @IBAction func didChangeGraphPointSlider(_ sender: Any) { uiGraph() }
     
@@ -111,8 +133,13 @@ class ViewController: UIViewController {
         
         super.viewDidLoad()
         
-        statMan.open()
-        uiInit()
+        launchScreenReplicaCurtainView.isHidden = false
+        
+        DispatchQueue.global(qos: .userInteractive).async {
+            
+            self.statMan.open(){ self.uiInit() }
+            
+        }
         
     }
     
@@ -128,46 +155,138 @@ class ViewController: UIViewController {
     // MARK: UI
     private func uiInit() {
         
-        uiMisc()
-        uiBGStripe()
-        uiScoreInput()
-        uiBuildLevelSelector()
-        uiBuildFilterSelectors()
-        uiVolatile()
-        uiRotateMarquee()
-        uiLoop()
+        DispatchQueue.main.async {
+            
+            self.uiMisc()
+            self.uiBGStripe()
+            self.uiScoreInput()
+            self.uiBuildLevelSelector()
+            self.uiBuildFilterSelectors()
+            self.uiVolatile()
+            self.uiRotateMarquee()
+            self.uiLoop()
+            
+            
+            // TODO: Clean Up - factor animation code out into separate func
+            let relativeDuration = 1.0 / 10.0
+            
+            UIView.animateKeyframes(withDuration: Configs.UI.Timing.Curtain.revealTime,
+                                    delay: Configs.UI.Timing.Curtain.revealDelayTime,
+                                    options: .calculationModeLinear) {
+
+                // Splash Title
+                var relativeStartTime   = 0.0
+                var currentDuration     = relativeDuration * 3.5
+                print("startTime: \(relativeStartTime) - duration: \(currentDuration)")
+                
+                UIView.addKeyframe(withRelativeStartTime: relativeStartTime,
+                                   relativeDuration: currentDuration) {
+                    
+                    self.launchScreenReplicaSplashTitle.alpha = 0.0
+                    
+                }
+                
+                // Curtain
+                relativeStartTime   = relativeDuration * 1.5
+                currentDuration     = relativeDuration * 2.0
+                print("startTime: \(relativeStartTime) - duration: \(currentDuration)")
+                
+                UIView.addKeyframe(withRelativeStartTime: relativeStartTime,
+                                   relativeDuration: currentDuration) {
+                    
+                    self.launchScreenReplicaCurtainView.alpha = 0.0
+                    
+                }
+                
+                // Marquee FG (Ms. Pac-Man)
+                relativeStartTime += currentDuration
+                currentDuration = relativeDuration * 2.0
+                print("startTime: \(relativeStartTime) - duration: \(currentDuration)")
+
+                UIView.addKeyframe(withRelativeStartTime: relativeStartTime,
+                                   relativeDuration: currentDuration ){ self.marqueeFG.alpha = 1.0 }
+
+                // Margue BG (Ghosts)
+                relativeStartTime += currentDuration
+                currentDuration = relativeDuration * 1.75
+                print("startTime: \(relativeStartTime) - duration: \(currentDuration)")
+
+                UIView.addKeyframe(withRelativeStartTime: relativeStartTime,
+                                   relativeDuration: currentDuration ){ self.marqueeBG.alpha = 1.0 }
+                
+                // Streaks
+                relativeStartTime += currentDuration
+                currentDuration = relativeDuration * 1.25
+                print("startTime: \(relativeStartTime) - duration: \(currentDuration)")
+
+                UIView.addKeyframe(withRelativeStartTime: relativeStartTime,
+                                   relativeDuration: currentDuration) {
+                    
+                    self.streaksContainerView.alpha = 1.0
+                    
+                }
+                
+                // Daily Summary
+                relativeStartTime += currentDuration
+                currentDuration = relativeDuration * 1.0
+                print("startTime: \(relativeStartTime) - duration: \(currentDuration)")
+
+                UIView.addKeyframe(withRelativeStartTime: relativeStartTime,
+                                   relativeDuration: currentDuration) {
+                    
+                    self.dailySummaryView.alpha = 0.8
+                    
+                }
+                
+                // Scores
+                relativeStartTime += currentDuration
+                currentDuration = relativeDuration * 0.5
+                print("startTime: \(relativeStartTime) - duration: \(currentDuration)")
+
+                UIView.addKeyframe(withRelativeStartTime: relativeStartTime,
+                                   relativeDuration: currentDuration) {
+
+                    self.scoresContainerView.alpha = 1.0
+                    self.scoreFilterControlsStackView.alpha = 1.0
+                    self.scoreInput.alpha = 1.0
+                    
+                }
+            } completion: { _ in self.dailySummaryView.shouldCycle = true }
+            
+        }
         
     }
     
     
     /// Manages the syncing of `graphPointCountLabel` with `graphPointCountSlider`'s position.
     /// - Parameter refreshData: Flag triggering or suppressing the refreshing of statMan.filterAll() data.  Default is `true`
+    /// - Parameter withDateRange: a DateRange enum specifying the range ot dates to return.
     /// - Returns: The count of filtered `Score`s currently selected.
-    @discardableResult func uiPointCountLabel(refreshData: Bool = true) -> Int {
+    @discardableResult func uiManagePointCount(refreshData: Bool = true,
+                                               withDateRange dateRange: DateRange = .unspecified) -> [Score] {
         
-        let data    = statMan.filterAll(refreshData: refreshData)
-        let percent = graphPointCountSlider.value.double
-        let count   = max(1, Int(data.count.double * percent))
+        let filtered = statMan.filterAll(refreshData: refreshData,
+                                         dateRange: dateRange,
+                                         percentOfCount: graphPointCountSlider.value.double)
         
         DispatchQueue.main.async {
             
-            self.graphPointCountLabel.text = String(describing: count)
+            self.graphPointCountLabel.text = String(describing: filtered.count)
             
         }
         
-        return count
+        return filtered
         
     }
     
     /// Builds and displays a graph of all game scores
-    func uiGraph() {
+    func uiGraph(dateRange: DateRange = .unspecified) {
         
         DispatchQueue.main.async { [self] in
             
-            let count                   = uiPointCountLabel()
-            let trimmedScores           = Array(statMan.filterAll(refreshData: false).prefix(count))
+            let trimmedScores       = uiManagePointCount(withDateRange: dateRange)
             
-            graphTitleLabel.text        = statMan.getFilterLabel()
+            graphTitleLabel.text    = statMan.getFilterLabel(dateRange: dateRange)
             
             let graph               = APNGraph<Score>(points: trimmedScores)
             graph.attributes        = APNGraphAttributes(axisLineWidth: 0.2,
@@ -222,7 +341,7 @@ class ViewController: UIViewController {
         if timer.isNil {
             
             timer = APNTimer(name: "scores",
-                             repeatInterval: Configs.UI.Timing.uiLoopInterval) {
+                             repeatInterval: Configs.UI.Timing.Loop.interval) {
                 
                 _ in
                 
@@ -244,10 +363,10 @@ class ViewController: UIViewController {
     
     fileprivate func uiHideScore(_ shouldHide: Bool) {
         
-        marqueeScoreScoreLabel.isHidden   = shouldHide
-        marqueeScoreTitleLabel.isHidden   = shouldHide
-        marqueeScoreDateLabel.isHidden    = shouldHide
-        marqueeLevelIcon.isHidden     = shouldHide
+        marqueeScoreScoreLabel.isHidden = shouldHide
+        marqueeScoreTitleLabel.isHidden = shouldHide
+        marqueeScoreDateLabel.isHidden  = shouldHide
+        marqueeLevelIcon.isHidden       = shouldHide
         
     }
     
@@ -262,13 +381,13 @@ class ViewController: UIViewController {
             
             let phaseContent = [(title: "HIGH SCORE",
                                  score: self.statMan.getHighscore(),
-                                 delay: Configs.UI.Timing.marqueeHighDelay),
+                                 delay: Configs.UI.Timing.Marquee.highDelay),
                                 (title: "AVERAGE SCORE",
                                  score: self.statMan.getAvgScore(),
-                                 delay: Configs.UI.Timing.marqueeAveDelay),
+                                 delay: Configs.UI.Timing.Marquee.avgDelay),
                                 (title: "LOW SCORE",
                                  score: self.statMan.getLowscore(),
-                                 delay: Configs.UI.Timing.marqueeLowDelay)]
+                                 delay: Configs.UI.Timing.Marquee.lowDelay)]
             
             func setUI() {
                 
@@ -291,7 +410,7 @@ class ViewController: UIViewController {
             
             if phase == -1 { setUI() }
             
-            UIView.animate(withDuration: Configs.UI.Timing.marqueeFadeDuration,
+            UIView.animate(withDuration: Configs.UI.Timing.Marquee.fadeDuration,
                            delay: delay,
                            options: .allowAnimatedContent,
                            animations: {
@@ -505,16 +624,6 @@ class ViewController: UIViewController {
             
             if let streaks = self.statMan.getStreaks() {
                 
-                if self.streaksContainerView.alpha == 0 {
-                    
-                    UIView.animate(withDuration: Configs.UI.Timing.roundUIFadeTime) {
-                        
-                        self.streaksContainerView.alpha = 1.0
-                        
-                    }
-                    
-                }
-                
                 self.streakLongestCount.text = streaks.longest.length.description
                 self.streakLongestDate1.text = streaks.longest.start?.simple ?? "-"
                 self.streakLongestDate2.text = streaks.longest.end?.simple ?? "-"
@@ -541,7 +650,9 @@ class ViewController: UIViewController {
                                    lineCap: .round)
         
         let scores = statMan.filter(count: 18)
-        scoresFilterLabel.text = statMan.getFilterLabel()
+        
+        scoresContainerView.isHidden = false
+        scoresFilterLabel.text = statMan.getFilterLabel(dateRange: .unspecified)
         
         let colCount = Int(scoresView.frame.width) / Int(w)
         var col = 1
@@ -687,7 +798,7 @@ class ViewController: UIViewController {
         
         let score = Int(scoreInput.text!) ?? -1
         
-        // Disable levelSelector if score is not a multiple of 10
+        // Valid scores are multiples of 10
         levelSelector.isEnabled = (score % 10) == 0
         
         levelSelector.alpha = !levelSelector.isEnabled ? 0 : 1

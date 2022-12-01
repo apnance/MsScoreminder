@@ -13,7 +13,7 @@ class DailySummaryView: RoundView {
     private var stats = [DailyStats]()
     private var currStats = 0
     private var initialized: Bool = false
-    
+    var shouldCycle = false
     
     // MARK: - Outlets
     @IBOutlet weak var dateLabel: UILabel!
@@ -80,11 +80,15 @@ class DailySummaryView: RoundView {
   
     @objc private func cycle() {
         
+        uiInit()
+        
+        if !shouldCycle { return /*EXIT*/ }
+        
         if stats.count < 1 {
             
             if alpha != 0 {
                 
-                UIView.animate(withDuration: Configs.UI.Timing.roundUIFadeTime,
+                UIView.animate(withDuration: Configs.UI.Timing.RoundViewInfo.fadeTime,
                                delay: 0) {
                     
                     self.alpha = 0.0
@@ -96,8 +100,6 @@ class DailySummaryView: RoundView {
             return /*EXIT*/
             
         }
-        
-        uiInit()
         
         if alpha != 0.75 {
             

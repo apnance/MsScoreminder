@@ -155,7 +155,7 @@
                                     <constraint firstAttribute="height" constant="130" id="UqR-SO-tQN"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tfc-k3-1dv" customClass="DailySummaryView" customModule="Ms_Scoreminder" customModuleProvider="target">
+                            <view alpha="0.0" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tfc-k3-1dv" customClass="DailySummaryView" customModule="Ms_Scoreminder" customModuleProvider="target">
                                 <rect key="frame" x="229" y="40.666666666666657" width="130" height="130"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -177,7 +177,7 @@
                                     <action selector="didTapSend:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VcI-cM-xtX"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yhi-ft-33M" userLabel="Show Graph Button" customClass="RoundButton" customModule="APNUtil">
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yhi-ft-33M" userLabel="Show Graph Button" customClass="RoundButton" customModule="APNUtil">
                                 <rect key="frame" x="60" y="239" width="35" height="35"/>
                                 <color key="backgroundColor" name="Banana"/>
                                 <constraints>
@@ -187,7 +187,7 @@
                                 <color key="tintColor" name="Pink"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal">
-                                    <imageReference key="image" image="line.diagonal.arrow" catalog="system" symbolScale="large"/>
+                                    <imageReference key="image" image="graph_button_bg" symbolScale="large"/>
                                 </state>
                                 <connections>
                                     <action selector="didTapShowGraph:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hUo-fP-cky"/>
@@ -196,7 +196,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="2Bs-Ux-Man" userLabel="Score Levelselector Stack View">
                                 <rect key="frame" x="45" y="279" width="300" height="70.666666666666686"/>
                                 <subviews>
-                                    <textField opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="●●Enter Score●●" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="xi2-KO-0v3">
+                                    <textField opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="●●Enter Score●●" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="xi2-KO-0v3">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="45.666666666666664"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45.5" id="OnZ-uL-ekY"/>
@@ -232,7 +232,7 @@
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TCV-YU-Iab">
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="272"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ms_marquee_2pt_background" translatesAutoresizingMaskIntoConstraints="NO" id="ycv-3o-wBM">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ms_marquee_2pt_background" translatesAutoresizingMaskIntoConstraints="NO" id="ycv-3o-wBM">
                                         <rect key="frame" x="42" y="41" width="306" height="163"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="306" id="bik-oh-iM4"/>
@@ -257,7 +257,7 @@
                                         <color key="textColor" name="Banana"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ms_marquee_2pt_foreground" translatesAutoresizingMaskIntoConstraints="NO" id="urF-mH-s3U" userLabel="MarqueeFG">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ms_marquee_2pt_foreground" translatesAutoresizingMaskIntoConstraints="NO" id="urF-mH-s3U" userLabel="MarqueeFG">
                                         <rect key="frame" x="42" y="41" width="306" height="163"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="163" id="HzH-ak-lul"/>
@@ -300,7 +300,7 @@
                                     <constraint firstItem="ycv-3o-wBM" firstAttribute="centerX" secondItem="TCV-YU-Iab" secondAttribute="centerX" id="yGx-oT-kJt"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZyG-9R-Myt" userLabel="Score UI Container View">
+                            <view hidden="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZyG-9R-Myt" userLabel="Score UI Container View">
                                 <rect key="frame" x="30" y="364.66666666666674" width="330" height="420.33333333333326"/>
                                 <subviews>
                                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High Scores" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZZ-vR-qwz">
@@ -401,21 +401,82 @@
                                             <constraint firstItem="tlB-Is-blg" firstAttribute="centerY" secondItem="0gY-IB-K7z" secondAttribute="centerY" constant="0.29999999999999999" id="yJh-Vr-Sxo"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7RM-YT-VLr" userLabel="Date Range Selection ContainerView" customClass="RoundView" customModule="APNUtil">
+                                        <rect key="frame" x="35.333333333333343" y="475" width="319.33333333333326" height="35"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="bLr-Qr-c9E">
+                                                <rect key="frame" x="10" y="5" width="299.33333333333331" height="25"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VTW-GO-VI7" customClass="RoundButton" customModule="APNUtil">
+                                                        <rect key="frame" x="0.0" y="0.0" width="71" height="25"/>
+                                                        <color key="backgroundColor" name="Pink"/>
+                                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="9"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Week"/>
+                                                        <connections>
+                                                            <action selector="didTapRangeFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="We6-50-CCm"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L2S-Eo-tq0" customClass="RoundButton" customModule="APNUtil">
+                                                        <rect key="frame" x="76" y="0.0" width="71" height="25"/>
+                                                        <color key="backgroundColor" name="Blue"/>
+                                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="9"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Month"/>
+                                                        <connections>
+                                                            <action selector="didTapRangeFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bSQ-Vi-Jl0"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZXf-J4-hY7" customClass="RoundButton" customModule="APNUtil">
+                                                        <rect key="frame" x="152.33333333333331" y="0.0" width="71" height="25"/>
+                                                        <color key="backgroundColor" name="Pink"/>
+                                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="9"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Year"/>
+                                                        <connections>
+                                                            <action selector="didTapRangeFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="38S-fr-xEZ"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AI7-3q-VHs" customClass="RoundButton" customModule="APNUtil">
+                                                        <rect key="frame" x="228.33333333333337" y="0.0" width="71" height="25"/>
+                                                        <color key="backgroundColor" name="Blue"/>
+                                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="9"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="All"/>
+                                                        <connections>
+                                                            <action selector="didTapRangeFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="04Y-uV-drr"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" name="Pear"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="bLr-Qr-c9E" secondAttribute="bottom" constant="5" id="4Nl-tg-Fyr"/>
+                                            <constraint firstItem="bLr-Qr-c9E" firstAttribute="top" secondItem="7RM-YT-VLr" secondAttribute="top" constant="5" id="I3F-vn-ucQ"/>
+                                            <constraint firstAttribute="trailing" secondItem="bLr-Qr-c9E" secondAttribute="trailing" constant="10" id="PRA-tl-cvd"/>
+                                            <constraint firstItem="bLr-Qr-c9E" firstAttribute="leading" secondItem="7RM-YT-VLr" secondAttribute="leading" constant="10" id="rNU-Yc-cd6"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="8Zo-q5-ziH" firstAttribute="leading" secondItem="pwm-N2-dS7" secondAttribute="leading" constant="20" symbolic="YES" id="7ma-cT-8bc"/>
+                                    <constraint firstItem="7RM-YT-VLr" firstAttribute="width" secondItem="rGJ-M0-qHl" secondAttribute="width" id="En8-Dh-eJM"/>
+                                    <constraint firstItem="7RM-YT-VLr" firstAttribute="top" secondItem="0gY-IB-K7z" secondAttribute="bottom" constant="11" id="G3W-zo-Sjh"/>
                                     <constraint firstItem="ArY-C0-C0k" firstAttribute="centerX" secondItem="pwm-N2-dS7" secondAttribute="centerX" id="LlV-0v-g3w"/>
                                     <constraint firstItem="8Zo-q5-ziH" firstAttribute="bottom" secondItem="ArY-C0-C0k" secondAttribute="top" id="OhM-it-csR"/>
                                     <constraint firstItem="8Zo-q5-ziH" firstAttribute="centerX" secondItem="pwm-N2-dS7" secondAttribute="centerX" id="hkB-G8-q4w"/>
+                                    <constraint firstItem="7RM-YT-VLr" firstAttribute="centerX" secondItem="pwm-N2-dS7" secondAttribute="centerX" id="lKf-vZ-TZm"/>
                                     <constraint firstItem="0gY-IB-K7z" firstAttribute="centerX" secondItem="rGJ-M0-qHl" secondAttribute="centerX" id="ldp-uJ-9tj"/>
                                     <constraint firstItem="0gY-IB-K7z" firstAttribute="top" secondItem="rGJ-M0-qHl" secondAttribute="bottom" constant="11.5" id="qgM-me-CQJ"/>
                                     <constraint firstItem="0gY-IB-K7z" firstAttribute="height" secondItem="rGJ-M0-qHl" secondAttribute="height" id="uLK-nx-J42"/>
                                     <constraint firstAttribute="trailing" secondItem="8Zo-q5-ziH" secondAttribute="trailing" constant="20" symbolic="YES" id="umQ-p9-goB"/>
+                                    <constraint firstItem="7RM-YT-VLr" firstAttribute="height" secondItem="rGJ-M0-qHl" secondAttribute="height" id="vJS-lD-xms"/>
                                     <constraint firstItem="0gY-IB-K7z" firstAttribute="width" secondItem="rGJ-M0-qHl" secondAttribute="width" id="yr8-f0-Vdr"/>
                                 </constraints>
                             </view>
-                            <stackView contentMode="scaleToFill" distribution="equalCentering" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="pii-L0-PwK" userLabel="Filter Controls">
+                            <stackView alpha="0.0" contentMode="scaleToFill" distribution="equalCentering" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="pii-L0-PwK" userLabel="Filter Controls">
                                 <rect key="frame" x="43" y="390" width="304" height="20"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="d4r-1W-jEE" userLabel="Filter Type">
@@ -506,6 +567,22 @@
                                     <constraint firstItem="n4R-5x-sl0" firstAttribute="top" secondItem="Kwh-Xz-ZGz" secondAttribute="bottom" constant="-3" id="z2B-2J-hjo"/>
                                 </constraints>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yGI-Rh-K7B" userLabel="launchScreenReplicaCurtainView">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ms. Scoreminder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OKd-Yw-qxu">
+                                        <rect key="frame" x="88" y="403.66666666666669" width="214" height="37"/>
+                                        <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="29"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="Blue"/>
+                                <constraints>
+                                    <constraint firstItem="OKd-Yw-qxu" firstAttribute="centerY" secondItem="yGI-Rh-K7B" secondAttribute="centerY" id="dPc-xu-3OK"/>
+                                    <constraint firstItem="OKd-Yw-qxu" firstAttribute="centerX" secondItem="yGI-Rh-K7B" secondAttribute="centerX" id="t9f-MD-IJq"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="Blue"/>
@@ -520,11 +597,13 @@
                             <constraint firstItem="lGR-By-8Ok" firstAttribute="top" secondItem="ZyG-9R-Myt" secondAttribute="bottom" constant="8" id="FCo-bk-sjk"/>
                             <constraint firstItem="pii-L0-PwK" firstAttribute="top" secondItem="qZZ-vR-qwz" secondAttribute="bottom" constant="2.5" id="Fjy-sN-OJC"/>
                             <constraint firstItem="rGJ-M0-qHl" firstAttribute="centerX" secondItem="pii-L0-PwK" secondAttribute="centerX" id="G1g-4M-pUd"/>
+                            <constraint firstItem="yGI-Rh-K7B" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Hzi-rb-jMW"/>
                             <constraint firstItem="ZyG-9R-Myt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="Iku-o5-2zb"/>
                             <constraint firstItem="ycv-3o-wBM" firstAttribute="centerY" secondItem="tfc-k3-1dv" secondAttribute="centerY" constant="17" id="JDh-MO-bYl"/>
                             <constraint firstItem="SsP-ad-Wjl" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="25" id="KrG-ma-NRx"/>
                             <constraint firstItem="SsP-ad-Wjl" firstAttribute="top" secondItem="TCV-YU-Iab" secondAttribute="bottom" constant="-150" id="MkI-Ji-Zq1"/>
                             <constraint firstItem="tfc-k3-1dv" firstAttribute="leading" secondItem="ycv-3o-wBM" secondAttribute="centerX" constant="34" id="N57-1G-wZB"/>
+                            <constraint firstAttribute="trailing" secondItem="yGI-Rh-K7B" secondAttribute="trailing" id="Nnk-m9-Fy3"/>
                             <constraint firstItem="pwm-N2-dS7" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="PaV-ID-Da2"/>
                             <constraint firstItem="ArY-C0-C0k" firstAttribute="width" secondItem="ZyG-9R-Myt" secondAttribute="width" id="QHr-Te-64B"/>
                             <constraint firstItem="xi2-KO-0v3" firstAttribute="leading" secondItem="Yhi-ft-33M" secondAttribute="leading" constant="-15" id="QZd-Nl-NuS"/>
@@ -539,6 +618,7 @@
                             <constraint firstItem="2Bs-Ux-Man" firstAttribute="top" secondItem="TCV-YU-Iab" secondAttribute="bottom" constant="7" id="ap2-yv-bG9"/>
                             <constraint firstItem="rGJ-M0-qHl" firstAttribute="centerY" secondItem="pii-L0-PwK" secondAttribute="centerY" id="cAW-qf-VPp"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="SsP-ad-Wjl" secondAttribute="bottom" constant="-223" id="d35-DH-3yq"/>
+                            <constraint firstAttribute="bottom" secondItem="yGI-Rh-K7B" secondAttribute="bottom" id="d4W-sp-uEF"/>
                             <constraint firstItem="yFo-KC-Pry" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="d8o-71-Ij3"/>
                             <constraint firstItem="yFo-KC-Pry" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="40" id="eE3-Jj-njQ"/>
                             <constraint firstItem="TCV-YU-Iab" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="lAf-gf-WKs"/>
@@ -550,6 +630,7 @@
                             <constraint firstItem="bFj-cR-DpG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="uwY-7u-hrh"/>
                             <constraint firstAttribute="bottom" secondItem="pwm-N2-dS7" secondAttribute="bottom" id="w1Y-1w-5jg"/>
                             <constraint firstItem="pii-L0-PwK" firstAttribute="width" secondItem="SsP-ad-Wjl" secondAttribute="width" multiplier="0.894231" id="xAh-vt-vwv"/>
+                            <constraint firstItem="yGI-Rh-K7B" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="xvM-8m-hbv"/>
                             <constraint firstItem="bFj-cR-DpG" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="yAs-of-67C"/>
                             <constraint firstAttribute="trailing" secondItem="bFj-cR-DpG" secondAttribute="trailing" id="yUx-t3-Oee"/>
                             <constraint firstItem="2Bs-Ux-Man" firstAttribute="leading" secondItem="SsP-ad-Wjl" secondAttribute="leading" constant="20" id="zpD-oV-VeI"/>
@@ -572,6 +653,8 @@
                         <outlet property="graphPointSliderPacPelletView" destination="tlB-Is-blg" id="kjO-bb-Psk"/>
                         <outlet property="graphTitleLabel" destination="8Zo-q5-ziH" id="pxk-vT-7y5"/>
                         <outlet property="htmlTestView" destination="FyJ-yg-YC1" id="DEG-3f-6f8"/>
+                        <outlet property="launchScreenReplicaCurtainView" destination="yGI-Rh-K7B" id="m5D-b0-hdo"/>
+                        <outlet property="launchScreenReplicaSplashTitle" destination="OKd-Yw-qxu" id="an9-cT-Zls"/>
                         <outlet property="levelSelector" destination="ZjU-v8-9Gv" id="ZnC-SN-tUM"/>
                         <outlet property="mainView" destination="8bC-Xf-vdC" id="J7W-rz-fVF"/>
                         <outlet property="marqueeBG" destination="ycv-3o-wBM" id="n7H-ps-7Cn"/>
@@ -583,6 +666,7 @@
                         <outlet property="marqueeScoreTitleLabel" destination="MRU-de-pwA" id="L2L-5C-Rza"/>
                         <outlet property="marqueeScoreView" destination="TCV-YU-Iab" id="GGO-PW-2lu"/>
                         <outlet property="popUpScreenView" destination="bFj-cR-DpG" id="mmm-TH-dJr"/>
+                        <outlet property="scoreFilterControlsStackView" destination="pii-L0-PwK" id="dLo-AW-ZKA"/>
                         <outlet property="scoreInput" destination="xi2-KO-0v3" id="VaV-bv-tqo"/>
                         <outlet property="scoresContainerView" destination="ZyG-9R-Myt" id="lgG-67-PCa"/>
                         <outlet property="scoresFilterLabel" destination="qZZ-vR-qwz" id="Oso-D3-fu1"/>
@@ -609,8 +693,20 @@
         <designable name="38Q-XI-Laj">
             <size key="intrinsicContentSize" width="30" height="27"/>
         </designable>
+        <designable name="AI7-3q-VHs">
+            <size key="intrinsicContentSize" width="30" height="24"/>
+        </designable>
+        <designable name="L2S-Eo-tq0">
+            <size key="intrinsicContentSize" width="32" height="24"/>
+        </designable>
+        <designable name="VTW-GO-VI7">
+            <size key="intrinsicContentSize" width="30" height="24"/>
+        </designable>
         <designable name="Yhi-ft-33M">
-            <size key="intrinsicContentSize" width="21.666666666666668" height="22"/>
+            <size key="intrinsicContentSize" width="150" height="150"/>
+        </designable>
+        <designable name="ZXf-J4-hY7">
+            <size key="intrinsicContentSize" width="30" height="24"/>
         </designable>
         <designable name="fBa-B0-nnn">
             <size key="intrinsicContentSize" width="30" height="28"/>
@@ -621,7 +717,7 @@
     </designables>
     <resources>
         <image name="envelope.fill" catalog="system" width="128" height="93"/>
-        <image name="line.diagonal.arrow" catalog="system" width="128" height="115"/>
+        <image name="graph_button_bg" width="150" height="150"/>
         <image name="ms_icon_0" width="174" height="174"/>
         <image name="ms_icon_4" width="174" height="174"/>
         <image name="ms_marquee_2pt_background" width="754.66668701171875" height="520.66668701171875"/>

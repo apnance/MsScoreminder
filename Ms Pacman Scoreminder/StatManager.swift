@@ -12,6 +12,30 @@ typealias CSV = String
 typealias DateString = String
 typealias HTML = String
 
+enum DateRange : CustomStringConvertible {
+    
+    case week, month, year, all, unspecified
+    
+    var description: String {
+        
+        switch self {
+                
+            case .week  : return "Last Week"
+                
+            case .month : return "Last Month"
+                
+            case .year  : return "Last Year"
+            
+            case .all   : return "All"
+                
+            case .unspecified : return ""
+                
+        }
+        
+    }
+    
+}
+
 class StatManager {
     
     private (set) var prefs = Preferences.shared
@@ -346,7 +370,12 @@ class StatManager {
     
     /// Returns an `Array` of all `Score`s filtered on current value of `prefs.scoreSortFilter` caching this value in filteredAllCached property for repeated reference.
     /// - important: to ensure data is uptodate, set `refreshData` to `true`.  Use `refreshData = false` for repetitive calls with no intervening stat/filter changes.
-    func filterAll(refreshData: Bool) -> [Score] {
+    func filterAll(refreshData: Bool,
+                   dateRange: DateRange,
+                   returnCount: Int? = nil,
+                   percentOfCount percent: Double? = nil) -> [Score] {
+        
+        var isDateSorted = false
         
         if refreshData || _filteredAll.count < 1 {
             
@@ -357,43 +386,90 @@ class StatManager {
                     
                 case .highsNewFirst:
                     _filteredAll = getScores(sortedBy: .high).sorted{ $0.date > $1.date }
+                    isDateSorted = true
                     
                 case .recents:
                     _filteredAll = getScores(sortedBy: .date)
+                    isDateSorted = true
                     
                 case .lowsLowFirst:
                     _filteredAll = getScores(sortedBy: .low)
                     
                 case .lowsNewFirst:
                     _filteredAll = getScores(sortedBy: .low).sorted{ $0.date > $1.date }
+                    isDateSorted = true
                     
                 case .avgRecents:
                     _filteredAll = getScores(sortedBy: .avgDate)
-                    
+                    isDateSorted = true
+
                 case .avgHighsHighFirst:
                     _filteredAll = getScores(sortedBy: .avgHigh)
                     
                 case .avgHighsNewFirst:
                     _filteredAll = getScores(sortedBy: .avgHigh).sorted{ $0.date > $1.date }
+                    isDateSorted = true
                     
                 case .avgLowsLowFirst:
                     _filteredAll = getScores(sortedBy: .avgLow)
                     
                 case .avgLowsNewFirst:
                     _filteredAll = getScores(sortedBy: .avgLow).sorted{ $0.date > $1.date }
+                    isDateSorted = true
                     
             }
             
         }
         
-        return _filteredAll
+        // TODO: Clean Up -  rename/move getCount(:)
+        func getCount(mostRecentDays: Int) -> Int {
+            
+            if !isDateSorted { return mostRecentDays }
+            
+            var count = 0
+            let today = Date()
+            
+            for score in _filteredAll {
+                
+                if today.daysFrom(earlierDate: score.date) >= mostRecentDays { break /*BREAK*/ }
+                
+                count += 1
+                    
+            }
+            
+            return count
+            
+        }
+        
+        let count: Int
+
+        switch dateRange {
+                
+            case .week:     count = getCount(mostRecentDays: 7)
+                
+            case .month:    count = getCount(mostRecentDays: 30)
+                
+            case .year:     count = getCount(mostRecentDays: 365)
+                
+            case .all :     count = _filteredAll.count
+                
+            case .unspecified :
+                
+                // TODO: Clean Up - clarify logic for generating count here...
+                count = returnCount ?? max(1, Int(_filteredAll.count.double * (percent ?? 1.0)))
+                
+        }
+        
+        let filtered = Array(_filteredAll.prefix(count))
+        
+        return filtered
         
     }
     
     /// Returns the first `count` of *uncached* `Score`s from `filterAll()`
     func filter(count: Int) -> [Score] {
         
-        let data = filterAll(refreshData: true)
+        let data = filterAll(refreshData: true, dateRange: .unspecified, returnCount: count)
         
         let end = min(count, data.count) - 1
         
@@ -403,7 +479,16 @@ class StatManager {
         
     }
     
-    func getFilterLabel() -> String { String(describing: prefs.scoreSortFilter) }
+    func getFilterLabel(dateRange: DateRange) -> String {
+        
+        let baseText    = String(describing: prefs.scoreSortFilter)
+        var rangeText   = String(describing: dateRange)
+        
+        rangeText       = dateRange == .unspecified ? "" : " (\(rangeText))"
+        
+        return "\(baseText)\(rangeText)"
+        
+    }
     
     func setFilter(_ type: ScoreSortFilter.FilterType,
                    daily: Bool,
@@ -489,7 +574,12 @@ extension StatManager {
         
     }
     
-    func open() {
+    
+    /// Retrieves archived `Score` data from saved file.
+    ///
+    /// - note: this is an expensive call.
+    /// - Parameter completion: Completion handler.
+    func open(completion: (() -> ())? = nil) {
         
         var csv: CSV!
         
@@ -531,6 +621,8 @@ extension StatManager {
         }
         
         importData(from: csv)
+        
+        completion?()
         
     }
     
