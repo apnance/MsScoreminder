@@ -152,6 +152,7 @@ class ViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) { statMan.save() }
     
+    
     // MARK: UI
     private func uiInit() {
         
@@ -165,93 +166,7 @@ class ViewController: UIViewController {
             self.uiVolatile()
             self.uiRotateMarquee()
             self.uiLoop()
-            
-            
-            // TODO: Clean Up - factor animation code out into separate func
-            let relativeDuration = 1.0 / 10.0
-            
-            UIView.animateKeyframes(withDuration: Configs.UI.Timing.Curtain.revealTime,
-                                    delay: Configs.UI.Timing.Curtain.revealDelayTime,
-                                    options: .calculationModeLinear) {
-
-                // Splash Title
-                var relativeStartTime   = 0.0
-                var currentDuration     = relativeDuration * 3.5
-                print("startTime: \(relativeStartTime) - duration: \(currentDuration)")
-                
-                UIView.addKeyframe(withRelativeStartTime: relativeStartTime,
-                                   relativeDuration: currentDuration) {
-                    
-                    self.launchScreenReplicaSplashTitle.alpha = 0.0
-                    
-                }
-                
-                // Curtain
-                relativeStartTime   = relativeDuration * 1.5
-                currentDuration     = relativeDuration * 2.0
-                print("startTime: \(relativeStartTime) - duration: \(currentDuration)")
-                
-                UIView.addKeyframe(withRelativeStartTime: relativeStartTime,
-                                   relativeDuration: currentDuration) {
-                    
-                    self.launchScreenReplicaCurtainView.alpha = 0.0
-                    
-                }
-                
-                // Marquee FG (Ms. Pac-Man)
-                relativeStartTime += currentDuration
-                currentDuration = relativeDuration * 2.0
-                print("startTime: \(relativeStartTime) - duration: \(currentDuration)")
-
-                UIView.addKeyframe(withRelativeStartTime: relativeStartTime,
-                                   relativeDuration: currentDuration ){ self.marqueeFG.alpha = 1.0 }
-
-                // Margue BG (Ghosts)
-                relativeStartTime += currentDuration
-                currentDuration = relativeDuration * 1.75
-                print("startTime: \(relativeStartTime) - duration: \(currentDuration)")
-
-                UIView.addKeyframe(withRelativeStartTime: relativeStartTime,
-                                   relativeDuration: currentDuration ){ self.marqueeBG.alpha = 1.0 }
-                
-                // Streaks
-                relativeStartTime += currentDuration
-                currentDuration = relativeDuration * 1.25
-                print("startTime: \(relativeStartTime) - duration: \(currentDuration)")
-
-                UIView.addKeyframe(withRelativeStartTime: relativeStartTime,
-                                   relativeDuration: currentDuration) {
-                    
-                    self.streaksContainerView.alpha = 1.0
-                    
-                }
-                
-                // Daily Summary
-                relativeStartTime += currentDuration
-                currentDuration = relativeDuration * 1.0
-                print("startTime: \(relativeStartTime) - duration: \(currentDuration)")
-
-                UIView.addKeyframe(withRelativeStartTime: relativeStartTime,
-                                   relativeDuration: currentDuration) {
-                    
-                    self.dailySummaryView.alpha = 0.8
-                    
-                }
-                
-                // Scores
-                relativeStartTime += currentDuration
-                currentDuration = relativeDuration * 0.5
-                print("startTime: \(relativeStartTime) - duration: \(currentDuration)")
-
-                UIView.addKeyframe(withRelativeStartTime: relativeStartTime,
-                                   relativeDuration: currentDuration) {
-
-                    self.scoresContainerView.alpha = 1.0
-                    self.scoreFilterControlsStackView.alpha = 1.0
-                    self.scoreInput.alpha = 1.0
-                    
-                }
-            } completion: { _ in self.dailySummaryView.shouldCycle = true }
+            self.uiOpeningAnimation()
             
         }
         
@@ -360,6 +275,96 @@ class ViewController: UIViewController {
         uiScoreCycler()
         
     }
+    
+    fileprivate func uiOpeningAnimation() {
+        
+        // TODO: Clean Up - delete print statements
+        let relativeDuration = 1.0 / 10.0
+        
+        UIView.animateKeyframes(withDuration: Configs.UI.Timing.Curtain.revealTime,
+                                delay: Configs.UI.Timing.Curtain.revealDelayTime,
+                                options: .calculationModeLinear) {
+            
+            // Splash Title
+            var relativeStartTime   = 0.0
+            var currentDuration     = relativeDuration * 3.5
+            print("startTime: \(relativeStartTime) - duration: \(currentDuration)")
+            
+            UIView.addKeyframe(withRelativeStartTime: relativeStartTime,
+                               relativeDuration: currentDuration) {
+                
+                self.launchScreenReplicaSplashTitle.alpha = 0.0
+                
+            }
+            
+            // Curtain
+            relativeStartTime   = relativeDuration * 1.5
+            currentDuration     = relativeDuration * 2.0
+            print("startTime: \(relativeStartTime) - duration: \(currentDuration)")
+            
+            UIView.addKeyframe(withRelativeStartTime: relativeStartTime,
+                               relativeDuration: currentDuration) {
+                
+                self.launchScreenReplicaCurtainView.alpha = 0.0
+                
+            }
+            
+            // Marquee FG (Ms. Pac-Man)
+            relativeStartTime += currentDuration
+            currentDuration = relativeDuration * 2.0
+            print("startTime: \(relativeStartTime) - duration: \(currentDuration)")
+            
+            UIView.addKeyframe(withRelativeStartTime: relativeStartTime,
+                               relativeDuration: currentDuration ){ self.marqueeFG.alpha = 1.0 }
+            
+            // Margue BG (Ghosts)
+            relativeStartTime += currentDuration
+            currentDuration = relativeDuration * 1.75
+            print("startTime: \(relativeStartTime) - duration: \(currentDuration)")
+            
+            UIView.addKeyframe(withRelativeStartTime: relativeStartTime,
+                               relativeDuration: currentDuration ){ self.marqueeBG.alpha = 1.0 }
+            
+            // Streaks
+            relativeStartTime += currentDuration
+            currentDuration = relativeDuration * 1.25
+            print("startTime: \(relativeStartTime) - duration: \(currentDuration)")
+            
+            UIView.addKeyframe(withRelativeStartTime: relativeStartTime,
+                               relativeDuration: currentDuration) {
+                
+                self.streaksContainerView.alpha = 1.0
+                
+            }
+            
+            // Daily Summary
+            relativeStartTime += currentDuration
+            currentDuration = relativeDuration * 1.0
+            print("startTime: \(relativeStartTime) - duration: \(currentDuration)")
+            
+            UIView.addKeyframe(withRelativeStartTime: relativeStartTime,
+                               relativeDuration: currentDuration) {
+                
+                self.dailySummaryView.alpha = 0.8
+                
+            }
+            
+            // Scores
+            relativeStartTime += currentDuration
+            currentDuration = relativeDuration * 0.5
+            print("startTime: \(relativeStartTime) - duration: \(currentDuration)")
+            
+            UIView.addKeyframe(withRelativeStartTime: relativeStartTime,
+                               relativeDuration: currentDuration) {
+                
+                self.scoresContainerView.alpha = 1.0
+                self.scoreFilterControlsStackView.alpha = 1.0
+                self.scoreInput.alpha = 1.0
+                
+            }
+        } completion: { _ in self.dailySummaryView.shouldCycle = true }
+    }
+    
     
     fileprivate func uiHideScore(_ shouldHide: Bool) {
         
