@@ -49,7 +49,7 @@ struct Configs {
             
             struct Curtain {
                 
-                static let revealTime: Double   = 1.5
+                static let revealTime: Double   = 2.5
                 static let revealDelayTime      = 0.001
                 
             }
