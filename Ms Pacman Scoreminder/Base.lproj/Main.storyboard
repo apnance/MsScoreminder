@@ -480,7 +480,7 @@
                                 <rect key="frame" x="43" y="390" width="304" height="20"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="d4r-1W-jEE" userLabel="Filter Type">
-                                        <rect key="frame" x="0.0" y="0.0" width="83.666666666666671" height="21"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="86" height="21"/>
                                         <segments>
                                             <segment title="R"/>
                                             <segment title="H"/>
@@ -488,14 +488,14 @@
                                         </segments>
                                     </segmentedControl>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Vnt-bR-Qfa" userLabel="Avg Sorted">
-                                        <rect key="frame" x="94.666666666666657" y="0.0" width="115" height="21"/>
+                                        <rect key="frame" x="97" y="0.0" width="110" height="21"/>
                                         <segments>
                                             <segment title="Avg"/>
                                             <segment title="Single"/>
                                         </segments>
                                     </segmentedControl>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Hbp-Q9-muc" userLabel="Date Sorted">
-                                        <rect key="frame" x="220.66666666666671" y="0.0" width="83.333333333333343" height="21"/>
+                                        <rect key="frame" x="218" y="0.0" width="86" height="21"/>
                                         <segments>
                                             <segment title="Def"/>
                                             <segment title="Date"/>
@@ -570,17 +570,45 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yGI-Rh-K7B" userLabel="launchScreenReplicaCurtainView">
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ms. Scoreminder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OKd-Yw-qxu">
-                                        <rect key="frame" x="88" y="403.66666666666669" width="214" height="37"/>
-                                        <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="29"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gDq-tv-2IV">
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ms. Scoreminder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="nhr-QY-sih">
+                                                <rect key="frame" x="29.333333333333343" y="396.66666666666669" width="339.33333333333326" height="58.666666666666686"/>
+                                                <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="46"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ms. Scoreminder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="AsU-u8-nqu">
+                                                <rect key="frame" x="27.333333333333343" y="394.66666666666669" width="339.33333333333326" height="58.666666666666686"/>
+                                                <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="46"/>
+                                                <color key="textColor" name="Pink"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ms. Scoreminder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OKd-Yw-qxu">
+                                                <rect key="frame" x="25.333333333333343" y="392.66666666666669" width="339.33333333333326" height="58.666666666666686"/>
+                                                <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="46"/>
+                                                <color key="textColor" name="Banana"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="OKd-Yw-qxu" firstAttribute="centerY" secondItem="gDq-tv-2IV" secondAttribute="centerY" id="Fqe-be-7ra"/>
+                                            <constraint firstItem="nhr-QY-sih" firstAttribute="centerX" secondItem="gDq-tv-2IV" secondAttribute="centerX" constant="3.9999999999999716" id="I1Y-2w-7m1"/>
+                                            <constraint firstItem="OKd-Yw-qxu" firstAttribute="centerX" secondItem="gDq-tv-2IV" secondAttribute="centerX" id="KVn-ej-oZ4"/>
+                                            <constraint firstItem="AsU-u8-nqu" firstAttribute="centerX" secondItem="gDq-tv-2IV" secondAttribute="centerX" constant="1.9999999999999716" id="PFt-bX-r19"/>
+                                            <constraint firstItem="AsU-u8-nqu" firstAttribute="centerY" secondItem="gDq-tv-2IV" secondAttribute="centerY" constant="2" id="iWW-kg-YR5"/>
+                                            <constraint firstItem="nhr-QY-sih" firstAttribute="centerY" secondItem="gDq-tv-2IV" secondAttribute="centerY" constant="4" id="yhZ-st-dV8"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" name="Blue"/>
                                 <constraints>
-                                    <constraint firstItem="OKd-Yw-qxu" firstAttribute="centerY" secondItem="yGI-Rh-K7B" secondAttribute="centerY" id="dPc-xu-3OK"/>
-                                    <constraint firstItem="OKd-Yw-qxu" firstAttribute="centerX" secondItem="yGI-Rh-K7B" secondAttribute="centerX" id="t9f-MD-IJq"/>
+                                    <constraint firstItem="gDq-tv-2IV" firstAttribute="top" secondItem="yGI-Rh-K7B" secondAttribute="top" id="Fkc-pp-87P"/>
+                                    <constraint firstAttribute="bottom" secondItem="gDq-tv-2IV" secondAttribute="bottom" id="VIR-cM-3b3"/>
+                                    <constraint firstItem="gDq-tv-2IV" firstAttribute="leading" secondItem="yGI-Rh-K7B" secondAttribute="leading" id="dhu-mF-EXm"/>
+                                    <constraint firstAttribute="trailing" secondItem="gDq-tv-2IV" secondAttribute="trailing" id="jB2-yo-cuL"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -654,7 +682,7 @@
                         <outlet property="graphTitleLabel" destination="8Zo-q5-ziH" id="pxk-vT-7y5"/>
                         <outlet property="htmlTestView" destination="FyJ-yg-YC1" id="DEG-3f-6f8"/>
                         <outlet property="launchScreenReplicaCurtainView" destination="yGI-Rh-K7B" id="m5D-b0-hdo"/>
-                        <outlet property="launchScreenReplicaSplashTitle" destination="OKd-Yw-qxu" id="an9-cT-Zls"/>
+                        <outlet property="launchScreenReplicaSplashTitleView" destination="gDq-tv-2IV" id="LFG-BZ-MSx"/>
                         <outlet property="levelSelector" destination="ZjU-v8-9Gv" id="ZnC-SN-tUM"/>
                         <outlet property="mainView" destination="8bC-Xf-vdC" id="J7W-rz-fVF"/>
                         <outlet property="marqueeBG" destination="ycv-3o-wBM" id="n7H-ps-7Cn"/>

@@ -17,18 +17,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ms. Scoreminder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYv-8n-XY9">
-                                <rect key="frame" x="100" y="429.5" width="214" height="37"/>
-                                <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="29"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ms. Scoreminder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ElD-rA-tHY">
+                                <rect key="frame" x="41.5" y="422.5" width="339.5" height="59"/>
+                                <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="46"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ms. Scoreminder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Mpe-5w-IF3">
+                                <rect key="frame" x="39.5" y="420.5" width="339.5" height="59"/>
+                                <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="46"/>
+                                <color key="textColor" name="Pink"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ms. Scoreminder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="UYv-8n-XY9">
+                                <rect key="frame" x="37.5" y="418.5" width="339.5" height="59"/>
+                                <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="46"/>
+                                <color key="textColor" name="Banana"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="Blue"/>
                         <constraints>
-                            <constraint firstItem="UYv-8n-XY9" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Nb0-Cf-3Jx"/>
-                            <constraint firstItem="UYv-8n-XY9" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="d6s-nZ-G7I"/>
+                            <constraint firstItem="UYv-8n-XY9" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Ldo-ml-3EH"/>
+                            <constraint firstItem="UYv-8n-XY9" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="bve-LB-xOM"/>
+                            <constraint firstItem="ElD-rA-tHY" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="4" id="giK-kb-NHa"/>
+                            <constraint firstItem="ElD-rA-tHY" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="4.25" id="sVv-TU-9KA"/>
+                            <constraint firstItem="Mpe-5w-IF3" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="2" id="scM-Zu-43T"/>
+                            <constraint firstItem="Mpe-5w-IF3" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="2.25" id="wQb-eg-y1W"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -38,8 +54,14 @@
         </scene>
     </scenes>
     <resources>
+        <namedColor name="Banana">
+            <color red="0.99699997901916504" green="0.90600001811981201" blue="0.19799999892711639" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Blue">
             <color red="0.062745098039215685" green="0.50980392156862742" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Pink">
+            <color red="0.94499999284744263" green="0.19300000369548798" blue="0.49599999189376831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
