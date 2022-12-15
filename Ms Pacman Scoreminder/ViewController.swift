@@ -281,12 +281,12 @@ class ViewController: UIViewController {
         UIView.buildAnimation(withDuration: Configs.UI.Timing.Curtain.revealTime,
                               delay: Configs.UI.Timing.Curtain.revealDelayTime,
                               withFrames: [
-                                (0.0, 10, { self.launchScreenReplicaSplashTitleView.alpha = 0.0 } ), // Splash Title
-                                (-2.0, 9, { self.launchScreenReplicaCurtainView.alpha = 0.0 } ), // Curtain
-                                (0.0, 7, { self.marqueeFG.alpha = 1.0 } ), // Marquee FG (Ms. Pac-Man)
-                                (0.0, 5, { self.marqueeBG.alpha = 1.0 } ), // Margue BG (Ghosts)
-                                (0.0, 3, { self.streaksContainerView.alpha = 1.0} ), // Streaks
-                                (0.0, 2, { self.dailySummaryView.alpha = 0.8 }), // Daily Summary
+                                (0.0, 10, { self.launchScreenReplicaSplashTitleView.alpha = 0.0 } ),    // Splash Title
+                                (-2.0, 9, { self.launchScreenReplicaCurtainView.alpha = 0.0 } ),        // Curtain
+                                (0.0, 7, { self.marqueeFG.alpha = 1.0 } ),                              // Marquee FG (Ms. Pac-Man)
+                                (0.0, 5, { self.marqueeBG.alpha = 1.0 } ),                              // Margue BG (Ghosts)
+                                (0.0, 3, { self.streaksContainerView.alpha = 1.0} ),                    // Streaks
+                                (0.0, 2, { self.dailySummaryView.alpha = 0.8 }),                        // Daily Summary
                                 (0.0, 5, { // Scores
                                     self.scoresContainerView.alpha = 1.0
                                     self.scoreFilterControlsStackView.alpha = 1.0
