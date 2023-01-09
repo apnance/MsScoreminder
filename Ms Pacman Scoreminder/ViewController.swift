@@ -15,8 +15,8 @@ class ViewController: UIViewController {
     // MARK: - Properties
     var statMan = StatManager()
     private var scoreToDelete: Score?
-    private let (w, h, p) = (100.0, 50.0, 10.0)
-    
+    private let (w, h, p) = (117.0, 58.0, 3.5)
+  
     private var scoreCycler  = (num: -34,
                                 incr: 1,
                                 dataCurrent: 1,
@@ -138,7 +138,7 @@ class ViewController: UIViewController {
         DispatchQueue.global(qos: .userInteractive).async {
             
             self.statMan.open(){ self.uiInit() }
-            
+        
         }
         
     }
@@ -585,13 +585,15 @@ class ViewController: UIViewController {
                                    dashPattern: [0.1,12],
                                    lineCap: .round)
         
-        let scores = statMan.filter(count: 18)
-        
         scoresContainerView.isHidden = false
         scoresFilterLabel.text = statMan.getFilterLabel(dateRange: .unspecified)
         
-        let colCount = Int(scoresView.frame.width) / Int(w)
-        var col = 1
+        let rowCount    = Int(scoresView.frame.height) / Int(h)
+        let colCount    = Int(scoresView.frame.width) / Int(w)
+        var col         = 1
+        
+        let scoreCount  = colCount * rowCount
+        let scores      = statMan.filter(count: scoreCount)
         
         var (xO, yO) = ((scoresView.frame.width / colCount.double) / 2.0, (h + p) * 0.55)
         
