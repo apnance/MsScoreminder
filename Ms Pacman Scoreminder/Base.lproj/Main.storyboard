@@ -480,7 +480,7 @@
                                 <rect key="frame" x="43" y="390" width="304" height="20"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="d4r-1W-jEE" userLabel="Filter Type">
-                                        <rect key="frame" x="0.0" y="0.0" width="86" height="21"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="83.666666666666671" height="21"/>
                                         <segments>
                                             <segment title="R"/>
                                             <segment title="H"/>
@@ -488,14 +488,14 @@
                                         </segments>
                                     </segmentedControl>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Vnt-bR-Qfa" userLabel="Avg Sorted">
-                                        <rect key="frame" x="97" y="0.0" width="110" height="21"/>
+                                        <rect key="frame" x="94.666666666666657" y="0.0" width="115" height="21"/>
                                         <segments>
                                             <segment title="Avg"/>
                                             <segment title="Single"/>
                                         </segments>
                                     </segmentedControl>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Hbp-Q9-muc" userLabel="Date Sorted">
-                                        <rect key="frame" x="218" y="0.0" width="86" height="21"/>
+                                        <rect key="frame" x="220.66666666666671" y="0.0" width="83.333333333333343" height="21"/>
                                         <segments>
                                             <segment title="Def"/>
                                             <segment title="Date"/>
