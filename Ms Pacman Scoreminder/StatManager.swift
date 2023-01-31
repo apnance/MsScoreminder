@@ -402,7 +402,7 @@ class StatManager {
                 case .avgRecents:
                     _filteredAll = getScores(sortedBy: .avgDate)
                     isDateSorted = true
-
+                    
                 case .avgHighsHighFirst:
                     _filteredAll = getScores(sortedBy: .avgHigh)
                     
@@ -489,6 +489,9 @@ class StatManager {
         return "\(baseText)\(rangeText)"
         
     }
+    
+    /// Returns the current value of Preferences.shared.scoreSortFilter
+    func getFilter() -> ScoreSortFilter { prefs.scoreSortFilter }
     
     func setFilter(_ type: ScoreSortFilter.FilterType,
                    daily: Bool,

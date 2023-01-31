@@ -601,11 +601,28 @@ class ViewController: UIViewController {
         scoresView.removeAllSubviews()
         scoreViews = []
         
+        var currentDate = Date(timeIntervalSince1970: 0).simple
+        var textColor   = Configs.UI.Display.defaultAtomicScoreViewTextColor
+        
         for score in scores {
+            
+            if statMan.getFilter().isAverage {
+                
+                // Average - Only First Day is White
+                textColor = score.date.isToday ? .white : Configs.UI.Display.defaultAtomicScoreViewTextColor
+                
+            } else if score.date.simple != currentDate {
+                
+                // Single - Alternate White/Banana
+                currentDate = score.date.simple
+                textColor   = textColor == .white ? Configs.UI.Display.defaultAtomicScoreViewTextColor : .white
+                
+            }
             
             let scoreView = AtomicScoreView.new(delegate: self,
                                                 withScore: score,
-                                                andData: statMan.getDisplayStats(score))
+                                                andData: statMan.getDisplayStats(score),
+                                                textColor: textColor)
             
             scoreViews.append(scoreView)
             

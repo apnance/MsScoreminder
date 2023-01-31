@@ -5,7 +5,7 @@
 //  Created by Aaron Nance on 9/21/21.
 //
 
-import Foundation
+import UIKit
 
 struct Configs {
     
@@ -42,6 +42,7 @@ struct Configs {
         struct Display {
             
             static let graphPointCount = 30
+            static let defaultAtomicScoreViewTextColor = UIColor(named:"Banana")!
             
         }
         

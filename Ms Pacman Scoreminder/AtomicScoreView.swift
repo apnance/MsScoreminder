@@ -16,12 +16,13 @@ class AtomicScoreView: UIView {
     /// Factory method for instantiating AtomicScoreViews via nib loading.
     static func new(delegate: AtomicScoreViewDelegate?,
                     withScore score: Score,
-                    andData data: [String]) -> AtomicScoreView {
+                    andData data: [String],
+                    textColor: UIColor = Configs.UI.Display.defaultAtomicScoreViewTextColor) -> AtomicScoreView {
         
         let scoreView = nib.instantiate(withOwner: self,
                                         options: nil).first as! AtomicScoreView
         scoreView.delegate = delegate
-        scoreView.load(score: score, data: data)
+        scoreView.load(score: score, data: data, textColor: textColor)
         
         return scoreView
         
@@ -40,14 +41,14 @@ class AtomicScoreView: UIView {
             
     private var data = [String]()
   
-    private func load(score: Score, data: [String]) {
+    private func load(score: Score, data: [String], textColor: UIColor) {
         
         self.data   = data
         self.score  = score
         
         // date
         dateView.text       = score.date.simple
-        dateView.textColor  = score.date.isToday ? .white : UIColor(named:"Banana")
+        dateView.textColor  = textColor
         
         // average game count
         averageGameCountLabel.alpha                 = score.scoreType == .average ? 1 : 0
@@ -58,7 +59,7 @@ class AtomicScoreView: UIView {
         
         // score
         scoreView.text      = score.score.delimited
-        scoreView.textColor = score.date.isToday ? .white : UIColor(named:"Banana")
+        scoreView.textColor = textColor
         
         // fruit image
         fruitView.image     = score.levelIcon
