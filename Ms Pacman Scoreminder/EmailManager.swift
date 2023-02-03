@@ -62,13 +62,18 @@ struct EmailManager {
         
         var description = content.description
         
+        let down    = "▼"
+        let up      = "▲"
+        
         if let int = Int(description) {
             
-            if int > 0 { description = "+" + description }
+            if int > 0 { description = up + description }
+            else if int < 0 { description = down + description.replacingOccurrences(of: "-", with: "")}
             
         } else if let dub = Double(description) {
             
-            if dub > 0 { description = "+" + description }
+            if dub > 0 { description = up + description }
+            else if dub < 0 { description = down + description.replacingOccurrences(of: "-", with: "")}
             
         }
         
@@ -168,7 +173,7 @@ struct EmailManager {
     }
     
     static private func buildDailyStatsHTML(using statMan: StatManager) -> HTML {
-        
+
         func buildStreakHTML() -> String {
             
             if let  streaks = statMan.getStreaks(),
@@ -189,7 +194,7 @@ struct EmailManager {
         
         if let dailyStats = statMan.getDailyStatsSummary().first,
            dailyStats.areToday {
-            
+        
             var percentile = StatManager.percentileDescription(dailyStats.rank)
             var rank = "\(dailyStats.rank.0.oridinalDescription) of \(dailyStats.rank.1)"
             let games = "\(dailyStats.gamesPlayed) today, \(statMan.getTotalGamesPlayed()) total"
@@ -328,7 +333,7 @@ struct EmailManager {
                     \(dailyStatsHTML)
                     <br/>
                     \(levelSummaryHTML)
-                </div>
+                    </div>
                 
                 </body>\
                 </html>
