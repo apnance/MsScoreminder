@@ -85,7 +85,15 @@ class AtomicScoreView: UIView {
     
     @objc func handleTap() {
         
-        if score.scoreType.isDeletable { delegate?.didTap(score: score) }
+        if !score.scoreType.isDeletable {
+            
+            delegate?.didTapSingle(score: score)
+            
+        } else {
+            
+            delegate?.didTapAverage(score: score)
+            
+        }
         
     }
     
@@ -117,6 +125,7 @@ class AtomicScoreView: UIView {
 	
 protocol AtomicScoreViewDelegate {
     
-    func didTap(score: Score)
+    func didTapSingle(score: Score)
+    func didTapAverage(score: Score)
     
 }
