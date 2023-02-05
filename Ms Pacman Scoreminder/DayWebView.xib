@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DayWebView" customModule="Ms_Scoreminder" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="U3m-2h-Egu"/>
+                <outlet property="webView" destination="RgG-eR-3g4" id="fX0-iR-E6Z"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="330" height="376"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <wkWebView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RgG-eR-3g4">
+                    <rect key="frame" x="0.0" y="0.0" width="330" height="376"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <wkWebViewConfiguration key="configuration">
+                        <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                        <wkPreferences key="preferences"/>
+                    </wkWebViewConfiguration>
+                </wkWebView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K7P-aZ-hVT" userLabel="Backward Button">
+                    <rect key="frame" x="5" y="171" width="51" height="34.333333333333343"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="arrowshape.backward.fill" catalog="system">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <buttonConfiguration key="configuration" style="plain" image="arrowshape.backward.fill" catalog="system">
+                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="didPushLeftButton:" destination="-1" eventType="touchUpInside" id="rsu-ts-npq"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOo-Kf-yEG" userLabel="Forward Button">
+                    <rect key="frame" x="274" y="171" width="51" height="34.333333333333343"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="arrowshape.right.fill" catalog="system">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <buttonConfiguration key="configuration" style="plain">
+                        <imageReference key="image" image="arrowshape.right.fill" catalog="system" symbolScale="large"/>
+                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="didPushRightButton:" destination="-1" eventType="touchUpInside" id="wFE-MW-wit"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="RgG-eR-3g4" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="0O3-3k-se9"/>
+                <constraint firstAttribute="top" secondItem="RgG-eR-3g4" secondAttribute="top" id="10Z-7y-5VA"/>
+                <constraint firstItem="vOo-Kf-yEG" firstAttribute="trailing" secondItem="RgG-eR-3g4" secondAttribute="trailing" constant="-5" id="JSq-ey-X5P"/>
+                <constraint firstItem="K7P-aZ-hVT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="OqF-Na-IFd"/>
+                <constraint firstAttribute="trailing" secondItem="RgG-eR-3g4" secondAttribute="trailing" id="S7u-Ed-7X8"/>
+                <constraint firstItem="RgG-eR-3g4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Sfq-o4-McR"/>
+                <constraint firstItem="vOo-Kf-yEG" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="eXA-m3-SMe"/>
+                <constraint firstItem="K7P-aZ-hVT" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="v1n-6E-vR6"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-26.153846153846153" y="221.09004739336493"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="arrowshape.backward.fill" catalog="system" width="128" height="104"/>
+        <image name="arrowshape.right.fill" catalog="system" width="128" height="104"/>
+    </resources>
+</document>
