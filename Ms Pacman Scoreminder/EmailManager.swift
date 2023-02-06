@@ -7,7 +7,26 @@
 
 import Foundation
 
+enum HTMLDestination { case email, app}
+
 struct EmailManager {
+    
+    private struct Color {
+        static let cherry       = "#DB0029"
+        static let strawberry   = "#AA0026"
+        static let pretzel      = "#A4642F"
+        static let orange       = "#FB8300"
+        
+        static let apple        = "#DB0029"
+        static let banana       = "#FEE732"
+        static let pear         = "#BCF824"
+        
+        static let pink         = "#F0317E"
+        static let blue         = "#1082C8"
+        static let white        = "white"
+        static let black        = "black"
+        
+    }
     
     /// Keeps track of the types of columnar output columnate has generated.  This is used to generate the CSS
     /// needed to accompany the HTML output.
@@ -67,13 +86,13 @@ struct EmailManager {
         
         if let int = Int(description) {
             
-            if int > 0 { description = up + description }
-            else if int < 0 { description = down + description.replacingOccurrences(of: "-", with: "")}
+            if int > 0 { description        = up + description }
+            else if int < 0 { description   = down + description.replacingOccurrences(of: "-", with: "")}
             
         } else if let dub = Double(description) {
             
-            if dub > 0 { description = up + description }
-            else if dub < 0 { description = down + description.replacingOccurrences(of: "-", with: "")}
+            if dub > 0 { description        = up + description }
+            else if dub < 0 { description   = down + description.replacingOccurrences(of: "-", with: "")}
             
         }
         
@@ -82,7 +101,7 @@ struct EmailManager {
     }
     
     /// Builds the CSS necessary to display the columnar HTML created by `columnate()`
-    static private func buildColumnStyles() -> String {
+    static private func buildColumnStyles(withFontSize fontSize: String) -> String {
         
         var output = ""
         
@@ -99,9 +118,9 @@ struct EmailManager {
                                     flex: 100%;
                                     padding: 0px;
                                     text-align: center;
-                                    color: white;
+                                    color: \(Color.white);
                                     padding-left: 10px;
-                                    font-size: 8.5pt;
+                                    font-size: \(fontSize);
                                     font-weight: bold;
                                 
                                 }
@@ -119,10 +138,10 @@ struct EmailManager {
                         let className = colClassName(i, of: colCount)
                         let percentWidth = isInterrior ? fractionalWidth : edgeWidth
                         let textAlign = i == 1 ? "right" : (i == colCount ? "left" : "center")
-                        let color = i == 1 ? "#FEE732" : "white"
+                        let color = i == 1 ? Color.banana : Color.white
                         let paddingLeft = i == colCount ? "10px" : "0px"
                         let paddingRight = i == 1 ? "10px" : "0px"
-                        let font = "bold 8.5pt Futura"
+                        let font = "bold \(fontSize) Futura"
                         
                         output +=   """
                                     .\(className) {
@@ -146,12 +165,12 @@ struct EmailManager {
         
     }
     
-    static private func buildLevelSummaryHTML(using statMan: StatManager) -> HTML {
+    static private func buildLevelSummaryHTML(using statMan: StatManager, forDate date: Date) -> HTML {
         
         var html = columnate(["LEVEL", "COUNT", "PERCENT", "TODAY"],
                              ["header", "header", "header", "header"])
         
-        let dailyStats = statMan.getDaily(for: Date())
+        let dailyStats = statMan.getDaily(for: date)
         
         for (level, count) in statMan.stats.levelTally!.enumerated() {
             
@@ -172,8 +191,8 @@ struct EmailManager {
         
     }
     
-    static private func buildDailyStatsHTML(using statMan: StatManager) -> HTML {
-
+    static private func buildDailyStatsHTML(using statMan: StatManager, forDate date: Date) -> HTML {
+        
         func buildStreakHTML() -> String {
             
             if let  streaks = statMan.getStreaks(),
@@ -192,27 +211,26 @@ struct EmailManager {
             
         }
         
-        if let dailyStats = statMan.getDailyStatsSummary().first,
-           dailyStats.areToday {
-        
+        if let dailyStats = statMan.getDailyStatsSummary(forDate: date).requested {
+            
             var percentile = StatManager.percentileDescription(dailyStats.rank)
             var rank = "\(dailyStats.rank.0.oridinalDescription) of \(dailyStats.rank.1)"
             let games = "\(dailyStats.gamesPlayed) today, \(statMan.getTotalGamesPlayed()) total"
             var avgScore = dailyStats.averageScore.delimited
             var avgLevel = Score.nameFor(level: dailyStats.averageLevel)
             
-            if let yesterdayStats  = statMan.getPreviousDaily() {
+            if let previousStats  = statMan.getPreviousDaily(forDate: date) {
                 
                 let rankCompare = StatManager.rankCompare(dailyStats.rank,
-                                                          yesterdayStats.rank)
+                                                          previousStats.rank)
                
                 let percentileDelta = -rankCompare.0
                 let percentileDeltaDisplay = percentileDelta.description.rTrimTo(5)
                 
                 let rankDelta       = rankCompare.1
                 
-                let scoreDelta      = dailyStats.averageScore - yesterdayStats.averageScore 
-                let levelDelta      = dailyStats.averageLevel - yesterdayStats.averageLevel
+                let scoreDelta      = dailyStats.averageScore - previousStats.averageScore 
+                let levelDelta      = dailyStats.averageLevel - previousStats.averageLevel
                 
                 rank += rankDelta < 0 ? spanWrap(rankDelta, withClass: "down") :
                         rankDelta > 0 ? spanWrap(rankDelta, withClass: "up")  : ""
@@ -230,13 +248,13 @@ struct EmailManager {
             }
                         
             return """
-                        \(columnate(["DATE",        Date().simple]))
-                        \(columnate(["RANK",        rank]))
-                        \(columnate(["PERCENTILE",  percentile]))
+                        \(columnate(["DATE:",        dailyStats.date.simple]))
+                        \(columnate(["RANK:",        rank]))
+                        \(columnate(["PERCENTILE:",  percentile]))
                         
-                        \(columnate(["AVG SCORE",   avgScore]))
-                        \(columnate(["AVG LEVEL",   avgLevel]))
-                        \(columnate(["GAMES",       games]))
+                        \(columnate(["AVG SCORE:",   avgScore]))
+                        \(columnate(["AVG LEVEL:",   avgLevel]))
+                        \(columnate(["GAMES:",       games]))
                         \(buildStreakHTML())
                     """
             
@@ -248,11 +266,48 @@ struct EmailManager {
         
     }
     
-    static func buildSummaryHTML(using statMan: StatManager) -> HTML {
+    static private func buildHeader(forDestination dest: HTMLDestination) -> String {
         
-        let levelSummaryHTML    = buildLevelSummaryHTML(using: statMan)
-        let dailyStatsHTML      = buildDailyStatsHTML(using: statMan)
-        let colStyles           = buildColumnStyles()
+        switch dest {
+            case .email:
+                
+                return """
+                        <div class="row" style="margin-top: -90px; padding-bottom: 0px;"><img class="marqueeImg" src="data:image/png;base64, \(emailBG)" /></div>
+                        """
+                
+            case .app:
+                
+                return """
+                        <div style="color: \(Color.banana); font-size: 70pt; text-align: center; margin-bottom: 0px; margin-top:20px;">DAILY SUMMARY</div>
+                        """
+                
+        }
+        
+    }
+    
+    static func buildSummaryHTML(using statMan: StatManager,
+                                 forDate date: Date,
+                                 andDestination dest: HTMLDestination) -> HTML {
+        
+        let levelSummaryHTML    = buildLevelSummaryHTML(using: statMan, forDate: date)
+        let dailyStatsHTML      = buildDailyStatsHTML(using: statMan, forDate: date)
+        
+        let bgColor                 = dest == .email ? Color.blue    : "clear"
+        let bodyHeight              = dest == .email ? "650px"      : "100%"
+        let bodyPadding             = dest == .email ? "90px 0px 0px 0px" : "0px"
+        let fontSize                = dest == .email ? "8.4pt"      : "25.5pt"
+        
+        let roundedBoxBorderWidht   = dest == .email ? "15px"       : "40px"
+        let roundedBoxHeight        = dest == .email ? "560px"      : "100%"
+        let roundedBoxWidth         = dest == .email ? "90%"        : "100%"
+        let roundedBoxBorderColor   = dest == .email ? Color.banana    : Color.white
+        let roundedBoxBorderRadii   = dest == .email ? "200px 200px 5px 5px" : "5px"
+        
+        let colStyles               = buildColumnStyles(withFontSize: fontSize)
+        let mastHead                = buildHeader(forDestination: dest)
+        
+        let hr1                      = dest == .email ? "" : "<hr />"
+        let hr2                      = dest == .email ? "<br/>" : "<hr />"
         
         return  """
                 <meta name="color-scheme" content="only">
@@ -260,18 +315,24 @@ struct EmailManager {
                 <style>
                 body {
                 
-                    background-color: #1082C8;
-                
-                    font-size: 12pt;
+                    background-color: \(bgColor);
                     font-weight: 900;
-                
+                    font-family: Futura;
                     width: 100%;
-                    height: 650px;
+                    height: \(bodyHeight);
                     
-                    padding: 90px 0px 0px 0px;
+                    padding: \(bodyPadding);
                     margin: 0px;
                 
                     text-align: center;
+                }
+                
+                hr {
+                width: 80%;
+                margin:20px auto 20px auto;
+                height: 10px;
+                        background-color: \(Color.white);
+                        border: 0 none;
                 }
                 
                 .marqueeImg {
@@ -285,40 +346,40 @@ struct EmailManager {
                 .roundedBox {
                 
                     border-style: solid;
-                    border-radius: 200px 200px 5px 5px;
-                    border-width: 15px;
-                    border-color: #FEE233;
+                    border-radius: \(roundedBoxBorderRadii);
+                    border-width: \(roundedBoxBorderWidht);
+                    border-color: \(roundedBoxBorderColor);
                 
-                    background-color: #F0317E;
+                    background-color: \(Color.pink);
                 
                     margin-left: auto;
                     margin-right: auto;
-                    width: 90%;
-                    height: 560px;
+                    width: \(roundedBoxWidth);
+                    height: \(roundedBoxHeight);
                     padding: 10px;
                 
                 }
                 
                 .down {
-                    font-size: 8.5pt;
-                    color: #DB0029; /* apple color */
+                    font-size: \(fontSize);
+                    color: \(Color.apple);
                 }
                 
                 .up {
-                    font-size: 8.5pt;
-                    color: #BCF824; /* pear color */
+                    font-size: \(fontSize);
+                    color: \(Color.pear);
                 }
                 
                 .header {
-                    font-size: 8.5pt;
+                    font-size: \(fontSize);
                     font-weight: bold;
-                    color: #BCF824; /* pear color */
+                    color: \(Color.pear);
                 }
                 
                 .pacDot {
-                    font-size: 8.5pt;
+                    font-size: \(fontSize);
                     font-weight: bold;
-                    color: white;
+                    color: \(Color.white);
                 }
                 
                 * { box-sizing: border-box; }
@@ -329,12 +390,12 @@ struct EmailManager {
                 </style>\
                 <body>
                     <div class="roundedBox">
-                    <div class="row" style="margin-top: -90px; padding-bottom: 0px;"><img class="marqueeImg" src="data:image/png;base64, \(emailBG)" /></div>
+                    \(mastHead)
+                    \(hr1)
                     \(dailyStatsHTML)
-                    <br/>
+                    \(hr2)
                     \(levelSummaryHTML)
                     </div>
-                
                 </body>\
                 </html>
                 """

@@ -1,5 +1,5 @@
 //
-//  DailySummaryView.swift
+//  DailyHighlightsView.swift
 //  Ms Scoreminder
 //
 //  Created by Aaron Nance on 10/29/21.
@@ -8,9 +8,24 @@
 import UIKit
 import APNUtil
 
-class DailySummaryView: RoundView {
+class DailyHighlightsView: RoundView {
     
-    private var stats = [DailyStats]()
+    private var stats: DailyStatCluster
+    
+    private var statsArray: [DailyStats] {
+        
+        var statsArray = [DailyStats]()
+        
+        if let requested = stats.requested { statsArray.append(requested) }
+        
+        if let high = stats.high { statsArray.append(high) }
+        
+        if let low = stats.low { statsArray.append(low) }
+            
+        return statsArray
+        
+    }
+    
     private var currStats = 0
     private var initialized: Bool = false
     var shouldCycle = false
@@ -35,11 +50,11 @@ class DailySummaryView: RoundView {
         
         if subviews.count == 0 {
             
-            let nib = UINib(nibName: "DailySummaryView",
+            let nib = UINib(nibName: "DailyHighlightsView",
                                            bundle: Bundle.main)
             
             let view = nib.instantiate(withOwner: nil,
-                                       options: nil).first as! DailySummaryView
+                                       options: nil).first as! DailyHighlightsView
             
             view.frame = self.frame
             view.autoresizingMask = self.autoresizingMask
@@ -59,8 +74,7 @@ class DailySummaryView: RoundView {
     
     
     // MARK: - Custom Methods
-    func load(_ stats: [DailyStats]) {
-        
+    func load(_ stats: DailyStatCluster) {
         self.stats = stats
         self.currStats = 0
         
@@ -77,14 +91,14 @@ class DailySummaryView: RoundView {
         cycle()
         
     }
-  
+    
     @objc private func cycle() {
         
         uiInit()
         
         if !shouldCycle { return /*EXIT*/ }
         
-        if stats.count < 1 {
+        if stats.requested == nil && stats.high == nil && stats.low == nil {
             
             if alpha != 0 {
                 
@@ -111,13 +125,13 @@ class DailySummaryView: RoundView {
         }
         
     }
-  
+    
     private func uiInit() {
         
         // reset counter?
-        currStats = currStats > stats.lastUsableIndex ? 0 : currStats
+        currStats = currStats > statsArray.lastUsableIndex ? 0 : currStats
         
-        let stats = self.stats[currStats]
+        let stats = statsArray[currStats]
         
         dateLabel.text  = stats.date.simple
         stat1Label.text = getRankText(stats)
@@ -139,7 +153,7 @@ class DailySummaryView: RoundView {
         
         bestDayContainerView.alpha  = 1.0
         bestDayStarLabel.alpha      = stats.rank.0 <= 10 ? 1.0 : 0.0
-
+        
         bestDayRank.text            = stats.rank.0.description
         
         Utils.UI.addShadows(to: averageLevelContainerView)

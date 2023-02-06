@@ -8,7 +8,14 @@
 import UIKit
 import APNUtil
 
+//HERE...
+// TODO: Clean Up - investigate moving various scores arrays below to OrderedDictionary for quicker lookup
+import OrderedCollections
+
 enum ScoreSortOrder { case date, high, low, avgDate, avgHigh, avgLow }
+
+/// Return type of `getDailyStatsSummary(forDate:)`
+typealias DailyStatCluster = (requested: DailyStats?, high: DailyStats?, low: DailyStats?)
 
 struct Stats {
     
@@ -16,17 +23,17 @@ struct Stats {
     fileprivate(set) var needsTally: Bool
     
     // singles
-    fileprivate var scoresDateSorted    = [Score]()
-    fileprivate var scoresHighSorted    = [Score]()
-    fileprivate var scoresLowSorted     = [Score]()
+    fileprivate var scoresDateSorted            = [Score]()         // { didSet { print(#function) } }
+    fileprivate var scoresHighSorted            = [Score]()         // { didSet { print(#function) } }
+    fileprivate var scoresLowSorted             = [Score]()         // { didSet { print(#function) } }
     
     // averages
-    fileprivate var avgScoresDateSorted = [Score]()
-    fileprivate var avgScoresHighSorted = [Score]()
-    fileprivate var avgScoresLowSorted  = [Score]()
+    fileprivate var avgScoresDateSorted         = [Score]()         // { didSet { print(#function) } }
+    fileprivate var avgScoresReverseDateSorted  = [Score]()         // { didSet { print(#function) } }
+    fileprivate var avgScoresHighSorted         = [Score]()         // { didSet { print(#function) } }
+    fileprivate var avgScoresLowSorted          = [Score]()         // { didSet { print(#function) } }
     
-    fileprivate var dailies             = [DailyStats]()
-    fileprivate var dailiesDateSorted: [DailyStats] { dailies.sorted{$0.date > $1.date } }
+    fileprivate var dailies                     = [DailyStats]()    // { didSet { print(#function) } }
     
     var levelTally: [Int]!
     var highScore: Score!
@@ -44,11 +51,41 @@ struct Stats {
         needsTally = true
         data = [String : [Score]]()
         
+        var orderedDictionary = OrderedDictionary<DateString, Score>()
+        orderedDictionary.reverse()
     }
     
 }
 
 extension StatManager {
+    
+    func getNearestPastAveragedScore(from: Date) -> Score? {
+        
+        let fromSimple = from.simple.simpleDate
+        
+        for score in stats.avgScoresDateSorted {
+            
+            if score.date < fromSimple { return score /*EXIT*/ }
+            
+        }
+        
+        return nil /*EXIT*/
+        
+    }
+    
+    func getNearestFutureAveragedScore(from: Date) -> Score? {
+        
+        let fromSimple = from.simple.simpleDate
+        
+        for score in stats.avgScoresReverseDateSorted {
+            
+            if score.date > fromSimple { return score /*EXIT*/ }
+            
+        }
+        
+        return nil  /*EXIT*/
+        
+    }
     
     func getScoreData() -> [DateString : [Score] ] { return stats.data }
     func getScoresFor(_ date: DateString) -> [Score] { stats.data[date] ?? [] }
@@ -89,50 +126,55 @@ extension StatManager {
     
     func setScores(_ scores: [Score]) {
         
-        stats.scoresDateSorted    = scores.sorted{ $0.date > $1.date }
-        stats.scoresHighSorted    = scores.sorted{ $0.score > $1.score }
-        stats.scoresLowSorted     = scores.sorted{ $0.score < $1.score }
+        stats.scoresDateSorted          = scores.sorted{ $0.date > $1.date }
+        stats.scoresHighSorted          = scores.sorted{ $0.score > $1.score }
+        stats.scoresLowSorted           = scores.sorted{ $0.score < $1.score }
         
     }
     
     /// Returns `[DailyStats]` containing the highest average score, lowest average score,
     /// and today's average score(if available - i.e. more than 1 game played today).
-    func getDailyStatsSummary() -> [DailyStats] {
+    func getDailyStatsSummary(forDate date: Date = Date()) -> DailyStatCluster {
         
-        var returnStats = [DailyStats]()
+        var cluster: DailyStatCluster = (nil, nil, nil)
+    
+        let simpleDate = date.simple
         
         for daily in stats.dailies {
             
-            if daily.areToday || daily.areLow || daily.areHigh {
-                
-                returnStats.append(daily)
-                
-            }
+            if daily.date.simple == simpleDate { cluster.requested = daily }
+            
+            if daily.areLow { cluster.high = daily }
+            
+            if daily.areHigh { cluster.low = daily }
             
         }
         
-        return returnStats.sorted{ $0.date > $1.date }
+        return cluster
         
     }
-
-//    HERE!!!
-//     TODO: Clean Up - BUG
+    
+    //     TODO: Clean Up - BUG
     //bug: fix bug causing average atomic score UI to show percentiles computed against single scores not average scores.
     
-    /// Returns the second most recent `DailyStats`, akin to concept of "yesterday's" stats.
-    func getPreviousDaily() -> DailyStats? {
+    /// Returns the `DailyStats` for the nearest past date.
+    func getPreviousDaily(forDate date: Date) -> DailyStats? {
         
-        stats.dailiesDateSorted.second
+        guard let previousDate = getNearestPastAveragedScore(from: date)?.date else { return nil /*EXIT*/ }
+            
+            return getDaily(for: previousDate)
         
     }
     
     /// Returns the `DailyStats` for the specified `Date` or null if none found for that `Date`.
     func getDaily(for date: Date) -> DailyStats? {
         
+        let forSimple = date.simple
+        
         for daily in stats.dailies {
             
-            if daily.areToday { return daily /*EXIT*/ }
-                
+            if daily.date.simple == forSimple { return daily /*EXIT*/ }
+            
         }
         
         return nil
@@ -150,6 +192,8 @@ extension StatManager {
                                                                                      level: $0.averageLevel,
                                                                                      averagedGameCount: $0.gamesPlayed) }
         
+        stats.avgScoresReverseDateSorted = stats.avgScoresDateSorted.reversed()
+        
         stats.avgScoresHighSorted   = dailies.sorted{ $0.averageScore > $1.averageScore }.map{Score(date: $0.date,
                                                                                                     score: $0.averageScore,
                                                                                                     level: $0.averageLevel,
@@ -165,7 +209,6 @@ extension StatManager {
     /// Returns `StreakSet` of current consecutive days played streak and longest consecutive days played.
     func getStreaks() -> StreakSet? { stats.streaks }
     
-    //TODO: add streaks to email
     func setStreaks(with dates: [DateString]) {
         
         // This method is very inefecient, call only if there is no current streak

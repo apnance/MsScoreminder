@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 
-class DayWebView: UIView {
+class DailySummaryWebView: UIView {
     
     @IBOutlet var contentView: UIView!
     @IBOutlet private weak var webView: WKWebView!

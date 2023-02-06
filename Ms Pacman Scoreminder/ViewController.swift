@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     var statMan = StatManager()
     private var scoreToDelete: Score?
     private let (w, h, p) = (117.0, 58.0, 3.5)
-  
+    
     private var scoreCycler  = (num: -34,
                                 incr: 1,
                                 dataCurrent: 1,
@@ -25,7 +25,6 @@ class ViewController: UIViewController {
     private var scoreViews = [AtomicScoreView]()
     private var timer: APNTimer?
     private var lastDailyRunDate = Date().simple
-    
     
     // MARK: - Outlets
     @IBOutlet var mainView: UIView!
@@ -58,7 +57,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var dataSelector: UISegmentedControl!
     @IBOutlet weak var avgSorted: UISegmentedControl!
     @IBOutlet weak var dateSorted: UISegmentedControl!
-    @IBOutlet weak var dailySummaryView: DailySummaryView!
+    @IBOutlet weak var dailyHighlightsView: DailyHighlightsView!
     
     // Delete Score
     @IBOutlet weak var deleteUIContainerView: UIView!
@@ -87,6 +86,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var graphPointCountSlider: UISlider!
     @IBOutlet weak var graphPointCountLabel: UILabel!
     @IBOutlet weak var graphPointSliderPacPelletView: UIView!
+
+    // Day WebView
+    @IBOutlet weak var dailySummaryWebView: DailySummaryWebView!
     
     // MARK: Actions
     // Delete UI
@@ -286,13 +288,13 @@ class ViewController: UIViewController {
                                 (0.0, 7, { self.marqueeFG.alpha = 1.0 } ),                              // Marquee FG (Ms. Pac-Man)
                                 (0.0, 5, { self.marqueeBG.alpha = 1.0 } ),                              // Margue BG (Ghosts)
                                 (0.0, 3, { self.streaksContainerView.alpha = 1.0} ),                    // Streaks
-                                (0.0, 2, { self.dailySummaryView.alpha = 0.8 }),                        // Daily Summary
+                                (0.0, 2, { self.dailyHighlightsView.alpha = 0.8 }),                        // Daily Summary
                                 (0.0, 5, { // Scores
                                     self.scoresContainerView.alpha = 1.0
                                     self.scoreFilterControlsStackView.alpha = 1.0
                                     self.scoreInput.alpha = 1.0 })
                               ],
-                              completionHandler: { _ in self.dailySummaryView.shouldCycle = true })
+                              completionHandler: { _ in self.dailyHighlightsView.shouldCycle = true })
         
     }
     
@@ -425,6 +427,9 @@ class ViewController: UIViewController {
     
     private func uiMisc() {
         
+        // Delegates
+        dailySummaryWebView.delegate = self
+        
         // Hide Delete Confirmation
         showDeleteConfirmation(false)
         
@@ -548,7 +553,7 @@ class ViewController: UIViewController {
             
             self.marqueeLevelIcon.rotateRandom(minAngle: 0, maxAngle: 5)
             
-            self.dailySummaryView.load(self.statMan.getDailyStatsSummary())
+            self.dailyHighlightsView.load(self.statMan.getDailyStatsSummary())
             
             if self.statMan.getHighscore().isNotNil {
                 
@@ -671,7 +676,7 @@ class ViewController: UIViewController {
         
         Utils.UI.addShadows(to: [scoresView,
                                  streaksContainerView,
-                                 dailySummaryView,
+                                 dailyHighlightsView,
                                  deleteUIContainerView,
                                  deleteScoreContainerView,
                                  deleteScoreLabel,
@@ -769,8 +774,12 @@ class ViewController: UIViewController {
         // Hide
         showDeleteConfirmation(false)
         showGraph(false)
+        
+        showDailySummary(false)
+        
         htmlTestView.isHidden       = true
         popUpScreenView.isHidden    = true
+        
         
     }
     
@@ -806,6 +815,62 @@ class ViewController: UIViewController {
         
     }
     
+    func showDailySummary(_ shouldShow: Bool, forDate date: Date? = nil) {
+
+        dailySummaryWebView.isHidden         = !shouldShow
+        popUpScreenView.isHidden    = !shouldShow
+        
+        if let date = date,
+           shouldShow {
+            
+            statMan.tally()
+            
+            let html            = EmailManager.buildSummaryHTML(using: statMan,
+                                                                forDate: date,
+                                                                andDestination: .app)
+            
+            dailySummaryWebView.load(html: html, forDate: date)
+            
+        }
+        
+    }
+    
+}
+
+// MARK: - DayViewDelegate
+extension ViewController: DayWebViewDelegate {
+    
+    func didPushLButton(currentDate: Date) {
+        
+        if let closestPastScore  = statMan.getNearestPastAveragedScore(from: currentDate),
+           closestPastScore.averagedGameCount > 0 {
+            
+            let date = closestPastScore.date
+            let html            = EmailManager.buildSummaryHTML(using: statMan,
+                                                                forDate: date,
+                                                                andDestination: .app)
+            dailySummaryWebView.load(html: html, forDate: date)
+            
+        }
+        
+    }
+    
+    func didPushRButton(currentDate: Date) {
+
+        if let closestFutureScore  = statMan.getNearestFutureAveragedScore(from: currentDate),
+           closestFutureScore.averagedGameCount > 1 {
+            
+            let date = closestFutureScore.date
+            
+            let html            = EmailManager.buildSummaryHTML(using: statMan,
+                                                                forDate: date,
+                                                                andDestination: .app)
+            dailySummaryWebView.load(html: html, forDate: date)
+            
+        }
+        
+    }
+    
 }
 
 // MARK: - Email Data
@@ -821,7 +886,9 @@ extension ViewController: MFMailComposeViewControllerDelegate {
             
             mail.setToRecipients(["apnance@gmail.com"])
             mail.setSubject("Ms. Score : Save Data : \(Date().simple)")
-            mail.setMessageBody(EmailManager.buildSummaryHTML(using: statMan),
+            mail.setMessageBody(EmailManager.buildSummaryHTML(using: statMan,
+                                                              forDate: Date(),
+                                                              andDestination: .email),
                                 isHTML: true)
             mail.mailComposeDelegate = self
             
@@ -845,7 +912,9 @@ extension ViewController: MFMailComposeViewControllerDelegate {
             
             if !htmlTestView.isHidden {
                 
-                htmlTestView.loadHTMLString(EmailManager.buildSummaryHTML(using: statMan),
+                htmlTestView.loadHTMLString(EmailManager.buildSummaryHTML(using: statMan,
+                                                                          forDate: Date(),
+                                                                          andDestination: .email),
                                             baseURL: nil)
                 
             }
@@ -881,20 +950,25 @@ extension ViewController: MFMailComposeViewControllerDelegate {
 // MARK: - AtomicScoreViewDelegate
 extension ViewController: AtomicScoreViewDelegate {
     
-    func didTap(score: Score) {
+    func didTapSingle(score: Score) {
+        
+        self.showDailySummary(true, forDate: score.date)
+    }
+    
+    func didTapAverage(score: Score) {
         
         scoreToDelete = score
-        
+
         let scoreView = AtomicScoreView.new(delegate: nil,
                                             withScore: score,
                                             andData: statMan.getDisplayStats(score))
-        
+
         deleteScoreContainerView.removeAllSubviews()
         deleteScoreContainerView.translatesAutoresizingMaskIntoConstraints = true
         deleteScoreContainerView.addSubview(scoreView)
-        
+
         scoreView.center = deleteScoreContainerView.frame.center
-        
+
         showDeleteConfirmation(true)
         
     }

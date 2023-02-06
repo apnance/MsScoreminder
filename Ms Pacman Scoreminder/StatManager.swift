@@ -421,7 +421,6 @@ class StatManager {
             
         }
         
-        // TODO: Clean Up -  rename/move getCount(:)
         func getCount(mostRecentDays: Int) -> Int {
             
             if !isDateSorted { return mostRecentDays }
