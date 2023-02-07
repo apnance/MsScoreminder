@@ -10,25 +10,9 @@ import APNUtil
 
 class DailyHighlightsView: RoundView {
     
-    private var stats: DailyStatCluster
-    
-    private var statsArray: [DailyStats] {
-        
-        var statsArray = [DailyStats]()
-        
-        if let requested = stats.requested { statsArray.append(requested) }
-        
-        if let high = stats.high { statsArray.append(high) }
-        
-        if let low = stats.low { statsArray.append(low) }
-            
-        return statsArray
-        
-    }
-    
-    private var currStats = 0
     private var initialized: Bool = false
     var shouldCycle = false
+    private var dailyStats = DailyStatsCluster()
     
     // MARK: - Outlets
     @IBOutlet weak var dateLabel: UILabel!
@@ -74,9 +58,9 @@ class DailyHighlightsView: RoundView {
     
     
     // MARK: - Custom Methods
-    func load(_ stats: DailyStatCluster) {
-        self.stats = stats
-        self.currStats = 0
+    func load(_ stats: DailyStatsCluster) {
+        
+        self.dailyStats = stats
         
         if !initialized {
             
@@ -98,7 +82,7 @@ class DailyHighlightsView: RoundView {
         
         if !shouldCycle { return /*EXIT*/ }
         
-        if stats.requested == nil && stats.high == nil && stats.low == nil {
+        if dailyStats.isEmpty {
             
             if alpha != 0 {
                 
@@ -128,10 +112,7 @@ class DailyHighlightsView: RoundView {
     
     private func uiInit() {
         
-        // reset counter?
-        currStats = currStats > statsArray.lastUsableIndex ? 0 : currStats
-        
-        let stats = statsArray[currStats]
+        let stats = dailyStats.getNext()
         
         dateLabel.text  = stats.date.simple
         stat1Label.text = getRankText(stats)
@@ -158,9 +139,6 @@ class DailyHighlightsView: RoundView {
         
         Utils.UI.addShadows(to: averageLevelContainerView)
         averageLevelContainerView.rotateRandom(minAngle: 5, maxAngle: 8)
-        
-        // advance counter
-        currStats += 1
         
     }
     

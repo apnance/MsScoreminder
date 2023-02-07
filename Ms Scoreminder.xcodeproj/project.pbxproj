@@ -19,6 +19,7 @@
 		9316246C26FA4C90004C06B7 /* Ms_Pacman_ScoreminderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9316246B26FA4C90004C06B7 /* Ms_Pacman_ScoreminderUITests.swift */; };
 		9316247F26FA5B02004C06B7 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9316247E26FA5B02004C06B7 /* Score.swift */; };
 		931800EE2721F957002D21E2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931800ED2721F957002D21E2 /* Utils.swift */; };
+		931C594C2992DF5A00F361FB /* DailyStatsCluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931C594B2992DF5A00F361FB /* DailyStatsCluster.swift */; };
 		932B1731270D49210030CD59 /* DefaultData.csv in Resources */ = {isa = PBXBuildFile; fileRef = 932B1730270D49210030CD59 /* DefaultData.csv */; };
 		932F7E2826FAD3C1001147B7 /* Configs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932F7E2526FAD323001147B7 /* Configs.swift */; };
 		9331176228E79EE9009F2054 /* APNUtil in Frameworks */ = {isa = PBXBuildFile; productRef = 9331176128E79EE9009F2054 /* APNUtil */; };
@@ -88,6 +89,7 @@
 		9316246D26FA4C90004C06B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9316247E26FA5B02004C06B7 /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		931800ED2721F957002D21E2 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		931C594B2992DF5A00F361FB /* DailyStatsCluster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyStatsCluster.swift; sourceTree = "<group>"; };
 		932B1730270D49210030CD59 /* DefaultData.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = DefaultData.csv; sourceTree = "<group>"; };
 		932CE9ED2705410D006A1CF8 /* Ms Scoreminder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Ms Scoreminder.entitlements"; sourceTree = "<group>"; };
 		932F7E2526FAD323001147B7 /* Configs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configs.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				93ACBFE9272CDCD4000BBC2C /* DailyStats.swift */,
 				93345AD32730698D0090154B /* Stats.swift */,
 				93B67B5C274DD741007C302C /* PlayStreak.swift */,
+				931C594B2992DF5A00F361FB /* DailyStatsCluster.swift */,
 			);
 			name = M;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 				931800EE2721F957002D21E2 /* Utils.swift in Sources */,
 				936DF3AB272C6C2300CF2AEE /* DailyHighlightsView.swift in Sources */,
 				9316247F26FA5B02004C06B7 /* Score.swift in Sources */,
+				931C594C2992DF5A00F361FB /* DailyStatsCluster.swift in Sources */,
 				93B6D0EE270231A4005ADF3F /* AtomicScoreView.swift in Sources */,
 				93ACBFEA272CDCD4000BBC2C /* DailyStats.swift in Sources */,
 				9313DE4C273B418F00460712 /* EmailManager.swift in Sources */,
