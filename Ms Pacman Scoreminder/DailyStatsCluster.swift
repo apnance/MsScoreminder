@@ -36,10 +36,13 @@ struct DailyStatsCluster {
     
     mutating private func buildStats() {
         
-        if stats.count != 0 { return /*EXIT - Build only once!*/ }
+        if stats.count != 0 { return /*EXIT - build only once!*/ }
         
+        // note: set currentSTatIndex such that high stats shows
+        // first time getNext() is called(i.e. to be 1 less than
+        // the index of high)
         if let requested    = requested { stats.append(requested) }
-        if let high         = high      { stats.append(high); currentStatIndex = stats.count - 2} // set currentSTatIndex so high shows first time getNext is called.
+        if let high         = high      { stats.append(high); currentStatIndex = stats.count - 2 /*see note*/ }
         if let low          = low       { stats.append(low) }
         
     }
