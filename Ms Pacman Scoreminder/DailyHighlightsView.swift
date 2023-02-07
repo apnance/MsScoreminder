@@ -11,7 +11,7 @@ import APNUtil
 class DailyHighlightsView: RoundView {
     
     private var initialized: Bool = false
-    var shouldCycle = false
+    var shouldCycle = false //{ didSet{ cycle() }}
     private var dailyStats = DailyStatsCluster()
     
     // MARK: - Outlets
@@ -67,50 +67,72 @@ class DailyHighlightsView: RoundView {
             initialized = true
                     
             let tap = UITapGestureRecognizer(target: self,
-                                             action: #selector(cycle))
+                                             action: #selector(uiInit))
             self.addGestureRecognizer(tap)
             
         }
         
-        cycle()
-        
-    }
-    
-    @objc private func cycle() {
-        
         uiInit()
         
-        if !shouldCycle { return /*EXIT*/ }
-        
-        if dailyStats.isEmpty {
-            
-            if alpha != 0 {
-                
-                UIView.animate(withDuration: Configs.UI.Timing.RoundViewInfo.fadeTime,
-                               delay: 0) {
-                    
-                    self.alpha = 0.0
-                    
-                }
-                
-            }
-            
-            return /*EXIT*/
-            
-        }
-        
-        if alpha != 0.75 {
-            
-            UIView.animate(withDuration: 0.8,
-                           delay: 0.0,
-                           options: UIView.AnimationOptions.curveEaseIn,
-                           animations: { self.alpha = 0.8 } )
-            
-        }
-        
     }
     
-    private func uiInit() {
+//    @objc private func tap() {
+//
+//        uiInit()
+//        shouldCycle = false
+//        cycle()
+//
+//    }
+//    
+//    @objc private func cycle() {
+//
+//        if !shouldCycle {
+//
+//            APNTimer.stopTimer(named: Configs.UI.Timing.RoundViewInfo.DailyHighlight.timerID)
+//
+//            uiInit()
+//
+//            return /*EXIT*/
+//
+//        }
+//
+//        if dailyStats.isEmpty {
+//
+//            if alpha != 0 {
+//
+//                UIView.animate(withDuration: Configs.UI.Timing.RoundViewInfo.fadeTime,
+//                               delay: 0) {
+//
+//                    self.alpha = 0.0
+//
+//                }
+//
+//            }
+//
+//            return /*EXIT*/
+//
+//        }
+//
+//        if alpha != 0.75 {
+//
+//            UIView.animate(withDuration: 0.8,
+//                           delay: 0.0,
+//                           options: UIView.AnimationOptions.curveEaseIn,
+//                           animations: { self.alpha = 0.8 } )
+//
+//        }
+//
+//        APNTimer.init(name: "DailyHighlightCycle",
+//                      repeatInterval: Configs.UI.Timing.RoundViewInfo.DailyHighlight.delay) {
+//            timer in
+//
+//            self.uiInit()
+//
+//        }
+//
+//    }
+    
+    @objc private func uiInit() {
         
         let stats = dailyStats.getNext()
         

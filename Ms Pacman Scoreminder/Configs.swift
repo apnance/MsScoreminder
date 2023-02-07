@@ -72,8 +72,12 @@ struct Configs {
             
             struct RoundViewInfo {
                 
-                static let fadeTime             = 0.39
+                static let fadeTime                 = 0.39
                 
+//                struct DailyHighlight {
+//                    static let delay                = 5.0
+//                    static let timerID              = "DailyHighlightTimerKey"
+//                }
             }
             
         }
