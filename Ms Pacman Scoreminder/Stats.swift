@@ -138,9 +138,9 @@ extension StatManager {
             
             if daily.date.simple == simpleDate { cluster.requested = daily }
             
-            if daily.areLow { cluster.high = daily }
+            if daily.areHigh { cluster.high = daily }
             
-            if daily.areHigh { cluster.low = daily }
+            if daily.areLow { cluster.low = daily }
             
         }
         
