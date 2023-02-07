@@ -294,7 +294,7 @@ class ViewController: UIViewController {
                                     self.scoreFilterControlsStackView.alpha = 1.0
                                     self.scoreInput.alpha = 1.0 })
                               ],
-                              completionHandler: nil /*{ _ in self.dailyHighlightsView.shouldCycle = true }*/)
+                              completionHandler: nil)
         
     }
     
