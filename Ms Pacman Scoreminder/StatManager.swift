@@ -186,25 +186,6 @@ class StatManager {
         
     }
     
-    // Converts data to [["Date", "Score", "Level"]]
-    func getScoreArray() -> (score: [[String]], headers: [String]) {
-        
-        var scoreArray = [[String]]()
-        
-        let scores = getScores(sortedBy: .date)
-        
-        for score in scores {
-            
-            scoreArray.append([score.date.simple,
-                               score.score.description,
-                               score.level.description])
-            
-        }
-        
-        return (scoreArray, ["Date", "Score", "Level"])
-        
-    }
-    
     /// Tallies all stats and only executes when needsTally is set to `true`
     /// - important: Should be called before any attempt is made to read from `data`, `scores`, or `dailyStats`
     /// - important: `needsTally` should be set to true any time data is changed.
@@ -344,7 +325,7 @@ class StatManager {
             daily.averageScore  = scoreSum / scores.count
             daily.averageLevel  = Int((levelSum.double / scores.count.double).rounded())
             
-            daily.gamesPlayed     = scores.count
+            daily.gamesPlayed   = scores.count
             
             dailies.append(daily)
             
