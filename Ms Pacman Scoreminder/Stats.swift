@@ -48,8 +48,8 @@ struct Stats {
     
     init() {
         
-        needsTally = true
-        data = [String : [Score]]()
+        needsTally  = true
+        data        = [String : [Score]]()
         
         var orderedDictionary = OrderedDictionary<DateString, Score>()
         orderedDictionary.reverse()
@@ -83,7 +83,7 @@ extension StatManager {
             
         }
         
-        return nil  /*EXIT*/
+        return nil /*EXIT*/
         
     }
     
@@ -137,7 +137,7 @@ extension StatManager {
     func getDailyStatsSummary(forDate date: Date = Date()) -> DailyStatCluster {
         
         var cluster: DailyStatCluster = (nil, nil, nil)
-    
+        
         let simpleDate = date.simple
         
         for daily in stats.dailies {
@@ -181,8 +181,6 @@ extension StatManager {
         
     }
     
-    func getAllDailies() -> [DailyStats] { stats.dailies }
-    
     func setDailys(_ dailies: [DailyStats]) {
         
         stats.dailies               = dailies
@@ -194,9 +192,9 @@ extension StatManager {
         
         stats.avgScoresReverseDateSorted = stats.avgScoresDateSorted.reversed()
         
-        stats.avgScoresHighSorted   = dailies.sorted{ $0.averageScore > $1.averageScore }.map{Score(date: $0.date,
-                                                                                                    score: $0.averageScore,
-                                                                                                    level: $0.averageLevel,
+        stats.avgScoresHighSorted   = dailies.sorted{ $0.averageScore > $1.averageScore }.map{Score(date:   $0.date,
+                                                                                                    score:  $0.averageScore,
+                                                                                                    level:  $0.averageLevel,
                                                                                                     averagedGameCount: $0.gamesPlayed) }
         
         stats.avgScoresLowSorted    = dailies.sorted{ $0.averageScore < $1.averageScore }.map{Score(date: $0.date,
