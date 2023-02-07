@@ -190,10 +190,7 @@ extension StatManager {
                                                                                                     level:  $0.averageLevel,
                                                                                                     averagedGameCount: $0.gamesPlayed) }
         
-        stats.avgScoresLowSorted    = dailies.sorted{ $0.averageScore < $1.averageScore }.map{Score(date: $0.date,
-                                                                                                    score: $0.averageScore,
-                                                                                                    level: $0.averageLevel,
-                                                                                                    averagedGameCount: $0.gamesPlayed) }
+        stats.avgScoresLowSorted    = stats.avgScoresHighSorted.reversed()
         
     }
     
