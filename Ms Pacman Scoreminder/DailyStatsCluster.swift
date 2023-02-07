@@ -39,7 +39,7 @@ struct DailyStatsCluster {
         if stats.count != 0 { return /*EXIT - Build only once!*/ }
         
         if let requested    = requested { stats.append(requested) }
-        if let high         = high      { stats.append(high) }
+        if let high         = high      { stats.append(high); currentStatIndex = stats.count - 2} // set currentSTatIndex so high shows first time getNext is called.
         if let low          = low       { stats.append(low) }
         
     }
