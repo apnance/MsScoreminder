@@ -952,24 +952,25 @@ extension ViewController: AtomicScoreViewDelegate {
     
     func didTapSingle(score: Score) {
         
-        self.showDailySummary(true, forDate: score.date)
+        scoreToDelete = score
+        
+        let scoreView = AtomicScoreView.new(delegate: nil,
+                                            withScore: score,
+                                            andData: statMan.getDisplayStats(score))
+        
+        deleteScoreContainerView.removeAllSubviews()
+        deleteScoreContainerView.translatesAutoresizingMaskIntoConstraints = true
+        deleteScoreContainerView.addSubview(scoreView)
+        
+        scoreView.center = deleteScoreContainerView.frame.center
+        
+        showDeleteConfirmation(true)
+        
     }
     
     func didTapAverage(score: Score) {
         
-        scoreToDelete = score
-
-        let scoreView = AtomicScoreView.new(delegate: nil,
-                                            withScore: score,
-                                            andData: statMan.getDisplayStats(score))
-
-        deleteScoreContainerView.removeAllSubviews()
-        deleteScoreContainerView.translatesAutoresizingMaskIntoConstraints = true
-        deleteScoreContainerView.addSubview(scoreView)
-
-        scoreView.center = deleteScoreContainerView.frame.center
-
-        showDeleteConfirmation(true)
+        self.showDailySummary(true, forDate: score.date)
         
     }
     

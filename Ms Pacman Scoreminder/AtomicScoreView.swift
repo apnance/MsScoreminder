@@ -87,11 +87,11 @@ class AtomicScoreView: UIView {
         
         if !score.scoreType.isDeletable {
             
-            delegate?.didTapSingle(score: score)
+            delegate?.didTapAverage(score: score)
             
         } else {
             
-            delegate?.didTapAverage(score: score)
+            delegate?.didTapSingle(score: score)
             
         }
         
