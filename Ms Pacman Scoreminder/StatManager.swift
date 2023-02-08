@@ -118,7 +118,7 @@ class StatManager {
     
     func getMoneySpent() -> String {
         
-        let money       = stats.gamesCount * 25
+        let money       = stats.singleGamesCount * 25
         
         var moneyText   = "$\(money)"
         
@@ -156,23 +156,23 @@ class StatManager {
             
             if score == data {
                 
-                let scoreCount = stats.gamesCount
-                let rank = i + 1
-                var percentile = String()
+                let scoreCount      = score.isSingle ? stats.singleGamesCount : stats.averagedGamesCount
+                let rank            = i + 1
+                var percentile      = String()
                 
                 switch rank {
                         
                     case 1:
                         
-                        percentile = " ★ "
+                        percentile  = " ★ "
                         
                     case scoreCount:
                         
-                        percentile = "LOW"
+                        percentile  = "LOW"
                         
                     default:
                         
-                        percentile = StatManager.percentileDescription((rank,scoreCount))
+                        percentile  = StatManager.percentileDescription((rank,scoreCount))
                         
                 }
                 
@@ -286,13 +286,13 @@ class StatManager {
         
         setScores(scores)
         
-        stats.gamesCount    = scores.count
-        stats.highScore     = highScore
-        stats.lowScore      = lowScore
-        stats.avgScore      = Score(date: Date(),
-                                    score: scoreSum / totalScores,
-                                    level: levelSum / totalScores,
-                                    averagedGameCount: totalScores)
+        stats.singleGamesCount  = scores.count
+        stats.highScore         = highScore
+        stats.lowScore          = lowScore
+        stats.avgScore          = Score(date: Date(),
+                                        score: scoreSum / totalScores,
+                                        level: levelSum / totalScores,
+                                        averagedGameCount: totalScores)
         
     }
     
@@ -333,7 +333,7 @@ class StatManager {
         
         // sort
         dailies.sort(by: >)
-        
+
         let totalDaysPlayed = dailies.count
         
         for (i, _) in dailies.enumerated() {

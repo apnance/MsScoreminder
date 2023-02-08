@@ -30,10 +30,12 @@ struct Stats {
     fileprivate var dailies                     = [DailyStats]()
     
     var levelTally: [Int]!
-    var highScore: Score!
-    var lowScore: Score!
-    var avgScore: Score!
-    var gamesCount  = 0
+    var highScore:  Score!
+    var lowScore:   Score!
+    var avgScore:   Score!
+    var singleGamesCount  = 0
+    var averagedGamesCount : Int { dailies.count }
+    
     
     fileprivate var streaks: StreakSet?
     
@@ -98,7 +100,7 @@ extension StatManager {
         
     }
     
-    func getTotalGamesPlayed() -> Int { stats.gamesCount }
+    func getTotalGamesPlayed() -> Int { stats.singleGamesCount }
     
     func getScores(sortedBy: ScoreSortOrder) -> [Score] {
         
@@ -130,7 +132,7 @@ extension StatManager {
     /// and today's average score(if available - i.e. more than 1 game played today).
     func getDailyStatsSummary(forDate date: Date = Date()) -> DailyStatsCluster {
         
-    var cluster = DailyStatsCluster()
+        var cluster = DailyStatsCluster()
         
         let simpleDate = date.simple
         
@@ -147,9 +149,6 @@ extension StatManager {
         return cluster
         
     }
-    
-    //     TODO: Clean Up - BUG
-    //bug: fix bug causing average atomic score UI to show percentiles computed against single scores not average scores.
     
     /// Returns the `DailyStats` for the nearest past date.
     func getPreviousDaily(forDate date: Date) -> DailyStats? {

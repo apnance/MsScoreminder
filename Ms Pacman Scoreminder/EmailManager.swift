@@ -174,7 +174,7 @@ struct EmailManager {
         
         for (level, count) in statMan.stats.levelTally!.enumerated() {
             
-            let percent = ((count.double / statMan.stats.gamesCount.double) * 100).roundTo(1)
+            let percent = ((count.double / statMan.stats.singleGamesCount.double) * 100).roundTo(1)
             var gamesPlayedIndicator = ""
             
             if let playedCount = dailyStats?.levelsReached[level] {

@@ -94,8 +94,11 @@ struct Score {
     /// The number of game scores included in average score.
     /// - note: Default value is 1 and indicates an unaveraged `Score`.
     private(set) var averagedGameCount: Int = 1
-    var scoreType: ScoreType { averagedGameCount > 1 ? .average : .single }
     
+    /// Does this `Score` represent an
+    var isAveraged: Bool { averagedGameCount > 1 }
+    var isSingle: Bool { averagedGameCount == 1 }
+        
     var displayScore: String { score.delimited }
     var levelString: String { Score.stringFor(level: level) }
     var levelIcon: UIImage { UIImage(named: "ms_icon_\(level)")! }
