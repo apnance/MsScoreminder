@@ -491,7 +491,6 @@ extension StatManager {
         
         let rawData = csv.split(separator: "\n")
         
-        // TODO: Clean Up - aggregate all imported data before saving to stats.data
         for data in rawData {
             
             let rowData     = data.split(separator: ",")
