@@ -148,7 +148,7 @@ class StatManager {
     /// Returns a `[String]` of ready to display score stats.
     func getDisplayStats(_ score: Score) -> [String] {
         
-        let sortBy: ScoreSortOrder = (score.scoreType == .average ? .avgHigh : .high)
+        let sortBy: ScoreSortOrder = (score.isAveraged ? .avgHigh : .high)
         
         let scores = getScores(sortedBy: sortBy)
         

@@ -9,14 +9,6 @@ import UIKit
 import APNUtil
 import APNGraph
 
-enum ScoreType {
-    
-    case average, single
-    
-    var isDeletable: Bool { return self != .average }
-    
-}
-
 struct Score {
     
     private static let levels = ["*",

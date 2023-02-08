@@ -51,7 +51,7 @@ class AtomicScoreView: UIView {
         dateView.textColor  = textColor
         
         // average game count
-        averageGameCountLabel.alpha                 = score.scoreType == .average ? 1 : 0
+        averageGameCountLabel.alpha                 = score.isAveraged ? 1 : 0
         averageGameCountLabel.text                  = "/\(score.averagedGameCount.description)"
         averageGameCountLabel.textColor             = .white
         averageGameCountLabel.clipsToBounds         = true
@@ -85,7 +85,7 @@ class AtomicScoreView: UIView {
     
     @objc func handleTap() {
         
-        if !score.scoreType.isDeletable {
+        if score.isAveraged {
             
             delegate?.didTapAverage(score: score)
             
@@ -108,7 +108,7 @@ class AtomicScoreView: UIView {
         let colorFG = i % 2 != 0 ? score.colorLight : score.colorDark
         let colorBG = i % 2 != 0 ? score.colorDark : score.colorLight
         
-        scoreStatsLabel.text = data[i]
+        scoreStatsLabel.text                    = data[i]
         scoreStatsLabel.textColor               = colorFG
         scoresStatsRoundView.backgroundColor    = colorBG
         
