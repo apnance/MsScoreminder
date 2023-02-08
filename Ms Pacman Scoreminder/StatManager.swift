@@ -25,7 +25,7 @@ enum DateRange : CustomStringConvertible {
             case .month : return "Last Month"
                 
             case .year  : return "Last Year"
-            
+                
             case .all   : return "All"
                 
             case .unspecified : return ""
@@ -414,7 +414,7 @@ class StatManager {
                 if today.daysFrom(earlierDate: score.date) >= mostRecentDays { break /*BREAK*/ }
                 
                 count += 1
-                    
+                
             }
             
             return count
@@ -422,7 +422,7 @@ class StatManager {
         }
         
         let count: Int
-
+        
         switch dateRange {
                 
             case .week:     count = getCount(mostRecentDays: 7)
@@ -435,7 +435,6 @@ class StatManager {
                 
             case .unspecified :
                 
-                // TODO: Clean Up - clarify logic for generating count here...
                 count = returnCount ?? max(1, Int(_filteredAll.count.double * (percent ?? 1.0)))
                 
         }
@@ -672,7 +671,7 @@ extension StatManager {
     }
     
     static func percentileDescription(_ rank: (Int, Int)) -> String {
-
+        
         let len = (rank.0 == 1) ? 3 : 4
         
         return percentile(rank).description.rTrimTo(len)
