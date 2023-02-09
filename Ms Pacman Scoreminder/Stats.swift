@@ -10,7 +10,7 @@ import APNUtil
 import OrderedCollections
 
 enum ScoreSortOrder { case date, high, low, avgDate, avgHigh, avgLow }
-// DELETE ME
+
 struct Stats {
     
     fileprivate var data = [ DateString : [Score] ]()
