@@ -289,6 +289,8 @@ struct EmailManager {
                                  forDate date: Date,
                                  andDestination dest: HTMLDestination) -> HTML {
         
+        let date = date.sansTime()
+        
         let levelSummaryHTML    = buildLevelSummaryHTML(using: statMan, forDate: date)
         let dailyStatsHTML      = buildDailyStatsHTML(using: statMan, forDate: date)
         
