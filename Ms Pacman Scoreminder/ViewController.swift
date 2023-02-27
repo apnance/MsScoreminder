@@ -46,6 +46,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var scoresFilterLabel: UILabel!
     @IBOutlet weak var scoreFilterControlsStackView: UIStackView!
     
+    
+    @IBOutlet weak var TESTSPRITES_GHOST: UIImageView!
+    @IBOutlet weak var TESTSPRITES_MS: UIImageView!
+    @IBOutlet weak var TESTSPRITES_PELLETS: UIImageView!
+    
     // Launch Screen Replica "Curtain"
     @IBOutlet weak var launchScreenReplicaCurtainView: UIView!
     @IBOutlet weak var launchScreenReplicaSplashTitleView: UIView!
@@ -142,6 +147,9 @@ class ViewController: UIViewController {
             self.statMan.open(){ self.uiInit() }
         
         }
+        
+        
+        uiAnimateGameplay()
         
     }
     
@@ -654,6 +662,51 @@ class ViewController: UIViewController {
             
         }
         
+    }
+    
+    /// Builds and runs Ms. Pac-Man/Ghost animation
+    fileprivate func uiAnimateGameplay() {
+        
+        let spriteSheet = SpriteSheet(sprites: UIImage(named: "ms_sprite_sheet")!,
+                                      spriteWidth: 16,
+                                      spriteHeight: 16)
+        
+        var dotsImages  = [UIImage]()
+        var ghostImages = [UIImage]()
+        var msImages    = [UIImage]()
+        
+        // Pellets
+        for i in 9...11 {
+            dotsImages.append(spriteSheet.get(row:i,
+                                              startCol: 3,
+                                              colNum: 5)!.pixelatedLCD(1,
+                                                                       interstitialColor: .clear)!)
+            
+        }
+        
+        // Ms. Pac-Man
+        for i in 0..<3 {
+            let image = spriteSheet.get(row: 0, col: i)!.pixelatedLCD(1,
+                                                                      interstitialColor: .clear)!//.scaledBy(0.5)
+            msImages.append(image)
+        }
+        
+        // Ghost
+        let ghostIndex = Int.random(min: 4, max: 7)
+        for i in 0..<12 {
+            
+            let row = i > 7 ? 4 : ghostIndex
+            
+            let image = spriteSheet.get(row: row, col: i)!.pixelatedLCD(1,
+                                                                        interstitialColor: .clear)!//.scaledBy(0.5)
+            
+            ghostImages.append(image)
+        }
+        
+        let (rep,fps) = (0, 8.0)
+        dotsImages.animate(in: TESTSPRITES_PELLETS, withRepeatCount: rep, fps: 14)
+        msImages.animate(in: TESTSPRITES_MS, withRepeatCount: rep, fps: fps)
+        ghostImages.animate(in: TESTSPRITES_GHOST, withRepeatCount: rep, fps: fps)
     }
     
     /// Styles `label` with pink text outlined in yellow border
