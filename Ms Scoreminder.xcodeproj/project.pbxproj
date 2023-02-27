@@ -36,6 +36,7 @@
 		93B6D0EC27021DAD005ADF3F /* AtomicScoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93B6D0EB27021DAD005ADF3F /* AtomicScoreView.xib */; };
 		93B6D0EE270231A4005ADF3F /* AtomicScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B6D0ED270231A4005ADF3F /* AtomicScoreView.swift */; };
 		93D98BD328DD315C00FD0F80 /* APNGraph in Frameworks */ = {isa = PBXBuildFile; productRef = 93D98BD228DD315C00FD0F80 /* APNGraph */; settings = {ATTRIBUTES = (Required, ); }; };
+		93E363D829A68A6200A561BA /* SpriteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E363D729A68A6200A561BA /* SpriteSheet.swift */; };
 		93F89B4A298B4C3A006C672A /* DailySummaryWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F89B49298B4C3A006C672A /* DailySummaryWebView.swift */; };
 		93F89B4C298B4C43006C672A /* DayWebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93F89B4B298B4C43006C672A /* DayWebView.xib */; };
 /* End PBXBuildFile section */
@@ -107,6 +108,7 @@
 		93B6D0EB27021DAD005ADF3F /* AtomicScoreView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AtomicScoreView.xib; sourceTree = "<group>"; };
 		93B6D0ED270231A4005ADF3F /* AtomicScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicScoreView.swift; sourceTree = "<group>"; };
 		93D98BD128DD314F00FD0F80 /* APNGraph */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = APNGraph; path = ../../Frameworks/APNGraph; sourceTree = "<group>"; };
+		93E363D729A68A6200A561BA /* SpriteSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteSheet.swift; sourceTree = "<group>"; };
 		93F89B49298B4C3A006C672A /* DailySummaryWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySummaryWebView.swift; sourceTree = "<group>"; };
 		93F89B4B298B4C43006C672A /* DayWebView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DayWebView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -200,6 +202,7 @@
 				937B2B4026FBA8E70081CC6A /* StatManager.swift */,
 				9316244D26FA4C8D004C06B7 /* ViewController.swift */,
 				9313DE4B273B418E00460712 /* EmailManager.swift */,
+				93E363D729A68A6200A561BA /* SpriteSheet.swift */,
 			);
 			name = C;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 				931C594C2992DF5A00F361FB /* DailyStatsCluster.swift in Sources */,
 				93B6D0EE270231A4005ADF3F /* AtomicScoreView.swift in Sources */,
 				93ACBFEA272CDCD4000BBC2C /* DailyStats.swift in Sources */,
+				93E363D829A68A6200A561BA /* SpriteSheet.swift in Sources */,
 				9313DE4C273B418F00460712 /* EmailManager.swift in Sources */,
 				9316244E26FA4C8D004C06B7 /* ViewController.swift in Sources */,
 				93B67B5D274DD741007C302C /* PlayStreak.swift in Sources */,
@@ -634,8 +638,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.12;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.aaron.nance.Ms-Scoreminder-v1.4.12";
+				MARKETING_VERSION = 1.4.13;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aaron.nance.Ms-Scoreminder-v1.4.13";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -658,8 +662,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.12;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.aaron.nance.Ms-Scoreminder-v1.4.12";
+				MARKETING_VERSION = 1.4.13;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aaron.nance.Ms-Scoreminder-v1.4.13";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
