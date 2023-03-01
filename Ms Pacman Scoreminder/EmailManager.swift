@@ -86,6 +86,8 @@ struct EmailManager {
         
         if let int = Int(description) {
             
+            description = int.delimited
+            
             if int > 0 { description        = up + description }
             else if int < 0 { description   = down + description.replacingOccurrences(of: "-", with: "")}
             
@@ -96,7 +98,7 @@ struct EmailManager {
             
         }
         
-        return "<span class=\"\(cssClass)\"> (\(description))</span>"
+        return "<span class=\"\(cssClass)\"> \(description)</span>"
         
     }
     
@@ -198,55 +200,62 @@ struct EmailManager {
             if let  streaks = statMan.getStreaks(),
                     streaks.recent.isCurrent {
                 
-                var streakDescription = streaks.recent.durationDescription
+                var streak  = streaks.recent.durationDescription
+                streak      += formatDelta(ints:(streaks.recent.length,
+                                                 streaks.longest.length))
                 
-                let streakDelta = streaks.recent.length - streaks.longest.length
-                
-                streakDescription += streakDelta < 0 ? spanWrap(streakDelta.delimited, withClass: "down") :
-                streakDelta > 0 ? spanWrap(streakDelta.delimited, withClass: "up")  : ""
-                
-                return "\(columnate(["STREAK", streakDescription]))" /*EXIT*/
+                return "\(columnate(["STREAK:", streak]))" /*EXIT*/
                 
             } else { return "" /*EXIT*/ }
             
         }
         
+        func formatDelta(ints:(Int,Int)? = nil, doubles:(Double,Double)? = nil) -> String {
+            
+            assert(!(ints.isNil && doubles.isNil),
+                   "Must specify either ints or doubles and only one should be nil")
+            assert(!(ints.isNotNil && doubles.isNotNil),
+                   "ints or doubles must not both be nil, but only one should be non-nil")
+            
+            if let ints = ints {
+                
+                let delta = ints.0 - ints.1
+                return delta == 0 ? "" : spanWrap(delta,
+                                                  withClass: delta < 0 ? "down" : "up")     /*EXIT*/
+                
+            } else if let doubles = doubles {
+                
+                let delta = doubles.0 - doubles.1
+                return delta == 0 ? "" : spanWrap(delta.description.rTrimTo(5),
+                                                  withClass: delta < 0 ? "down" : "up")    /*EXIT*/
+                
+            }
+            
+            return "Error"
+            
+        }
+        
         if let dailyStats = statMan.getDailyStatsSummary(forDate: date).requested {
             
-            var percentile = StatManager.percentileDescription(dailyStats.rank)
-            var rank = "\(dailyStats.rank.0.oridinalDescription) of \(dailyStats.rank.1)"
-            let games = "\(dailyStats.gamesPlayed) today, \(statMan.getTotalGamesPlayed()) total"
-            var avgScore = dailyStats.averageScore.delimited
-            var avgLevel = Score.nameFor(level: dailyStats.averageLevel)
+            var rank        = "\(dailyStats.rank.0.oridinalDescription) of \(dailyStats.rank.1)"
+            var percentile  = StatManager.percentileDescription(dailyStats.rank)
+            let games       = "\(dailyStats.gamesPlayed) today, \(statMan.getTotalGamesPlayed()) total"
+            var avgScore    = dailyStats.averageScore.delimited
+            var avgLevel    = Score.nameFor(level: dailyStats.averageLevel)
             
             if let previousStats  = statMan.getPreviousDaily(forDate: date) {
                 
-                let rankCompare = StatManager.rankCompare(dailyStats.rank,
-                                                          previousStats.rank)
-               
-                let percentileDelta = -rankCompare.0
-                let percentileDeltaDisplay = percentileDelta.description.rTrimTo(5)
-                
-                let rankDelta       = rankCompare.1
-                
-                let scoreDelta      = dailyStats.averageScore - previousStats.averageScore 
-                let levelDelta      = dailyStats.averageLevel - previousStats.averageLevel
-                
-                rank += rankDelta < 0 ? spanWrap(rankDelta, withClass: "down") :
-                        rankDelta > 0 ? spanWrap(rankDelta, withClass: "up")  : ""
-                
-                percentile +=   percentileDelta < 0 ? spanWrap(percentileDeltaDisplay, withClass: "down") :
-                                percentileDelta > 0 ? spanWrap(percentileDeltaDisplay, withClass: "up")  : ""
-                
-                avgScore +=     scoreDelta < 0 ? spanWrap(scoreDelta.delimited, withClass: "down") :
-                                scoreDelta > 0 ? spanWrap(scoreDelta.delimited, withClass: "up")  : ""
-
-                avgLevel +=     levelDelta < 0 ? spanWrap(levelDelta, withClass: "down") :
-                                levelDelta > 0 ? spanWrap(levelDelta, withClass: "up")  : ""
-
+                rank        += formatDelta(ints:    (previousStats.rank.0,
+                                                     dailyStats.rank.0))
+                percentile  += formatDelta(doubles: (StatManager.percentile(dailyStats.rank),
+                                                     StatManager.percentile(previousStats.rank)))
+                avgScore    += formatDelta(ints:    (dailyStats.averageScore,
+                                                     previousStats.averageScore))
+                avgLevel    += formatDelta(ints:    (dailyStats.averageLevel,
+                                                     previousStats.averageLevel))
                 
             }
-                        
+            
             return """
                         \(columnate(["DATE:",        dailyStats.date.simple]))
                         \(columnate(["RANK:",        rank]))
