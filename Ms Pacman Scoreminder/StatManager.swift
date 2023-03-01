@@ -663,7 +663,7 @@ extension StatManager {
         
     }
     
-    private static func percentile(_ rank: (Int, Int)) -> Double {
+    static func percentile(_ rank: (Int, Int)) -> Double {
         
         rank.0.percentile(of: rank.1, roundedTo: 1)
         
