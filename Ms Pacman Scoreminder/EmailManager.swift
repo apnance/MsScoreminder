@@ -237,7 +237,7 @@ struct EmailManager {
         
         if let dailyStats = statMan.getDailyStatsSummary(forDate: date).requested {
             
-            var rank        = "\(dailyStats.rank.0.oridinalDescription) of \(dailyStats.rank.1)"
+            var rank        = "\(dailyStats.rank.0)<span class=\"super\">\(dailyStats.rank.0.ordinal)</span> of \(dailyStats.rank.1)"
             var percentile  = StatManager.percentileDescription(dailyStats.rank)
             let games       = "\(dailyStats.gamesPlayed) today, \(statMan.getTotalGamesPlayed()) total"
             var avgScore    = dailyStats.averageScore.delimited
@@ -395,6 +395,8 @@ struct EmailManager {
                 
                 * { box-sizing: border-box; }
                 .row { display: flex; }
+                
+                .super { position: relative; top: -0.5em; font-size: 70%; }
                 
                 /* Flex Column Styles */
                 \(colStyles)
