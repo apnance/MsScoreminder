@@ -336,6 +336,45 @@
                                     <constraint firstAttribute="bottom" secondItem="Kw7-ga-S1C" secondAttribute="bottom" id="gxR-ML-Dry"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J3b-ku-ou6" userLabel="Sprites View" customClass="RoundView" customModule="APNUtil">
+                                <rect key="frame" x="95" y="347" width="200" height="35"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKW-r9-bC0">
+                                        <rect key="frame" x="17" y="5" width="25" height="25"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="d8c-DG-tMz"/>
+                                            <constraint firstAttribute="width" constant="25" id="qlb-AH-vcX"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Z3-St-FS7">
+                                        <rect key="frame" x="158" y="5" width="25" height="25"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="25" id="ILu-OY-Bbb"/>
+                                            <constraint firstAttribute="height" constant="25" id="Ttd-9G-DDN"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DTc-7H-b8v">
+                                        <rect key="frame" x="33" y="5" width="125" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="125" id="Ssp-S4-W0f"/>
+                                            <constraint firstAttribute="height" constant="25" id="nia-xn-jHb"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="DTc-7H-b8v" firstAttribute="centerY" secondItem="J3b-ku-ou6" secondAttribute="centerY" id="9ed-EH-hyK"/>
+                                    <constraint firstItem="4Z3-St-FS7" firstAttribute="leading" secondItem="DTc-7H-b8v" secondAttribute="trailing" id="HnR-hG-lyC"/>
+                                    <constraint firstAttribute="height" constant="35" id="Tyv-0r-tTY"/>
+                                    <constraint firstItem="4Z3-St-FS7" firstAttribute="centerY" secondItem="J3b-ku-ou6" secondAttribute="centerY" id="fxf-7L-SBH"/>
+                                    <constraint firstItem="DTc-7H-b8v" firstAttribute="centerX" secondItem="J3b-ku-ou6" secondAttribute="centerX" constant="-4.5" id="hAO-0t-mS1"/>
+                                    <constraint firstAttribute="width" constant="200" id="iIu-MQ-jBB"/>
+                                    <constraint firstItem="UKW-r9-bC0" firstAttribute="centerY" secondItem="J3b-ku-ou6" secondAttribute="centerY" id="mmi-DS-Tjo"/>
+                                    <constraint firstItem="UKW-r9-bC0" firstAttribute="trailing" secondItem="DTc-7H-b8v" secondAttribute="leading" constant="9.0000000000000284" id="wSQ-FW-rep"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bFj-cR-DpG" userLabel="PopUp Screen View">
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.6599121094" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -617,45 +656,6 @@
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="550" id="nVp-JK-3qw"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J3b-ku-ou6" userLabel="Sprites View" customClass="RoundView" customModule="APNUtil">
-                                <rect key="frame" x="95" y="347" width="200" height="35"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKW-r9-bC0">
-                                        <rect key="frame" x="17" y="5" width="25" height="25"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="25" id="d8c-DG-tMz"/>
-                                            <constraint firstAttribute="width" constant="25" id="qlb-AH-vcX"/>
-                                        </constraints>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Z3-St-FS7">
-                                        <rect key="frame" x="158" y="5" width="25" height="25"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="25" id="ILu-OY-Bbb"/>
-                                            <constraint firstAttribute="height" constant="25" id="Ttd-9G-DDN"/>
-                                        </constraints>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DTc-7H-b8v">
-                                        <rect key="frame" x="33" y="5" width="125" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="125" id="Ssp-S4-W0f"/>
-                                            <constraint firstAttribute="height" constant="25" id="nia-xn-jHb"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="DTc-7H-b8v" firstAttribute="centerY" secondItem="J3b-ku-ou6" secondAttribute="centerY" id="9ed-EH-hyK"/>
-                                    <constraint firstItem="4Z3-St-FS7" firstAttribute="leading" secondItem="DTc-7H-b8v" secondAttribute="trailing" id="HnR-hG-lyC"/>
-                                    <constraint firstAttribute="height" constant="35" id="Tyv-0r-tTY"/>
-                                    <constraint firstItem="4Z3-St-FS7" firstAttribute="centerY" secondItem="J3b-ku-ou6" secondAttribute="centerY" id="fxf-7L-SBH"/>
-                                    <constraint firstItem="DTc-7H-b8v" firstAttribute="centerX" secondItem="J3b-ku-ou6" secondAttribute="centerX" constant="-4.5" id="hAO-0t-mS1"/>
-                                    <constraint firstAttribute="width" constant="200" id="iIu-MQ-jBB"/>
-                                    <constraint firstItem="UKW-r9-bC0" firstAttribute="centerY" secondItem="J3b-ku-ou6" secondAttribute="centerY" id="mmi-DS-Tjo"/>
-                                    <constraint firstItem="UKW-r9-bC0" firstAttribute="trailing" secondItem="DTc-7H-b8v" secondAttribute="leading" constant="9.0000000000000284" id="wSQ-FW-rep"/>
                                 </constraints>
                             </view>
                         </subviews>
