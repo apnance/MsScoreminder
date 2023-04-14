@@ -337,7 +337,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J3b-ku-ou6" userLabel="Sprites View" customClass="RoundView" customModule="APNUtil">
-                                <rect key="frame" x="95" y="347" width="200" height="35"/>
+                                <rect key="frame" x="95" y="351.66666666666669" width="200" height="35"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKW-r9-bC0">
                                         <rect key="frame" x="17" y="5" width="25" height="25"/>
@@ -519,7 +519,7 @@
                                 <rect key="frame" x="43" y="390" width="304" height="20"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="d4r-1W-jEE" userLabel="Filter Type">
-                                        <rect key="frame" x="0.0" y="0.0" width="86" height="21"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="83.666666666666671" height="21"/>
                                         <segments>
                                             <segment title="R"/>
                                             <segment title="H"/>
@@ -527,14 +527,14 @@
                                         </segments>
                                     </segmentedControl>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Vnt-bR-Qfa" userLabel="Avg Sorted">
-                                        <rect key="frame" x="97" y="0.0" width="110" height="21"/>
+                                        <rect key="frame" x="94.666666666666657" y="0.0" width="115" height="21"/>
                                         <segments>
                                             <segment title="Avg"/>
                                             <segment title="Single"/>
                                         </segments>
                                     </segmentedControl>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Hbp-Q9-muc" userLabel="Date Sorted">
-                                        <rect key="frame" x="218" y="0.0" width="86" height="21"/>
+                                        <rect key="frame" x="220.66666666666671" y="0.0" width="83.333333333333343" height="21"/>
                                         <segments>
                                             <segment title="Def"/>
                                             <segment title="Date"/>
@@ -663,7 +663,7 @@
                         <color key="backgroundColor" name="Blue"/>
                         <constraints>
                             <constraint firstItem="rGJ-M0-qHl" firstAttribute="top" secondItem="ArY-C0-C0k" secondAttribute="bottom" constant="10" id="2Ml-FV-qyU"/>
-                            <constraint firstItem="ZjU-v8-9Gv" firstAttribute="top" secondItem="J3b-ku-ou6" secondAttribute="bottom" constant="-54.333333333333314" id="2x2-VJ-qQg"/>
+                            <constraint firstItem="ZjU-v8-9Gv" firstAttribute="bottom" secondItem="J3b-ku-ou6" secondAttribute="top" constant="-2" id="2x2-VJ-qQg"/>
                             <constraint firstAttribute="trailing" secondItem="ZyG-9R-Myt" secondAttribute="trailing" constant="30" id="34g-yp-jUP"/>
                             <constraint firstItem="TCV-YU-Iab" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="4dK-Oi-YLW"/>
                             <constraint firstItem="pii-L0-PwK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7CK-5P-ETK"/>
