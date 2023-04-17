@@ -21,7 +21,7 @@ struct EmailManager {
         static let banana       = "#FEE732"
         static let pear         = "#BCF824"
         
-        static let pink         = "#F0317E"
+        static let pink         = "#EF307D"
         static let blue         = "#1082C8"
         static let white        = "white"
         static let black        = "black"
@@ -312,7 +312,7 @@ struct EmailManager {
         let roundedBoxHeight        = dest == .email ? "560px"      : "100%"
         let roundedBoxWidth         = dest == .email ? "90%"        : "100%"
         let roundedBoxBorderColor   = dest == .email ? Color.banana    : Color.white
-        let roundedBoxBorderRadii   = dest == .email ? "200px 200px 5px 5px" : "5px"
+        let roundedBoxBorderRadii   = dest == .email ? "200px 200px 5px 5px" : "15px"
         
         let colStyles               = buildColumnStyles(withFontSize: fontSize)
         let mastHead                = buildHeader(forDestination: dest)

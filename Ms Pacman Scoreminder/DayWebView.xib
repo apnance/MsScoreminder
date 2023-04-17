@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -27,28 +28,36 @@
                         <wkPreferences key="preferences"/>
                     </wkWebViewConfiguration>
                 </wkWebView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K7P-aZ-hVT" userLabel="Backward Button">
-                    <rect key="frame" x="5" y="171" width="51" height="34.333333333333343"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K7P-aZ-hVT" userLabel="Backward Button" customClass="RoundButton" customModule="APNUtil">
+                    <rect key="frame" x="0.0" y="325" width="51" height="51"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="K7P-aZ-hVT" secondAttribute="height" multiplier="1:1" id="R19-Ha-VW4"/>
+                    </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" image="arrowshape.backward.fill" catalog="system">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <buttonConfiguration key="configuration" style="plain" image="arrowshape.backward.fill" catalog="system">
-                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="baseForegroundColor" name="Pink"/>
                     </buttonConfiguration>
                     <connections>
                         <action selector="didPushLeftButton:" destination="-1" eventType="touchUpInside" id="rsu-ts-npq"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOo-Kf-yEG" userLabel="Forward Button">
-                    <rect key="frame" x="274" y="171" width="51" height="34.333333333333343"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOo-Kf-yEG" userLabel="Forward Button" customClass="RoundButton" customModule="APNUtil">
+                    <rect key="frame" x="279" y="325" width="51" height="51"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="vOo-Kf-yEG" secondAttribute="height" multiplier="1:1" id="fea-6L-oXT"/>
+                    </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" image="arrowshape.right.fill" catalog="system">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <buttonConfiguration key="configuration" style="plain">
                         <imageReference key="image" image="arrowshape.right.fill" catalog="system" symbolScale="large"/>
-                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="baseForegroundColor" name="Pink"/>
                     </buttonConfiguration>
                     <connections>
                         <action selector="didPushRightButton:" destination="-1" eventType="touchUpInside" id="wFE-MW-wit"/>
@@ -60,12 +69,12 @@
             <constraints>
                 <constraint firstItem="RgG-eR-3g4" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="0O3-3k-se9"/>
                 <constraint firstAttribute="top" secondItem="RgG-eR-3g4" secondAttribute="top" id="10Z-7y-5VA"/>
-                <constraint firstItem="vOo-Kf-yEG" firstAttribute="trailing" secondItem="RgG-eR-3g4" secondAttribute="trailing" constant="-5" id="JSq-ey-X5P"/>
-                <constraint firstItem="K7P-aZ-hVT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="OqF-Na-IFd"/>
+                <constraint firstAttribute="bottom" secondItem="vOo-Kf-yEG" secondAttribute="bottom" id="3aw-dS-BTk"/>
+                <constraint firstItem="vOo-Kf-yEG" firstAttribute="trailing" secondItem="RgG-eR-3g4" secondAttribute="trailing" id="JSq-ey-X5P"/>
+                <constraint firstItem="K7P-aZ-hVT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="OqF-Na-IFd"/>
+                <constraint firstAttribute="bottom" secondItem="K7P-aZ-hVT" secondAttribute="bottom" id="P6m-dL-LL0"/>
                 <constraint firstAttribute="trailing" secondItem="RgG-eR-3g4" secondAttribute="trailing" id="S7u-Ed-7X8"/>
                 <constraint firstItem="RgG-eR-3g4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Sfq-o4-McR"/>
-                <constraint firstItem="vOo-Kf-yEG" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="eXA-m3-SMe"/>
-                <constraint firstItem="K7P-aZ-hVT" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="v1n-6E-vR6"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-26.153846153846153" y="221.09004739336493"/>
@@ -74,5 +83,8 @@
     <resources>
         <image name="arrowshape.backward.fill" catalog="system" width="128" height="104"/>
         <image name="arrowshape.right.fill" catalog="system" width="128" height="104"/>
+        <namedColor name="Pink">
+            <color red="0.94499999284744263" green="0.19300000369548798" blue="0.49599999189376831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>
