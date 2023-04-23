@@ -294,6 +294,12 @@ struct EmailManager {
         
     }
     
+    static private func buildVersion(forDestination dest: HTMLDestination) -> String {
+        
+        dest == .email ? "<br/><span class=\"version_number\">v\(Bundle.appVersion)</span>" : ""
+        
+    }
+    
     static func buildSummaryHTML(using statMan: StatManager,
                                  forDate date: Date,
                                  andDestination dest: HTMLDestination) -> HTML {
@@ -317,8 +323,10 @@ struct EmailManager {
         let colStyles               = buildColumnStyles(withFontSize: fontSize)
         let mastHead                = buildHeader(forDestination: dest)
         
-        let hr1                      = dest == .email ? "" : "<hr />"
-        let hr2                      = dest == .email ? "<br/>" : "<hr />"
+        let hr1                     = dest == .email ? "" : "<hr />"
+        let hr2                     = dest == .email ? "<br/>" : "<hr />"
+        
+        let version                 = buildVersion(forDestination: dest)
         
         return  """
                 <meta name="color-scheme" content="only">
@@ -398,6 +406,12 @@ struct EmailManager {
                 
                 .super { position: relative; top: -0.5em; font-size: 70%; }
                 
+                .version_number {
+                    text-align: center;
+                    font-size: \(fontSize);
+                    color: \(Color.white);
+                }
+                
                 /* Flex Column Styles */
                 \(colStyles)
                 </style>\
@@ -408,6 +422,7 @@ struct EmailManager {
                     \(dailyStatsHTML)
                     \(hr2)
                     \(levelSummaryHTML)
+                    \(version)
                     </div>
                 </body>\
                 </html>
