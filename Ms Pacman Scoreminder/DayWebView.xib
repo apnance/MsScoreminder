@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -38,7 +39,7 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <buttonConfiguration key="configuration" style="plain" image="arrowshape.backward.fill" catalog="system">
-                        <color key="baseForegroundColor" name="Pink"/>
+                        <color key="baseForegroundColor" name="Blue"/>
                     </buttonConfiguration>
                     <connections>
                         <action selector="didPushLeftButton:" destination="-1" eventType="touchUpInside" id="rsu-ts-npq"/>
@@ -56,7 +57,7 @@
                     </state>
                     <buttonConfiguration key="configuration" style="plain">
                         <imageReference key="image" image="arrowshape.right.fill" catalog="system" symbolScale="large"/>
-                        <color key="baseForegroundColor" name="Pink"/>
+                        <color key="baseForegroundColor" name="Blue"/>
                     </buttonConfiguration>
                     <connections>
                         <action selector="didPushRightButton:" destination="-1" eventType="touchUpInside" id="wFE-MW-wit"/>
@@ -90,8 +91,8 @@
     <resources>
         <image name="arrowshape.backward.fill" catalog="system" width="128" height="104"/>
         <image name="arrowshape.right.fill" catalog="system" width="128" height="104"/>
-        <namedColor name="Pink">
-            <color red="0.94499999284744263" green="0.19300000369548798" blue="0.49599999189376831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="Blue">
+            <color red="0.062745098039215685" green="0.50980392156862742" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
