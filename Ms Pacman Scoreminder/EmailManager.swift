@@ -77,7 +77,7 @@ struct EmailManager {
         
     }
     
-    static private func spanWrap(_ content: CustomStringConvertible, withClass cssClass: String) -> String {
+    static private func spanWrap(_ content: CustomStringConvertible, withClass cssClass: String) -> HTML {
         
         var description = content.description
         
@@ -133,17 +133,17 @@ struct EmailManager {
                     
                     for i in 1...colCount {
                         
-                        let isInterrior = (i != 1 && i != colCount)
-                        let fractionalWidth = colCount > 2 ? min(100/colCount, 20) : 0
-                        let edgeWidth = (100 - (fractionalWidth * (colCount - 2))) / 2
+                        let isInterrior     = (i != 1 && i != colCount)
+                        let fractionalWidth = colCount > 2 ? min(100 / colCount, 20) : 0
+                        let edgeWidth       = (100 - (fractionalWidth * (colCount - 2))) / 2
                         
-                        let className = colClassName(i, of: colCount)
-                        let percentWidth = isInterrior ? fractionalWidth : edgeWidth
-                        let textAlign = i == 1 ? "right" : (i == colCount ? "left" : "center")
-                        let color = i == 1 ? Color.banana : Color.white
-                        let paddingLeft = i == colCount ? "10px" : "0px"
-                        let paddingRight = i == 1 ? "10px" : "0px"
-                        let font = "bold \(fontSize) Futura"
+                        let className       = colClassName(i, of: colCount)
+                        let percentWidth    = isInterrior ? fractionalWidth : edgeWidth
+                        let textAlign       = i == 1 ? "right" : (i == colCount ? "left" : "center")
+                        let color           = i == 1 ? Color.banana : Color.white
+                        let paddingLeft     = i == colCount ? "10px" : "0px"
+                        let paddingRight    = i == 1 ? "10px" : "0px"
+                        let font            = "bold \(fontSize) Futura"
                         
                         output +=   """
                                     .\(className) {
@@ -195,7 +195,7 @@ struct EmailManager {
     
     static private func buildDailyStatsHTML(using statMan: StatManager, forDate date: Date) -> HTML {
         
-        func buildStreakHTML() -> String {
+        func buildStreakHTML() -> HTML {
             
             if let  streaks = statMan.getStreaks(),
                     streaks.recent.isCurrent {
@@ -235,6 +235,29 @@ struct EmailManager {
             
         }
         
+        func buildIcons() -> HTML {
+            
+            let dailyStats = statMan.getDaily(for: date)
+            var icons = ""
+            
+                for levelIndex in 0..<Score.levelCount {
+                    
+                    if let playedCount = dailyStats?.levelsReached[levelIndex] {
+                        
+                        for _ in 0..<playedCount {
+                            
+                            icons +=   getEncodedImageHTML(named:"ms_icon_\(levelIndex)",
+                                                           withClass: "icon")
+                            
+                        }
+                    }
+                    
+                }
+            
+            return "<div style=\"position:relative; margin: 0px; padding: 0px;\">\(icons)</div>"
+            
+        }
+        
         if let dailyStats = statMan.getDailyStatsSummary(forDate: date).requested {
             
             var rank        = "\(dailyStats.rank.0)<span class=\"super\">\(dailyStats.rank.0.ordinal)</span> of \(dailyStats.rank.1)"
@@ -257,6 +280,7 @@ struct EmailManager {
             }
             
             return """
+                        \(buildIcons())
                         \(columnate(["DATE:",        dailyStats.date.simple]))
                         \(columnate(["RANK:",        rank]))
                         \(columnate(["PERCENTILE:",  percentile]))
@@ -275,28 +299,30 @@ struct EmailManager {
         
     }
     
-    static private func buildHeader(forDestination dest: HTMLDestination) -> String {
+    static private func buildHeader(forDestination dest: HTMLDestination) -> HTML {
         
         switch dest {
+                
             case .email:
                 
-                let emailBG = UIImage(named: "ms_marquee_email")!.encodedAsBase64String()
+                let emailBG = getEncodedImageHTML(named:"ms_marquee_email",
+                                                  withClass: "marqueeImg")
                 
                 return """
-                        <div class="row" style="margin-top: -90px; padding-bottom: 0px;"><img class="marqueeImg" src="data:image/png;base64, \(emailBG)" /></div>
+                        <div class="row" style="margin-top: -90px; padding-bottom: 0px;">\(emailBG)</div>
                         """
                 
             case .app:
                 
                 return """
-                        <div style="color: \(Color.banana); font-size: 70pt; text-align: center; margin-bottom: 0px; margin-top:20px;">DAILY SUMMARY</div>
+                        <div style="color: \(Color.banana); font-size: 70pt; text-align: center; margin: 0px;">DAILY SUMMARY</div>
                         """
                 
         }
         
     }
     
-    static private func buildVersion(forDestination dest: HTMLDestination) -> String {
+    static private func buildVersion(forDestination dest: HTMLDestination) -> HTML {
         
         dest == .email ? "<br/><span class=\"version_number\">v\(Bundle.appVersion)</span>" : ""
         
@@ -316,16 +342,18 @@ struct EmailManager {
         let bodyPadding             = dest == .email ? "90px 0px 0px 0px" : "0px"
         let fontSize                = dest == .email ? "8.4pt"      : "25.5pt"
         
-        let roundedBoxBorderWidht   = dest == .email ? "15px"       : "40px"
+        let roundedBoxBorderWidth   = dest == .email ? "15px"       : "40px"
         let roundedBoxHeight        = dest == .email ? "560px"      : "100%"
         let roundedBoxWidth         = dest == .email ? "90%"        : "100%"
         let roundedBoxBorderColor   = dest == .email ? Color.banana    : Color.white
         let roundedBoxBorderRadii   = dest == .email ? "200px 200px 5px 5px" : "15px"
         
+        let iconDim                 = dest == .email ? "30px" : "65px"
+        
         let colStyles               = buildColumnStyles(withFontSize: fontSize)
         let mastHead                = buildHeader(forDestination: dest)
         
-        let hr1                     = dest == .email ? "" : "<hr />"
+        let hr1                     = dest == .email ? "" : "<hr \"/>"
         let hr2                     = dest == .email ? "<br/>" : "<hr />"
         
         let version                 = buildVersion(forDestination: dest)
@@ -350,7 +378,7 @@ struct EmailManager {
                 
                 hr {
                 width: 80%;
-                margin:20px auto 20px auto;
+                margin: 10px auto 10px auto;
                 height: 10px;
                         background-color: \(Color.white);
                         border: 0 none;
@@ -368,7 +396,7 @@ struct EmailManager {
                 
                     border-style: solid;
                     border-radius: \(roundedBoxBorderRadii);
-                    border-width: \(roundedBoxBorderWidht);
+                    border-width: \(roundedBoxBorderWidth);
                     border-color: \(roundedBoxBorderColor);
                 
                     background-color: \(Color.pink);
@@ -403,6 +431,12 @@ struct EmailManager {
                     color: \(Color.white);
                 }
                 
+                .icon {
+                    width: \(iconDim);
+                    height: \(iconDim);
+                    margin-bottom: 10px;
+                }
+                
                 * { box-sizing: border-box; }
                 .row { display: flex; }
                 
@@ -428,6 +462,30 @@ struct EmailManager {
                     </div>
                 </body>\
                 </html>
+                """
+        
+    }
+    
+}
+
+extension EmailManager {
+    
+    private static var stringEncodedImages = [String: String]()
+    
+    /// Returns an HTML formated <img> tag with 64-bit the string encoded image data built in.
+    static private func getEncodedImageHTML(named: String,
+                                            withClass className: String = "") -> HTML {
+        
+        if stringEncodedImages[named] == nil {
+            
+            stringEncodedImages[named] = UIImage(named: named)!.encodedAsBase64String()
+            
+        }
+        
+        let className = className.count > 0 ? "class=\"\(className)\"" : ""
+        
+        return  """
+                <img \(className) src="data:image/png;base64, \(stringEncodedImages[named]!)" />
                 """
         
     }
