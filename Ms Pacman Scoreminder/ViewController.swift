@@ -47,6 +47,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var scoreFilterControlsStackView: UIStackView!
     
     
+    @IBOutlet weak var spritesViewContainer: RoundView!
     @IBOutlet weak var TESTSPRITES_GHOST: UIImageView!
     @IBOutlet weak var TESTSPRITES_MS: UIImageView!
     @IBOutlet weak var TESTSPRITES_PELLETS: UIImageView!
@@ -134,7 +135,6 @@ class ViewController: UIViewController {
     /// Triggers a call to uiGraph and should only be called once at the end of the slider interaction during a touch up event.
     @IBAction func didChangeGraphPointSlider(_ sender: Any) { uiGraph() }
     
-    
     // MARK: - Overrides
     override func viewDidLoad() {
         
@@ -147,9 +147,6 @@ class ViewController: UIViewController {
             self.statMan.open(){ self.uiInit() }
         
         }
-        
-        
-        uiAnimateGameplay()
         
     }
     
@@ -176,6 +173,7 @@ class ViewController: UIViewController {
             self.uiVolatile()
             self.uiRotateMarquee()
             self.uiLoop()
+            self.uiAnimateSprites()
             self.uiOpeningAnimation()
             
         }
@@ -300,7 +298,8 @@ class ViewController: UIViewController {
                                 (0.0, 5, { // Scores
                                     self.scoresContainerView.alpha = 1.0
                                     self.scoreFilterControlsStackView.alpha = 1.0
-                                    self.scoreInput.alpha = 1.0 })
+                                    self.scoreInput.alpha = 1.0 }),
+                                (-1.0, 1.25, { self.spritesViewContainer.alpha = 1.0} )
                               ],
                               completionHandler: nil)
         
@@ -665,7 +664,7 @@ class ViewController: UIViewController {
     }
     
     /// Builds and runs Ms. Pac-Man/Ghost animation
-    fileprivate func uiAnimateGameplay() {
+    fileprivate func uiAnimateSprites() {
         
         let spriteSheet = SpriteSheet(sprites: UIImage(named: "ms_sprite_sheet")!,
                                       spriteWidth: 16,

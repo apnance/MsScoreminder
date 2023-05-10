@@ -336,7 +336,7 @@
                                     <constraint firstAttribute="bottom" secondItem="Kw7-ga-S1C" secondAttribute="bottom" id="gxR-ML-Dry"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J3b-ku-ou6" userLabel="Sprites View" customClass="RoundView" customModule="APNUtil">
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J3b-ku-ou6" userLabel="Sprites View" customClass="RoundView" customModule="APNUtil">
                                 <rect key="frame" x="95" y="351.66666666666669" width="200" height="35"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKW-r9-bC0">
@@ -519,7 +519,7 @@
                                 <rect key="frame" x="43" y="390" width="304" height="20"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="d4r-1W-jEE" userLabel="Filter Type">
-                                        <rect key="frame" x="0.0" y="0.0" width="83.666666666666671" height="21"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="86" height="21"/>
                                         <segments>
                                             <segment title="R"/>
                                             <segment title="H"/>
@@ -527,14 +527,14 @@
                                         </segments>
                                     </segmentedControl>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Vnt-bR-Qfa" userLabel="Avg Sorted">
-                                        <rect key="frame" x="94.666666666666657" y="0.0" width="115" height="21"/>
+                                        <rect key="frame" x="97" y="0.0" width="110" height="21"/>
                                         <segments>
                                             <segment title="Avg"/>
                                             <segment title="Single"/>
                                         </segments>
                                     </segmentedControl>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Hbp-Q9-muc" userLabel="Date Sorted">
-                                        <rect key="frame" x="220.66666666666671" y="0.0" width="83.333333333333343" height="21"/>
+                                        <rect key="frame" x="218" y="0.0" width="86" height="21"/>
                                         <segments>
                                             <segment title="Def"/>
                                             <segment title="Date"/>
@@ -756,6 +756,7 @@
                         <outlet property="scoresFilterLabel" destination="qZZ-vR-qwz" id="Oso-D3-fu1"/>
                         <outlet property="scoresView" destination="Kw7-ga-S1C" id="QMM-I0-bJ2"/>
                         <outlet property="showGraphButton" destination="Yhi-ft-33M" id="eDF-fs-1Sk"/>
+                        <outlet property="spritesViewContainer" destination="J3b-ku-ou6" id="YbH-Hr-96Q"/>
                         <outlet property="streakCurrentCount" destination="yAz-0b-kQv" id="gzc-Ty-8hd"/>
                         <outlet property="streakCurrentDate1" destination="aJD-sf-JGz" id="CRt-Lc-KBe"/>
                         <outlet property="streakCurrentDate2" destination="zUE-xE-y8d" id="hDY-hj-hRm"/>
