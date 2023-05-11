@@ -26,6 +26,7 @@ class ViewController: UIViewController {
     private var timer: APNTimer?
     private var lastDailyRunDate = Date().simple
     
+    
     // MARK: - Outlets
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var marqueeFG: UIImageView!
@@ -45,7 +46,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var scoresView: UIView!
     @IBOutlet weak var scoresFilterLabel: UILabel!
     @IBOutlet weak var scoreFilterControlsStackView: UIStackView!
-    
     
     @IBOutlet weak var spritesViewContainer: RoundView!
     @IBOutlet weak var TESTSPRITES_GHOST: UIImageView!
@@ -92,9 +92,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var graphPointCountSlider: UISlider!
     @IBOutlet weak var graphPointCountLabel: UILabel!
     @IBOutlet weak var graphPointSliderPacPelletView: UIView!
-
+    
     // Day WebView
     @IBOutlet weak var dailySummaryWebView: DailySummaryWebView!
+    
     
     // MARK: Actions
     // Delete UI
@@ -135,6 +136,7 @@ class ViewController: UIViewController {
     /// Triggers a call to uiGraph and should only be called once at the end of the slider interaction during a touch up event.
     @IBAction func didChangeGraphPointSlider(_ sender: Any) { uiGraph() }
     
+    
     // MARK: - Overrides
     override func viewDidLoad() {
         
@@ -145,7 +147,7 @@ class ViewController: UIViewController {
         DispatchQueue.global(qos: .userInteractive).async {
             
             self.statMan.open(){ self.uiInit() }
-        
+            
         }
         
     }
@@ -305,7 +307,6 @@ class ViewController: UIViewController {
         
     }
     
-    
     fileprivate func uiHideScore(_ shouldHide: Bool) {
         
         marqueeScoreScoreLabel.isHidden = shouldHide
@@ -319,9 +320,8 @@ class ViewController: UIViewController {
                                      targetAlpha: Double = 1,
                                      delay: Double = 0.0) {
         
-        
         DispatchQueue.main.async {
-
+            
             var phase = phase  // do not modify phase outside of setUI()
             
             let phaseContent = [(title: "HIGH SCORE",
@@ -457,7 +457,7 @@ class ViewController: UIViewController {
                                                              action: #selector(dismissPopUpUI(sender:))))
         
         streaksContainerView.rotate(angle: Configs.UI.Rotations.streaksView)
-                
+        
     }
     
     /// Styles the large pink/yellow background stripe.
@@ -706,6 +706,7 @@ class ViewController: UIViewController {
         dotsImages.animate(in: TESTSPRITES_PELLETS, withRepeatCount: rep, fps: 14)
         msImages.animate(in: TESTSPRITES_MS, withRepeatCount: rep, fps: fps)
         ghostImages.animate(in: TESTSPRITES_GHOST, withRepeatCount: rep, fps: fps)
+        
     }
     
     /// Styles `label` with pink text outlined in yellow border
@@ -867,8 +868,9 @@ class ViewController: UIViewController {
         
     }
     
-    func showDailySummary(_ shouldShow: Bool, forDate date: Date? = nil) {
-
+    func showDailySummary(_ shouldShow: Bool,
+                          forDate date: Date? = nil) {
+        
         dailySummaryWebView.isHidden         = !shouldShow
         popUpScreenView.isHidden    = !shouldShow
         
@@ -908,7 +910,7 @@ extension ViewController: DayWebViewDelegate {
     }
     
     func didPushRButton(currentDate: Date) {
-
+        
         if let closestFutureScore  = statMan.getNearestFutureAveragedScore(from: currentDate),
            closestFutureScore.averagedGameCount > 1 {
             
