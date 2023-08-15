@@ -36,9 +36,13 @@
 		93B6D0EC27021DAD005ADF3F /* AtomicScoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93B6D0EB27021DAD005ADF3F /* AtomicScoreView.xib */; };
 		93B6D0EE270231A4005ADF3F /* AtomicScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B6D0ED270231A4005ADF3F /* AtomicScoreView.swift */; };
 		93D98BD328DD315C00FD0F80 /* APNGraph in Frameworks */ = {isa = PBXBuildFile; productRef = 93D98BD228DD315C00FD0F80 /* APNGraph */; settings = {ATTRIBUTES = (Required, ); }; };
+		93DD05952A86E09D0030D504 /* ScoreEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93DD05942A86E09D0030D504 /* ScoreEditor.xib */; };
+		93DD05972A86E0B60030D504 /* ScoreEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DD05962A86E0B60030D504 /* ScoreEditor.swift */; };
+		93DD05992A86E2040030D504 /* DayWebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93DD05982A86E2040030D504 /* DayWebView.xib */; };
+		93DD059D2A86E3E90030D504 /* APNFlexKeypad in Frameworks */ = {isa = PBXBuildFile; productRef = 93DD059C2A86E3E90030D504 /* APNFlexKeypad */; };
+		93DD059F2A86E9710030D504 /* TestVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DD059E2A86E9710030D504 /* TestVCViewController.swift */; };
 		93E363D829A68A6200A561BA /* SpriteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E363D729A68A6200A561BA /* SpriteSheet.swift */; };
 		93F89B4A298B4C3A006C672A /* DailySummaryWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F89B49298B4C3A006C672A /* DailySummaryWebView.swift */; };
-		93F89B4C298B4C43006C672A /* DayWebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93F89B4B298B4C43006C672A /* DayWebView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,9 +112,13 @@
 		93B6D0EB27021DAD005ADF3F /* AtomicScoreView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AtomicScoreView.xib; sourceTree = "<group>"; };
 		93B6D0ED270231A4005ADF3F /* AtomicScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicScoreView.swift; sourceTree = "<group>"; };
 		93D98BD128DD314F00FD0F80 /* APNGraph */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = APNGraph; path = ../../Frameworks/APNGraph; sourceTree = "<group>"; };
+		93DD05942A86E09D0030D504 /* ScoreEditor.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScoreEditor.xib; sourceTree = "<group>"; };
+		93DD05962A86E0B60030D504 /* ScoreEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreEditor.swift; sourceTree = "<group>"; };
+		93DD05982A86E2040030D504 /* DayWebView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayWebView.xib; sourceTree = "<group>"; };
+		93DD059B2A86E3CC0030D504 /* APNFlexKeypad */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = APNFlexKeypad; path = ../../Frameworks/APNFlexKeypad; sourceTree = "<group>"; };
+		93DD059E2A86E9710030D504 /* TestVCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestVCViewController.swift; sourceTree = "<group>"; };
 		93E363D729A68A6200A561BA /* SpriteSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteSheet.swift; sourceTree = "<group>"; };
 		93F89B49298B4C3A006C672A /* DailySummaryWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySummaryWebView.swift; sourceTree = "<group>"; };
-		93F89B4B298B4C43006C672A /* DayWebView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DayWebView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +127,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9331176228E79EE9009F2054 /* APNUtil in Frameworks */,
+				93DD059D2A86E3E90030D504 /* APNFlexKeypad in Frameworks */,
 				93D98BD328DD315C00FD0F80 /* APNGraph in Frameworks */,
 				9338E011298F7B7D004CAB2C /* OrderedCollections in Frameworks */,
 			);
@@ -203,6 +212,7 @@
 				9316244D26FA4C8D004C06B7 /* ViewController.swift */,
 				9313DE4B273B418E00460712 /* EmailManager.swift */,
 				93E363D729A68A6200A561BA /* SpriteSheet.swift */,
+				93DD059E2A86E9710030D504 /* TestVCViewController.swift */,
 			);
 			name = C;
 			sourceTree = "<group>";
@@ -229,7 +239,9 @@
 				936DF3A6272C6C0F00CF2AEE /* DailyHighlightsView.xib */,
 				936DF3AA272C6C2300CF2AEE /* DailyHighlightsView.swift */,
 				93F89B49298B4C3A006C672A /* DailySummaryWebView.swift */,
-				93F89B4B298B4C43006C672A /* DayWebView.xib */,
+				93DD05982A86E2040030D504 /* DayWebView.xib */,
+				93DD05942A86E09D0030D504 /* ScoreEditor.xib */,
+				93DD05962A86E0B60030D504 /* ScoreEditor.swift */,
 			);
 			name = V;
 			sourceTree = "<group>";
@@ -286,6 +298,7 @@
 			children = (
 				93D98BD128DD314F00FD0F80 /* APNGraph */,
 				9331175F28E79D85009F2054 /* APNUtil */,
+				93DD059B2A86E3CC0030D504 /* APNFlexKeypad */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -311,6 +324,7 @@
 				93D98BD228DD315C00FD0F80 /* APNGraph */,
 				9331176128E79EE9009F2054 /* APNUtil */,
 				9338E010298F7B7D004CAB2C /* OrderedCollections */,
+				93DD059C2A86E3E90030D504 /* APNFlexKeypad */,
 			);
 			productName = "Ms Pacman Scoreminder";
 			productReference = 9316244626FA4C8D004C06B7 /* Ms Scoreminder.app */;
@@ -408,10 +422,11 @@
 				937B2B4E26FD56D00081CC6A /* Colors.xcassets in Resources */,
 				9316245326FA4C90004C06B7 /* Assets.xcassets in Resources */,
 				932B1731270D49210030CD59 /* DefaultData.csv in Resources */,
+				93DD05952A86E09D0030D504 /* ScoreEditor.xib in Resources */,
 				9313DE432731A40E00460712 /* TestData.csv in Resources */,
 				93B6D0EC27021DAD005ADF3F /* AtomicScoreView.xib in Resources */,
 				9316245126FA4C8D004C06B7 /* Main.storyboard in Resources */,
-				93F89B4C298B4C43006C672A /* DayWebView.xib in Resources */,
+				93DD05992A86E2040030D504 /* DayWebView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,6 +456,7 @@
 				932F7E2826FAD3C1001147B7 /* Configs.swift in Sources */,
 				931800EE2721F957002D21E2 /* Utils.swift in Sources */,
 				936DF3AB272C6C2300CF2AEE /* DailyHighlightsView.swift in Sources */,
+				93DD059F2A86E9710030D504 /* TestVCViewController.swift in Sources */,
 				9316247F26FA5B02004C06B7 /* Score.swift in Sources */,
 				931C594C2992DF5A00F361FB /* DailyStatsCluster.swift in Sources */,
 				93B6D0EE270231A4005ADF3F /* AtomicScoreView.swift in Sources */,
@@ -449,6 +465,7 @@
 				9313DE4C273B418F00460712 /* EmailManager.swift in Sources */,
 				9316244E26FA4C8D004C06B7 /* ViewController.swift in Sources */,
 				93B67B5D274DD741007C302C /* PlayStreak.swift in Sources */,
+				93DD05972A86E0B60030D504 /* ScoreEditor.swift in Sources */,
 				9316244A26FA4C8D004C06B7 /* AppDelegate.swift in Sources */,
 				93345AD42730698D0090154B /* Stats.swift in Sources */,
 				93A497A3270E21F700D5AB5F /* Preferences.swift in Sources */,
@@ -639,8 +656,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.13;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.aaron.nance.Ms-Scoreminder-v1.4.13";
+				MARKETING_VERSION = 1.4.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aaron.nance.Ms-Scoreminder-v1.4.14";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -667,8 +684,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.13;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.aaron.nance.Ms-Scoreminder-v1.4.13";
+				MARKETING_VERSION = 1.4.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aaron.nance.Ms-Scoreminder-v1.4.14";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -828,6 +845,10 @@
 		93D98BD228DD315C00FD0F80 /* APNGraph */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = APNGraph;
+		};
+		93DD059C2A86E3E90030D504 /* APNFlexKeypad */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = APNFlexKeypad;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
