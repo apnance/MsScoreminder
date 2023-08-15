@@ -108,6 +108,7 @@ class AtomicScoreView: UIView {
         let colorFG = i % 2 != 0 ? score.colorLight : score.colorDark
         let colorBG = i % 2 != 0 ? score.colorDark : score.colorLight
         
+        scoresStatsRoundView.isHidden           = data[i] == ""
         scoreStatsLabel.text                    = data[i]
         scoreStatsLabel.textColor               = colorFG
         scoresStatsRoundView.backgroundColor    = colorBG
