@@ -10,17 +10,7 @@ import APNUtil
 import APNFlexKeypad
 
 class ScoreEditor: UIView {
-//@IBDesignable class ScoreEditor: UIView {
     
-    
-//    override func prepareForInterfaceBuilder() {
-//
-//        numPad.layer.cornerRadius = numPad.frame.width / 2.0
-//
-//    }
-    
-
-    @IBOutlet weak var uiContainerView: UIView!
     @IBOutlet weak var scoreContainerView: UIView!
     @IBOutlet weak var numPad: APNFlexKeypad!
     @IBOutlet weak var fruitPad: APNFlexKeypad!
@@ -64,7 +54,6 @@ class ScoreEditor: UIView {
                                                               ]))
         
         scoreContainerView.backgroundColor  = .clear
-        uiContainerView.backgroundColor     = .clear
         
         fruitPad.layer.cornerRadius         = fruitPad.frame.height / 2.0
         fruitPad.backgroundColor            = orange
@@ -74,10 +63,10 @@ class ScoreEditor: UIView {
         
         loadScore()
         
-        uiContainerView.alpha = 0.0
-        numPad.showHide(animated: false)
+        numPad.show(false,      animated: false)
+        fruitPad.show(false,    animated: false)
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(showKeypad))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(toggleKeypads))
         
         semiOpaqueBGView.addGestureRecognizer(tap)
         
@@ -91,7 +80,17 @@ class ScoreEditor: UIView {
         
     }
     
-    @objc private func showKeypad() { numPad.showHide(animated: true) }
+    @objc private func toggleKeypads() {
+        
+        numPad.show(!numPad.isShown, animated: true)
+
+        reconcileFruitpad()
+        
+//        if !numPad.isShown {
+//            fruitPad.show(false, animated: true)
+//        }
+        
+    }
 
     
 }
@@ -105,22 +104,31 @@ extension ScoreEditor: APNFlexKeypadDelegate {
     }
     
     func showHideComplete(isShown: Bool) {
-        
-        if !isShown {
-            
-            UIView.animate(withDuration: 0.4) { self.uiContainerView.alpha = 0.0 }
-            
-        }
+  
+// TODO: Clean Up - delete
+//        if !isShown {
+//
+//            UIView.animate(withDuration: 0.4) {
+////                self.uiContainerView.alpha = 0.0
+//
+//            }
+//
+//        }
         
     }
     
     func showHideBegin(isShown: Bool) {
         
-        if !isShown {
-            
-            UIView.animate(withDuration: 0.2) { self.uiContainerView.alpha = 1.0 }
-            
-        }
+// TODO: Clean Up - delete
+//        if !isShown {
+//
+//            UIView.animate(withDuration: 0.2) {
+//
+////                self.uiContainerView.alpha = 1.0
+//
+//            }
+//
+//        }
         
     }
     
@@ -140,17 +148,10 @@ extension ScoreEditor: APNFlexKeypadDelegate {
         scoreContainerView.translatesAutoresizingMaskIntoConstraints = true
         scoreContainerView.addSubview(scoreView)
         
+
+        reconcileFruitpad()
         
-        if numPad.value != "" && scoreValue % 10 == 0 {
-            
-            fruitPad.isHidden = false
-            
-        } else {
-            
-            fruitPad.isHidden = true
-            
-        }
-        
+// TODO: Clean Up - Implement saving of score - saving these scores in this manner causes runtime error when running the original VC with Scoreminder UI
 //        if scoreValue % 10 == 0 && scoreValue > 0 {
 //
 //            var statMan = StatManager()
@@ -163,6 +164,23 @@ extension ScoreEditor: APNFlexKeypadDelegate {
         scoreView.center = scoreContainerView.frame.center
         
     }
+    
+    func reconcileFruitpad() {
+        
+        let scoreValue = Int(numPad.value) ?? 0
+        
+        if numPad.isShown && numPad.value != "" && scoreValue % 10 == 0 {
+            
+            fruitPad.show(true, animated: true)
+            
+        } else {
+            
+            fruitPad.show(false, animated: true)
+            
+        }
+
+    }
+
     
 }
 
