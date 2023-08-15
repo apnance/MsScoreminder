@@ -42,6 +42,7 @@ class DailySummaryWebView: UIView {
         webView.loadHTMLString(html, baseURL: nil)
         
     }
+    
 }
 
 protocol DayWebViewDelegate {
