@@ -40,7 +40,6 @@
 		93DD05972A86E0B60030D504 /* ScoreEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DD05962A86E0B60030D504 /* ScoreEditor.swift */; };
 		93DD05992A86E2040030D504 /* DayWebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93DD05982A86E2040030D504 /* DayWebView.xib */; };
 		93DD059D2A86E3E90030D504 /* APNFlexKeypad in Frameworks */ = {isa = PBXBuildFile; productRef = 93DD059C2A86E3E90030D504 /* APNFlexKeypad */; };
-		93DD059F2A86E9710030D504 /* TestVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DD059E2A86E9710030D504 /* TestVCViewController.swift */; };
 		93E363D829A68A6200A561BA /* SpriteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E363D729A68A6200A561BA /* SpriteSheet.swift */; };
 		93F89B4A298B4C3A006C672A /* DailySummaryWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F89B49298B4C3A006C672A /* DailySummaryWebView.swift */; };
 /* End PBXBuildFile section */
@@ -116,7 +115,6 @@
 		93DD05962A86E0B60030D504 /* ScoreEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreEditor.swift; sourceTree = "<group>"; };
 		93DD05982A86E2040030D504 /* DayWebView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayWebView.xib; sourceTree = "<group>"; };
 		93DD059B2A86E3CC0030D504 /* APNFlexKeypad */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = APNFlexKeypad; path = ../../Frameworks/APNFlexKeypad; sourceTree = "<group>"; };
-		93DD059E2A86E9710030D504 /* TestVCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestVCViewController.swift; sourceTree = "<group>"; };
 		93E363D729A68A6200A561BA /* SpriteSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteSheet.swift; sourceTree = "<group>"; };
 		93F89B49298B4C3A006C672A /* DailySummaryWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySummaryWebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -212,7 +210,6 @@
 				9316244D26FA4C8D004C06B7 /* ViewController.swift */,
 				9313DE4B273B418E00460712 /* EmailManager.swift */,
 				93E363D729A68A6200A561BA /* SpriteSheet.swift */,
-				93DD059E2A86E9710030D504 /* TestVCViewController.swift */,
 			);
 			name = C;
 			sourceTree = "<group>";
@@ -456,7 +453,6 @@
 				932F7E2826FAD3C1001147B7 /* Configs.swift in Sources */,
 				931800EE2721F957002D21E2 /* Utils.swift in Sources */,
 				936DF3AB272C6C2300CF2AEE /* DailyHighlightsView.swift in Sources */,
-				93DD059F2A86E9710030D504 /* TestVCViewController.swift in Sources */,
 				9316247F26FA5B02004C06B7 /* Score.swift in Sources */,
 				931C594C2992DF5A00F361FB /* DailyStatsCluster.swift in Sources */,
 				93B6D0EE270231A4005ADF3F /* AtomicScoreView.swift in Sources */,
