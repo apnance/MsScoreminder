@@ -78,6 +78,10 @@ struct Score {
         
     }
     
+    
+    /// Returns a `Score` initialized with today's date, score 0, and level 0
+    static var zero = Score(date: Date(), score: 0, level: 0)
+    
     var date: Date
     var score: Int
     /// Zero-based highest level attained.
