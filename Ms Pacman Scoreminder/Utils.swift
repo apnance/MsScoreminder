@@ -31,6 +31,22 @@ struct Utils {
             
         }
         
+        
+        /// Styles `label` with pink text outlined in yellow border
+        static func outlineLabel(_ label: UILabel) {
+            
+            let strokeTextAttributes = [
+                NSAttributedString.Key.strokeColor : UIColor(named: "Banana")!,
+                NSAttributedString.Key.foregroundColor : UIColor(named: "Pink")!,
+                NSAttributedString.Key.font : label.font!,
+                NSAttributedString.Key.strokeWidth : -3.5,
+                
+            ] as [NSAttributedString.Key : Any]
+            
+            label.attributedText = NSMutableAttributedString(string: label.attributedText?.string ?? label.text ?? "-?-", attributes: strokeTextAttributes)
+            
+        }
+        
     }
     
 }
