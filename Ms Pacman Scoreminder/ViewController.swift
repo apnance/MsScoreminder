@@ -38,8 +38,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var marqueeScoreDateLabel: UILabel!
     @IBOutlet weak var marqueeLevelIcon: UIImageView!
     @IBOutlet weak var marqueeLevelIconContainerView: RoundView!
-    @IBOutlet weak var scoreInput: UITextField!
-    @IBOutlet weak var levelSelector: UISegmentedControl!
     @IBOutlet weak var totalMoneySpentLabel: UITextField!
     @IBOutlet weak var versionLabel: UITextField!
     @IBOutlet weak var scoresContainerView: UIView!
@@ -298,10 +296,9 @@ class ViewController: UIViewController {
                                 (0.0, 3, { self.streaksContainerView.alpha = 1.0} ),                    // Streaks
                                 (0.0, 2, { self.dailyHighlightsView.alpha = 0.8 }),                        // Daily Summary
                                 (0.0, 5, { // Scores
-                                    self.scoresContainerView.alpha = 1.0
-                                    self.scoreFilterControlsStackView.alpha = 1.0
-                                    self.scoreInput.alpha = 1.0 }),
-                                (-1.0, 1.25, { self.spritesViewContainer.alpha = 1.0} )
+                                    self.scoresContainerView.alpha              = 1.0
+                                    self.scoreFilterControlsStackView.alpha     = 1.0 }),
+                                (-1.0, 1.25, { self.spritesViewContainer.alpha  = 1.0} )
                               ],
                               completionHandler: nil)
         
@@ -709,21 +706,6 @@ class ViewController: UIViewController {
         
     }
     
-    /// Styles `label` with pink text outlined in yellow border
-    private func outlineLabel(_ label: UILabel) {
-        
-        let strokeTextAttributes = [
-            NSAttributedString.Key.strokeColor : UIColor(named: "Banana")!,
-            NSAttributedString.Key.foregroundColor : UIColor(named: "Pink")!,
-            NSAttributedString.Key.font : label.font!,
-            NSAttributedString.Key.strokeWidth : -3.5,
-            
-        ] as [NSAttributedString.Key : Any]
-        
-        label.attributedText = NSMutableAttributedString(string: label.attributedText?.string ?? label.text ?? "-?-", attributes: strokeTextAttributes)
-        
-    }
-    
     /// Adds drop shadows to all elements contained in internal views array
     private func addShadows() {
         
@@ -927,7 +909,7 @@ extension ViewController: DayWebViewDelegate {
     
 }
 
-// MARK: - Email Data
+// MARK: - MFMailComposeViewControllerDelegate
 extension ViewController: MFMailComposeViewControllerDelegate {
     
     func btnSendMail() {
