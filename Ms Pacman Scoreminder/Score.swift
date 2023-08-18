@@ -139,14 +139,6 @@ extension Score : APNGraphable {
     var pointBorderColor: UIColor { .black.pointEightAlpha }
     var pointImageName: String? { "ms_graph_icon_\(level)" }
     
-    init(x: Date, y: Int) {
-        
-        self.date   = x
-        self.score  = y
-        self.level  = -1
-        
-    }
-    
     init(date: Date,
          score: Int,
          level: Int) {
