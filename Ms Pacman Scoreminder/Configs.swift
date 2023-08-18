@@ -70,21 +70,24 @@ struct Configs {
                 
             }
             
+            struct ScoreEditor {
+                
+                static let showDuration = 0.75
+                static let hideDuration = 0.5
+                
+            }
+            
             struct RoundViewInfo {
                 
-                static let fadeTime                 = 0.39
+                static let fadeTime             = 0.39
                 
-//                struct DailyHighlight {
-//                    static let delay                = 5.0
-//                    static let timerID              = "DailyHighlightTimerKey"
-//                }
             }
             
         }
         
         struct Shadow {
             
-            static let defaultOpacity = 0.3
+            static let defaultOpacity   = 0.3
             
             static let defaultWidth     = 5
             static let defaultHeight    = 2
@@ -95,7 +98,7 @@ struct Configs {
             static let summaryView = 35.0
             static let streaksView = -summaryView
         }
-            
+        
     }
     
     struct File {
