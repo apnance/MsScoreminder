@@ -102,6 +102,21 @@ struct Score {
     var colorLight: UIColor { Score.colorFor(level: level) }
     var colorDark: UIColor { Score.contrastColorFor(level: level) }
     
+    
+    /// - Returns: Random Score, with randomized date, score, and level.
+    /// - note: useful for testing
+    /// - note: return value is not always valid(i.e. isn't always a multiple of 10 as valid scores should)
+    /// - note: generated date values range from 1/1/18 to 12/28/23.  The day values range from 1-28 to avoid leap-year considerations.
+    static func random() -> Score {
+        let randomDate = "\((1...12).randomElement()!)/\((1...28).randomElement()!)/\((18...23).randomElement()!)".simpleDate
+        let randomScore = Int.random(min: 10, max: 99999) * [1,10].randomElement()!
+        let randomLevel = Int.random(min:0, max: 11)
+        
+        return Score(date: randomDate,
+                     score: randomScore,
+                     level: randomLevel)
+    }
+    
 }
 
 extension Score: CustomStringConvertible {
