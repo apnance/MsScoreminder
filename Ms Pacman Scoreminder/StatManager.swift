@@ -50,6 +50,12 @@ class StatManager {
     // Adds or updates score in the data hash
     func set(_ score: Score) {
         
+        assert(score.score % 10 == 0,
+                """
+                Score: \(score.score) is not a multiple of 10.  Ms. Pac-Man 
+                scores are all multiples of 10.
+                """)
+        
         var currScores = getScoresFor(score.date.simple)
         let date = score.date.simple
         
