@@ -11,6 +11,7 @@ import APNFlexKeypad
 
 class ScoreEditor: UIView {
     
+    // MARK: - Outlets
     @IBOutlet weak var semiOpaqueBGView: UIView!
     @IBOutlet weak var uiContainerView: UIView!
     @IBOutlet weak var scoreContainerView: UIView!
@@ -19,11 +20,14 @@ class ScoreEditor: UIView {
     @IBOutlet weak var updateButton: UIButton!
     @IBOutlet weak var editScoreLabel: UILabel!
     
+    // MARK: - Actions
     @IBAction func tappedDelete(_ sender: Any) { delegate?.delete(score: score) }
     @IBAction func tappedSet(_ sender: Any) { delegate?.set(score: score); hide() }
     @IBAction func decreasLevel(_ sender: Any) { changeLevel(-1) }
     @IBAction func increaseLevel(_ sender: Any) { changeLevel(+1) }
     
+    
+    // MARK: - Properties
     /// The focus and raison d'etre of the ScoreEditor control.
     private(set) var score: Score = .zero
     
@@ -33,21 +37,38 @@ class ScoreEditor: UIView {
     private(set) var delegate: ScoreEditorDelegate?
     
     
+    // MARK: - Custom Methods
     required init?(coder: NSCoder) { super.init(coder: coder) }
     
-    // TODO: Clean Up - factor init(superView: delegate:) into sub-methods.
+    /// Initializes a new ScoreEditor placing the control in `superView.subviews` and constraining it to fill superview.
+    /// - Parameters:
+    ///   - superView: `UIView` into which ScoreEditor should be loaded and constrained.
+    ///   - delegate: Delegate object to receive ScoreEditorDelegate methods calls.
     init(superView: UIView, delegate: ScoreEditorDelegate? = nil) {
         
         super.init(frame: .zero)
-        
         self.delegate = delegate
         
+        // View
         view = (Bundle.main.loadNibNamed("ScoreEditor",
                                          owner: self,
                                          options: nil)?.first as? UIView) as? ScoreEditor
-            
         view?.constrainIn(superView)
+        view?.alpha = 0.0
         
+        uiInitNumPad()
+        uiInitFruitPad()
+        uiInitContainerViews()
+        uiInitEditScoreLabel()
+        
+        // Gestures
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hide))
+        semiOpaqueBGView.addGestureRecognizer(tap)
+        
+    }
+    
+    // -MARK: UI
+    private func uiInitNumPad() {
         numPad.build(withConfigs: APNFlexKeypadConfigs(id: "numPad",
                                                        delegate: self,
                                                        keys: [   1: ("1",       .accumulator("1"),      Colors.blue,   Colors.white)
@@ -65,6 +86,21 @@ class ScoreEditor: UIView {
                                                              ])
                      ,buttonStyler: outlineAndShadow(view:))
         
+        numPad.layer.cornerRadius       = numPad.frame.width / 2.0
+        numPad.backgroundColor          = Colors.pink
+        let borderView = UIView(frame: .zero)
+        borderView.constrainIn(numPad)
+        numPad.sendSubviewToBack(borderView)
+        borderView.backgroundColor      = .clear
+        borderView.layer.borderWidth    = numPad.frame.width * 0.04
+        borderView.layer.borderColor    = Colors.banana.cgColor
+        borderView.layer.cornerRadius   = numPad.layer.cornerRadius
+        Utils.UI.addShadows(to: numPad)
+        numPad.show(false,      animated: false)
+        
+    }
+    
+    private func uiInitFruitPad() {
         fruitPad.build(withConfigs: APNFlexKeypadConfigs(id: "fruitPad",
                                                          delegate: self,
                                                          keys: [     1: ("ms_icon_0",  .singleValue("0"),   Colors.blue, Colors.white)
@@ -77,6 +113,15 @@ class ScoreEditor: UIView {
                                                                      , 8: ("+", .custom({ [weak self] in self?.changeLevel(+1) }), Colors.banana, Colors.blue)
                                                                ]))
         
+        fruitPad.layer.cornerRadius         = fruitPad.frame.height / 2.0
+        fruitPad.backgroundColor            = Colors.pretzel
+        outlineAndShadow(view: fruitPad)
+        fruitPad.show(false,    animated: false)
+        
+    }
+    
+    private func uiInitContainerViews() {
+        
         uiContainerView.layer.borderColor   = Colors.banana.cgColor
         uiContainerView.layer.borderWidth   = 1.5
         uiContainerView.layer.cornerRadius  = 10
@@ -85,48 +130,12 @@ class ScoreEditor: UIView {
         scoreContainerView.backgroundColor  = .clear
         scoreContainerView.alpha            = 0.0
         
-        fruitPad.layer.cornerRadius         = fruitPad.frame.height / 2.0
-        fruitPad.backgroundColor            = Colors.pretzel
-        outlineAndShadow(view: fruitPad)
-        
-        fruitPad.show(false,    animated: false)
-        
-        numPad.layer.cornerRadius           = numPad.frame.width / 2.0
-        numPad.backgroundColor              = Colors.pink
-        let borderView = UIView(frame: .zero)
-        borderView.constrainIn(numPad)
-        numPad.sendSubviewToBack(borderView)
-        borderView.backgroundColor      = .clear
-        borderView.layer.borderWidth    = numPad.frame.width * 0.04
-        borderView.layer.borderColor    = Colors.banana.cgColor
-        borderView.layer.cornerRadius   = numPad.layer.cornerRadius
-        numPad.show(false,      animated: false)
-        
-        Utils.UI.outlineLabel(editScoreLabel)
-        addShadows()
-        
-        // Hide
-        view?.alpha = 0.0
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(hide))
-        semiOpaqueBGView.addGestureRecognizer(tap)
-        
     }
     
-    /// Changes current fruitPad.value by the incr value, clamping values between 0-14
-    /// - Parameter incr: amount to increase or decreas fruitPad.value by.
-    private func changeLevel(_ incr: Int) {
+    private func uiInitEditScoreLabel() {
         
-        if incr > 0 {
-            
-            fruitPad.set(value: String(min(14, (Int(fruitPad.value) ?? 0) + incr)))
-            
-        } else {
-            
-            fruitPad.set(value: String(max(0, (Int(fruitPad.value) ?? 0) + incr)))
-        }
-        
-        load()
+        Utils.UI.outlineLabel(editScoreLabel)
+        Utils.UI.addShadows(to: editScoreLabel)
         
     }
     
@@ -164,13 +173,23 @@ class ScoreEditor: UIView {
         
     }
     
-    /// Adds drop shadows to assorted UI elements.
-    private func addShadows() {
+    /// Changes current fruitPad.value by the incr value, clamping values between 0-14
+    /// - Parameter incr: amount to increase or decreas fruitPad.value by.
+    private func changeLevel(_ incr: Int) {
         
-        Utils.UI.addShadows(to: [editScoreLabel,
-                                 numPad])
+        if incr > 0 {
+            
+            fruitPad.set(value: String(min(14, (Int(fruitPad.value) ?? 0) + incr)))
+            
+        } else {
+            
+            fruitPad.set(value: String(max(0, (Int(fruitPad.value) ?? 0) + incr)))
+        }
+        
+        load()
         
     }
+    
 }
 
 // - MARK: APNFlexKeypadDelegate
@@ -234,7 +253,7 @@ extension ScoreEditor: APNFlexKeypadDelegate {
         show()
         
         assert(scoreContainerView.subviews.count <= 3,
-               """
+                """
                     Max number of expected subviews(3) exceeded for scoreContainerView.
                     Are you removing old views before adding a new one?")
                 """)
