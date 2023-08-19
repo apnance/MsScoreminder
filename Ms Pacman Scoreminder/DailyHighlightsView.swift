@@ -85,15 +85,15 @@ class DailyHighlightsView: RoundView {
         stat2Label.text = stats.averageScore.delimited
         stat3Label.text = stats.gamesPlayed.delimited
         
-        averageLevelLabel.layer.borderWidth = 1
-        averageLevelLabel.layer.cornerRadius = 3
-        averageLevelLabel.textColor = .black
-        averageLevelLabel.layer.borderColor = UIColor.black.cgColor
-        averageLevelLabel.backgroundColor = .white
+        averageLevelLabel.layer.borderWidth     = 1
+        averageLevelLabel.layer.cornerRadius    = 3
+        averageLevelLabel.textColor             = .black
+        averageLevelLabel.layer.borderColor     = UIColor.black.cgColor
+        averageLevelLabel.backgroundColor       = .white
         
-        averageLevelBGView.backgroundColor = UIColor(named: "Pink")
-        averageLevelBGView.layer.borderWidth = 2.5
-        averageLevelBGView.layer.borderColor = UIColor(named:"Banana")!.cgColor
+        averageLevelBGView.backgroundColor      = Configs.UI.Colors.pink
+        averageLevelBGView.layer.borderWidth    = 2.5
+        averageLevelBGView.layer.borderColor    = Configs.UI.Colors.banana.cgColor
         averageLevelBGView.setRadius()
         
         averageLevelIconImageView.image = Score.iconFor(level: stats.averageLevel)
