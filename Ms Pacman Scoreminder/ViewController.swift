@@ -23,6 +23,7 @@ class ViewController: UIViewController {
                                 dataMax: 0)
     
     private var scoreViews = [AtomicScoreView]()
+    private var scoreEditor: ScoreEditor!
     private var timer: APNTimer?
     private var lastDailyRunDate = Date().simple
     
@@ -126,7 +127,20 @@ class ViewController: UIViewController {
     @IBAction func didTapSend(_ sender: UIButton) { btnSendMail() }
     
     // Graph
-    @IBAction func didTapShowGraph(_ sender: UIButton) { uiGraph() }
+    @IBAction func didTapShowGraph(_ sender: UIButton) {
+        
+        htmlTestView.isHidden = true // Hide
+        uiGraph()
+        
+    }
+    
+    @IBAction func didTapShowScoreEditor(_ sender: UIButton) {
+        
+        htmlTestView.isHidden = true // Hide
+        scoreEditor.load(score: .zero)
+        
+    }
+    
     /// Starts the process of updating slider UI, is high overhead and should only be called on touch down.
     @IBAction func beginChangingGraphPointSlider(_ sender: UISlider) { uiManagePointCount() }
     /// Updates point count label UI with low overhead and should be called continuously throughout the changing of the slider position.
@@ -141,6 +155,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         launchScreenReplicaCurtainView.isHidden = false
+        
+        scoreEditor = ScoreEditor(superView: view, delegate: self)
         
         DispatchQueue.global(qos: .userInteractive).async {
             
@@ -167,8 +183,6 @@ class ViewController: UIViewController {
             
             self.uiMisc()
             self.uiBGStripe()
-            self.uiScoreInput()
-            self.uiBuildLevelSelector()
             self.uiBuildFilterSelectors()
             self.uiVolatile()
             self.uiRotateMarquee()
@@ -225,7 +239,7 @@ class ViewController: UIViewController {
                                                          dotOutlineColor: .black,
                                                          dotOutlineWidth: 0.4)
             
-            self.graphImageView.layer.borderColor   =  UIColor(named: "Banana")?.cgColor
+            self.graphImageView.layer.borderColor   =  Colors.banana.cgColor
             self.graphImageView.layer.borderWidth   = 1.5
             self.graphImageView.layer.cornerRadius  = 10
             
@@ -246,7 +260,7 @@ class ViewController: UIViewController {
         
         graphPointCountSlider.setThumbImage(UIImage(named:"ms_icon_ms_pacman"), for: .normal)
         graphPointCountSlider.maximumTrackTintColor = .clear
-        graphPointCountSlider.minimumTrackTintColor = UIColor(named: "Pink")
+        graphPointCountSlider.minimumTrackTintColor = Colors.pink
         
         graphPointSliderPacPelletView.addDashedLine(.white,
                                                     width: 3.5,
@@ -446,8 +460,11 @@ class ViewController: UIViewController {
         // Version
         versionLabel.text = "v\(Bundle.appVersion)"
         
-        outlineLabel(deleteScoreLabel)
-        outlineLabel(marqueeScoreScoreLabel)
+        // Outline
+        Utils.UI.outlineLabel(deleteScoreLabel)
+        Utils.UI.outlineLabel(marqueeScoreScoreLabel)
+        
+        // Shadow
         addShadows()
         
         mainView.addGestureRecognizer(UITapGestureRecognizer(target: self,
@@ -462,47 +479,9 @@ class ViewController: UIViewController {
         
         let layer = backgroundStripeView.layer
         
-        layer.cornerRadius = backgroundStripeView.frame.width * 0.47
-        layer.borderColor = UIColor(named: "Banana")?.cgColor
-        layer.borderWidth = backgroundStripeView.frame.width * 0.04
-        
-    }
-    
-    /// Initializes scoreInput
-    private func uiScoreInput() {
-        
-        scoreInput.delegate = self
-        scoreInput.layer.borderColor = UIColor.clear.cgColor
-        scoreInput.addTarget(self,
-                             action: #selector(scoreDidChange),
-                             for: .editingChanged)
-        
-    }
-    
-    /// Styles levelSelector
-    private func uiBuildLevelSelector() {
-        
-        let normalAtts = [NSAttributedString.Key.foregroundColor: backgroundStripeView.backgroundColor as Any]
-        let selectedAtts = [NSAttributedString.Key.foregroundColor: UIColor.white as Any]
-        
-        levelSelector.selectedSegmentTintColor = UIColor(named: "Blue")
-        levelSelector.removeAllSegments()
-        levelSelector.isEnabled = false
-        levelSelector.alpha     = 0
-        levelSelector.setTitleTextAttributes(normalAtts, for: .normal)
-        levelSelector.setTitleTextAttributes(selectedAtts, for: .selected)
-        
-        for segment in 0..<Score.levelCount {
-            
-            levelSelector.insertSegment(with: Score.iconFor(level: segment),
-                                        at: segment,
-                                        animated: false)
-            
-        }
-        
-        levelSelector.addTarget(self,
-                                action: #selector(selectLevel(sender:)),
-                                for: .valueChanged)
+        layer.cornerRadius  = backgroundStripeView.frame.width * 0.47
+        layer.borderColor   = Colors.banana.cgColor
+        layer.borderWidth   = backgroundStripeView.frame.width * 0.04
         
     }
     
@@ -521,7 +500,7 @@ class ViewController: UIViewController {
                                action: #selector(filter(sender:)),
                                for: .valueChanged)
         
-        dataSelector.selectedSegmentTintColor = UIColor(named: "Blue")
+        dataSelector.selectedSegmentTintColor = Colors.blue
         
         dataSelector.setTitleTextAttributes(normalAtts, for: .normal)
         dataSelector.setTitleTextAttributes(selectedAtts, for: .selected)
@@ -531,7 +510,7 @@ class ViewController: UIViewController {
                             action: #selector(filter(sender:)),
                             for: .valueChanged)
         
-        avgSorted.selectedSegmentTintColor = UIColor(named: "Blue")
+        avgSorted.selectedSegmentTintColor = Colors.blue
         avgSorted.setTitleTextAttributes(normalAtts, for: .normal)
         avgSorted.setTitleTextAttributes(selectedAtts, for: .selected)
         
@@ -540,7 +519,7 @@ class ViewController: UIViewController {
                              action: #selector(filter(sender:)),
                              for: .valueChanged)
         
-        dateSorted.selectedSegmentTintColor = UIColor(named: "Blue")
+        dateSorted.selectedSegmentTintColor = Colors.blue
         dateSorted.setTitleTextAttributes(normalAtts, for: .normal)
         dateSorted.setTitleTextAttributes(selectedAtts, for: .selected)
         
@@ -606,6 +585,7 @@ class ViewController: UIViewController {
         
         var (xO, yO) = ((scoresView.frame.width / colCount.double) / 2.0, (h + p) * 0.55)
         
+        // TODO: Clean Up - why emptying scoreViews 2x here?
         scoreViews = []
         scoresView.removeAllSubviews()
         scoreViews = []
@@ -726,40 +706,6 @@ class ViewController: UIViewController {
         
     }
     
-    // MARK: Score Updates
-    /// Handles user taps on levelSelector
-    @objc func selectLevel(sender: UISegmentedControl) {
-        
-        DispatchQueue.main.async { self.scoreInput.resignFirstResponder()}
-        
-        let scoreText = scoreInput.text!
-        
-        guard !scoreText.isEmpty
-        else {
-            
-            levelSelector.selectedSegmentIndex = UISegmentedControl.noSegment
-            
-            return /*EXIT*/
-            
-        }
-        
-        statMan.set(Score(date: Date(),
-                          score: Int(scoreText)!,
-                          level: levelSelector.selectedSegmentIndex))
-        
-        NotificationManager.shared.tomorrow(withTitle:      Configs.Notifications.title,
-                                            andBody:        Configs.Notifications.body,
-                                            notificationID: Configs.Notifications.id,
-                                            hour:           Configs.Notifications.Time.hour,
-                                            minute:         Configs.Notifications.Time.minute,
-                                            second:         Configs.Notifications.Time.second,
-                                            badgeNumber:    Configs.Notifications.badgeNumber,
-                                            testMode:       Configs.Notifications.testMode)
-        
-        uiVolatile()
-        
-    }
-    
     @objc func filter(sender: UISegmentedControl) {
         
         var filterType = ScoreSortFilter.FilterType.recents
@@ -788,23 +734,8 @@ class ViewController: UIViewController {
         
     }
     
-    /// Handles changes to scoreInput
-    @objc func scoreDidChange() {
-        
-        let score = Int(scoreInput.text!) ?? -1
-        
-        // Valid scores are multiples of 10
-        levelSelector.isEnabled = (score % 10) == 0
-        
-        levelSelector.alpha = !levelSelector.isEnabled ? 0 : 1
-        
-    }
-    
     // MARK: Deletion
     @objc func dismissPopUpUI(sender: Any) {
-        
-        // Dismiss keyboard
-        scoreInput.resignFirstResponder()
         
         // Hide
         showDeleteConfirmation(false)
@@ -820,18 +751,12 @@ class ViewController: UIViewController {
     
     private func showDeleteConfirmation(_ shouldShow: Bool) {
         
-        // Dismiss keyboard
-        scoreInput.resignFirstResponder()
-        
         deleteUIContainerView.isHidden  = !shouldShow
         popUpScreenView.isHidden        = !shouldShow
         
     }
     
     func showGraph(_ shouldShow: Bool) {
-        
-        // Dismiss keyboard
-        scoreInput.resignFirstResponder()
         
         graphContainerView.isHidden = !shouldShow
         popUpScreenView.isHidden    = !shouldShow
@@ -913,8 +838,6 @@ extension ViewController: DayWebViewDelegate {
 extension ViewController: MFMailComposeViewControllerDelegate {
     
     func btnSendMail() {
-        
-        scoreInput.resignFirstResponder()
         
         if MFMailComposeViewController.canSendMail() {
             
@@ -1012,13 +935,20 @@ extension ViewController: AtomicScoreViewDelegate {
     
 }
 
-// MARK: - UITextFieldDelegate
-extension ViewController: UITextFieldDelegate {
+extension ViewController: ScoreEditorDelegate {
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+    // TODO: Clean Up - IMPLEMENT
+    func delete(score: Score) { print("IMPLEMENT: \(#function)") }
+    
+    func set(score: Score) {
         
-        htmlTestView.isHidden = true // Hide
+        if score.score % 10 == 0 {
+            statMan.set(score); uiVolatile()
+        } else {
+            assert(false, "Handle message user that they can't save scores that are not multiples of 10 or better yet don't allow them to attempt to save if not multiple of 10")
+        }
         
     }
+    
     
 }
