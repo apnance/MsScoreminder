@@ -71,7 +71,7 @@ class ScoreEditor: UIView {
         semiOpaqueBGView.addGestureRecognizer(tap)
         
     }
-    
+
     private func addBanana() {
         
         let fruitVal = String(min(14,(Int(fruitPad.value) ?? 0) + 1))
@@ -140,9 +140,9 @@ extension ScoreEditor: APNFlexKeypadDelegate {
         
         let score = Score(date: Date.now, score: Int(scoreValue), level: levelValue)
         
-        let scoreView = AtomicScoreView.new(delegate: nil,
-                                            withScore: score,
-                                            andData: [""])
+        let scoreView   = AtomicScoreView.new(delegate: nil,
+                                              withScore: score,
+                                              andData: [""])
         
         scoreContainerView.removeAllSubviews()
         scoreContainerView.translatesAutoresizingMaskIntoConstraints = true
@@ -184,22 +184,9 @@ extension ScoreEditor: APNFlexKeypadDelegate {
     
 }
 
-@IBDesignable class TaggedView: UIView {
+protocol ScoreEditorDelegate {
     
-    override func prepareForInterfaceBuilder() {
-        
-        let label                   = UILabel(frame: bounds)
-        label.text                  = tag.description
-        label.textAlignment         = .center
-        label.minimumScaleFactor    = 0.5
-        label.adjustsFontSizeToFitWidth = true
-        
-        label.textColor             = .white
-        label.font = UIFont(name: "Futura-Bold", size: 12.0)
-        
-        layer.cornerRadius          = frame.width / 2.0
-        addSubview(label)
-        
-    }
+    func delete(score:Score)
+    func set(score: Score)
     
 }
