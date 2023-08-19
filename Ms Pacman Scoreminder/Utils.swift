@@ -36,8 +36,8 @@ struct Utils {
         static func outlineLabel(_ label: UILabel) {
             
             let strokeTextAttributes = [
-                NSAttributedString.Key.strokeColor : UIColor(named: "Banana")!,
-                NSAttributedString.Key.foregroundColor : UIColor(named: "Pink")!,
+                NSAttributedString.Key.strokeColor : Colors.banana,
+                NSAttributedString.Key.foregroundColor : Colors.pink,
                 NSAttributedString.Key.font : label.font!,
                 NSAttributedString.Key.strokeWidth : -3.5,
                 
