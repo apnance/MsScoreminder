@@ -583,12 +583,11 @@ class ViewController: UIViewController {
         let scoreCount  = colCount * rowCount
         let scores      = statMan.filter(count: scoreCount)
         
-        var (xO, yO) = ((scoresView.frame.width / colCount.double) / 2.0, (h + p) * 0.55)
+        var (xO, yO)    = ((scoresView.frame.width / colCount.double) / 2.0, (h + p) * 0.55)
         
-        // TODO: Clean Up - why emptying scoreViews 2x here?
-        scoreViews = []
+        // Remove old Score UI
+        scoreViews      = []
         scoresView.removeAllSubviews()
-        scoreViews = []
         
         var currentDate = Date(timeIntervalSince1970: 0).simple
         var textColor   = Configs.UI.Display.defaultAtomicScoreViewTextColor
