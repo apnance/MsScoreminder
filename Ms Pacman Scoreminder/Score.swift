@@ -134,6 +134,8 @@ extension Score: Equatable {
     static func == (lhs: Self, rhs: Self) -> Bool {
         
         lhs.score == rhs.score
+        &&
+        lhs.level == rhs.level
         
     }
     
