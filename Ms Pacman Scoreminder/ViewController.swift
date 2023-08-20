@@ -903,6 +903,7 @@ extension ViewController: ScoreEditorDelegate {
     func delete(score: Score) {
         
         statMan.delete(score)
+        
         uiVolatile()
         
     }
@@ -911,7 +912,17 @@ extension ViewController: ScoreEditorDelegate {
         
         if score.score % 10 == 0 {
             
-            statMan.set(score);
+            statMan.set(score)
+            
+            NotificationManager.shared.tomorrow(withTitle:      Configs.Notifications.title,
+                                                andBody:        Configs.Notifications.body,
+                                                notificationID: Configs.Notifications.id,
+                                                hour:           Configs.Notifications.Time.hour,
+                                                minute:         Configs.Notifications.Time.minute,
+                                                second:         Configs.Notifications.Time.second,
+                                                badgeNumber:    Configs.Notifications.badgeNumber,
+                                                testMode:       Configs.Notifications.testMode)
+            
             uiVolatile()
             
         } else {
