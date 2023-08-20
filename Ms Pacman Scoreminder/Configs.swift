@@ -41,6 +41,17 @@ struct Configs {
     
     struct UI {
         
+        struct Text {
+            
+            struct ScoreEditor {
+                
+                static let delete   = "DELETE SCORE?"
+                static let edit     = "EDIT SCORE"
+                
+            }
+            
+        }
+        
         struct Colors {
             
             static let white        = UIColor.white
