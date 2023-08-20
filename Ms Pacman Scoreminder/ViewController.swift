@@ -31,6 +31,7 @@ class ViewController: UIViewController {
     // MARK: - Outlets
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var marqueeFG: UIImageView!
+    @IBOutlet weak var marqueeMid: UIView!
     @IBOutlet weak var marqueeBG: UIImageView!
     @IBOutlet weak var backgroundStripeView: UIView!
     @IBOutlet weak var marqueeScoreView: UIView!
@@ -70,6 +71,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var deleteScoreLabel: UILabel!
     
     // Email
+    @IBOutlet weak var tresButtonsStackView: UIStackView!
     @IBOutlet weak var emailButton: RoundButton!
     @IBOutlet weak var htmlTestView: WKWebView!
     
@@ -307,12 +309,14 @@ class ViewController: UIViewController {
                                 (-2.0, 9, { self.launchScreenReplicaCurtainView.alpha = 0.0 } ),        // Curtain
                                 (0.0, 7, { self.marqueeFG.alpha = 1.0 } ),                              // Marquee FG (Ms. Pac-Man)
                                 (0.0, 5, { self.marqueeBG.alpha = 1.0 } ),                              // Margue BG (Ghosts)
+                                (0.0, 4, { self.marqueeMid.alpha = 1.0 } ),                             // Margue Mid (Scores)
                                 (0.0, 3, { self.streaksContainerView.alpha = 1.0} ),                    // Streaks
-                                (0.0, 2, { self.dailyHighlightsView.alpha = 0.8 }),                        // Daily Summary
-                                (0.0, 5, { // Scores
+                                (0.0, 2, { self.dailyHighlightsView.alpha = 0.8 }),                     // Daily Summary
+                                (0.0, 1.75, { self.spritesViewContainer.alpha  = 1.0} ),                // Sprites
+                                (0.0, 1.5, { self.tresButtonsStackView.alpha = 1.0 }),                  // Add Score/Graph/Mail buttons
+                                (0.0, 3.5, { // Scores
                                     self.scoresContainerView.alpha              = 1.0
-                                    self.scoreFilterControlsStackView.alpha     = 1.0 }),
-                                (-1.0, 1.25, { self.spritesViewContainer.alpha  = 1.0} )
+                                    self.scoreFilterControlsStackView.alpha     = 1.0 })
                               ],
                               completionHandler: nil)
         
