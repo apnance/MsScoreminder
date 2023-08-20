@@ -13,14 +13,12 @@ import APNGraph
 class ViewController: UIViewController {
     
     // MARK: - Properties
-    var statMan = StatManager()
-    private var scoreToDelete: Score?
-    private let (w, h, p) = (117.0, 58.0, 3.5)
-    
-    private var scoreCycler  = (num: -34,
-                                incr: 1,
-                                dataCurrent: 1,
-                                dataMax: 0)
+    var statMan             = StatManager()
+    private let (w, h, p)   = (117.0, 58.0, 3.5)
+    private var scoreCycler = (num: -34,
+                               incr: 1,
+                               dataCurrent: 1,
+                               dataMax: 0)
     
     private var scoreViews = [AtomicScoreView]()
     private var scoreEditor: ScoreEditor!
@@ -65,11 +63,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var dateSorted: UISegmentedControl!
     @IBOutlet weak var dailyHighlightsView: DailyHighlightsView!
     
-    // Delete Score
-    @IBOutlet weak var deleteUIContainerView: UIView!
-    @IBOutlet weak var deleteScoreContainerView: UIView!
-    @IBOutlet weak var deleteScoreLabel: UILabel!
-    
     // Email
     @IBOutlet weak var tresButtonsStackView: UIStackView!
     @IBOutlet weak var emailButton: RoundButton!
@@ -99,15 +92,6 @@ class ViewController: UIViewController {
     
     
     // MARK: Actions
-    // Delete UI
-    @IBAction func didTapDeleteYesNoButton(_ sender: UIButton) {
-        
-        showDeleteConfirmation(false)
-        
-        if sender.tag == 1 { delete(score: scoreToDelete) }
-        
-    }
-    
     @IBAction func didTapRangeFilterButton(_ sender: RoundButton) {
         
         switch sender.tag {
@@ -452,8 +436,8 @@ class ViewController: UIViewController {
         // Delegates
         dailySummaryWebView.delegate = self
         
-        // Hide Delete Confirmation
-        showDeleteConfirmation(false)
+        // Hide Pop-Up Screen
+        popUpScreenView.isHidden = true
         
         // Hide Score Initially
         uiHideScore(true)
@@ -465,7 +449,6 @@ class ViewController: UIViewController {
         versionLabel.text = "v\(Bundle.appVersion)"
         
         // Outline
-        Utils.UI.outlineLabel(deleteScoreLabel)
         Utils.UI.outlineLabel(marqueeScoreScoreLabel)
         
         // Shadow
@@ -695,9 +678,6 @@ class ViewController: UIViewController {
         Utils.UI.addShadows(to: [scoresView,
                                  streaksContainerView,
                                  dailyHighlightsView,
-                                 deleteUIContainerView,
-                                 deleteScoreContainerView,
-                                 deleteScoreLabel,
                                  scoresView,
                                  marqueeLevelIconContainerView,
                                  marqueeLevelIcon])
@@ -741,7 +721,6 @@ class ViewController: UIViewController {
     @objc func dismissPopUpUI(sender: Any) {
         
         // Hide
-        showDeleteConfirmation(false)
         showGraph(false)
         
         showDailySummary(false)
@@ -749,13 +728,6 @@ class ViewController: UIViewController {
         htmlTestView.isHidden       = true
         popUpScreenView.isHidden    = true
         
-        
-    }
-    
-    private func showDeleteConfirmation(_ shouldShow: Bool) {
-        
-        deleteUIContainerView.isHidden  = !shouldShow
-        popUpScreenView.isHidden        = !shouldShow
         
     }
     
@@ -773,7 +745,6 @@ class ViewController: UIViewController {
         
         statMan.delete(score)
         
-        scoreToDelete = nil
         uiVolatile()
         
     }
@@ -914,19 +885,7 @@ extension ViewController: AtomicScoreViewDelegate {
     
     func didTapSingle(score: Score) {
         
-        scoreToDelete = score
-        
-        let scoreView = AtomicScoreView.new(delegate: nil,
-                                            withScore: score,
-                                            andData: statMan.getDisplayStats(score))
-        
-        deleteScoreContainerView.removeAllSubviews()
-        deleteScoreContainerView.translatesAutoresizingMaskIntoConstraints = true
-        deleteScoreContainerView.addSubview(scoreView)
-        
-        scoreView.center = deleteScoreContainerView.frame.center
-        
-        showDeleteConfirmation(true)
+        scoreEditor.load(score: score, isDeletable: true)
         
     }
     
@@ -938,17 +897,32 @@ extension ViewController: AtomicScoreViewDelegate {
     
 }
 
+// - MARK: ScoreEditorDelegate
 extension ViewController: ScoreEditorDelegate {
     
-    // TODO: Clean Up - IMPLEMENT
-    func delete(score: Score) { print("IMPLEMENT: \(#function)") }
+    func delete(score: Score) {
+        
+        statMan.delete(score)
+        uiVolatile()
+        
+    }
     
     func set(score: Score) {
         
         if score.score % 10 == 0 {
-            statMan.set(score); uiVolatile()
+            
+            statMan.set(score);
+            uiVolatile()
+            
         } else {
-            assert(false, "Handle message user that they can't save scores that are not multiples of 10 or better yet don't allow them to attempt to save if not multiple of 10")
+            
+            assert(false,
+                   """
+                    Handle message user that they can't save scores that are not
+                    multiples of 10 or better yet don't allow them to attempt to
+                    save if not multiple of 10
+                    """)
+            
         }
         
     }

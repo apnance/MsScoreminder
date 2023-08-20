@@ -557,66 +557,6 @@
                                     <constraint firstAttribute="height" constant="20" identifier="FilterControlsHeight" id="n5K-gJ-oWd"/>
                                 </constraints>
                             </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JbC-vR-Can" customClass="RoundView" customModule="APNUtil">
-                                <rect key="frame" x="95" y="322" width="200" height="200"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DELETE SCORE?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kwh-Xz-ZGz">
-                                        <rect key="frame" x="26.333333333333329" y="36" width="147.33333333333337" height="29.333333333333329"/>
-                                        <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="23"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="DU3-TI-1GW">
-                                        <rect key="frame" x="40" y="148" width="120" height="28"/>
-                                        <subviews>
-                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fBa-B0-nnn" customClass="RoundButton" customModule="APNUtil">
-                                                <rect key="frame" x="0.0" y="0.0" width="53.666666666666664" height="28"/>
-                                                <color key="backgroundColor" name="Banana"/>
-                                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="13"/>
-                                                <color key="tintColor" name="Pink"/>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" title="Yes"/>
-                                                <connections>
-                                                    <action selector="didTapDeleteYesNoButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iBR-jX-aYF"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="38Q-XI-Laj" customClass="RoundButton" customModule="APNUtil">
-                                                <rect key="frame" x="66.666666666666657" y="0.0" width="53.333333333333343" height="28"/>
-                                                <color key="backgroundColor" name="Pink"/>
-                                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="12"/>
-                                                <color key="tintColor" name="Banana"/>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" title="No"/>
-                                                <connections>
-                                                    <action selector="didTapDeleteYesNoButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="W8E-44-XKW"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="120" id="paK-nd-Wr4"/>
-                                        </constraints>
-                                    </stackView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n4R-5x-sl0">
-                                        <rect key="frame" x="5" y="62.333333333333321" width="190" height="76.666666666666686"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="190" id="bid-du-t0c"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="n4R-5x-sl0" firstAttribute="centerX" secondItem="JbC-vR-Can" secondAttribute="centerX" id="0gD-ng-5D7"/>
-                                    <constraint firstAttribute="bottom" secondItem="DU3-TI-1GW" secondAttribute="bottom" constant="24" id="37n-My-mDK"/>
-                                    <constraint firstItem="Kwh-Xz-ZGz" firstAttribute="centerX" secondItem="JbC-vR-Can" secondAttribute="centerX" id="3At-Mz-WyE"/>
-                                    <constraint firstItem="Kwh-Xz-ZGz" firstAttribute="top" secondItem="JbC-vR-Can" secondAttribute="top" constant="36" id="ZFQ-92-TDW"/>
-                                    <constraint firstAttribute="height" constant="200" id="cwj-Ce-eMb"/>
-                                    <constraint firstItem="DU3-TI-1GW" firstAttribute="centerX" secondItem="JbC-vR-Can" secondAttribute="centerX" id="ddb-Fz-HOT"/>
-                                    <constraint firstItem="DU3-TI-1GW" firstAttribute="top" secondItem="n4R-5x-sl0" secondAttribute="bottom" constant="9" id="szi-zf-FGQ"/>
-                                    <constraint firstAttribute="width" constant="200" id="ux9-Ne-eg0"/>
-                                    <constraint firstItem="n4R-5x-sl0" firstAttribute="top" secondItem="Kwh-Xz-ZGz" secondAttribute="bottom" constant="-3" id="z2B-2J-hjo"/>
-                                </constraints>
-                            </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yGI-Rh-K7B" userLabel="launchScreenReplicaCurtainView">
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                                 <subviews>
@@ -701,7 +641,6 @@
                             <constraint firstAttribute="trailing" secondItem="SsP-ad-Wjl" secondAttribute="trailing" constant="25" id="Xgf-aD-vNW"/>
                             <constraint firstItem="rGJ-M0-qHl" firstAttribute="height" secondItem="pii-L0-PwK" secondAttribute="height" constant="15" identifier="ControlsBackgroundViewHeight" id="YPR-SX-2XU"/>
                             <constraint firstItem="rGJ-M0-qHl" firstAttribute="width" secondItem="pii-L0-PwK" secondAttribute="width" constant="15" identifier="ControlsBackgroundViewWidth" id="YfM-m6-U9p"/>
-                            <constraint firstItem="JbC-vR-Can" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ZUs-0T-YvB"/>
                             <constraint firstItem="Vyl-Z8-0tu" firstAttribute="top" secondItem="TCV-YU-Iab" secondAttribute="bottom" constant="48" id="ZsW-3F-hGZ"/>
                             <constraint firstItem="rGJ-M0-qHl" firstAttribute="centerY" secondItem="pii-L0-PwK" secondAttribute="centerY" identifier="ControlsBackgroundViewCenterY" id="cAW-qf-VPp"/>
                             <constraint firstItem="Odw-fc-Buf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="cX8-X1-VHN"/>
@@ -711,7 +650,6 @@
                             <constraint firstItem="yFo-KC-Pry" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="40" id="eE3-Jj-njQ"/>
                             <constraint firstItem="Vyl-Z8-0tu" firstAttribute="width" secondItem="SsP-ad-Wjl" secondAttribute="width" multiplier="0.8" id="fj8-Hs-eXe"/>
                             <constraint firstItem="Vyl-Z8-0tu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iAY-sX-TLc"/>
-                            <constraint firstItem="JbC-vR-Can" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qHX-ry-6Pz"/>
                             <constraint firstItem="pwm-N2-dS7" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="qOy-7m-1v6"/>
                             <constraint firstAttribute="bottom" secondItem="bFj-cR-DpG" secondAttribute="bottom" id="tXv-Qg-lIA"/>
                             <constraint firstItem="bFj-cR-DpG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="uwY-7u-hrh"/>
@@ -732,9 +670,6 @@
                         <outlet property="dailySummaryWebView" destination="Odw-fc-Buf" id="M32-2m-hMa"/>
                         <outlet property="dataSelector" destination="d4r-1W-jEE" id="uop-HD-EdR"/>
                         <outlet property="dateSorted" destination="Hbp-Q9-muc" id="J9f-SX-KIB"/>
-                        <outlet property="deleteScoreContainerView" destination="n4R-5x-sl0" id="HN1-WD-DW6"/>
-                        <outlet property="deleteScoreLabel" destination="Kwh-Xz-ZGz" id="vJr-X4-M58"/>
-                        <outlet property="deleteUIContainerView" destination="JbC-vR-Can" id="NQ3-uc-6MM"/>
                         <outlet property="emailButton" destination="ggF-iH-bax" id="geH-IX-Qua"/>
                         <outlet property="graphContainerView" destination="pwm-N2-dS7" id="tgC-Cv-yoM"/>
                         <outlet property="graphImageView" destination="ArY-C0-C0k" id="Kqn-Zw-k5M"/>
@@ -781,9 +716,6 @@
         </scene>
     </scenes>
     <designables>
-        <designable name="38Q-XI-Laj">
-            <size key="intrinsicContentSize" width="30" height="27"/>
-        </designable>
         <designable name="AI7-3q-VHs">
             <size key="intrinsicContentSize" width="30" height="23"/>
         </designable>
@@ -798,9 +730,6 @@
         </designable>
         <designable name="ZXf-J4-hY7">
             <size key="intrinsicContentSize" width="30" height="23"/>
-        </designable>
-        <designable name="fBa-B0-nnn">
-            <size key="intrinsicContentSize" width="30" height="28"/>
         </designable>
         <designable name="ggF-iH-bax">
             <size key="intrinsicContentSize" width="22.333333333333332" height="22"/>

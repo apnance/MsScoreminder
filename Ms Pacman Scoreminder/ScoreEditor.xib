@@ -11,6 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScoreEditor" customModule="Ms_Scoreminder" customModuleProvider="target">
             <connections>
+                <outlet property="deleteButton" destination="5h2-p0-h7h" id="Xoy-LD-4vn"/>
+                <outlet property="deleteConfirmationContainerView" destination="HyG-ov-x6j" id="xXY-eL-mBF"/>
                 <outlet property="editScoreLabel" destination="bXj-AM-asA" id="SOC-uL-RZo"/>
                 <outlet property="fruitPad" destination="3CX-BZ-S7T" id="4iS-4t-2eX"/>
                 <outlet property="numPad" destination="eua-Zx-IOX" id="CXb-4c-2uf"/>
@@ -173,10 +175,54 @@
                             </subviews>
                             <color key="backgroundColor" systemColor="systemTealColor"/>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="EDIT SCORE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXj-AM-asA">
-                            <rect key="frame" x="71.333333333333314" y="6.3333333333289374" width="149" height="40"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HyG-ov-x6j" userLabel="Delete Confirmation UI">
+                            <rect key="frame" x="85" y="174" width="120" height="28"/>
+                            <subviews>
+                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5vv-hI-Ode" customClass="RoundButton" customModule="APNUtil">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="28"/>
+                                    <color key="backgroundColor" name="Banana"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="50" id="dda-hT-KEA"/>
+                                        <constraint firstAttribute="height" constant="28" id="j0v-vx-YZa"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" weight="black" pointSize="13"/>
+                                    <color key="tintColor" name="Pink"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="Yes"/>
+                                    <connections>
+                                        <action selector="tappedDelete:" destination="-1" eventType="touchUpInside" id="wBe-6Q-WHG"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ZI-k2-hdm" customClass="RoundButton" customModule="APNUtil">
+                                    <rect key="frame" x="70" y="0.0" width="50" height="28"/>
+                                    <color key="backgroundColor" name="Blue"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="50" id="sR3-wi-MfI"/>
+                                        <constraint firstAttribute="height" constant="28" id="tuo-Fj-Vli"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" weight="black" pointSize="12"/>
+                                    <color key="tintColor" name="Banana"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="No"/>
+                                    <connections>
+                                        <action selector="tappedDelete:" destination="-1" eventType="touchUpInside" id="beX-gC-Nm1"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="5vv-hI-Ode" firstAttribute="top" secondItem="HyG-ov-x6j" secondAttribute="top" id="01t-4E-kUV"/>
+                                <constraint firstItem="5vv-hI-Ode" firstAttribute="leading" secondItem="HyG-ov-x6j" secondAttribute="leading" id="N5C-bC-HbZ"/>
+                                <constraint firstItem="5ZI-k2-hdm" firstAttribute="top" secondItem="HyG-ov-x6j" secondAttribute="top" id="ScP-vx-IfL"/>
+                                <constraint firstAttribute="trailing" secondItem="5ZI-k2-hdm" secondAttribute="trailing" id="Xju-Ey-kfh"/>
+                                <constraint firstAttribute="height" constant="28" id="eQQ-x5-9PW"/>
+                                <constraint firstAttribute="width" constant="120" id="xoi-CX-aq7"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DELETE SCORE?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXj-AM-asA">
+                            <rect key="frame" x="54.333333333333286" y="6.3333333333289374" width="180" height="36"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="31"/>
+                            <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="28"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -205,12 +251,14 @@
                                 <color key="titleColor" name="Apple"/>
                             </state>
                             <connections>
-                                <action selector="tappedDelete:" destination="-1" eventType="touchUpInside" id="JLk-ia-PRH"/>
+                                <action selector="tapShowDeleteConfirmation:" destination="-1" eventType="touchUpInside" id="rp1-Ja-wsd"/>
                             </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstAttribute="bottom" secondItem="HyG-ov-x6j" secondAttribute="bottom" constant="88" id="SSX-bZ-xEi"/>
+                        <constraint firstItem="HyG-ov-x6j" firstAttribute="centerX" secondItem="4kg-R8-Hyb" secondAttribute="centerX" id="Wwc-20-Yqa"/>
                         <constraint firstAttribute="width" constant="290" id="ifb-z2-AOM"/>
                         <constraint firstAttribute="height" constant="290" id="kuR-BO-B13"/>
                     </constraints>
@@ -229,8 +277,14 @@
         </view>
     </objects>
     <designables>
+        <designable name="5ZI-k2-hdm">
+            <size key="intrinsicContentSize" width="30" height="27"/>
+        </designable>
         <designable name="5h2-p0-h7h">
             <size key="intrinsicContentSize" width="19" height="20.666666666666668"/>
+        </designable>
+        <designable name="5vv-hI-Ode">
+            <size key="intrinsicContentSize" width="30" height="28"/>
         </designable>
         <designable name="rnI-Sp-Cpd">
             <size key="intrinsicContentSize" width="17.333333333333332" height="15.666666666666666"/>

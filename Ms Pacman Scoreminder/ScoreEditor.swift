@@ -15,25 +15,64 @@ class ScoreEditor: UIView {
     @IBOutlet weak var semiOpaqueBGView: UIView!
     @IBOutlet weak var uiContainerView: UIView!
     @IBOutlet weak var scoreContainerView: UIView!
+    @IBOutlet weak var deleteConfirmationContainerView: UIView!
     @IBOutlet weak var numPad: APNFlexKeypad!
     @IBOutlet weak var fruitPad: APNFlexKeypad!
+    @IBOutlet weak var deleteButton: RoundButton!
     @IBOutlet weak var updateButton: UIButton!
     @IBOutlet weak var editScoreLabel: UILabel!
     
     // MARK: - Actions
-    @IBAction func tappedDelete(_ sender: Any) { delegate?.delete(score: score) }
-    @IBAction func tappedSet(_ sender: Any) { delegate?.set(score: score); hide() }
+    @IBAction func tapShowDeleteConfirmation(_ sender: Any) {
+        
+        deleteConfirmation(show: true)
+        
+    }
+    
+    @IBAction func tappedDelete(_ sender: UIButton) {
+        
+        if sender.tag == 1 {
+            
+            delete()
+            
+        } else {
+            
+            deleteConfirmation(show: false)
+            
+        }
+        
+    }
+    
+    @IBAction func tappedSet(_ sender: Any) { save() }
     @IBAction func decreasLevel(_ sender: Any) { changeLevel(-1) }
     @IBAction func increaseLevel(_ sender: Any) { changeLevel(+1) }
     
     
     // MARK: - Properties
     /// The focus and raison d'etre of the ScoreEditor control.
-    private(set) var score: Score = .zero
+    private(set) var score: Score = .zero {
+        
+        willSet {
+            
+            // TODO: Clean Up - Factor this show/hide logic out into a uiShowUpdateDelete()
+            let isUpdatable = (newValue != lastSavedScore) && (newValue.score % 10 == 0)
+            
+            // Show/hide UI
+            updateButton.isHidden = !isUpdatable
+            deleteButton.isHidden = newValue != lastSavedScore
+            
+        }
+        
+    }
+    
+    /// Score used to track the last saved score, this value will be sent to delegate.delete(score:) if user taps to delete or updates the score.
+    /// When a score is "updated" the old value is first deleted then the new value is set.
+    private var lastSavedScore: Score?
     
     /// The top level view of the control.
     private(set) var view: ScoreEditor?
     
+    /// Delegate object
     private(set) var delegate: ScoreEditorDelegate?
     
     
@@ -56,6 +95,7 @@ class ScoreEditor: UIView {
         view?.constrainIn(superView)
         view?.alpha = 0.0
         
+        uiInitDeleteConfirmation()
         uiInitNumPad()
         uiInitFruitPad()
         uiInitContainerViews()
@@ -68,6 +108,17 @@ class ScoreEditor: UIView {
     }
     
     // -MARK: UI
+    private func uiInitDeleteConfirmation() {
+        
+        deleteConfirmationContainerView.subviews.forEach {
+            self.outlineAndShadow(view: $0)
+            
+        }
+        
+        deleteConfirmation(show: false)
+        
+    }
+    
     private func uiInitNumPad() {
         numPad.build(withConfigs: APNFlexKeypadConfigs(id: "numPad",
                                                        delegate: self,
@@ -139,29 +190,118 @@ class ScoreEditor: UIView {
         
     }
     
+    /// Displays/hides a delete confirmation UI
+    func deleteConfirmation(show: Bool) {
+        
+        editScoreLabel.text = show ? Configs.UI.Text.ScoreEditor.delete :  Configs.UI.Text.ScoreEditor.edit
+        deleteConfirmationContainerView.isHidden = !show
+        
+        numPad.hideButtons(show)
+        fruitPad.isHidden   = show
+        
+    }
+    
+    /// Loads a new score from argument or creates a new score from numPad/fruitPad values.
+    func load(score newScore: Score? = nil, isDeletable: Bool = false) {
+        
+        if let newScore = newScore { // Score was loaded into ScoreEditor
+            
+            lastSavedScore  = isDeletable ? newScore : nil
+            score           = newScore
+            numPad.set(value:   newScore.score.description)
+            fruitPad.set(value: newScore.level.description)
+            
+        } else {
+            
+            score.score = Int(numPad.value) ?? 0
+            score.level = Int(fruitPad.value) ?? 0
+            
+        }
+        
+        let scoreView   = AtomicScoreView.new(delegate: nil,
+                                              withScore: score,
+                                              andData: [""])
+        
+        scoreView.isUserInteractionEnabled = false
+        
+        scoreContainerView.subviews.forEach { if $0 is AtomicScoreView { $0.removeFromSuperview() } }
+        scoreContainerView.translatesAutoresizingMaskIntoConstraints = true
+        scoreContainerView.addSubview(scoreView)
+        
+        Utils.UI.addShadows(to: scoreView)
+        
+        show()
+        
+        assert(scoreContainerView.subviews.count <= 3,
+                """
+                    Max number of expected subviews(3) exceeded for scoreContainerView.
+                    Are you removing old views before adding a new one?")
+                """)
+        
+        scoreView.center = scoreContainerView.frame.center
+        
+    }
+    
+    /// Passes `score` to delegate.set(score:)
+    private func save() {
+        
+        if score != lastSavedScore {
+            
+            delete(hideOnDelete: false)
+            
+            delegate?.set(score: score);
+            
+            hide()
+            
+        }
+        
+    }
+    
+    /// Passes non-nil `lastSavedScore` values to to delegate.delete(score:)
+    private func delete(hideOnDelete: Bool = true) {
+        
+        if let toDelete = lastSavedScore {
+            
+            delegate?.delete(score: toDelete)
+            
+            if hideOnDelete { hide() }
+            
+        }
+        
+    }
+    
     /// Hides the ScoreEditor control in its superview.  Effectively dismisses the control.
     @objc private func hide() {
+        
+        lastSavedScore = nil
         
         numPad.show(false, animated: true)
         uiReconcileFruitPad()
         
         UIView.animate(withDuration: Configs.UI.Timing.ScoreEditor.hideDuration,
                        delay: 0.0,
-                       options: [.allowUserInteraction]) { self.view?.alpha = 0.0 }
+                       options: [.allowUserInteraction]) { self.view?.alpha = 0.0 } completion: { success in
+            
+            self.deleteConfirmation(show: false)
+            
+        }
         
     }
     
     /// Shows or summons the ScoreEditor control in its superView.
     func show() {
         
-        updateButton.isHidden = score.score % 10 != 0
-        
-        UIView.animate(withDuration: Configs.UI.Timing.ScoreEditor.showDuration,
-                       delay: 0.0,
-                       options: [.allowUserInteraction]) { self.view?.alpha = 1.0 }
+        if view?.alpha != 1.0 {
+            
+            UIView.animate(withDuration: Configs.UI.Timing.ScoreEditor.showDuration,
+                           delay: 0.0,
+                           options: [.allowUserInteraction]) { self.view?.alpha = 1.0 }
+            
+        }
         
         numPad.show(true, animated: true)
         uiReconcileFruitPad()
+        
     }
     
     /// Adds a fine gray outline and drop shadow to specified `UIView`
@@ -187,6 +327,23 @@ class ScoreEditor: UIView {
         }
         
         load()
+        
+    }
+    
+    /// Manages the display of fruitPad as approrpriate
+    func uiReconcileFruitPad() {
+        
+        let scoreValue = Int(numPad.value) ?? 0
+        
+        if numPad.isShown && numPad.value != "" && scoreValue % 10 == 0 {
+            
+            fruitPad.show(true, animated: true)
+            
+        } else {
+            
+            fruitPad.show(false, animated: true)
+            
+        }
         
     }
     
@@ -222,63 +379,6 @@ extension ScoreEditor: APNFlexKeypadDelegate {
     
     func showHideBegin(forID id: String,
                        isShown: Bool) { /*DO NOTHING*/ }
-    
-    func load(score newScore: Score? = nil) {
-        
-        if let newScore = newScore {
-            
-            score = newScore
-            numPad.set(value:   newScore.score.description)
-            fruitPad.set(value: newScore.level.description)
-            
-        } else {
-            
-            score.score = Int(numPad.value) ?? 0
-            score.level = Int(fruitPad.value) ?? 0
-            
-        }
-        
-        let scoreView   = AtomicScoreView.new(delegate: nil,
-                                              withScore: score,
-                                              andData: [""])
-        
-        scoreView.isUserInteractionEnabled = false
-        
-        scoreContainerView.subviews.forEach { if $0 is AtomicScoreView { $0.removeFromSuperview() } }
-        scoreContainerView.translatesAutoresizingMaskIntoConstraints = true
-        scoreContainerView.addSubview(scoreView)
-        
-        Utils.UI.addShadows(to: scoreView)
-        
-        show()
-        
-        assert(scoreContainerView.subviews.count <= 3,
-                """
-                    Max number of expected subviews(3) exceeded for scoreContainerView.
-                    Are you removing old views before adding a new one?")
-                """)
-        
-        scoreView.center = scoreContainerView.frame.center
-        
-    }
-    
-    
-    /// Manages the display of fruitPad as approrpriate
-    func uiReconcileFruitPad() {
-        
-        let scoreValue = Int(numPad.value) ?? 0
-        
-        if numPad.isShown && numPad.value != "" && scoreValue % 10 == 0 {
-            
-            fruitPad.show(true, animated: true)
-            
-        } else {
-            
-            fruitPad.show(false, animated: true)
-            
-        }
-        
-    }
     
 }
 
