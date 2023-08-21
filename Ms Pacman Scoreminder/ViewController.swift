@@ -629,7 +629,7 @@ class ViewController: UIViewController {
     /// Builds and runs Ms. Pac-Man/Ghost animation
     fileprivate func uiAnimateSprites() {
         
-        let spriteSheet = SpriteSheet(sprites: UIImage(named: "ms_sprite_sheet")!,
+        let spriteSheet = SpriteSheet(sprites: UIImage(named: "ms_sprite_sheet_v2")!,
                                       spriteWidth: 16,
                                       spriteHeight: 16)
         
@@ -647,22 +647,62 @@ class ViewController: UIViewController {
         }
         
         // Ms. Pac-Man
-        for i in 0..<3 {
+        for i in 0...2 {
             let image = spriteSheet.get(row: 0, col: i)!.pixelatedLCD(1,
                                                                       interstitialColor: .clear)!//.scaledBy(0.5)
             msImages.append(image)
         }
         
         // Ghost
-        let ghostIndex = Int.random(min: 4, max: 7)
-        for i in 0..<12 {
+        for ghostIndex in 4...7 {
             
-            let row = i > 7 ? 4 : ghostIndex
+            for i in 0...7 {
+                
+                let row = i > 7 ? 4 : ghostIndex
+                
+                let image = spriteSheet.get(row: row, col: i)!.pixelatedLCD(1,
+                                                                            interstitialColor: .clear)!//.scaledBy(0.5)
+                
+                ghostImages.append(image)
+                
+            }
             
-            let image = spriteSheet.get(row: row, col: i)!.pixelatedLCD(1,
-                                                                        interstitialColor: .clear)!//.scaledBy(0.5)
+        }
+        
+        for ghostRow in 4...5 {
             
-            ghostImages.append(image)
+            for ghostCol in 8...11 {
+                
+                let image = spriteSheet.get(row: ghostRow, col: ghostCol)!.pixelatedLCD(1,
+                                                                                        interstitialColor: .clear)!//.scaledBy(0.5)
+                
+                ghostImages.append(image)
+                ghostImages.append(image)
+                
+            }
+            
+        }
+        
+        // Fruit
+        for fruitCol in 3...9 {
+            
+            for row in 0...2 {
+                
+                //            let row = i > 7 ? 4 : ghostIndex
+                
+                let image = spriteSheet.get(row: row, col: fruitCol)!.pixelatedLCD(1,
+                                                                                   interstitialColor: .clear)!//.scaledBy(0.5)
+                
+                ghostImages.append(image)
+                
+                if row == 2 {
+                    
+                    ghostImages.append(image)
+                    
+                }
+                
+            }
+            
         }
         
         let (rep,fps) = (0, 8.0)
