@@ -24,6 +24,7 @@
 		932F7E2826FAD3C1001147B7 /* Configs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932F7E2526FAD323001147B7 /* Configs.swift */; };
 		9331176228E79EE9009F2054 /* APNUtil in Frameworks */ = {isa = PBXBuildFile; productRef = 9331176128E79EE9009F2054 /* APNUtil */; };
 		933345C02A9076E400BF1592 /* TaggedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933345BF2A9076E400BF1592 /* TaggedView.swift */; };
+		933345C22A92FB3200BF1592 /* AnimatedSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933345C12A92FB3100BF1592 /* AnimatedSprite.swift */; };
 		93345AD42730698D0090154B /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93345AD32730698D0090154B /* Stats.swift */; };
 		9338E011298F7B7D004CAB2C /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 9338E010298F7B7D004CAB2C /* OrderedCollections */; };
 		936DF3A7272C6C0F00CF2AEE /* DailyHighlightsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 936DF3A6272C6C0F00CF2AEE /* DailyHighlightsView.xib */; };
@@ -33,6 +34,7 @@
 		937B2B4E26FD56D00081CC6A /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 937B2B4D26FD56D00081CC6A /* Colors.xcassets */; };
 		93A497A3270E21F700D5AB5F /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A497A2270E21F700D5AB5F /* Preferences.swift */; };
 		93ACBFEA272CDCD4000BBC2C /* DailyStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ACBFE9272CDCD4000BBC2C /* DailyStats.swift */; };
+		93AF7B862A954BA2002B93F5 /* UISegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93AF7B852A954BA1002B93F5 /* UISegmentedControl.swift */; };
 		93B67B5D274DD741007C302C /* PlayStreak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B67B5C274DD741007C302C /* PlayStreak.swift */; };
 		93B6D0EC27021DAD005ADF3F /* AtomicScoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93B6D0EB27021DAD005ADF3F /* AtomicScoreView.xib */; };
 		93B6D0EE270231A4005ADF3F /* AtomicScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B6D0ED270231A4005ADF3F /* AtomicScoreView.swift */; };
@@ -41,7 +43,6 @@
 		93DD05972A86E0B60030D504 /* ScoreEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DD05962A86E0B60030D504 /* ScoreEditor.swift */; };
 		93DD05992A86E2040030D504 /* DayWebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93DD05982A86E2040030D504 /* DayWebView.xib */; };
 		93DD059D2A86E3E90030D504 /* APNFlexKeypad in Frameworks */ = {isa = PBXBuildFile; productRef = 93DD059C2A86E3E90030D504 /* APNFlexKeypad */; };
-		93E363D829A68A6200A561BA /* SpriteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E363D729A68A6200A561BA /* SpriteSheet.swift */; };
 		93F89B4A298B4C3A006C672A /* DailySummaryWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F89B49298B4C3A006C672A /* DailySummaryWebView.swift */; };
 /* End PBXBuildFile section */
 
@@ -100,6 +101,7 @@
 		932F7E2526FAD323001147B7 /* Configs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configs.swift; sourceTree = "<group>"; };
 		9331175F28E79D85009F2054 /* APNUtil */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = APNUtil; path = ../../Frameworks/APNUtil; sourceTree = "<group>"; };
 		933345BF2A9076E400BF1592 /* TaggedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaggedView.swift; sourceTree = "<group>"; };
+		933345C12A92FB3100BF1592 /* AnimatedSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedSprite.swift; sourceTree = "<group>"; };
 		93345AD32730698D0090154B /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		936DF3A6272C6C0F00CF2AEE /* DailyHighlightsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyHighlightsView.xib; sourceTree = "<group>"; };
 		936DF3AA272C6C2300CF2AEE /* DailyHighlightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyHighlightsView.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 		937B2B4F26FE2F650081CC6A /* Ms Pacman ScoreminderDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Ms Pacman ScoreminderDebug.entitlements"; sourceTree = "<group>"; };
 		93A497A2270E21F700D5AB5F /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		93ACBFE9272CDCD4000BBC2C /* DailyStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyStats.swift; sourceTree = "<group>"; };
+		93AF7B852A954BA1002B93F5 /* UISegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISegmentedControl.swift; sourceTree = "<group>"; };
 		93B67B5C274DD741007C302C /* PlayStreak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayStreak.swift; sourceTree = "<group>"; };
 		93B6D0EB27021DAD005ADF3F /* AtomicScoreView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AtomicScoreView.xib; sourceTree = "<group>"; };
 		93B6D0ED270231A4005ADF3F /* AtomicScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicScoreView.swift; sourceTree = "<group>"; };
@@ -117,7 +120,6 @@
 		93DD05962A86E0B60030D504 /* ScoreEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreEditor.swift; sourceTree = "<group>"; };
 		93DD05982A86E2040030D504 /* DayWebView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayWebView.xib; sourceTree = "<group>"; };
 		93DD059B2A86E3CC0030D504 /* APNFlexKeypad */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = APNFlexKeypad; path = ../../Frameworks/APNFlexKeypad; sourceTree = "<group>"; };
-		93E363D729A68A6200A561BA /* SpriteSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteSheet.swift; sourceTree = "<group>"; };
 		93F89B49298B4C3A006C672A /* DailySummaryWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySummaryWebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -211,7 +213,7 @@
 				937B2B4026FBA8E70081CC6A /* StatManager.swift */,
 				9316244D26FA4C8D004C06B7 /* ViewController.swift */,
 				9313DE4B273B418E00460712 /* EmailManager.swift */,
-				93E363D729A68A6200A561BA /* SpriteSheet.swift */,
+				933345C12A92FB3100BF1592 /* AnimatedSprite.swift */,
 			);
 			name = C;
 			sourceTree = "<group>";
@@ -280,6 +282,7 @@
 			children = (
 				9316244926FA4C8D004C06B7 /* AppDelegate.swift */,
 				9316244B26FA4C8D004C06B7 /* SceneDelegate.swift */,
+				93AF7B852A954BA1002B93F5 /* UISegmentedControl.swift */,
 			);
 			name = iOS;
 			sourceTree = "<group>";
@@ -460,7 +463,6 @@
 				931C594C2992DF5A00F361FB /* DailyStatsCluster.swift in Sources */,
 				93B6D0EE270231A4005ADF3F /* AtomicScoreView.swift in Sources */,
 				93ACBFEA272CDCD4000BBC2C /* DailyStats.swift in Sources */,
-				93E363D829A68A6200A561BA /* SpriteSheet.swift in Sources */,
 				9313DE4C273B418F00460712 /* EmailManager.swift in Sources */,
 				9316244E26FA4C8D004C06B7 /* ViewController.swift in Sources */,
 				93B67B5D274DD741007C302C /* PlayStreak.swift in Sources */,
@@ -468,8 +470,10 @@
 				93DD05972A86E0B60030D504 /* ScoreEditor.swift in Sources */,
 				9316244A26FA4C8D004C06B7 /* AppDelegate.swift in Sources */,
 				93345AD42730698D0090154B /* Stats.swift in Sources */,
+				933345C22A92FB3200BF1592 /* AnimatedSprite.swift in Sources */,
 				93A497A3270E21F700D5AB5F /* Preferences.swift in Sources */,
 				9316244C26FA4C8D004C06B7 /* SceneDelegate.swift in Sources */,
+				93AF7B862A954BA2002B93F5 /* UISegmentedControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
