@@ -629,81 +629,39 @@ class ViewController: UIViewController {
     /// Builds and runs Ms. Pac-Man/Ghost animation
     fileprivate func uiAnimateSprites() {
         
-        let spriteSheet = SpriteSheet(sprites: UIImage(named: "ms_sprite_sheet_v2")!,
-                                      spriteWidth: 16,
-                                      spriteHeight: 16)
+        let fruit       = AnimatedSprite.Fruit.self
+        let ghost       = AnimatedSprite.Ghost.random()
+        let ms          = AnimatedSprite.Ms.self
         
-        var dotsImages  = [UIImage]()
-        var ghostImages = [UIImage]()
-        var msImages    = [UIImage]()
+        let dotsImages  = AnimatedSprite.Pellets.animated
+        var ghostImages = ghost.lookClockWise
+                            + ghost.lookCounterWise
+                            + ghost.scared
+                            + ghost.scared
+                            + ghost.scared
+                            + ghost.scaredFading
+                            + ghost.scaredFading
+                            + ghost.scaredFading
+                            + ghost.scaredFading
+                            + ghost.eyesUp
+                            + ghost.eyesRight
+                            + ghost.eyesDown
+                            + ghost.eyesLeft
+                            + ghost.eyesLeft
+                            + ghost.eyesDown
+                            + ghost.eyesRight
+                            + ghost.eyesUp
+                            + ghost.eyesUp
+                            + ghost.eyesUp
+                            + fruit.cherry.bounce
+                            + fruit.strawberry.bounce
+                            + fruit.orange.bounce
+                            + fruit.pretzel.bounce
+                            + fruit.apple.bounce
+                            + fruit.pear.bounce
+                            + fruit.banana.bounce
         
-        // Pellets
-        for i in 9...11 {
-            dotsImages.append(spriteSheet.get(row:i,
-                                              startCol: 3,
-                                              colNum: 5)!.pixelatedLCD(1,
-                                                                       interstitialColor: .clear)!)
-            
-        }
-        
-        // Ms. Pac-Man
-        for i in 0...2 {
-            let image = spriteSheet.get(row: 0, col: i)!.pixelatedLCD(1,
-                                                                      interstitialColor: .clear)!//.scaledBy(0.5)
-            msImages.append(image)
-        }
-        
-        // Ghost
-        for ghostIndex in 4...7 {
-            
-            for i in 0...7 {
-                
-                let row = i > 7 ? 4 : ghostIndex
-                
-                let image = spriteSheet.get(row: row, col: i)!.pixelatedLCD(1,
-                                                                            interstitialColor: .clear)!//.scaledBy(0.5)
-                
-                ghostImages.append(image)
-                
-            }
-            
-        }
-        
-        for ghostRow in 4...5 {
-            
-            for ghostCol in 8...11 {
-                
-                let image = spriteSheet.get(row: ghostRow, col: ghostCol)!.pixelatedLCD(1,
-                                                                                        interstitialColor: .clear)!//.scaledBy(0.5)
-                
-                ghostImages.append(image)
-                ghostImages.append(image)
-                
-            }
-            
-        }
-        
-        // Fruit
-        for fruitCol in 3...9 {
-            
-            for row in 0...2 {
-                
-                //            let row = i > 7 ? 4 : ghostIndex
-                
-                let image = spriteSheet.get(row: row, col: fruitCol)!.pixelatedLCD(1,
-                                                                                   interstitialColor: .clear)!//.scaledBy(0.5)
-                
-                ghostImages.append(image)
-                
-                if row == 2 {
-                    
-                    ghostImages.append(image)
-                    
-                }
-                
-            }
-            
-        }
+        let msImages    = ms.goRight
         
         let (rep,fps) = (0, 8.0)
         dotsImages.animate(in: TESTSPRITES_PELLETS, withRepeatCount: rep, fps: 14)
