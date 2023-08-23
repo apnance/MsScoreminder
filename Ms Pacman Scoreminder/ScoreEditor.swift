@@ -122,18 +122,18 @@ class ScoreEditor: UIView {
     private func uiInitNumPad() {
         numPad.build(withConfigs: APNFlexKeypadConfigs(id: "numPad",
                                                        delegate: self,
-                                                       keys: [   1: ("1",       .accumulator("1"),      Colors.blue,   Colors.white)
-                                                                 , 2: ("2",     .accumulator("2"),      Colors.blue,   Colors.white)
-                                                                 , 3: ("3",     .accumulator("3"),      Colors.blue,   Colors.white)
-                                                                 , 4: ("4",     .accumulator("4"),      Colors.blue,   Colors.white)
-                                                                 , 5: ("5",     .accumulator("5"),      Colors.blue,   Colors.white)
-                                                                 , 6: ("6",     .accumulator("6"),      Colors.blue,   Colors.white)
-                                                                 , 7: ("7",     .accumulator("7"),      Colors.blue,   Colors.white)
-                                                                 , 8: ("8",     .accumulator("8"),      Colors.blue,   Colors.white)
-                                                                 , 9: ("9",     .accumulator("9"),      Colors.blue,   Colors.white)
-                                                                 , 10: ("0",    .accumulatorPost("0"),  Colors.blue,   Colors.white)
-                                                                 , 11: ("<",    .accumulatorBackspace,  Colors.white,  Colors.blue)
-                                                                 , 12: ("X",    .accumulatorReset,      Colors.white,  Colors.apple)
+                                                       keys: [   1: ("1",       .accumulator("1"),      Colors.blue,   Colors.white, .light)
+                                                                 , 2: ("2",     .accumulator("2"),      Colors.blue,   Colors.white, .light)
+                                                                 , 3: ("3",     .accumulator("3"),      Colors.blue,   Colors.white, .light)
+                                                                 , 4: ("4",     .accumulator("4"),      Colors.blue,   Colors.white, .light)
+                                                                 , 5: ("5",     .accumulator("5"),      Colors.blue,   Colors.white, .light)
+                                                                 , 6: ("6",     .accumulator("6"),      Colors.blue,   Colors.white, .light)
+                                                                 , 7: ("7",     .accumulator("7"),      Colors.blue,   Colors.white, .light)
+                                                                 , 8: ("8",     .accumulator("8"),      Colors.blue,   Colors.white, .light)
+                                                                 , 9: ("9",     .accumulator("9"),      Colors.blue,   Colors.white, .light)
+                                                                 , 10: ("0",    .accumulatorPost("0"),  Colors.blue,   Colors.white, .light)
+                                                                 , 11: ("<",    .accumulatorBackspace,  Colors.white,  Colors.blue,  .medium)
+                                                                 , 12: ("X",    .accumulatorReset,      Colors.white,  Colors.apple, .heavy)
                                                              ])
                      ,buttonStyler: outlineAndShadow(view:))
         
@@ -154,14 +154,14 @@ class ScoreEditor: UIView {
     private func uiInitFruitPad() {
         fruitPad.build(withConfigs: APNFlexKeypadConfigs(id: "fruitPad",
                                                          delegate: self,
-                                                         keys: [     1: ("ms_icon_0",  .singleValue("0"),   Colors.blue, Colors.white)
-                                                                     , 2: ("ms_icon_1",  .singleValue("1"), Colors.blue, Colors.white)
-                                                                     , 3: ("ms_icon_2",  .singleValue("2"), Colors.blue, Colors.white)
-                                                                     , 4: ("ms_icon_3",  .singleValue("3"), Colors.blue, Colors.white)
-                                                                     , 5: ("ms_icon_4",  .singleValue("4"), Colors.blue, Colors.white)
-                                                                     , 6: ("ms_icon_5",  .singleValue("5"), Colors.blue, Colors.white)
-                                                                     , 7: ("ms_icon_6",  .singleValue("6"), Colors.blue, Colors.white)
-                                                                     , 8: ("+", .custom({ [weak self] in self?.changeLevel(+1) }), Colors.banana, Colors.blue)
+                                                         keys: [     1: ("ms_icon_0",  .singleValue("0"),   Colors.blue, Colors.white, .medium)
+                                                                     , 2: ("ms_icon_1",  .singleValue("1"), Colors.blue, Colors.white, .medium)
+                                                                     , 3: ("ms_icon_2",  .singleValue("2"), Colors.blue, Colors.white, .medium)
+                                                                     , 4: ("ms_icon_3",  .singleValue("3"), Colors.blue, Colors.white, .medium)
+                                                                     , 5: ("ms_icon_4",  .singleValue("4"), Colors.blue, Colors.white, .medium)
+                                                                     , 6: ("ms_icon_5",  .singleValue("5"), Colors.blue, Colors.white, .medium)
+                                                                     , 7: ("ms_icon_6",  .singleValue("6"), Colors.blue, Colors.white, .medium)
+                                                                     , 8: ("+", .custom({ [weak self] in self?.changeLevel(+1) }), Colors.banana, Colors.blue, .medium)
                                                                ]))
         
         fruitPad.layer.cornerRadius         = fruitPad.frame.height / 2.0
