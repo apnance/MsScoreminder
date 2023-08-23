@@ -47,6 +47,7 @@ struct Configs {
                 
                 static let delete   = "DELETE SCORE?"
                 static let edit     = "EDIT SCORE"
+                static let enter    = "ENTER SCORE"
                 
             }
             

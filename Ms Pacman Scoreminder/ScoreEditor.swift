@@ -207,6 +207,7 @@ class ScoreEditor: UIView {
         if let newScore = newScore { // Score was loaded into ScoreEditor
             
             lastSavedScore  = isDeletable ? newScore : nil
+            editScoreLabel.text = isDeletable ? Configs.UI.Text.ScoreEditor.edit : Configs.UI.Text.ScoreEditor.enter
             score           = newScore
             numPad.set(value:   newScore.score.description)
             fruitPad.set(value: newScore.level.description)
