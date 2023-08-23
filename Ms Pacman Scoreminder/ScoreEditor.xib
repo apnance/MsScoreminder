@@ -220,14 +220,14 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DELETE SCORE?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXj-AM-asA">
-                            <rect key="frame" x="54.333333333333286" y="6.3333333333289374" width="180" height="36"/>
+                            <rect key="frame" x="53.333333333333286" y="7.3333333333289374" width="186" height="37"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="28"/>
+                            <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="29"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rnI-Sp-Cpd" userLabel="Update Button" customClass="RoundButton" customModule="APNUtil">
-                            <rect key="frame" x="236.99999999999997" y="15.333333333333258" width="35.000000000000028" height="35"/>
+                            <rect key="frame" x="241.99999999999997" y="13.333333333333258" width="35.000000000000028" height="35"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" name="Banana"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
@@ -241,7 +241,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5h2-p0-h7h" userLabel="Delete Button" customClass="RoundButton" customModule="APNUtil">
-                            <rect key="frame" x="18" y="15.333333333333258" width="35" height="35"/>
+                            <rect key="frame" x="13" y="13.333333333333258" width="35" height="35"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" name="Banana"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
