@@ -209,7 +209,7 @@ class StatManager {
         
     }
     
-    /// - important: do not call directly, call `tallyAllStats` instead
+    /// - important: do not call directly, call `tally` instead
     private func tallyScoreStats() {
         
         stats.levelTally = Array(repeating: 0, count: Score.levelCount)
@@ -302,7 +302,7 @@ class StatManager {
         
     }
     
-    /// - important: do not call directly, call `tallyAllStats` instead
+    /// - important: do not call directly, call `tally` instead
     private func tallyDailyStats() {
         
         var dailies = [DailyStats]()
