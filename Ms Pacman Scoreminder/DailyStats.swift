@@ -18,6 +18,14 @@ struct DailyStats {
     
     /// The average score of all `Score`s for `date`
     var averageScore: Int       = -12345
+    
+    /// The average of the last 7 daily scores.  Scores are averaged chronological
+    /// but necessarily consecuitvely as such this property doesn't necessarily
+    /// reflect the average of the last seven days. It is the average of the last seven recorded dailies.
+    /// - e.g. if the last daily stats are from
+    var sevenDayAverage: Int    = -12345
+    
+    /// The average level reached for games played on `date`
     var averageLevel: Int       = -123
     
     /// Number of `Score`s recorded for `date` (i.e. the number games played on `date`)

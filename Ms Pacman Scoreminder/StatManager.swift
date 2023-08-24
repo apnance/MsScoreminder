@@ -307,13 +307,15 @@ class StatManager {
         
         var dailies = [DailyStats]()
         
-        for date in stats.dates {
+        let lastSevenDailies = Queue<DailyStats>()
+        
+        for date in stats.dates { // iterates chronologically
            
             let scores = getScoresFor(date.simple)
             
             if scores.count < 2 { continue /*CONTINUE*/ }
             
-            var daily = DailyStats()
+            var currentDaily = DailyStats()
             
             var scoreSum = 0
             var levelSum = 0
@@ -323,17 +325,28 @@ class StatManager {
                 scoreSum += $0.score
                 levelSum += $0.level
                 
-                daily.levelsReached[$0.level] += 1
+                currentDaily.levelsReached[$0.level] += 1
                 
             }
             
-            daily.date          = date
-            daily.averageScore  = scoreSum / scores.count
-            daily.averageLevel  = Int((levelSum.double / scores.count.double).rounded())
+            currentDaily.date          = date
+            currentDaily.averageScore  = scoreSum / scores.count
+            currentDaily.averageLevel  = Int((levelSum.double / scores.count.double).rounded())
             
-            daily.gamesPlayed   = scores.count
+            currentDaily.gamesPlayed   = scores.count
             
-            dailies.append(daily)
+            // 7-Day Avg
+            lastSevenDailies.enqueue(item: currentDaily)
+            if lastSevenDailies.count > 7 { lastSevenDailies.dequeue() }
+            currentDaily.sevenDayAverage = lastSevenDailies.reduce(0){ $0 + $1.averageScore } / lastSevenDailies.count
+
+            //            // TODO: Clean Up - delete
+            print("\(currentDaily.date.simple) [score:\(lastSevenDailies.count)] -> 1-day:\(currentDaily.averageScore) 7-day:\(currentDaily.sevenDayAverage)")
+//            //po (36783+38575+46683+42982) / 4 // = 41255 - first 4 scores
+//            //po (79770+72815+73533+71576+58410+57680+67620) / 7 // 68772 - last 8 minus last one
+//            //po (46655+79770+72815+73533+71576+58410+57680) / 7 // 65777 - last 7
+//
+            dailies.append(currentDaily)
             
         }
         
