@@ -36,7 +36,6 @@ struct Stats {
     var singleGamesCount  = 0
     var averagedGamesCount : Int { dailies.count }
     
-    
     fileprivate var streaks: StreakSet?
     
     /// Returns a sorted array of Dates in simpleDate format
@@ -67,7 +66,7 @@ extension StatManager {
         return nil /*EXIT*/
         
     }
-
+    
     /// Returns the closest future averages Score to `from` `Date` or nil if
     /// from is the `Date` newest available averaged `Score`
     func getNearestPastAveragedScore(from: Date) -> Score? {
@@ -83,7 +82,7 @@ extension StatManager {
         
     }
     
-    func getScoreData() -> [DateString : [Score] ] { return stats.data }
+    func getScoreData() -> [DateString : [Score] ] { stats.data }
     func getScoresFor(_ date: DateString) -> [Score] { stats.data[date] ?? [] }
     
     func setData(_ date: DateString, using: [Score]) {
