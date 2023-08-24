@@ -31,6 +31,7 @@ class AtomicScoreView: UIView {
     @IBOutlet var dateView: UILabel!
     @IBOutlet weak var averageGameCountLabel: UILabel!
     @IBOutlet var scoreView: UILabel!
+    @IBOutlet weak var todayView: UILabel!
     @IBOutlet var fruitView: UIImageView!
     @IBOutlet weak var borderView: UIView!
     @IBOutlet weak var scoreStatsLabel: UILabel!
@@ -49,6 +50,7 @@ class AtomicScoreView: UIView {
         // date
         dateView.text       = score.date.simple
         dateView.textColor  = textColor
+        todayView.isHidden  = !score.date.isToday 
         
         // average game count
         averageGameCountLabel.alpha                 = score.isAveraged ? 1 : 0
@@ -107,6 +109,8 @@ class AtomicScoreView: UIView {
         
         let colorFG = i % 2 != 0 ? score.colorLight : score.colorDark
         let colorBG = i % 2 != 0 ? score.colorDark : score.colorLight
+        
+        todayView.textColor = colorFG
         
         scoresStatsRoundView.isHidden           = data[i] == ""
         scoreStatsLabel.text                    = data[i]
