@@ -308,7 +308,7 @@ class StatManager {
         var dailies = [DailyStats]()
         
         for date in stats.dates {
-            
+           
             let scores = getScoresFor(date.simple)
             
             if scores.count < 2 { continue /*CONTINUE*/ }
@@ -337,8 +337,7 @@ class StatManager {
             
         }
         
-        // sort
-        dailies.sort(by: >)
+        dailies.sort(by: >) // sorted by averageScore
         
         let totalDaysPlayed = dailies.count
         
