@@ -339,7 +339,7 @@ class StatManager {
         
         // sort
         dailies.sort(by: >)
-
+        
         let totalDaysPlayed = dailies.count
         
         for (i, _) in dailies.enumerated() {
