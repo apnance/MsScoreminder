@@ -309,7 +309,7 @@ class StatManager {
         
         let lastSevenDailies = Queue<DailyStats>()
         
-        for date in stats.dates { // iterates chronologically
+        for date in stats.dates { // Iterates Chronologically
            
             let scores = getScoresFor(date.simple)
             
@@ -332,25 +332,18 @@ class StatManager {
             currentDaily.date          = date
             currentDaily.averageScore  = scoreSum / scores.count
             currentDaily.averageLevel  = Int((levelSum.double / scores.count.double).rounded())
-            
             currentDaily.gamesPlayed   = scores.count
             
             // 7-Day Avg
             lastSevenDailies.enqueue(item: currentDaily)
             if lastSevenDailies.count > 7 { lastSevenDailies.dequeue() }
             currentDaily.sevenDayAverage = lastSevenDailies.reduce(0){ $0 + $1.averageScore } / lastSevenDailies.count
-
-            //            // TODO: Clean Up - delete
-            print("\(currentDaily.date.simple) [score:\(lastSevenDailies.count)] -> 1-day:\(currentDaily.averageScore) 7-day:\(currentDaily.sevenDayAverage)")
-//            //po (36783+38575+46683+42982) / 4 // = 41255 - first 4 scores
-//            //po (79770+72815+73533+71576+58410+57680+67620) / 7 // 68772 - last 8 minus last one
-//            //po (46655+79770+72815+73533+71576+58410+57680) / 7 // 65777 - last 7
-//
+            
             dailies.append(currentDaily)
             
         }
         
-        dailies.sort(by: >) // sorted by averageScore
+        dailies.sort(by: >) // Sorted by averageScore
         
         let totalDaysPlayed = dailies.count
         
