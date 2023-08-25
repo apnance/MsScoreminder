@@ -335,8 +335,7 @@ class StatManager {
             currentDaily.gamesPlayed   = scores.count
             
             // 7-Day Avg
-            lastSevenDailies.enqueue(item: currentDaily)
-            if lastSevenDailies.count > 7 { lastSevenDailies.dequeue() }
+            lastSevenDailies.enqueue(item: currentDaily, withMaxCount: 7)
             currentDaily.sevenDayAverage = lastSevenDailies.reduce(0){ $0 + $1.averageScore } / lastSevenDailies.count
             
             dailies.append(currentDaily)
