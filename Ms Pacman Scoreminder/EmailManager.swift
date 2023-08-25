@@ -260,34 +260,38 @@ struct EmailManager {
         
         if let dailyStats = statMan.getDailyStatsSummary(forDate: date).requested {
             
-            var rank        = "\(dailyStats.rank.0)<span class=\"super\">\(dailyStats.rank.0.ordinal)</span> of \(dailyStats.rank.1)"
-            var percentile  = StatManager.percentileDescription(dailyStats.rank)
-            let games       = "\(dailyStats.gamesPlayed) today, \(statMan.getTotalGamesPlayed()) total"
-            var avgScore    = dailyStats.averageScore.delimited
-            var avgLevel    = Score.nameFor(level: dailyStats.averageLevel)
+            var rank                = "\(dailyStats.rank.0)<span class=\"super\">\(dailyStats.rank.0.ordinal)</span> of \(dailyStats.rank.1)"
+            var percentile          = StatManager.percentileDescription(dailyStats.rank)
+            let games               = "\(dailyStats.gamesPlayed) today, \(statMan.getTotalGamesPlayed()) total"
+            var avgScore            = dailyStats.averageScore.delimited
+            var sevenDayAvgScore    = dailyStats.sevenDayAverage.delimited
+            var avgLevel            = Score.nameFor(level: dailyStats.averageLevel)
             
-            if let previousStats  = statMan.getPreviousDaily(forDate: date) {
+            if let previousStats    = statMan.getPreviousDaily(forDate: date) {
                 
-                rank        += formatDelta(ints:    (previousStats.rank.0,
-                                                     dailyStats.rank.0))
-                percentile  += formatDelta(doubles: (StatManager.percentile(dailyStats.rank),
-                                                     StatManager.percentile(previousStats.rank)))
-                avgScore    += formatDelta(ints:    (dailyStats.averageScore,
-                                                     previousStats.averageScore))
-                avgLevel    += formatDelta(ints:    (dailyStats.averageLevel,
-                                                     previousStats.averageLevel))
+                rank                += formatDelta(ints:    (previousStats.rank.0,
+                                                             dailyStats.rank.0))
+                percentile          += formatDelta(doubles: (StatManager.percentile(dailyStats.rank),
+                                                             StatManager.percentile(previousStats.rank)))
+                avgScore            += formatDelta(ints:    (dailyStats.averageScore,
+                                                             previousStats.averageScore))
+                avgLevel            += formatDelta(ints:    (dailyStats.averageLevel,
+                                                             previousStats.averageLevel))
+                sevenDayAvgScore    += formatDelta(ints:    (dailyStats.sevenDayAverage,
+                                                             previousStats.sevenDayAverage))
                 
             }
             
             return """
                         \(buildIcons())
-                        \(columnate(["DATE:",        dailyStats.date.simple]))
-                        \(columnate(["RANK:",        rank]))
-                        \(columnate(["PERCENTILE:",  percentile]))
+                        \(columnate(["DATE:",       dailyStats.date.simple]))
+                        \(columnate(["RANK:",       rank]))
+                        \(columnate(["PERCENTILE:", percentile]))
                         
-                        \(columnate(["AVG SCORE:",   avgScore]))
-                        \(columnate(["AVG LEVEL:",   avgLevel]))
-                        \(columnate(["GAMES:",       games]))
+                        \(columnate(["AVG SCORE:",  avgScore]))
+                        \(columnate(["7 DAY AVG:",  sevenDayAvgScore]))
+                        \(columnate(["AVG LEVEL:",  avgLevel]))
+                        \(columnate(["GAMES:",      games]))
                         \(buildStreakHTML())
                     """
             
