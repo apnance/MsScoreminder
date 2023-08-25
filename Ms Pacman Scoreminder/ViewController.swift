@@ -46,9 +46,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var scoreFilterControlsStackView: UIStackView!
     
     @IBOutlet weak var spritesViewContainer: RoundView!
-    @IBOutlet weak var TESTSPRITES_GHOST: UIImageView!
-    @IBOutlet weak var TESTSPRITES_MS: UIImageView!
-    @IBOutlet weak var TESTSPRITES_PELLETS: UIImageView!
+    @IBOutlet weak var spriteViewGhost1:     UIImageView!
+    @IBOutlet weak var spriteViewMSPacMan:   UIImageView!
+    @IBOutlet weak var spriteViewPellets:    UIImageView!
     
     // Launch Screen Replica "Curtain"
     @IBOutlet weak var launchScreenReplicaCurtainView: UIView!
@@ -632,8 +632,8 @@ class ViewController: UIViewController {
         let ghost       = AnimatedSprite.Ghost.random()
         let ms          = AnimatedSprite.Ms.self
         
-        let dotsImages  = AnimatedSprite.Pellets.animated
-        var ghostImages = ghost.lookClockWise
+        let dotsImages  = AnimatedSprite.Pellets.movingLeft
+        let ghostImages = ghost.lookClockWise
                             + ghost.lookCounterWise
                             + ghost.scared
                             + ghost.scared
@@ -663,9 +663,9 @@ class ViewController: UIViewController {
         let msImages    = ms.goRight
         
         let (rep,fps) = (0, 8.0)
-        dotsImages.animate(in: TESTSPRITES_PELLETS, withRepeatCount: rep, fps: 14)
-        msImages.animate(in: TESTSPRITES_MS, withRepeatCount: rep, fps: fps)
-        ghostImages.animate(in: TESTSPRITES_GHOST, withRepeatCount: rep, fps: fps)
+        dotsImages.animate(in:  spriteViewPellets,  withRepeatCount: rep, fps: 14)
+        msImages.animate(in:    spriteViewMSPacMan, withRepeatCount: rep, fps: fps)
+        ghostImages.animate(in: spriteViewGhost1,   withRepeatCount: rep, fps: fps)
         
     }
     
