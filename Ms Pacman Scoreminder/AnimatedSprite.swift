@@ -150,7 +150,7 @@ struct AnimatedSprite {
     
     class Pellets {
         
-        static var animated: [UIImage] = {
+        static var movingLeft: [UIImage] = {
             
             var frames = [UIImage]()
             
@@ -164,8 +164,23 @@ struct AnimatedSprite {
             
             return frames
             
-        } ()
+        }()
         
+        static var movingRight: [UIImage] = {
+            
+            var frames = [UIImage]()
+            
+            for i in (9...11).reversed() {
+                frames.append(spriteSheet.get(row:i,
+                                              startCol: 3,
+                                              colNum: 5)!.pixelatedLCD(1,
+                                                                       interstitialColor: .clear)!)
+                
+            }
+            
+            return frames
+            
+        }()
         
     }
     
