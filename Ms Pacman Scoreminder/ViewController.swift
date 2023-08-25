@@ -90,7 +90,6 @@ class ViewController: UIViewController {
     // Day WebView
     @IBOutlet weak var dailySummaryWebView: DailySummaryWebView!
     
-    
     // MARK: Actions
     @IBAction func didTapRangeFilterButton(_ sender: RoundButton) {
         
@@ -926,7 +925,7 @@ extension ViewController: ScoreEditorDelegate {
         } else {
             
             assert(false,
-                   """
+                    """
                     Handle message user that they can't save scores that are not
                     multiples of 10 or better yet don't allow them to attempt to
                     save if not multiple of 10
