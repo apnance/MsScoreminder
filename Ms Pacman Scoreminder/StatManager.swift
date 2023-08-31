@@ -548,18 +548,21 @@ extension StatManager {
     private func save(_ csv: CSV,
                       toFile: String = Configs.File.Path.currentData) {
         
-        do {
+        DispatchQueue.global(qos: .userInitiated).async {
             
-            try csv.write(toFile: toFile,
-                          atomically: true,
-                          encoding: String.Encoding.utf8)
-            
-            NSLog("Saved data to: \(toFile)")
-            
-            
-        } catch {
-            
-            NSLog(error.localizedDescription)
+            do {
+                
+                try csv.write(toFile: toFile,
+                              atomically: true,
+                              encoding: String.Encoding.utf8)
+                
+                NSLog("Saved data to: \(toFile)")
+                
+            } catch {
+                
+                NSLog(error.localizedDescription)
+                
+            }
             
         }
         
