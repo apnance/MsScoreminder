@@ -89,7 +89,7 @@ struct Score {
     
     /// The number of game scores included in average score.
     /// - note: Default value is 1 and indicates an unaveraged `Score`.
-    private(set) var averagedGameCount: Int = 1
+    private(set) var averagedGameCount: Int
     
     /// Does this `Score` represent an
     var isAveraged: Bool { averagedGameCount > 1 }
@@ -102,6 +102,18 @@ struct Score {
     var colorLight: UIColor { Score.colorFor(level: level) }
     var colorDark: UIColor { Score.contrastColorFor(level: level) }
     
+    
+    init(date: Date,
+         score: Int,
+         level: Int,
+         averagedGameCount: Int = 1) {
+        
+        self.date               = date
+        self.score              = score
+        self.level              = level
+        self.averagedGameCount  = averagedGameCount
+        
+    }
     
     /// - Returns: Random Score, with randomized date, score, and level.
     /// - note: useful for testing
@@ -157,15 +169,5 @@ extension Score : APNGraphable {
     var pointColor: UIColor { Score.colorFor(level: level) }
     var pointBorderColor: UIColor { .black.pointEightAlpha }
     var pointImageName: String? { "ms_graph_icon_\(level)" }
-    
-    init(date: Date,
-         score: Int,
-         level: Int) {
-        
-        self.date   = date
-        self.score  = score
-        self.level  = level
-        
-    }
     
 }
