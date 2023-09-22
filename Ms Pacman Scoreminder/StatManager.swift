@@ -524,6 +524,8 @@ extension StatManager {
         
     }
     
+    /// Compiles all score data into a comma separated file format.
+    /// - Important: this call gets expensive as score data grows - call async when possible.
     func getCSV() -> CSV {
         
         // tally before collating stats in csv
@@ -543,26 +545,33 @@ extension StatManager {
         
     }
     
-    func save() { save(getCSV()) }
-    
-    private func save(_ csv: CSV,
-                      toFile: String = Configs.File.Path.currentData) {
+    /// Asynchronously compiles scores to CSV format and saves it to disk.
+    func save() {
         
         DispatchQueue.global(qos: .userInitiated).async {
             
-            do {
-                
-                try csv.write(toFile: toFile,
-                              atomically: true,
-                              encoding: String.Encoding.utf8)
-                
-                NSLog("Saved data to: \(toFile)")
-                
-            } catch {
-                
-                NSLog(error.localizedDescription)
-                
-            }
+            self.save(self.getCSV())
+            
+        }
+        
+    }
+    
+    /// Saves `csv` to disk.
+    /// - Important: route all attempts to save data through save() wherever possible.
+    private func save(_ csv: CSV,
+                      toFile: String = Configs.File.Path.currentData) {
+        
+        do {
+            
+            try csv.write(toFile: toFile,
+                          atomically: true,
+                          encoding: String.Encoding.utf8)
+            
+            NSLog("Saved data to: \(toFile)")
+            
+        } catch {
+            
+            NSLog(error.localizedDescription)
             
         }
         
