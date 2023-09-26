@@ -735,17 +735,6 @@ class ViewController: UIViewController {
         
     }
     
-    private func delete(score: Score?) {
-        
-        guard let score = score
-        else { return /*EXIT*/ }
-        
-        statMan.delete(score)
-        
-        uiVolatile()
-        
-    }
-    
     func showDailySummary(_ shouldShow: Bool,
                           forDate date: Date? = nil) {
         
@@ -899,17 +888,21 @@ extension ViewController: ScoreEditorDelegate {
     
     func delete(score: Score) {
         
-        statMan.delete(score)
+        statMan.delete(score, shouldSave: true)
         
         uiVolatile()
         
     }
     
-    func set(score: Score) {
+    /// Sets `new` Score and deletes `replacing` if not `nil`.
+    func set(new: Score,
+             replacing old: Score?) {
         
-        if score.score % 10 == 0 {
+        if let old = old { statMan.delete(old) }
+        
+        if new.score % 10 == 0 {
             
-            statMan.set(score)
+            statMan.set(new)
             
             NotificationManager.shared.tomorrow(withTitle:      Configs.Notifications.title,
                                                 andBody:        Configs.Notifications.body,
