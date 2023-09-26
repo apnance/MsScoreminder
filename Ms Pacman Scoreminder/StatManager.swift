@@ -96,8 +96,12 @@ class StatManager {
         
     }
     
-    /// Deletes a score from `data`
-    func delete(_ score: Score) {
+    /// Deletes a score from `data` saving if `shouldSave` is true.
+    ///
+    /// - important: do not set `shouldSave` to true if there is potential of
+    /// another concurrent call to `save()` multiple calls to `save()` will result
+    /// in crash.
+    func delete(_ score: Score, shouldSave: Bool = false) {
         
         let date = score.date.simple
         var scores = getScoresFor(date)
@@ -112,7 +116,7 @@ class StatManager {
                 
                 setData(date, using: scores)
                 
-                save()
+                if shouldSave { save() }
                 
                 return /*EXIT*/
                 
