@@ -248,9 +248,7 @@ class ScoreEditor: UIView {
         
         if score != lastSavedScore {
             
-            delete(hideOnDelete: false)
-            
-            delegate?.set(score: score);
+            delegate?.set(new: score, replacing: lastSavedScore)
             
             hide()
             
@@ -385,7 +383,7 @@ extension ScoreEditor: APNFlexKeypadDelegate {
 
 protocol ScoreEditorDelegate {
     
-    func delete(score:Score)
-    func set(score: Score)
+    func delete(score: Score)
+    func set(new: Score, replacing: Score?)
     
 }
