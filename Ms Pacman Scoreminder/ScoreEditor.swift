@@ -257,13 +257,12 @@ class ScoreEditor: UIView {
     }
     
     /// Passes non-nil `lastSavedScore` values to to delegate.delete(score:)
-    private func delete(hideOnDelete: Bool = true) {
+    private func delete() {
         
         if let toDelete = lastSavedScore {
             
             delegate?.delete(score: toDelete)
-            
-            if hideOnDelete { hide() }
+            hide()
             
         }
         
