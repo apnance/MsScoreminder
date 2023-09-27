@@ -383,7 +383,7 @@ extension ScoreEditor: APNFlexKeypadDelegate {
 }
 
 protocol ScoreEditorDelegate {
-
+    
     /// Called as `ScoreEditor` is dismissed.
     func cleanUp()
     
