@@ -276,6 +276,8 @@ class ScoreEditor: UIView {
         numPad.show(false, animated: true)
         uiReconcileFruitPad()
         
+        delegate?.cleanUp()
+        
         UIView.animate(withDuration: Configs.UI.Timing.ScoreEditor.hideDuration,
                        delay: 0.0,
                        options: [.allowUserInteraction]) { self.view?.alpha = 0.0 } completion: { success in
@@ -381,8 +383,21 @@ extension ScoreEditor: APNFlexKeypadDelegate {
 }
 
 protocol ScoreEditorDelegate {
+
+    /// Called as `ScoreEditor` is dismissed.
+    func cleanUp()
     
+    /// Called when user attempts to delete a `Score`
+    ///
+    /// - Parameters:
+    /// - score: `Score` to delete
     func delete(score: Score)
+    
+    /// Called when user updates or add a new `Score`
+    ///
+    /// - Parameters:
+    /// - new:The new `Score` or updated value.
+    /// - replacing: The old value to be replaced with `new`
     func set(new: Score, replacing: Score?)
     
 }

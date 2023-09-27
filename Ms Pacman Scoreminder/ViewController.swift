@@ -25,6 +25,9 @@ class ViewController: UIViewController {
     private var timer: APNTimer?
     private var lastDailyRunDate = Date().simple
     
+    /// Flag that triggers `uiVolatile()` call in `uiLoop()`
+    private var volatileUIShouldUpdate = false
+    
     
     // MARK: - Outlets
     @IBOutlet var mainView: UIView!
@@ -164,12 +167,13 @@ class ViewController: UIViewController {
     // MARK: UI
     private func uiInit() {
         
+        volatileUIShouldUpdate = true
+        
         DispatchQueue.main.async {
             
             self.uiMisc()
             self.uiBGStripe()
             self.uiBuildFilterSelectors()
-            self.uiVolatile()
             self.uiRotateMarquee()
             self.uiLoop()
             self.uiAnimateSprites()
@@ -280,6 +284,9 @@ class ViewController: UIViewController {
         
         // scores
         uiScoreCycler()
+        
+        // general UI updates
+        uiVolatile()
         
     }
     
@@ -398,8 +405,8 @@ class ViewController: UIViewController {
         
         if lastDailyRunDate != currenDate {
             
-            lastDailyRunDate = currenDate
-            uiVolatile()
+            lastDailyRunDate        = currenDate
+            volatileUIShouldUpdate  = true
             
         }
         
@@ -513,8 +520,14 @@ class ViewController: UIViewController {
         
     }
     
-    /// Updates UI affected by changes to data - called frequently in response to user interaction.
+    /// Updates UI affected by changes to data - called repeatedly in `uiLoop`.
+    ///
+    /// - important: Do not call this method directly instead, to trigger a call,
+    /// set `volatileUIShouldUpdate` to true.
     private func uiVolatile() {
+        
+        if !volatileUIShouldUpdate { return /*EXIT*/ }
+        else { volatileUIShouldUpdate = false }
         
         DispatchQueue.main.async {
             
@@ -886,11 +899,12 @@ extension ViewController: AtomicScoreViewDelegate {
 // - MARK: ScoreEditorDelegate
 extension ViewController: ScoreEditorDelegate {
     
+    func cleanUp() { statMan.save() }
+    
     func delete(score: Score) {
         
         statMan.delete(score, shouldSave: true)
-        
-        uiVolatile()
+        volatileUIShouldUpdate = true
         
     }
     
@@ -913,7 +927,7 @@ extension ViewController: ScoreEditorDelegate {
                                                 badgeNumber:    Configs.Notifications.badgeNumber,
                                                 testMode:       Configs.Notifications.testMode)
             
-            uiVolatile()
+            volatileUIShouldUpdate = true
             
         } else {
             

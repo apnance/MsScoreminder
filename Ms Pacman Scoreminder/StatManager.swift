@@ -38,16 +38,13 @@ enum DateRange : CustomStringConvertible {
 
 class StatManager {
     
+    private var saveNeeded = false
     private (set) var prefs = Preferences.shared
     var stats: Stats!
     
-    init() {
-        
-        stats = Stats()
-        
-    }
+    init() { stats = Stats() }
     
-    // Adds or updates score in the data hash
+    // Adds or updates score in the data hash then sets `saveNeeded = true`
     func set(_ score: Score) {
         
         assert(score.score % 10 == 0,
@@ -56,6 +53,8 @@ class StatManager {
                 scores are all multiples of 10.
                 """)
         
+        saveNeeded = true
+        
         var currScores = getScoresFor(score.date.simple)
         let date = score.date.simple
         
@@ -63,8 +62,6 @@ class StatManager {
             
             setData(date,
                     using: [score])
-            
-            save()
             
             return /*EXIT*/
             
@@ -79,8 +76,6 @@ class StatManager {
                 setData(date,
                         using: currScores)
                 
-                save()
-                
                 return /*EXIT*/
                 
             }
@@ -91,8 +86,6 @@ class StatManager {
         
         setData(date,
                 using: currScores)
-        
-        save()
         
     }
     
@@ -116,7 +109,7 @@ class StatManager {
                 
                 setData(date, using: scores)
                 
-                if shouldSave { save() }
+                if shouldSave { saveNeeded = true }
                 
                 return /*EXIT*/
                 
@@ -551,6 +544,9 @@ extension StatManager {
     
     /// Asynchronously compiles scores to CSV format and saves it to disk.
     func save() {
+        
+        if !saveNeeded { return /*EXIT*/ }
+        else { saveNeeded = false }
         
         DispatchQueue.global(qos: .userInitiated).async {
             
