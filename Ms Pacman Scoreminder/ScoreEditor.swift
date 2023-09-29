@@ -43,7 +43,7 @@ class ScoreEditor: UIView {
         
     }
     
-    @IBAction func tappedSet(_ sender: Any) { save() }
+    @IBAction func tappedSet(_ sender: Any) { set() }
     @IBAction func decreasLevel(_ sender: Any) { changeLevel(-1) }
     @IBAction func increaseLevel(_ sender: Any) { changeLevel(+1) }
     
@@ -244,7 +244,7 @@ class ScoreEditor: UIView {
     }
     
     /// Passes `score` to delegate.set(score:)
-    private func save() {
+    private func set() {
         
         if score != lastSavedScore {
             
@@ -262,6 +262,7 @@ class ScoreEditor: UIView {
         if let toDelete = lastSavedScore {
             
             delegate?.delete(score: toDelete)
+            
             hide()
             
         }
