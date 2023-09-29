@@ -567,11 +567,11 @@ extension StatManager {
                           atomically: true,
                           encoding: String.Encoding.utf8)
             
-            NSLog("Saved data to: \(toFile)")
+            APNUtil.Utils.log("Saved data to: \(toFile)")
             
         } catch {
             
-            NSLog(error.localizedDescription)
+            APNUtil.Utils.log(error.localizedDescription)
             
         }
         
@@ -599,12 +599,12 @@ extension StatManager {
                 
                 // backup old data
                 let backupFilePath = Configs.File.Path.generateBackupFilePath()
-                NSLog("Backing up: \(backupFilePath)")
+                APNUtil.Utils.log("Backing up: \(backupFilePath)")
                 save(csv, toFile: backupFilePath)
                 
             } else {
                 
-                NSLog("Loading: \(Configs.File.Path.currentData)")
+                APNUtil.Utils.log("Loading: \(Configs.File.Path.currentData)")
                 
             }
             
@@ -613,7 +613,7 @@ extension StatManager {
         if useDefaults {
             
             // load reset data
-            NSLog("Loading Defaults: \(Configs.File.Path.defaultData)")
+            APNUtil.Utils.log("Loading Defaults: \(Configs.File.Path.defaultData)")
             
             let savedData   = FileManager.default.contents(atPath: Configs.File.Path.defaultData)
             csv = String(decoding: savedData!,

@@ -834,7 +834,7 @@ extension ViewController: MFMailComposeViewControllerDelegate {
             
         } else {
             
-            NSLog("Email cannot be sent")
+            APNUtil.Utils.log("Email cannot be sent")
             
             // toggle html test view
             htmlTestView.isHidden = !htmlTestView.isHidden
@@ -860,11 +860,11 @@ extension ViewController: MFMailComposeViewControllerDelegate {
         
         switch result {
                 
-            case .cancelled: NSLog("Cancelled"); break
+            case .cancelled: APNUtil.Utils.log("Cancelled"); break
                 
-            case .sent: NSLog("Mail sent successfully"); break
+            case .sent: APNUtil.Utils.log("Mail sent successfully"); break
                 
-            case .failed: NSLog("Sending mail failed"); break
+            case .failed: APNUtil.Utils.log("Sending mail failed"); break
                 
             default: break
                 

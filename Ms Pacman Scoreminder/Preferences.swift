@@ -144,12 +144,12 @@ extension Preferences {
         
         if let archived: Preferences = CodableArchiver.unarchive(file: Configs.Archive.Keys.preferences,
                                                                  inSubDir: "") {
-            print("Unarchive - succeeded.")
+            APNUtil.Utils.log("Unarchive - succeeded.")
             return archived /*EXIT*/
             
         } else {
             
-            print("Unarchive - failed.")
+            APNUtil.Utils.log("Unarchive - failed.")
             return Preferences() /*EXIT*/
             
         }
