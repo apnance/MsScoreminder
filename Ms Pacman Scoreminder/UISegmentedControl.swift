@@ -24,8 +24,6 @@ extension UISegmentedControl {
         
         haptic(withStyle: .light)
         
-        print("\(#function)") // TODO: DELETE THIS
-        
     }
     
 }
