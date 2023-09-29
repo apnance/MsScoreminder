@@ -161,9 +161,6 @@ class ViewController: UIViewController {
         
     }
     
-    override func viewWillDisappear(_ animated: Bool) { statMan.save() }
-    
-    
     // MARK: UI
     private func uiInit() {
         
