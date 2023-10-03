@@ -10,7 +10,7 @@ import UIKit
 struct Utils {
     
     struct UI {
-
+        
         /// Adds drop shadows to all elements contained in internal views array
         static func addShadows(to: [UIView],
                                withOpacity opacity: Double = Configs.UI.Shadow.defaultOpacity) {
