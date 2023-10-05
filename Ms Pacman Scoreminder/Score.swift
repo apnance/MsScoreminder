@@ -116,12 +116,16 @@ struct Score {
     }
     
     /// - Returns: Random Score, with randomized date, score, and level.
+    /// - parameters:
+    ///     - allowInvalidScores: flag indicating whether invalid (i.e. non-multiple of 10) scores should allowed in output.
     /// - note: useful for testing
     /// - note: return value is not always valid(i.e. isn't always a multiple of 10 as valid scores should)
     /// - note: generated date values range from 1/1/18 to 12/28/23.  The day values range from 1-28 to avoid leap-year considerations.
-    static func random() -> Score {
+    static func random(allowInvalidScores: Bool = true) -> Score {
         let randomDate = "\((1...12).randomElement()!)/\((1...28).randomElement()!)/\((18...23).randomElement()!)".simpleDate
-        let randomScore = Int.random(min: 10, max: 99999) * [1,10].randomElement()!
+        var randomScore = Int.random(min: 1, max: 9999)
+        if !allowInvalidScores { randomScore *= 10 }
+        
         let randomLevel = Int.random(min:0, max: 11)
         
         return Score(date: randomDate,
