@@ -542,32 +542,40 @@ extension StatManager {
         
     }
     
-    /// Asynchronously compiles scores to CSV format and saves it to disk.
-    func save() {
+    /// Saves `csv` to disk.
+    func save(_ csv: CSV? = nil,
+                      toFile: String? = nil) {
         
-        if !saveNeeded { return /*EXIT*/ }
-        else { saveNeeded = false }
+        assert(!(csv.isNil && toFile.isNotNil),
+               """
+                Attempting to load default CSV values into
+                non-default file location.
+                
+                Does this make sense?
+                """)
         
-        DispatchQueue.global(qos: .userInitiated).async {
+        var csv: CSV! = csv
+        
+        if csv.isNil {
             
-            self.save(self.getCSV())
+            if !saveNeeded { return /*EXIT*/ }
+            else { saveNeeded = false }
+            
+            csv = getCSV()
             
         }
         
-    }
-    
-    /// Saves `csv` to disk.
-    /// - Important: route all attempts to save data through save() wherever possible.
-    private func save(_ csv: CSV,
-                      toFile: String = Configs.File.Path.currentData) {
-        
         do {
-            
-            try csv.write(toFile: toFile,
+
+            let file = toFile ?? Configs.File.Path.currentData
+
+            try csv.write(toFile: file,
                           atomically: true,
                           encoding: String.Encoding.utf8)
             
-            APNUtil.Utils.log("Saved data to: \(toFile)")
+            self.csv = csv
+            
+            APNUtil.Utils.log("Saved data to: \(file)")
             
         } catch {
             
