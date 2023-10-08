@@ -151,6 +151,8 @@ extension Score: CustomStringConvertible {
         
     }
     
+    var csv: String { "\(date.simple),\(score),\(level)\n" }
+    
 }
 
 // - MARK: Equatable
