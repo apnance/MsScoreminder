@@ -78,7 +78,6 @@ struct Score: Hashable {
         
     }
     
-    
     /// Returns a `Score` initialized with today's date, score 0, and level 0
     static var zero: Score { Score(date: Date(), score: 0, level: 0) }
     
@@ -143,6 +142,7 @@ struct Score: Hashable {
     
 }
 
+// - MARK: CustomStringConvertible
 extension Score: CustomStringConvertible {
     
     var description: String {
@@ -153,6 +153,7 @@ extension Score: CustomStringConvertible {
     
 }
 
+// - MARK: Equatable
 extension Score: Equatable {
     
     static func == (lhs: Self, rhs: Self) -> Bool {
@@ -163,6 +164,7 @@ extension Score: Equatable {
     
 }
 
+// - MARK: Graphable
 extension Score : APNGraphable {
     
     typealias X = Date
