@@ -9,7 +9,7 @@ import UIKit
 import APNUtil
 import APNGraph
 
-struct Score {
+struct Score: Hashable {
     
     private static let levels = ["*",
                                  "$",
