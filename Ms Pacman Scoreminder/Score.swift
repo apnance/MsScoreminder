@@ -122,11 +122,19 @@ struct Score: Hashable {
     /// - note: return value is not always valid(i.e. isn't always a multiple of 10 as valid scores should)
     /// - note: generated date values range from 1/1/18 to 12/28/23.  The day values range from 1-28 to avoid leap-year considerations.
     static func random(allowInvalidScores: Bool = true) -> Score {
-        let randomDate = "\((1...12).randomElement()!)/\((1...28).randomElement()!)/\((18...23).randomElement()!)".simpleDate
-        var randomScore = Int.random(min: 1, max: 9999)
-        if !allowInvalidScores { randomScore *= 10 }
         
-        let randomLevel = Int.random(min:0, max: 11)
+        let maxYearsPast    = 5
+        let maxDaysPast     = maxYearsPast * 365
+        let randomShift     = (0...maxDaysPast).randomElement()!
+        let randomDate      = Date().shiftedBy(-randomShift)
+        
+        let randomLevel     = Int.random(min:0, max: 11)
+        
+        var randomScore     = Int.random(min: randomLevel * 2500, 
+                                         max: (randomLevel + 1) * 14600)
+        
+        if !allowInvalidScores { randomScore /= 10; randomScore *= 10 }
+        
         
         return Score(date: randomDate,
                      score: randomScore,
