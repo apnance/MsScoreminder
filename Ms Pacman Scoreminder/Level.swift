@@ -8,16 +8,9 @@
 import UIKit
 import APNUtil
 
-class Level: {
-    
-    // TODO: Clean Up - delete
-    //    HERE!!!
-    //    * Integrate Level into Score
-    //    * Refactor all code tha references level names to call Level(i).name
-    //    * Move level color values to Level?
+class Level {
     
     /// Stores cached `Level` data
-    
     private static var cached = [Level]()
     
     /// Factory method for managing creation/caching of Level objects.
@@ -29,60 +22,22 @@ class Level: {
         
         for i in 0...levelNum {
             
-//            var level = cached[i]
-            
             if i > cached.lastUsableIndex {
                 
-//            if level.isNil { // Uncached
-
-                // cache
-//                cached[i] = Level(i)
                 cached.append(Level(i))
                 cumm += cached[i].optimalScore
                 cached[i].optimalScoreCummulative = cumm
                 
-// TODO: Clean Up - delete
-print("Level(\(i)).optimalScoreCummulative = \(cached[i].optimalScoreCummulative)")
-                
             }
             
-            
-            cumm = cached[i].optimalScoreCummulative
+// TODO: Clean Up - delete
+//            cumm = cached[i].optimalScoreCummulative
             
         }
         
         return cached[levelNum]
         
-    }    
-//    static func get(_ levelNum: Int) -> Level {
-//        
-//        var cumm = 0
-//        
-//        for i in 0...levelNum {
-//            
-//            var level = cached[i]
-//            
-//            if level.isNil { // Uncached
-//                
-//                level = Level(i)
-//                cumm += level!.optimalScore
-//                level?.optimalScoreCummulative = cumm
-//                
-//                // TODO: Clean Up - delete
-//                // print("Level(\(i)).optimalScoreCummulative = \(level!.optimalScoreCummulative)")
-//                
-//                // cache
-//                cached[i] = level
-//                
-//            }
-//            
-//            cumm = level!.optimalScoreCummulative
-//            
-//        }
-//        
-//        return cached[levelNum]!
-//        
-//    }
+    }
     
     let num: Int
     private(set) var maze                       = -1
@@ -98,28 +53,19 @@ print("Level(\(i)).optimalScoreCummulative = \(cached[i].optimalScoreCummulative
     var icon: UIImage { UIImage(named: "ms_icon_\(num)")! }
     var colorLight: UIColor { Score.colorFor(level: num) }
     var colorDark: UIColor { Score.contrastColorFor(level: num) }
-//    var levelIcon: UIImage { UIImage(named: "ms_icon_\(level.num)")! }
-//    var colorLight: UIColor { Score.colorFor(level: level.num) }
-//    var colorDark: UIColor { Score.contrastColorFor(level: level.num) }
-
     
     private init(_ level:Int) {
         
         self.num = level
         setMaze()
         setDotCount()
-// TODO: Clean Up - delete
-//        setName()
         setStrings()
         setFuitScore()
         setOptimalScore()
         
-        
     }
     
     private func setStrings() {
-// TODO: Clean Up - delete
-//    private func setName() {
         
         let names           = ["Cherry", "Strawberry", "Orange", "Pretzel", "Apple", "Pear", "Banana"]
         let levelStrings    = ["*", "$", "@", "&", "#", "¿", ")"]
@@ -129,41 +75,12 @@ print("Level(\(i)).optimalScoreCummulative = \(cached[i].optimalScoreCummulative
         let postfix         = num > 6 ? String(describing: num - 5) : ""
         let index           = num > 6 ? 6 : num
         
-        name = names[index] + postfix
-        
-        levelString = levelStrings[index] + postfix
-        
-//        name    = level < names.count
-//                ? names[level]
-//                : "\(Self.names.last!)\(level - 8)"
+        name                = names[index] + postfix
+        levelString         = levelStrings[index] + postfix
         
     }
     
-//    private func setLevelString() {
-//        
-//        levelString = ["*", "$", "@", "&", "#", "¿", ")"][min(level, 6)]
-//        levelString += level > 6 ? String(describing: level + 1) : ""
-//        
-//// TODO: Clean Up - delete
-////        let levels = ["*", "$", "@", "&", "#", "¿", ")"]
-////
-////        if level > levels.lastUsableIndex {
-////
-////            levelString = "\(levels.last!)\(level + 1)"
-////
-////        } else {
-////
-////            levelString = levels[level]
-////
-////        }
-//        
-//    }
-    
-    
-    
     private func setDotCount() {
-// TODO: Clean Up - delete
-//    mutating private func setDotCount() {
         
         switch num {
             case 0:     dotCount = 220
@@ -184,8 +101,6 @@ print("Level(\(i)).optimalScoreCummulative = \(cached[i].optimalScoreCummulative
     }
     
     private func setFuitScore() {
-// TODO: Clean Up - delete
-//    mutating private func setFuitScore() {
         
         switch num {
                 
@@ -197,7 +112,7 @@ print("Level(\(i)).optimalScoreCummulative = \(cached[i].optimalScoreCummulative
             case 5:     fruitScore = 2000
             case 6:     fruitScore = 5000
                 
-                // Note: Banana2+ returns optimal fruit score.
+            // Note: Banana2+ returns optimal fruit score.
             default:    fruitScore = 5000
                 
         }
@@ -205,16 +120,12 @@ print("Level(\(i)).optimalScoreCummulative = \(cached[i].optimalScoreCummulative
     }
     
     private func setOptimalScore() {
-// TODO: Clean Up - delete
-//    mutating private func setOptimalScore() {
         
         optimalScore = (2 * fruitScore) + (10 * dotCount) + (4 * (powerPillsScore + ghostsScore))
         
     }
     
     private func setMaze() {
-// TODO: Clean Up - delete
-//    mutating private func setMaze() {
         
         switch num {
                 
