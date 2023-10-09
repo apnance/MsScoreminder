@@ -224,12 +224,12 @@
 			isa = PBXGroup;
 			children = (
 				9316247E26FA5B02004C06B7 /* Score.swift */,
+				93FFB9D52AD35EA900F05165 /* Level.swift */,
 				93A497A2270E21F700D5AB5F /* Preferences.swift */,
 				93ACBFE9272CDCD4000BBC2C /* DailyStats.swift */,
 				93345AD32730698D0090154B /* Stats.swift */,
 				93B67B5C274DD741007C302C /* PlayStreak.swift */,
 				931C594B2992DF5A00F361FB /* DailyStatsCluster.swift */,
-				93FFB9D52AD35EA900F05165 /* Level.swift */,
 			);
 			name = M;
 			sourceTree = "<group>";
