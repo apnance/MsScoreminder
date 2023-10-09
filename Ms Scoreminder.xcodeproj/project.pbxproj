@@ -15,7 +15,6 @@
 		9316245126FA4C8D004C06B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9316244F26FA4C8D004C06B7 /* Main.storyboard */; };
 		9316245326FA4C90004C06B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9316245226FA4C90004C06B7 /* Assets.xcassets */; };
 		9316245626FA4C90004C06B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9316245426FA4C90004C06B7 /* LaunchScreen.storyboard */; };
-		9316246126FA4C90004C06B7 /* Ms_Pacman_ScoreminderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9316246026FA4C90004C06B7 /* Ms_Pacman_ScoreminderTests.swift */; };
 		9316246C26FA4C90004C06B7 /* Ms_Pacman_ScoreminderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9316246B26FA4C90004C06B7 /* Ms_Pacman_ScoreminderUITests.swift */; };
 		9316247F26FA5B02004C06B7 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9316247E26FA5B02004C06B7 /* Score.swift */; };
 		931800EE2721F957002D21E2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931800ED2721F957002D21E2 /* Utils.swift */; };
@@ -27,6 +26,7 @@
 		933345C22A92FB3200BF1592 /* AnimatedSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933345C12A92FB3100BF1592 /* AnimatedSprite.swift */; };
 		93345AD42730698D0090154B /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93345AD32730698D0090154B /* Stats.swift */; };
 		9338E011298F7B7D004CAB2C /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 9338E010298F7B7D004CAB2C /* OrderedCollections */; };
+		935CC95B2AD4888900F914E2 /* LevelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935CC95A2AD4888900F914E2 /* LevelTests.swift */; };
 		936DF3A7272C6C0F00CF2AEE /* DailyHighlightsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 936DF3A6272C6C0F00CF2AEE /* DailyHighlightsView.xib */; };
 		936DF3AB272C6C2300CF2AEE /* DailyHighlightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936DF3AA272C6C2300CF2AEE /* DailyHighlightsView.swift */; };
 		937B2B4126FBA8E70081CC6A /* StatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937B2B4026FBA8E70081CC6A /* StatManager.swift */; };
@@ -44,6 +44,7 @@
 		93DD05992A86E2040030D504 /* DayWebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93DD05982A86E2040030D504 /* DayWebView.xib */; };
 		93DD059D2A86E3E90030D504 /* APNFlexKeypad in Frameworks */ = {isa = PBXBuildFile; productRef = 93DD059C2A86E3E90030D504 /* APNFlexKeypad */; };
 		93F89B4A298B4C3A006C672A /* DailySummaryWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F89B49298B4C3A006C672A /* DailySummaryWebView.swift */; };
+		93FFB9D62AD35EAA00F05165 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FFB9D52AD35EA900F05165 /* Level.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,7 +89,6 @@
 		9316245526FA4C90004C06B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9316245726FA4C90004C06B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9316245C26FA4C90004C06B7 /* Ms ScoreminderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Ms ScoreminderTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9316246026FA4C90004C06B7 /* Ms_Pacman_ScoreminderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ms_Pacman_ScoreminderTests.swift; sourceTree = "<group>"; };
 		9316246226FA4C90004C06B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9316246726FA4C90004C06B7 /* Ms ScoreminderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Ms ScoreminderUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9316246B26FA4C90004C06B7 /* Ms_Pacman_ScoreminderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ms_Pacman_ScoreminderUITests.swift; sourceTree = "<group>"; };
@@ -103,6 +103,7 @@
 		933345BF2A9076E400BF1592 /* TaggedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaggedView.swift; sourceTree = "<group>"; };
 		933345C12A92FB3100BF1592 /* AnimatedSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedSprite.swift; sourceTree = "<group>"; };
 		93345AD32730698D0090154B /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
+		935CC95A2AD4888900F914E2 /* LevelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTests.swift; sourceTree = "<group>"; };
 		936DF3A6272C6C0F00CF2AEE /* DailyHighlightsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyHighlightsView.xib; sourceTree = "<group>"; };
 		936DF3AA272C6C2300CF2AEE /* DailyHighlightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyHighlightsView.swift; sourceTree = "<group>"; };
 		937B2B4026FBA8E70081CC6A /* StatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatManager.swift; sourceTree = "<group>"; };
@@ -121,6 +122,7 @@
 		93DD05982A86E2040030D504 /* DayWebView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayWebView.xib; sourceTree = "<group>"; };
 		93DD059B2A86E3CC0030D504 /* APNFlexKeypad */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = APNFlexKeypad; path = ../../Frameworks/APNFlexKeypad; sourceTree = "<group>"; };
 		93F89B49298B4C3A006C672A /* DailySummaryWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySummaryWebView.swift; sourceTree = "<group>"; };
+		93FFB9D52AD35EA900F05165 /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,8 +193,8 @@
 		9316245F26FA4C90004C06B7 /* Ms Pacman ScoreminderTests */ = {
 			isa = PBXGroup;
 			children = (
-				9316246026FA4C90004C06B7 /* Ms_Pacman_ScoreminderTests.swift */,
 				9316246226FA4C90004C06B7 /* Info.plist */,
+				935CC95A2AD4888900F914E2 /* LevelTests.swift */,
 			);
 			path = "Ms Pacman ScoreminderTests";
 			sourceTree = "<group>";
@@ -227,6 +229,7 @@
 				93345AD32730698D0090154B /* Stats.swift */,
 				93B67B5C274DD741007C302C /* PlayStreak.swift */,
 				931C594B2992DF5A00F361FB /* DailyStatsCluster.swift */,
+				93FFB9D52AD35EA900F05165 /* Level.swift */,
 			);
 			name = M;
 			sourceTree = "<group>";
@@ -469,6 +472,7 @@
 				933345C02A9076E400BF1592 /* TaggedView.swift in Sources */,
 				93DD05972A86E0B60030D504 /* ScoreEditor.swift in Sources */,
 				9316244A26FA4C8D004C06B7 /* AppDelegate.swift in Sources */,
+				93FFB9D62AD35EAA00F05165 /* Level.swift in Sources */,
 				93345AD42730698D0090154B /* Stats.swift in Sources */,
 				933345C22A92FB3200BF1592 /* AnimatedSprite.swift in Sources */,
 				93A497A3270E21F700D5AB5F /* Preferences.swift in Sources */,
@@ -481,7 +485,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9316246126FA4C90004C06B7 /* Ms_Pacman_ScoreminderTests.swift in Sources */,
+				935CC95B2AD4888900F914E2 /* LevelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -660,7 +664,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.1.3;
+				MARKETING_VERSION = 1.5.1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.aaron.nance.Ms-Scoreminder-v1.5.1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -688,7 +692,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.1.3;
+				MARKETING_VERSION = 1.5.1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.aaron.nance.Ms-Scoreminder-v1.5.1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -708,7 +712,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 56S32J5CWV;
 				INFOPLIST_FILE = "Ms Pacman ScoreminderTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -730,7 +734,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 56S32J5CWV;
 				INFOPLIST_FILE = "Ms Pacman ScoreminderTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
