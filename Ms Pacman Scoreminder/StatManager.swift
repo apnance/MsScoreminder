@@ -727,3 +727,51 @@ extension StatManager: CustomStringConvertible {
     }
     
 }
+
+// - MARK: Debug
+extension StatManager {
+    
+    func playCountFor(_ date: Date) -> Int {
+        
+        getScoresFor(date).count
+        
+    }
+    
+    func threadInfo(_ caller: String, pre: String = "") {
+        
+        
+        if !Configs.Test.shouldPrintThreadInfo { return /*EXIT*/ }
+        
+        let pre = pre.count > 0 ? "\n\t\(pre)" : ""
+        
+        print("""
+                    ---\(pre)
+                    \(caller)
+                    \ttime: \(Date().timeIntervalSince1970.decimal(to:6))ms
+                    \tisMainThread: \(Thread.isMainThread)
+                    \tthread: \(Thread.current)
+                    \tneedsTaly: \(stats.needsTally)
+                    \ttoday count: \(playCountFor(Date.now))
+                """)
+        
+    }
+    
+    static func generateTestCSV(scoreCount count: Int) -> CSV {
+        
+        var scores = Set<Score>()
+        
+        while scores.count < count {
+            
+            scores.insert(Score.random(allowInvalidScores: false))
+            
+        }
+        
+        var csv = ""
+        
+        scores.forEach{ csv += $0.csv }
+        
+        return csv
+        
+    }
+    
+}

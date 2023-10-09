@@ -196,5 +196,8 @@ struct Configs {
         /// Flag indicating if the data loader should force load data over existing data.
         static var shouldReloadData: Bool { forceLoadDataNamed.isNotNil }
         
+        /// Flag that enables/disables printing thread info messages useful for debugging thread timing.
+        static var shouldPrintThreadInfo: Bool = flag
     }
+    
 }
