@@ -96,7 +96,7 @@ class DailyHighlightsView: RoundView {
         averageLevelBGView.layer.borderColor    = Configs.UI.Colors.banana.cgColor
         averageLevelBGView.setRadius()
         
-        averageLevelIconImageView.image = Score.iconFor(level: stats.averageLevel)
+        averageLevelIconImageView.image = Level.get(stats.averageLevel).icon
         
         bestDayContainerView.alpha  = 1.0
         bestDayStarLabel.alpha      = stats.rank.0 <= 10 ? 1.0 : 0.0

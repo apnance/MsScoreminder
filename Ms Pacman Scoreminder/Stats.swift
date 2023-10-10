@@ -13,7 +13,7 @@ enum ScoreSortOrder { case date, high, low, avgDate, avgHigh, avgLow }
 
 struct Stats {
     
-    fileprivate var data = [ DateString : [Score] ]()
+    fileprivate var data = [ DateStringSimple : [Score] ]()
     fileprivate(set) var needsTally: Bool
     
     // singles
@@ -82,10 +82,17 @@ extension StatManager {
         
     }
     
-    func getScoreData() -> [DateString : [Score] ] { stats.data }
-    func getScoresFor(_ date: DateString) -> [Score] { stats.data[date] ?? [] }
+    func getScoreData() -> [DateStringSimple : [Score] ] { stats.data }
     
-    func setData(_ date: DateString, using: [Score]) {
+    /// Returns all `Score`s for the specified `DateStringSimple`
+    /// - note: when starting with `Date` instead call `getScoresFor(_:Date)`
+    func getScoresFor(_ date: DateStringSimple) -> [Score] { stats.data[date] ?? [] }
+    
+    /// Returns all `Score`s for the specified `Date`
+    /// - note: When starting with `DateStringSimple` instead  call `getScoresFor(_:DateStringSimple)`
+    func getScoresFor(_ date: Date) -> [Score] { getScoresFor(date.simple) }
+    
+    func setData(_ date: DateStringSimple, using: [Score]) {
         
         stats.data[date] = using
         
@@ -195,7 +202,7 @@ extension StatManager {
     /// Returns `StreakSet` of current consecutive days played streak and longest consecutive days played.
     func getStreaks() -> StreakSet? { stats.streaks }
     
-    func setStreaks(with dates: [DateString]) {
+    func setStreaks(with dates: [DateStringSimple]) {
         
         // This method is very inefecient, call only if there is no current streak
         if stats.streaks?.recent.isCurrent ?? false { return /*EXIT*/ }

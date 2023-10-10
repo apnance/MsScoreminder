@@ -11,80 +11,14 @@ import APNGraph
 
 struct Score: Hashable {
     
-    private static let levels = ["*",
-                                 "$",
-                                 "@",
-                                 "&",
-                                 "#",
-                                 "¿",
-                                 ")",
-                                 ")2",
-                                 ")3",
-                                 ")4",
-                                 ")5",
-                                 ")6",
-                                 ")7",
-                                 ")8",
-                                 ")9"]
-    
-    private static let levelNames = ["Cherry",
-                                     "Strawberry",
-                                     "Orange",
-                                     "Pretzel",
-                                     "Apple",
-                                     "Pear",
-                                     "Banana",
-                                     "Banana2",
-                                     "Banana3",
-                                     "Banana4",
-                                     "Banana5",
-                                     "Banana6",
-                                     "Banana7",
-                                     "Banana8",
-                                     "Banana9"]
-    
-    static var levelCount = { levelNames.count }()
-    
-    static func colorFor(level: Int) -> UIColor {
-        
-        UIColor(named: levelNames[level]) ?? UIColor.cyan
-        
-    }
-    
-    static func contrastColorFor(level: Int) -> UIColor {
-        
-        switch level {
-            case 0,1,3,4 : return UIColor.white
-            default: return UIColor.black
-        }
-        
-    }
-    
-    static func stringFor(level: Int) -> String {
-        
-        levels[level]
-        
-    }
-    
-    static func nameFor(level: Int) -> String {
-        
-        levelNames[level]
-        
-    }
-    
-    static func iconFor(level: Int) -> UIImage? {
-        
-        UIImage(named: "ms_icon_\(level)")
-        
-    }
+    static var levelCount = 15
     
     /// Returns a `Score` initialized with today's date, score 0, and level 0
     static var zero: Score { Score(date: Date(), score: 0, level: 0) }
     
     var date: Date
     var score: Int
-    /// Zero-based highest level attained.
-    var level: Int
+    var level: Level
     
     /// The number of game scores included in average score.
     /// - note: Default value is 1 and indicates an unaveraged `Score`.
@@ -95,12 +29,8 @@ struct Score: Hashable {
     var isSingle: Bool { averagedGameCount == 1 }
         
     var displayScore: String { score.delimited }
-    var levelString: String { Score.stringFor(level: level) }
-    var levelIcon: UIImage { UIImage(named: "ms_icon_\(level)")! }
     
-    var colorLight: UIColor { Score.colorFor(level: level) }
-    var colorDark: UIColor { Score.contrastColorFor(level: level) }
-    
+    var optimality: Double { Double(score) / Double(level.optimalScoreCummulative) }
     
     init(date: Date,
          score: Int,
@@ -109,7 +39,7 @@ struct Score: Hashable {
         
         self.date               = date
         self.score              = score
-        self.level              = level
+        self.level              = Level.get(level)
         self.averagedGameCount  = averagedGameCount
         
     }
@@ -147,11 +77,11 @@ extension Score: CustomStringConvertible {
     
     var description: String {
         
-        "\(date.simple)|\(score.delimited)|\(levelString)"
+        "\(date.simple)|\(score.delimited)|\(level.abbr)"
         
     }
     
-    var csv: String { "\(date.simple),\(score),\(level)\n" }
+    var csv: String { "\(date.simple),\(score),\(level.num)\n" }
     
 }
 
@@ -182,8 +112,8 @@ extension Score : APNGraphable {
         set { self.score = newValue }
     }
     
-    var pointColor: UIColor { Score.colorFor(level: level) }
+    var pointColor: UIColor { level.colorLight }
     var pointBorderColor: UIColor { .black.pointEightAlpha }
-    var pointImageName: String? { "ms_graph_icon_\(level)" }
+    var pointImageName: String? { "ms_graph_icon_\(level.num)" }
     
 }

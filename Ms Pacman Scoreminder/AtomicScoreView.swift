@@ -64,7 +64,7 @@ class AtomicScoreView: UIView {
         scoreView.textColor = textColor
         
         // fruit image
-        fruitView.image     = score.levelIcon
+        fruitView.image     = score.level.icon
         
         // border
         layer.cornerRadius              = frame.height / 5.0
@@ -107,8 +107,8 @@ class AtomicScoreView: UIView {
     
     func updateDisplay(useData i: Int = 0) {
         
-        let colorFG = i % 2 != 0 ? score.colorLight : score.colorDark
-        let colorBG = i % 2 != 0 ? score.colorDark : score.colorLight
+        let colorFG = i % 2 != 0 ? score.level.colorLight : score.level.colorDark
+        let colorBG = i % 2 != 0 ? score.level.colorDark : score.level.colorLight
         
         todayView.textColor = colorFG
         

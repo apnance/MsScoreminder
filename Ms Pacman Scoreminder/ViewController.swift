@@ -112,7 +112,11 @@ class ViewController: UIViewController {
     }
     
     // Mail
-    @IBAction func didTapSend(_ sender: UIButton) { btnSendMail() }
+    @IBAction func didTapSend(_ sender: UIButton) {
+    
+        btnSendMail()
+        
+    }
     
     // Graph
     @IBAction func didTapShowGraph(_ sender: UIButton) {
@@ -141,6 +145,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        let l22 = Level.get(22)
+        let l5 = Level.get(5)
+        
+        // Dev Utility
+        // print(StatManager.generateTestCSV(scoreCount: 20000))
         
         launchScreenReplicaCurtainView.isHidden = false
         
@@ -349,7 +359,7 @@ class ViewController: UIViewController {
                     self.marqueeScoreScoreLabel.text    = score.displayScore
                     self.marqueeScoreTitleLabel.text    = content.title
                     self.marqueeScoreDateLabel.text     = score.date.simple
-                    self.marqueeLevelIcon.image         = UIImage(named: "ms_icon_\(score.level)")
+                    self.marqueeLevelIcon.image         = UIImage(named: "ms_icon_\(score.level.num)")
                     
                 }
                 
@@ -822,7 +832,7 @@ extension ViewController: MFMailComposeViewControllerDelegate {
             mail.mailComposeDelegate = self
             
             // Attachment
-            if let data = statMan.getCSV().data(using: .utf8) {
+            if let data = statMan.csv.data(using: .utf8) {
                 
                 mail.addAttachmentData(data as Data,
                                        mimeType: "text/csv",
@@ -840,6 +850,9 @@ extension ViewController: MFMailComposeViewControllerDelegate {
             htmlTestView.isHidden = !htmlTestView.isHidden
             
             if !htmlTestView.isHidden {
+                
+                // Simulate data access of sending email
+                let _ = statMan.csv.data(using: .utf8)
                 
                 htmlTestView.loadHTMLString(EmailManager.buildSummaryHTML(using: statMan,
                                                                           forDate: Date(),
@@ -896,12 +909,20 @@ extension ViewController: AtomicScoreViewDelegate {
 // - MARK: ScoreEditorDelegate
 extension ViewController: ScoreEditorDelegate {
     
-    func cleanUp() { statMan.save() }
+    func cleanUp() {
+        
+        DispatchQueue.global(qos: .default).async {
+            
+            self.statMan.save()
+            self.volatileUIShouldUpdate = true
+            
+        }
+        
+    }
     
     func delete(score: Score) {
         
         statMan.delete(score, shouldSave: true)
-        volatileUIShouldUpdate = true
         
     }
     
@@ -923,8 +944,6 @@ extension ViewController: ScoreEditorDelegate {
                                                 second:         Configs.Notifications.Time.second,
                                                 badgeNumber:    Configs.Notifications.badgeNumber,
                                                 testMode:       Configs.Notifications.testMode)
-            
-            volatileUIShouldUpdate = true
             
         } else {
             

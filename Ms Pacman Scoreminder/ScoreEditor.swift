@@ -210,12 +210,12 @@ class ScoreEditor: UIView {
             editScoreLabel.text = isDeletable ? Configs.UI.Text.ScoreEditor.edit : Configs.UI.Text.ScoreEditor.enter
             score           = newScore
             numPad.set(value:   newScore.score.description)
-            fruitPad.set(value: newScore.level.description)
+            fruitPad.set(value: newScore.level.num.description)
             
         } else {
             
             score.score = Int(numPad.value) ?? 0
-            score.level = Int(fruitPad.value) ?? 0
+            score.level = Level.get(Int(fruitPad.value) ?? 0)
             
         }
         

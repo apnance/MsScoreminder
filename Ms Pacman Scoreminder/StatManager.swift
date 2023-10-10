@@ -9,7 +9,9 @@ import UIKit
 import APNUtil
 
 typealias CSV = String
-typealias DateString = String
+
+/// A string formatted as `Date.simple`
+typealias DateStringSimple = String
 typealias HTML = String
 
 enum DateRange : CustomStringConvertible {
@@ -36,11 +38,26 @@ enum DateRange : CustomStringConvertible {
     
 }
 
+//HERE!
+//1. Stage/Commit changes
+//2. Tally highest score/level and retain here..
+//3. Add UI to display optimality of highest scores per level.
+
 class StatManager {
     
     private var saveNeeded = false
     private (set) var prefs = Preferences.shared
     var stats: Stats!
+    
+    private var _csv: CSV?
+    
+    private(set) var csv: CSV {
+        
+        get { _csv.isNil ? getCSV() : _csv! }
+        
+        set { _csv = newValue }
+        
+    }
     
     init() { stats = Stats() }
     
@@ -55,7 +72,7 @@ class StatManager {
         
         saveNeeded = true
         
-        var currScores = getScoresFor(score.date.simple)
+        var currScores = getScoresFor(score.date)
         let date = score.date.simple
         
         if currScores.count == 0 {
@@ -96,10 +113,11 @@ class StatManager {
     /// in crash.
     func delete(_ score: Score, shouldSave: Bool = false) {
         
-        let date = score.date.simple
-        var scores = getScoresFor(date)
+        var scores = getScoresFor(score.date)
         
         if scores.count == 0 { return /*EXIT*/ }
+        
+        let dateSimple = score.date.simple
         
         for i in 0..<scores.count {
             
@@ -107,7 +125,7 @@ class StatManager {
                 
                 scores.remove(at: i)
                 
-                setData(date, using: scores)
+                setData(dateSimple, using: scores)
                 
                 if shouldSave { saveNeeded = true }
                 
@@ -242,14 +260,14 @@ class StatManager {
                 }
                 
                 scoreSum    += score.score
-                levelSum    += score.level
+                levelSum    += score.level.num
                 totalScores += 1
                 
                 // Update Scores
                 scores.append(score)
                 
                 // General Stats
-                stats.levelTally![score.level] += 1
+                stats.levelTally![score.level.num] += 1
                 
                 // Process Highs
                 if score.score > high {
@@ -308,7 +326,7 @@ class StatManager {
         
         for date in stats.dates { // Iterates Chronologically
            
-            let scores = getScoresFor(date.simple)
+            let scores = getScoresFor(date)
             
             if scores.count < 2 { continue /*CONTINUE*/ }
             
@@ -320,9 +338,9 @@ class StatManager {
             scores.forEach{
                 
                 scoreSum += $0.score
-                levelSum += $0.level
+                levelSum += $0.level.num
                 
-                currentDaily.levelsReached[$0.level] += 1
+                currentDaily.levelsReached[$0.level.num] += 1
                 
             }
             
@@ -494,6 +512,7 @@ class StatManager {
 // MARK: - Data Storage
 extension StatManager {
     
+    /// Converts `CSV` data to `Score`s and loads them into `stats`.
     func importData(from csv: CSV) {
         
         let rawData = csv.split(separator: "\n")
@@ -502,20 +521,20 @@ extension StatManager {
             
             let rowData     = data.split(separator: ",")
             
-            let date        = String(rowData[0])
+            let dateString        = String(rowData[0])
+            let date = dateString.simpleDate
             
             let scoreVal    = Int(rowData[1])!
             let level       = Int(rowData[2]) ?? -1
             
-            var scores      = getScoresFor(date)
-            
-            let score       = Score(date: date.simpleDate,
+            var scores      = getScoresFor(dateString)
+            let score       = Score(date: date,
                                     score: scoreVal,
                                     level: level)
             
             scores.append(score)
             
-            setData(date, using: scores)
+            setData(dateString, using: scores)
             
         }
         
@@ -523,7 +542,7 @@ extension StatManager {
     
     /// Compiles all score data into a comma separated file format.
     /// - Important: this call gets expensive as score data grows - call async when possible.
-    func getCSV() -> CSV {
+    private func getCSV() -> CSV {
         
         // tally before collating stats in csv
         tally()
@@ -532,11 +551,7 @@ extension StatManager {
         
         let scores = getScores(sortedBy: .date)
         
-        for score in scores {
-            
-            output += "\(score.date.simple),\(score.score),\(score.level)\n"
-            
-        }
+        scores.forEach{ output += $0.csv }
         
         return output
         
@@ -630,6 +645,8 @@ extension StatManager {
             save(csv)
             
         }
+        
+        self.csv = csv
         
         importData(from: csv)
         

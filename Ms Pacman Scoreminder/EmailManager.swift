@@ -184,7 +184,10 @@ struct EmailManager {
                                               count: playedCount)
             }
             
-            html += columnate([Score.nameFor(level: level), count.description, percent.description, gamesPlayedIndicator],
+            html += columnate([Level.get(level).name, 
+                               count.description,
+                               percent.description,
+                               gamesPlayedIndicator],
                               ["","","","pacDot"])
             
         }
@@ -265,7 +268,7 @@ struct EmailManager {
             let games               = "\(dailyStats.gamesPlayed) today, \(statMan.getTotalGamesPlayed()) total"
             var avgScore            = dailyStats.averageScore.delimited
             var sevenDayAvgScore    = dailyStats.sevenDayAverage.delimited
-            var avgLevel            = Score.nameFor(level: dailyStats.averageLevel)
+            var avgLevel            = Level.get(dailyStats.averageLevel).name
             
             if let previousStats    = statMan.getPreviousDaily(forDate: date) {
                 
