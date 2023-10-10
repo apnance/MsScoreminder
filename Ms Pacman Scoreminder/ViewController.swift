@@ -146,9 +146,6 @@ class ViewController: UIViewController {
         
         super.viewDidLoad()
         
-        let l22 = Level.get(22)
-        let l5 = Level.get(5)
-        
         // Dev Utility
         // print(StatManager.generateTestCSV(scoreCount: 20000))
         
