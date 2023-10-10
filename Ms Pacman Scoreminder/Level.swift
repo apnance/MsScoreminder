@@ -8,6 +8,9 @@
 import UIKit
 import APNUtil
 
+
+/// Data structure for managing general level data.
+/// - important: Access instances of this class through the `get` factory method.
 class Level {
     
     /// Stores cached `Level` data
@@ -18,20 +21,24 @@ class Level {
     /// - Returns: `Level` with number `levelNum`
     static func get(_ levelNum: Int) -> Level {
         
-        var cumm = 0
-        
-        for i in 0...levelNum {
+        if levelNum > cached.lastUsableIndex {
             
-            if i > cached.lastUsableIndex {
+            var cumm = 0
+            for i in 0...levelNum {
                 
-                cached.append(Level(i))
-                cumm += cached[i].optimalScore
-                cached[i].optimalScoreCummulative = cumm
+                if i > cached.lastUsableIndex {
+                    
+                    cached.append(Level(i))
+                    cumm += cached[i].optimalScore
+                    cached[i].optimalScoreCummulative = cumm
+                    
+                    
+                }
+                
+                // TODO: Clean Up - delete
+                // print("Level(\(i)).optimalScoreCummulative = \(cached[i].optimalScoreCummulative)")
                 
             }
-            
-// TODO: Clean Up - delete
-//            cumm = cached[i].optimalScoreCummulative
             
         }
         
@@ -42,17 +49,18 @@ class Level {
     let num: Int
     private(set) var maze                       = -1
     private(set) var name                       = "error"
-    private(set) var levelString                = "error"
+    private(set) var abbr                       = "error"
+    
     private(set) var dotCount                   = -1
     private(set) var fruitScore                 = -1
-    let powerPillsScore                         = 50
-    let ghostsScore                             = 3000
+    let powerPillsScore                         = 200   // i.e. 50*4
+    let ghostsScore                             = 12000 // i.e. 4* (200+400+800+1600)
     private(set) var optimalScore               = -1
     private(set) var optimalScoreCummulative    = -1
     
-    var icon: UIImage { UIImage(named: "ms_icon_\(num)")! }
-    var colorLight: UIColor { Score.colorFor(level: num) }
-    var colorDark: UIColor { Score.contrastColorFor(level: num) }
+    var icon                                    = UIImage()
+    var colorLight                              = UIColor.clear
+    var colorDark                               = UIColor.clear
     
     private init(_ level:Int) {
         
@@ -62,6 +70,7 @@ class Level {
         setStrings()
         setFuitScore()
         setOptimalScore()
+        setUIElements()
         
     }
     
@@ -76,7 +85,7 @@ class Level {
         let index           = num > 6 ? 6 : num
         
         name                = names[index] + postfix
-        levelString         = levelStrings[index] + postfix
+        abbr                = levelStrings[index] + postfix
         
     }
     
@@ -121,7 +130,7 @@ class Level {
     
     private func setOptimalScore() {
         
-        optimalScore = (2 * fruitScore) + (10 * dotCount) + (4 * (powerPillsScore + ghostsScore))
+        optimalScore = (2 * fruitScore) + (10 * dotCount) + powerPillsScore + ghostsScore
         
     }
     
@@ -138,16 +147,22 @@ class Level {
         
     }
     
+    func setUIElements() {
+        
+        // color
+        colorLight  = UIColor(named: name) ?? UIColor.cyan
+        colorDark   = (num == 2 || num > 4) ? .black : .white
+        
+        // images
+        icon        = UIImage(named: "ms_icon_\(num)") ?? UIImage()
+        
+    }
 }
 
 extension Level: Hashable {
-
-    static func == (lhs: Level, rhs: Level) -> Bool {
-        lhs.num == rhs.num
-    }
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(name)
-    }
-
+    
+    static func == (lhs: Level, rhs: Level) -> Bool { lhs.num == rhs.num }
+    
+    func hash(into hasher: inout Hasher) { hasher.combine(name) }
+    
 }

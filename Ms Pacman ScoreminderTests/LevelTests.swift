@@ -10,9 +10,59 @@ import XCTest
 
 final class LevelTests: XCTestCase {
     
+    func testLevelName() {
+        
+        let expecteds = ["Cherry",
+                         "Strawberry",
+                         "Orange",
+                         "Pretzel",
+                         "Apple",
+                         "Pear",
+                         "Banana",
+                         "Banana2",
+                         "Banana3"]
+        
+        for (i, expected) in expecteds.enumerated() {
+            
+            let actual = Level.get(i).name
+            XCTAssert(actual == expected, "Incorrect levelName: Expected: \(expected) - Actual: \(actual)")
+            
+        }
+        
+    }
+    
+    func testLevelString() {
+        
+        let expecteds = ["*",
+                         "$",
+                         "@",
+                         "&",
+                         "#",
+                         "¿",
+                         ")",
+                         ")2",
+                         ")3",
+                         ")4",
+                         ")5",
+                         ")6",
+                         ")7",
+                         ")8",
+                         ")9",
+                         ")10",
+                         ")11"]
+        
+        for (i, expected) in expecteds.enumerated() {
+            
+            let actual = Level.get(i).abbr
+            XCTAssert(actual == expected, "Incorrect levelString: Expected: \(expected) - Actual: \(actual)")
+            
+        }
+        
+    }
+    
     func testPerfectScoreCummulative() throws {
         
-        let exptecteds = [ 14600,
+        let expecteds = [ 14600,
                            29400,
                            45000,
                            61000,
@@ -35,7 +85,7 @@ final class LevelTests: XCTestCase {
                            464560,
                            489140 ]
         
-        for (i, expected) in exptecteds.enumerated() {
+        for (i, expected) in expecteds.enumerated() {
             
             let actual = Level.get(i).optimalScoreCummulative
             XCTAssert(actual == expected, "Incorrect perfectScoreCummulative: Expected: \(expected) - Actual: \(actual)")
