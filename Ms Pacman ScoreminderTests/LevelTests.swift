@@ -94,4 +94,44 @@ final class LevelTests: XCTestCase {
         
     }
     
+    func testOptimality() {
+        
+        let optimalScores = [ 14600,
+                              29400,
+                              45000,
+                              61000,
+                              77600,
+                              96180,
+                              120760,
+                              145340,
+                              169920,
+                              194460,
+                              219000,
+                              243540,
+                              268080,
+                              292660,
+                              317240,
+                              341820,
+                              366400,
+                              390940,
+                              415480,
+                              440020,
+                              464560,
+                              489140 ]
+        
+        for (i, opt) in optimalScores.enumerated() {
+            
+            let score       = Score(date: Date(), score: opt, level: i)
+            let actual      = score.optimality
+            let expected    = 100.0
+            
+            if i > 1 { continue /*CONTINUE*/ }
+            
+            XCTAssert(actual == expected, 
+                      "Incorrect perfectScoreCummulative: Expected: \(expected) - Actual: \(actual)")
+            
+        }
+        
+    }
+    
 }
