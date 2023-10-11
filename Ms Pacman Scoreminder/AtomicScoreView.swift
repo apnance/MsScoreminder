@@ -30,7 +30,10 @@ class AtomicScoreView: UIView {
     
     @IBOutlet var dateView: UILabel!
     @IBOutlet weak var averageGameCountLabel: UILabel!
+    // TODO: Clean Up - rename scoreView -> scoreLabel
     @IBOutlet var scoreView: UILabel!
+    @IBOutlet weak var optimalityLabel: UILabel!
+    @IBOutlet weak var optimalScoreLabel: UILabel!
     @IBOutlet weak var todayView: UILabel!
     @IBOutlet var fruitView: UIImageView!
     @IBOutlet weak var borderView: UIView!
@@ -49,8 +52,7 @@ class AtomicScoreView: UIView {
         
         // date
         dateView.text       = score.date.simple
-        dateView.textColor  = textColor
-        todayView.isHidden  = !score.date.isToday 
+        todayView.isHidden  = !score.date.isToday
         
         // average game count
         averageGameCountLabel.alpha                 = score.isAveraged ? 1 : 0
@@ -60,16 +62,20 @@ class AtomicScoreView: UIView {
         averageGameCountLabel.layer.cornerRadius    = averageGameCountLabel.frame.height / 3.0
         
         // score
-        scoreView.text      = score.score.delimited
-        scoreView.textColor = textColor
+        scoreView.text                  = score.score.delimited
+        scoreView.textColor             = textColor
+        
+        // optimality
+        optimalityLabel.text            = "\(score.optimality.roundTo(1))%"
+        optimalScoreLabel.text          = score.level.optimalScoreCummulative.delimited.description
         
         // fruit image
-        fruitView.image     = score.level.icon
+        fruitView.image                 = score.level.icon
         
         // border
         layer.cornerRadius              = frame.height / 5.0
         borderView.layer.cornerRadius   = frame.height / 5.0
-        borderView.layer.borderWidth    = frame.height / 8.0
+        borderView.layer.borderWidth    = frame.height / 7.5
         
         scoreStatsLabel.rotate(angle: -22.5)
         
@@ -110,6 +116,7 @@ class AtomicScoreView: UIView {
         let colorFG = i % 2 != 0 ? score.level.colorLight : score.level.colorDark
         let colorBG = i % 2 != 0 ? score.level.colorDark : score.level.colorLight
         
+        dateView.textColor  = colorFG
         todayView.textColor = colorFG
         
         scoresStatsRoundView.isHidden           = data[i] == ""

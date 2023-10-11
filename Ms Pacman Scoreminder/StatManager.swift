@@ -38,19 +38,14 @@ enum DateRange : CustomStringConvertible {
     
 }
 
-//HERE!
-//1. Stage/Commit changes
-//2. Tally highest score/level and retain here..
-//3. Add UI to display optimality of highest scores per level.
-
+/// Manages game `Stats` and sDailyStats`
 class StatManager {
     
-    private var saveNeeded = false
+    private var saveNeeded  = false
     private (set) var prefs = Preferences.shared
     var stats: Stats!
     
     private var _csv: CSV?
-    
     private(set) var csv: CSV {
         
         get { _csv.isNil ? getCSV() : _csv! }
@@ -227,7 +222,12 @@ class StatManager {
     /// - important: do not call directly, call `tally` instead
     private func tallyScoreStats() {
         
-        stats.levelTally = Array(repeating: 0, count: Score.levelCount)
+        stats.levelTally    = Array(repeating: 0,
+                                    count: Score.levelCount)
+        stats.optimals      = Array(repeating: Score.zero,
+                                    count: Score.levelCount)
+        stats.optimalsDaily = Array(repeating: Score.zero,
+                                    count: Score.levelCount)
         
         var highScore: Score?
         var high = Int.min
@@ -259,15 +259,17 @@ class StatManager {
                     
                 }
                 
-                scoreSum    += score.score
-                levelSum    += score.level.num
-                totalScores += 1
+                // level
+                let levelNum    = score.level.num
+                scoreSum        += score.score
+                levelSum        += levelNum
+                totalScores     += 1
                 
                 // Update Scores
                 scores.append(score)
                 
                 // General Stats
-                stats.levelTally![score.level.num] += 1
+                stats.levelTally![levelNum] += 1
                 
                 // Process Highs
                 if score.score > high {
@@ -295,6 +297,13 @@ class StatManager {
                     
                     low         = score.score
                     lowScore    = score
+                    
+                }
+                
+                // Process Optimals
+                if score.score > stats.optimals[levelNum].score {
+                    
+                    stats.optimals[levelNum] = score
                     
                 }
                 
@@ -361,9 +370,19 @@ class StatManager {
         
         let totalDaysPlayed = dailies.count
         
-        for (i, _) in dailies.enumerated() {
+        for (i, daily) in dailies.enumerated() {
             
             dailies[i].rank = (i + 1, totalDaysPlayed)
+            
+            // Process Optimals
+            let (scoreNum, levelNum) = (daily.averageScore, daily.averageLevel)
+            if scoreNum > stats.optimalsDaily[daily.averageLevel].score {
+                
+                stats.optimalsDaily[daily.averageLevel] = Score(date:  daily.date,
+                                                                score: scoreNum,
+                                                                level: levelNum)
+                
+            }
             
         }
         

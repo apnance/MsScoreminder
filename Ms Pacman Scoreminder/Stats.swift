@@ -13,6 +13,7 @@ enum ScoreSortOrder { case date, high, low, avgDate, avgHigh, avgLow }
 
 struct Stats {
     
+    // TODO: Clean Up - rename varibales to clarify that averages are used for DailyStats calculations.
     fileprivate var data = [ DateStringSimple : [Score] ]()
     fileprivate(set) var needsTally: Bool
     
@@ -22,12 +23,16 @@ struct Stats {
     fileprivate var scoresLowSorted             = [Score]()
     
     // averages
+    fileprivate var dailies                     = [DailyStats]()
     fileprivate var averageDate: OrderedDictionary<Date, Score> = [:]
-    
     fileprivate var avgScoresHighSorted         = [Score]()
     fileprivate var avgScoresLowSorted          = [Score]()
     
-    fileprivate var dailies                     = [DailyStats]()
+    // optimals
+    /// - important: StatManager alone should write to `optimals`
+    var optimals                                = [Score]()
+    /// - important: StatManager alone should write to `optimalsDaily`
+    var optimalsDaily                           = [Score]()
     
     var levelTally: [Int]!
     var highScore:  Score!
@@ -182,19 +187,11 @@ extension StatManager {
     
     func setDailys(_ dailies: [DailyStats]) {
         
-        stats.dailies               = dailies
+        stats.dailies = dailies
         stats.averageDate.removeAll()
         
-        dailies.sorted{ $0.date > $1.date }.forEach{ stats.averageDate[$0.date] = Score(date:    $0.date,
-                                                                                        score:   $0.averageScore,
-                                                                                        level:   $0.averageLevel,
-                                                                                        averagedGameCount: $0.gamesPlayed) }
-        
-        stats.avgScoresHighSorted   = dailies.sorted{ $0.averageScore > $1.averageScore }.map{Score(date:   $0.date,
-                                                                                                    score:  $0.averageScore,
-                                                                                                    level:  $0.averageLevel,
-                                                                                                    averagedGameCount: $0.gamesPlayed) }
-        
+        dailies.sorted{ $0.date > $1.date }.forEach{ stats.averageDate[$0.date] = $0.score }
+        stats.avgScoresHighSorted   = dailies.sorted{ $0.averageScore > $1.averageScore }.map{ $0.score }
         stats.avgScoresLowSorted    = stats.avgScoresHighSorted.reversed()
         
     }
@@ -207,7 +204,7 @@ extension StatManager {
         // This method is very inefecient, call only if there is no current streak
         if stats.streaks?.recent.isCurrent ?? false { return /*EXIT*/ }
         
-        let dates = dates.map{$0.simpleDate}.sorted{$0 < $1}
+        let dates = dates.map{ $0.simpleDate}.sorted{ $0 < $1 }
         
         var current = PlayStreak()
         var longest = PlayStreak()

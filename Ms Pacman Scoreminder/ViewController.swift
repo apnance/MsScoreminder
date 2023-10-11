@@ -10,6 +10,10 @@ import WebKit
 import APNUtil
 import APNGraph
 
+//HERE
+//1. Add Optimality to Daily Summary and email HTMLs
+//2. Add UI for displaying stats.optimals and stats.optimalsDaily
+
 class ViewController: UIViewController {
     
     // MARK: - Properties

@@ -30,7 +30,8 @@ struct Score: Hashable {
         
     var displayScore: String { score.delimited }
     
-    var optimality: Double { Double(score) / Double(level.optimalScoreCummulative) }
+    /// This `Score`'s percent of the optimal or max score for the `level`
+    var optimality: Double { 100.0 * (Double(score) / Double(level.optimalScoreCummulative)) }
     
     init(date: Date,
          score: Int,
@@ -77,7 +78,7 @@ extension Score: CustomStringConvertible {
     
     var description: String {
         
-        "\(date.simple)|\(score.delimited)|\(level.abbr)"
+        "\(date.simple)|\(score.delimited)|\(optimality.roundTo(1))|\(level.abbr)"
         
     }
     
