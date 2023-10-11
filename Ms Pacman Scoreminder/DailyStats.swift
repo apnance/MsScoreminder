@@ -43,6 +43,16 @@ struct DailyStats {
     /// Flag indicating if these `DailyStats` are for today
     var areToday: Bool {    date.simple == Date().simple }
     
+    /// Computes a Score from `date`, `averageScore`, and `averageLevel`
+    var score: Score {
+        
+        Score(date:  date,
+              score: averageScore,
+              level: averageLevel,
+              averagedGameCount: gamesPlayed)
+        
+    }
+    
 }
 
 extension DailyStats: Equatable, Comparable {
