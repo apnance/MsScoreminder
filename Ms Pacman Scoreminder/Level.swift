@@ -33,10 +33,11 @@ class Level {
                     cached[i].optimalScoreCummulative = cumm
                     
                     
+                } else {
+                    
+                    cumm = cached[i].optimalScoreCummulative
+                    
                 }
-                
-                // TODO: Clean Up - delete
-                // print("Level(\(i)).optimalScoreCummulative = \(cached[i].optimalScoreCummulative)")
                 
             }
             
