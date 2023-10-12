@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9313DE432731A40E00460712 /* TestData.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9313DE422731A40E00460712 /* TestData.csv */; };
+		930128B42AD87AA900FF1AE1 /* TestData20k.csv in Sources */ = {isa = PBXBuildFile; fileRef = 930128B32AD87AA900FF1AE1 /* TestData20k.csv */; };
+		930128B52AD87BB200FF1AE1 /* TestData20k.csv in Resources */ = {isa = PBXBuildFile; fileRef = 930128B32AD87AA900FF1AE1 /* TestData20k.csv */; };
+		9313DE432731A40E00460712 /* TestDataSmall.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9313DE422731A40E00460712 /* TestDataSmall.csv */; };
 		9313DE4C273B418F00460712 /* EmailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9313DE4B273B418E00460712 /* EmailManager.swift */; };
 		9316244A26FA4C8D004C06B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9316244926FA4C8D004C06B7 /* AppDelegate.swift */; };
 		9316244C26FA4C8D004C06B7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9316244B26FA4C8D004C06B7 /* SceneDelegate.swift */; };
@@ -78,7 +80,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		9313DE422731A40E00460712 /* TestData.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestData.csv; sourceTree = "<group>"; };
+		930128B32AD87AA900FF1AE1 /* TestData20k.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestData20k.csv; sourceTree = "<group>"; };
+		9313DE422731A40E00460712 /* TestDataSmall.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestDataSmall.csv; sourceTree = "<group>"; };
 		9313DE4B273B418E00460712 /* EmailManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailManager.swift; sourceTree = "<group>"; };
 		9316244626FA4C8D004C06B7 /* Ms Scoreminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ms Scoreminder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9316244926FA4C8D004C06B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -275,7 +278,8 @@
 				937B2B4826FC14570081CC6A /* Images.xcassets */,
 				937B2B4D26FD56D00081CC6A /* Colors.xcassets */,
 				932B1730270D49210030CD59 /* DefaultData.csv */,
-				9313DE422731A40E00460712 /* TestData.csv */,
+				9313DE422731A40E00460712 /* TestDataSmall.csv */,
+				930128B32AD87AA900FF1AE1 /* TestData20k.csv */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -427,12 +431,13 @@
 				937B2B4926FC14570081CC6A /* Images.xcassets in Resources */,
 				937B2B4E26FD56D00081CC6A /* Colors.xcassets in Resources */,
 				9316245326FA4C90004C06B7 /* Assets.xcassets in Resources */,
-				932B1731270D49210030CD59 /* DefaultData.csv in Resources */,
 				93DD05952A86E09D0030D504 /* ScoreEditor.xib in Resources */,
-				9313DE432731A40E00460712 /* TestData.csv in Resources */,
 				93B6D0EC27021DAD005ADF3F /* AtomicScoreView.xib in Resources */,
 				9316245126FA4C8D004C06B7 /* Main.storyboard in Resources */,
 				93DD05992A86E2040030D504 /* DayWebView.xib in Resources */,
+				932B1731270D49210030CD59 /* DefaultData.csv in Resources */,
+				9313DE432731A40E00460712 /* TestDataSmall.csv in Resources */,
+				930128B52AD87BB200FF1AE1 /* TestData20k.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,6 +469,7 @@
 				936DF3AB272C6C2300CF2AEE /* DailyHighlightsView.swift in Sources */,
 				9316247F26FA5B02004C06B7 /* Score.swift in Sources */,
 				931C594C2992DF5A00F361FB /* DailyStatsCluster.swift in Sources */,
+				930128B42AD87AA900FF1AE1 /* TestData20k.csv in Sources */,
 				93B6D0EE270231A4005ADF3F /* AtomicScoreView.swift in Sources */,
 				93ACBFEA272CDCD4000BBC2C /* DailyStats.swift in Sources */,
 				9313DE4C273B418F00460712 /* EmailManager.swift in Sources */,
