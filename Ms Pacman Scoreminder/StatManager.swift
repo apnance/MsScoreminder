@@ -792,6 +792,10 @@ extension StatManager {
         
     }
     
+    
+    /// Generates `scoreCount` random but plausible `Score`s
+    /// - Parameter count: number of random `Score`s to generate.
+    /// - Returns: sorted `CSV`
     static func generateTestCSV(scoreCount count: Int) -> CSV {
         
         var scores = Set<Score>()
@@ -804,7 +808,7 @@ extension StatManager {
         
         var csv = ""
         
-        scores.forEach{ csv += $0.csv }
+        scores.sorted{$0.date > $1.date}.forEach{ csv += $0.csv }
         
         return csv
         
