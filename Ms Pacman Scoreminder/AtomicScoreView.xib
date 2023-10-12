@@ -16,7 +16,7 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HIN-fb-Srb">
                     <rect key="frame" x="0.0" y="0.0" width="117" height="58"/>
-                    <color key="backgroundColor" name="Blue"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12-12-21" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="Csp-bg-MgK">
                     <rect key="frame" x="45" y="-1" width="27" height="10.5"/>
@@ -123,7 +123,8 @@
                     </constraints>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" name="Blue"/>
+            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="Emq-DK-VKw" secondAttribute="bottom" id="1HS-Jl-WMW"/>
                 <constraint firstAttribute="trailing" secondItem="ro1-2K-rxe" secondAttribute="trailing" constant="-5" id="6Te-lc-ixf"/>

@@ -54,6 +54,8 @@ class AtomicScoreView: UIView {
         dateView.text       = score.date.simple
         todayView.isHidden  = !score.date.isToday
         
+        borderView.backgroundColor = UIColor(patternImage: UIImage(named: "PolkaDotsDark")!)
+        
         // average game count
         averageGameCountLabel.alpha                 = score.isAveraged ? 1 : 0
         averageGameCountLabel.text                  = "/\(score.averagedGameCount.description)"

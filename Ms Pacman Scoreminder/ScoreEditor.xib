@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,6 +16,7 @@
                 <outlet property="editScoreLabel" destination="bXj-AM-asA" id="SOC-uL-RZo"/>
                 <outlet property="fruitPad" destination="3CX-BZ-S7T" id="4iS-4t-2eX"/>
                 <outlet property="numPad" destination="eua-Zx-IOX" id="CXb-4c-2uf"/>
+                <outlet property="polkaDotsView" destination="gi4-3L-nlb" id="9pb-6j-q5k"/>
                 <outlet property="scoreContainerView" destination="99q-YI-Z1E" id="gLq-3v-MSD"/>
                 <outlet property="semiOpaqueBGView" destination="sm2-5j-Bpn" id="g3A-dr-Pnn"/>
                 <outlet property="uiContainerView" destination="4kg-R8-Hyb" id="3Cc-I7-i2I"/>
@@ -31,9 +32,13 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.75" colorSpace="custom" customColorSpace="displayP3"/>
                 </view>
-                <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4kg-R8-Hyb" userLabel="UIContainerView">
+                <view clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4kg-R8-Hyb" userLabel="UIContainerView">
                     <rect key="frame" x="51.666666666666657" y="281" width="290" height="290"/>
                     <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gi4-3L-nlb" userLabel="PolkaDotsView">
+                            <rect key="frame" x="0.0" y="0.0" width="290" height="290"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        </view>
                         <view contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3CX-BZ-S7T" userLabel="Fruit Pad" customClass="APNFlexKeypad" customModule="APNFlexKeypad">
                             <rect key="frame" x="25.333333333333314" y="242" width="240" height="35"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -257,8 +262,12 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="gi4-3L-nlb" firstAttribute="top" secondItem="4kg-R8-Hyb" secondAttribute="top" id="FsK-dw-M9E"/>
                         <constraint firstAttribute="bottom" secondItem="HyG-ov-x6j" secondAttribute="bottom" constant="88" id="SSX-bZ-xEi"/>
+                        <constraint firstAttribute="trailing" secondItem="gi4-3L-nlb" secondAttribute="trailing" id="Tyj-fw-p9O"/>
                         <constraint firstItem="HyG-ov-x6j" firstAttribute="centerX" secondItem="4kg-R8-Hyb" secondAttribute="centerX" id="Wwc-20-Yqa"/>
+                        <constraint firstAttribute="bottom" secondItem="gi4-3L-nlb" secondAttribute="bottom" id="Ztd-XC-I5F"/>
+                        <constraint firstItem="gi4-3L-nlb" firstAttribute="leading" secondItem="4kg-R8-Hyb" secondAttribute="leading" id="cD5-c1-sLS"/>
                         <constraint firstAttribute="width" constant="290" id="ifb-z2-AOM"/>
                         <constraint firstAttribute="height" constant="290" id="kuR-BO-B13"/>
                     </constraints>
@@ -287,7 +296,7 @@
             <size key="intrinsicContentSize" width="30" height="28"/>
         </designable>
         <designable name="rnI-Sp-Cpd">
-            <size key="intrinsicContentSize" width="17.333333333333332" height="15.666666666666666"/>
+            <size key="intrinsicContentSize" width="17.333333333333332" height="16"/>
         </designable>
     </designables>
     <resources>
@@ -308,14 +317,17 @@
         <namedColor name="Pretzel">
             <color red="0.64399999380111694" green="0.39300000667572021" blue="0.18700000643730164" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemIndigoColor">
-            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemTealColor">
-            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.18823529410000001" green="0.69019607839999997" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -14,6 +14,7 @@ class ScoreEditor: UIView {
     // MARK: - Outlets
     @IBOutlet weak var semiOpaqueBGView: UIView!
     @IBOutlet weak var uiContainerView: UIView!
+    @IBOutlet weak var polkaDotsView: UIView!
     @IBOutlet weak var scoreContainerView: UIView!
     @IBOutlet weak var deleteConfirmationContainerView: UIView!
     @IBOutlet weak var numPad: APNFlexKeypad!
@@ -177,6 +178,8 @@ class ScoreEditor: UIView {
         uiContainerView.layer.borderWidth   = 1.5
         uiContainerView.layer.cornerRadius  = 10
         uiContainerView.backgroundColor     = Colors.blue
+        
+        polkaDotsView.backgroundColor       = UIColor(patternImage: UIImage(named: "PolkaDotsDark")!)
         
         scoreContainerView.backgroundColor  = .clear
         scoreContainerView.alpha            = 0.0
