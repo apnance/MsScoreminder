@@ -179,7 +179,7 @@ class ScoreEditor: UIView {
         uiContainerView.layer.cornerRadius  = 10
         uiContainerView.backgroundColor     = Colors.blue
         
-        polkaDotsView.backgroundColor       = UIColor(patternImage: UIImage(named: "PolkaDotsDark")!)
+        polkaDotsView.backgroundColor       = UIColor(patternImage: UIImage(named: "PolkaDotsWhiteDark")!)
         
         scoreContainerView.backgroundColor  = .clear
         scoreContainerView.alpha            = 0.0
