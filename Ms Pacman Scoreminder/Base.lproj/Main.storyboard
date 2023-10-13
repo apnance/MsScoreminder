@@ -19,31 +19,43 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SsP-ad-Wjl">
                                 <rect key="frame" x="25" y="134" width="343" height="907"/>
-                                <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="$25.25" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lGR-By-8Ok">
-                                        <rect key="frame" x="141.66666666666666" y="667" width="60" height="23.333333333333371"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="textColor" name="Pear"/>
-                                        <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="v1.?" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fpz-Ml-hZL">
-                                        <rect key="frame" x="146.66666666666666" y="683.33333333333337" width="50" height="20"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="EOf-1R-Sgw"/>
-                                            <constraint firstAttribute="height" constant="20" id="fJx-45-y9o"/>
-                                        </constraints>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="9"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                </subviews>
                                 <color key="backgroundColor" name="Pink"/>
+                            </view>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xg8-qZ-HZB" userLabel="Gradient View">
+                                <rect key="frame" x="0.0" y="59" width="393" height="793"/>
+                                <subviews>
+                                    <stackView opaque="NO" alpha="0.0" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="-6" translatesAutoresizingMaskIntoConstraints="NO" id="gSj-gz-QZu" userLabel="Total Spent Stack View">
+                                        <rect key="frame" x="146.66666666666666" y="745" width="100" height="32.333333333333371"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="$25.25" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lGR-By-8Ok">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="23.333333333333332"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="23.329999999999998" id="0gw-6q-810"/>
+                                                    <constraint firstAttribute="width" constant="100" id="Jdn-BV-gDR"/>
+                                                </constraints>
+                                                <color key="textColor" name="Pear"/>
+                                                <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="18"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" alpha="0.65000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="v1.?" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fpz-Ml-hZL">
+                                                <rect key="frame" x="25" y="17.333333333333371" width="50" height="15"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="EOf-1R-Sgw"/>
+                                                    <constraint firstAttribute="height" constant="15" id="fJx-45-y9o"/>
+                                                </constraints>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="7"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="fpz-Ml-hZL" firstAttribute="centerX" secondItem="SsP-ad-Wjl" secondAttribute="centerX" id="I7a-cn-wYa"/>
-                                    <constraint firstItem="lGR-By-8Ok" firstAttribute="centerX" secondItem="SsP-ad-Wjl" secondAttribute="centerX" id="pR9-48-ehJ"/>
-                                    <constraint firstItem="lGR-By-8Ok" firstAttribute="bottom" secondItem="fpz-Ml-hZL" secondAttribute="bottom" constant="-13" id="vmy-TN-6AV"/>
+                                    <constraint firstItem="gSj-gz-QZu" firstAttribute="centerX" secondItem="xg8-qZ-HZB" secondAttribute="centerX" id="6sv-z2-x9t"/>
                                 </constraints>
                             </view>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFo-KC-Pry" userLabel="Streaks Container View" customClass="RoundView" customModule="APNUtil">
@@ -621,10 +633,10 @@
                             <constraint firstItem="J3b-ku-ou6" firstAttribute="top" secondItem="TCV-YU-Iab" secondAttribute="bottom" constant="-1.3333333333332575" id="7aW-gu-K15"/>
                             <constraint firstAttribute="bottomMargin" secondItem="ZyG-9R-Myt" secondAttribute="bottom" constant="25" id="C8y-JA-aQD"/>
                             <constraint firstItem="TCV-YU-Iab" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="Cg8-nc-lRf"/>
-                            <constraint firstItem="lGR-By-8Ok" firstAttribute="top" secondItem="ZyG-9R-Myt" secondAttribute="bottom" constant="8" id="FCo-bk-sjk"/>
                             <constraint firstItem="pii-L0-PwK" firstAttribute="top" secondItem="qZZ-vR-qwz" secondAttribute="bottom" constant="2.5" identifier="FilterControlsTop" id="Fjy-sN-OJC"/>
                             <constraint firstItem="rGJ-M0-qHl" firstAttribute="centerX" secondItem="pii-L0-PwK" secondAttribute="centerX" identifier="ControlsBackgroundViewCenterX" id="G1g-4M-pUd"/>
                             <constraint firstItem="J3b-ku-ou6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="G7d-TB-xWW"/>
+                            <constraint firstItem="gSj-gz-QZu" firstAttribute="top" secondItem="Kw7-ga-S1C" secondAttribute="bottom" constant="11" id="HNZ-oU-zrp"/>
                             <constraint firstItem="yGI-Rh-K7B" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Hzi-rb-jMW"/>
                             <constraint firstItem="ZyG-9R-Myt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="Iku-o5-2zb"/>
                             <constraint firstItem="ycv-3o-wBM" firstAttribute="centerY" secondItem="tfc-k3-1dv" secondAttribute="centerY" constant="17" id="JDh-MO-bYl"/>
@@ -641,7 +653,10 @@
                             <constraint firstAttribute="trailing" secondItem="SsP-ad-Wjl" secondAttribute="trailing" constant="25" id="Xgf-aD-vNW"/>
                             <constraint firstItem="rGJ-M0-qHl" firstAttribute="height" secondItem="pii-L0-PwK" secondAttribute="height" constant="15" identifier="ControlsBackgroundViewHeight" id="YPR-SX-2XU"/>
                             <constraint firstItem="rGJ-M0-qHl" firstAttribute="width" secondItem="pii-L0-PwK" secondAttribute="width" constant="15" identifier="ControlsBackgroundViewWidth" id="YfM-m6-U9p"/>
+                            <constraint firstItem="xg8-qZ-HZB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ZdF-To-qqv"/>
                             <constraint firstItem="Vyl-Z8-0tu" firstAttribute="top" secondItem="TCV-YU-Iab" secondAttribute="bottom" constant="48" id="ZsW-3F-hGZ"/>
+                            <constraint firstAttribute="bottom" secondItem="xg8-qZ-HZB" secondAttribute="bottom" id="b45-At-FHO"/>
+                            <constraint firstItem="xg8-qZ-HZB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="c7l-0D-kgo"/>
                             <constraint firstItem="rGJ-M0-qHl" firstAttribute="centerY" secondItem="pii-L0-PwK" secondAttribute="centerY" identifier="ControlsBackgroundViewCenterY" id="cAW-qf-VPp"/>
                             <constraint firstItem="Odw-fc-Buf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="cX8-X1-VHN"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="SsP-ad-Wjl" secondAttribute="bottom" constant="-223" id="d35-DH-3yq"/>
@@ -654,6 +669,7 @@
                             <constraint firstAttribute="bottom" secondItem="bFj-cR-DpG" secondAttribute="bottom" id="tXv-Qg-lIA"/>
                             <constraint firstItem="bFj-cR-DpG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="uwY-7u-hrh"/>
                             <constraint firstAttribute="bottom" secondItem="pwm-N2-dS7" secondAttribute="bottom" id="w1Y-1w-5jg"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xg8-qZ-HZB" secondAttribute="trailing" id="w77-E8-Las"/>
                             <constraint firstItem="pii-L0-PwK" firstAttribute="width" secondItem="SsP-ad-Wjl" secondAttribute="width" multiplier="0.894231" identifier="FilterControlsWidthProportionalToBGStripe" id="xAh-vt-vwv"/>
                             <constraint firstItem="yGI-Rh-K7B" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="xvM-8m-hbv"/>
                             <constraint firstItem="bFj-cR-DpG" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="yAs-of-67C"/>
@@ -668,6 +684,7 @@
                         <outlet property="dataSelector" destination="d4r-1W-jEE" id="uop-HD-EdR"/>
                         <outlet property="dateSorted" destination="Hbp-Q9-muc" id="J9f-SX-KIB"/>
                         <outlet property="emailButton" destination="ggF-iH-bax" id="geH-IX-Qua"/>
+                        <outlet property="gradientView" destination="xg8-qZ-HZB" id="Y7i-xa-O9r"/>
                         <outlet property="graphContainerView" destination="pwm-N2-dS7" id="tgC-Cv-yoM"/>
                         <outlet property="graphImageView" destination="ArY-C0-C0k" id="Kqn-Zw-k5M"/>
                         <outlet property="graphPointCountLabel" destination="y48-Rx-SCM" id="UO2-dC-XRe"/>
@@ -706,6 +723,7 @@
                         <outlet property="streakLongestDate2" destination="aiA-1a-tWG" id="1Oj-YR-nnc"/>
                         <outlet property="streaksContainerView" destination="yFo-KC-Pry" id="sNb-Ql-6YY"/>
                         <outlet property="totalMoneySpentLabel" destination="lGR-By-8Ok" id="9ic-vw-xd1"/>
+                        <outlet property="totalMoneySpentStackView" destination="gSj-gz-QZu" id="uNo-Dn-ryO"/>
                         <outlet property="tresButtonsStackView" destination="Vyl-Z8-0tu" id="PIl-aX-Z5T"/>
                         <outlet property="versionLabel" destination="fpz-Ml-hZL" id="8lk-Tl-mfz"/>
                     </connections>

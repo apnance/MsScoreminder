@@ -10,7 +10,7 @@ import WebKit
 import APNUtil
 import APNGraph
 
-//HERE
+// TODO: HERE!!!
 //1. Add Optimality to Daily Summary and email HTMLs
 //2. Add UI for displaying stats.optimals and stats.optimalsDaily
 
@@ -39,12 +39,17 @@ class ViewController: UIViewController {
     @IBOutlet weak var marqueeMid: UIView!
     @IBOutlet weak var marqueeBG: UIImageView!
     @IBOutlet weak var backgroundStripeView: UIView!
+    @IBOutlet weak var gradientView: UIView!
+    
+    
     @IBOutlet weak var marqueeScoreView: UIView!
     @IBOutlet weak var marqueeScoreScoreLabel: UILabel!
     @IBOutlet weak var marqueeScoreTitleLabel: UILabel!
     @IBOutlet weak var marqueeScoreDateLabel: UILabel!
     @IBOutlet weak var marqueeLevelIcon: UIImageView!
     @IBOutlet weak var marqueeLevelIconContainerView: RoundView!
+    
+    @IBOutlet weak var totalMoneySpentStackView: UIStackView!
     @IBOutlet weak var totalMoneySpentLabel: UITextField!
     @IBOutlet weak var versionLabel: UITextField!
     @IBOutlet weak var scoresContainerView: UIView!
@@ -187,6 +192,10 @@ class ViewController: UIViewController {
             self.uiAnimateSprites()
             self.uiOpeningAnimation()
             
+            self.gradientView.addGradient(colors: [UIColor.clear.cgColor,
+                                                   UIColor.clear.cgColor,
+                                                   UIColor.black.pointSixAlpha.cgColor])
+            
         }
         
     }
@@ -303,18 +312,20 @@ class ViewController: UIViewController {
         UIView.buildAnimation(withDuration: Configs.UI.Timing.Curtain.revealTime,
                               delay: Configs.UI.Timing.Curtain.revealDelayTime,
                               withFrames: [
-                                (0.0, 10, { self.launchScreenReplicaSplashTitleView.alpha = 0.0 } ),    // Splash Title
-                                (-2.0, 9, { self.launchScreenReplicaCurtainView.alpha = 0.0 } ),        // Curtain
-                                (0.0, 7, { self.marqueeFG.alpha = 1.0 } ),                              // Marquee FG (Ms. Pac-Man)
-                                (0.0, 5, { self.marqueeBG.alpha = 1.0 } ),                              // Margue BG (Ghosts)
-                                (0.0, 4, { self.marqueeMid.alpha = 1.0 } ),                             // Margue Mid (Scores)
-                                (0.0, 3, { self.streaksContainerView.alpha = 1.0} ),                    // Streaks
-                                (0.0, 2, { self.dailyHighlightsView.alpha = 0.8 }),                     // Daily Summary
-                                (0.0, 1.75, { self.spritesViewContainer.alpha  = 1.0} ),                // Sprites
-                                (0.0, 1.5, { self.tresButtonsStackView.alpha = 1.0 }),                  // Add Score/Graph/Mail buttons
-                                (0.0, 3.5, { // Scores
-                                    self.scoresContainerView.alpha              = 1.0
-                                    self.scoreFilterControlsStackView.alpha     = 1.0 })
+                                (0.0, 4, { self.launchScreenReplicaSplashTitleView.alpha = 0.0 } ), // Splash Title
+                                (-2.0, 6, { self.launchScreenReplicaCurtainView.alpha = 0.0 } ),    // Curtain
+                                (0.0, 6, { self.marqueeFG.alpha     = 1.0 } ),                      // Marquee FG (Ms. Pac-Man)
+                                (0.0, 4, { self.marqueeBG.alpha     = 1.0 } ),                      // Margue BG (Ghosts)
+                                (0.0, 3, { self.marqueeMid.alpha    = 1.0 } ),                      // Margue Mid (Scores)
+                                (0.0, 2.5, { self.streaksContainerView.alpha      = 1.0} ),         // Streaks
+                                (0.0, 2, { self.dailyHighlightsView.alpha       = 0.8 }),           // Daily Summary
+                                (0.0, 1.75, { self.spritesViewContainer.alpha   = 1.0} ),           // Sprites
+                                (0.0, 1.5, { self.tresButtonsStackView.alpha    = 1.0 }),           // Add Score/Graph/Mail buttons
+                                (0.0, 3.5, {
+                                    self.scoresContainerView.alpha          = 1.0
+                                    self.scoreFilterControlsStackView.alpha = 1.0 }),               // Scores
+                                (-2.0, 8.0, { self.gradientView.alpha = 1.0 }),                     // Gradient View
+                                (1.0, 1.5, { self.totalMoneySpentStackView.alpha = 1.0 })           // Total Money Spent View
                               ],
                               completionHandler: nil)
         
