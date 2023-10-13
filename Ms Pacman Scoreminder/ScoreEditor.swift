@@ -397,10 +397,10 @@ protocol ScoreEditorDelegate {
     /// - score: `Score` to delete
     func delete(score: Score)
     
-    /// Called when user updates or add a new `Score`
+    /// Called when user updates or adds a new `Score`
     ///
     /// - Parameters:
-    /// - new:The new `Score` or updated value.
+    /// - new:The new `Score` or an updated value.
     /// - replacing: The old value to be replaced with `new`
     func set(new: Score, replacing: Score?)
     
