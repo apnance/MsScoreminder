@@ -9,6 +9,17 @@ import UIKit
 import APNUtil
 
 
+/// fruit level index constants
+let cherry      = 0
+let strawberry  = 1
+let orange      = 2
+let pretzel     = 3
+let apple       = 4
+let pear        = 5
+let banana1     = 6
+let banana2     = 7
+let banana3     = 8
+
 /// Data structure for managing general level data.
 /// - important: Access instances of this class through the `get` factory method.
 class Level {
@@ -24,7 +35,7 @@ class Level {
         if levelNum > cached.lastUsableIndex {
             
             var cumm = 0
-            for i in 0...levelNum {
+            for i in cherry...levelNum {
                 
                 if i > cached.lastUsableIndex {
                     
@@ -82,8 +93,8 @@ class Level {
         
         assert(names.count == levelStrings.count)
         
-        let postfix         = num > 6 ? String(describing: num - 5) : ""
-        let index           = num > 6 ? 6 : num
+        let postfix         = num > banana1 ? String(describing: num - 5) : ""
+        let index           = min(num, banana1)
         
         name                = names[index] + postfix
         abbr                = levelStrings[index] + postfix
@@ -93,15 +104,16 @@ class Level {
     private func setDotCount() {
         
         switch num {
-            case 0:     dotCount = 220
-            case 1:     dotCount = 220
-            case 2:     dotCount = 240
-            case 3:     dotCount = 240
-            case 4:     dotCount = 240
-            case 5:     dotCount = 238
-            case 6:     dotCount = 238
-            case 7:     dotCount = 238
-            case 8:     dotCount = 238
+                
+            case cherry:        dotCount = 220
+            case strawberry:    dotCount = 220
+            case orange:        dotCount = 240
+            case pretzel:       dotCount = 240
+            case apple:         dotCount = 240
+            case pear:          dotCount = 238
+            case banana1:        dotCount = 238
+            case banana2:       dotCount = 238
+            case banana3:       dotCount = 238
                 
                 // Repeating mazes 2 & 3
             default:    dotCount = (maze == 2 ? 238 : 234)
@@ -114,16 +126,16 @@ class Level {
         
         switch num {
                 
-            case 0:     fruitScore = 100
-            case 1:     fruitScore = 200
-            case 2:     fruitScore = 500
-            case 3:     fruitScore = 700
-            case 4:     fruitScore = 1000
-            case 5:     fruitScore = 2000
-            case 6:     fruitScore = 5000
+            case cherry:        fruitScore = 100
+            case strawberry:    fruitScore = 200
+            case orange:        fruitScore = 500
+            case pretzel:       fruitScore = 700
+            case apple:         fruitScore = 1000
+            case pear:          fruitScore = 2000
+            case banana1:        fruitScore = 5000
                 
             // Note: Banana2+ returns optimal fruit score.
-            default:    fruitScore = 5000
+            default:            fruitScore = 5000
                 
         }
         
@@ -139,10 +151,12 @@ class Level {
         
         switch num {
                 
-            case 0...1: maze = 0
-            case 2...4: maze = 1
-            case 5...8: maze = 2
-            default:    maze = ((num - 9) / 4).isEven ? 3 : 2 // >8, mazes alternate at intervals of 4
+            case cherry...strawberry:   maze = 0
+            case orange...apple:        maze = 1
+            case pear...banana3:        maze = 2
+                
+            // >8, mazes alternate at intervals of 4
+            default:                    maze = ((num - 9) / 4).isEven ? 3 : 2
                 
         }
         
