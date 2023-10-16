@@ -204,6 +204,12 @@ class ScoreEditor: UIView {
         
     }
     
+    private func highlightFruitButton(_ num: Int) {
+        
+        fruitPad.highlight(buttonNum: min(num, banana1))
+        
+    }
+    
     /// Loads a new score from argument or creates a new score from numPad/fruitPad values.
     func load(score newScore: Score? = nil, isDeletable: Bool = false) {
         
@@ -221,6 +227,9 @@ class ScoreEditor: UIView {
             score.level = Level.get(Int(fruitPad.value) ?? 0)
             
         }
+        
+        // Highlight
+        highlightFruitButton(score.level.num)
         
         let scoreView   = AtomicScoreView.new(delegate: nil,
                                               withScore: score,
