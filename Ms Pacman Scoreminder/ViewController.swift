@@ -155,9 +155,6 @@ class ViewController: UIViewController {
         
         super.viewDidLoad()
         
-        // Dev Utility
-        // print(StatManager.generateTestCSV(scoreCount: 20000))
-        
         launchScreenReplicaCurtainView.isHidden = false
         
         scoreEditor = ScoreEditor(superView: view, delegate: self)
