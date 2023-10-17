@@ -120,6 +120,7 @@
 		93B67B5C274DD741007C302C /* PlayStreak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayStreak.swift; sourceTree = "<group>"; };
 		93B6D0EB27021DAD005ADF3F /* AtomicScoreView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AtomicScoreView.xib; sourceTree = "<group>"; };
 		93B6D0ED270231A4005ADF3F /* AtomicScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicScoreView.swift; sourceTree = "<group>"; };
+		93D0309F2ADE0709007665A2 /* StatLab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatLab.swift; sourceTree = "<group>"; };
 		93D98BD128DD314F00FD0F80 /* APNGraph */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = APNGraph; path = ../../Frameworks/APNGraph; sourceTree = "<group>"; };
 		93DD05942A86E09D0030D504 /* ScoreEditor.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScoreEditor.xib; sourceTree = "<group>"; };
 		93DD05962A86E0B60030D504 /* ScoreEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreEditor.swift; sourceTree = "<group>"; };
