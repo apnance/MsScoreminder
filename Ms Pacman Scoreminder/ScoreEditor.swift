@@ -98,6 +98,7 @@ class ScoreEditor: UIView {
         view?.constrainIn(superView)
         view?.alpha = 0.0
         
+        uiInitGen()
         uiInitDeleteConfirmation()
         uiInitNumPad()
         uiInitFruitPad()
@@ -111,6 +112,13 @@ class ScoreEditor: UIView {
     }
     
     // -MARK: UI
+    private func uiInitGen() {
+        
+        Utils.UI.addShadows(to: [deleteButton, updateButton], 
+                            withOpacity: 0.3)
+        
+    }
+    
     private func uiInitDeleteConfirmation() {
         
         deleteConfirmationContainerView.subviews.forEach {
@@ -135,8 +143,8 @@ class ScoreEditor: UIView {
                                                                  , 8: ("8",     .accumulator("8"),      Colors.blue,   Colors.white, Colors.banana, .light)
                                                                  , 9: ("9",     .accumulator("9"),      Colors.blue,   Colors.white, Colors.banana, .light)
                                                                  , 10: ("0",    .accumulatorPost("0"),  Colors.blue,   Colors.white, Colors.banana, .light)
-                                                                 , 11: ("<",    .accumulatorBackspace,  Colors.white,  Colors.blue, Colors.pear,  .medium)
-                                                                 , 12: ("X",    .accumulatorReset,      Colors.white,  Colors.apple, Colors.pear, .heavy)
+                                                                 , 11: ("⬅︎",    .accumulatorBackspace,  Colors.white,  Colors.blue, Colors.pear,  .medium)
+                                                                 , 12: ("✘",    .accumulatorReset,      Colors.white,  Colors.apple, Colors.pear, .heavy)
                                                              ])
                      ,buttonStyler: outlineAndShadow(view:))
         
@@ -220,7 +228,7 @@ class ScoreEditor: UIView {
             shouldPredictLevel  = newScore == Score.zero
             lastSavedScore      = isDeletable ? newScore : nil
             editScoreLabel.text = isDeletable ? Configs.UI.Text.ScoreEditor.edit : Configs.UI.Text.ScoreEditor.enter
-            score           = newScore
+            score               = newScore
             numPad.set(value:   newScore.score.description)
             fruitPad.set(value: newScore.level.num.description)
             
