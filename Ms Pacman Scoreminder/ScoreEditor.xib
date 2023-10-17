@@ -238,7 +238,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <color key="tintColor" name="Pink"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" image="pencil" catalog="system">
+                            <state key="normal" image="checkmark.square" catalog="system">
                                 <color key="titleColor" name="Pretzel"/>
                             </state>
                             <connections>
@@ -296,11 +296,11 @@
             <size key="intrinsicContentSize" width="30" height="28"/>
         </designable>
         <designable name="rnI-Sp-Cpd">
-            <size key="intrinsicContentSize" width="17.333333333333332" height="16"/>
+            <size key="intrinsicContentSize" width="19.333333333333332" height="17.333333333333332"/>
         </designable>
     </designables>
     <resources>
-        <image name="pencil" catalog="system" width="128" height="113"/>
+        <image name="checkmark.square" catalog="system" width="128" height="114"/>
         <image name="trash" catalog="system" width="117" height="128"/>
         <namedColor name="Apple">
             <color red="0.84899997711181641" green="0.15000000596046448" blue="0.16699999570846558" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
