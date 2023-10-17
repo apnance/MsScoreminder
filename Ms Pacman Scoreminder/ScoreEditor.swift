@@ -76,6 +76,8 @@ class ScoreEditor: UIView {
     /// Delegate object
     private(set) var delegate: ScoreEditorDelegate?
     
+    /// Flag to toggle predictive level selection
+    private var shouldPredictLevel = false
     
     // MARK: - Custom Methods
     required init?(coder: NSCoder) { super.init(coder: coder) }
@@ -215,7 +217,8 @@ class ScoreEditor: UIView {
         
         if let newScore = newScore { // Score was loaded into ScoreEditor
             
-            lastSavedScore  = isDeletable ? newScore : nil
+            shouldPredictLevel  = newScore == Score.zero
+            lastSavedScore      = isDeletable ? newScore : nil
             editScoreLabel.text = isDeletable ? Configs.UI.Text.ScoreEditor.edit : Configs.UI.Text.ScoreEditor.enter
             score           = newScore
             numPad.set(value:   newScore.score.description)
@@ -224,7 +227,8 @@ class ScoreEditor: UIView {
         } else {
             
             score.score = Int(numPad.value) ?? 0
-            score.level = Level.get(Int(fruitPad.value) ?? 0)
+            score.level = getLevelFor(score.score)
+            fruitPad.set(value: score.level.num.description)
             
         }
         
@@ -330,6 +334,8 @@ class ScoreEditor: UIView {
     /// - Parameter incr: amount to increase or decreas fruitPad.value by.
     private func changeLevel(_ incr: Int) {
         
+        shouldPredictLevel = false
+        
         if incr > 0 {
             
             fruitPad.set(value: String(min(14, (Int(fruitPad.value) ?? 0) + incr)))
@@ -340,6 +346,39 @@ class ScoreEditor: UIView {
         }
         
         load()
+        
+    }
+    
+    /// Estimates and returns `Level` for a given score value if `shouldPredictLevel` is true.
+    private func getLevelFor(_ score: Int) -> Level {
+        
+        var levelNum = Int(fruitPad.value) ?? 0
+        
+        if shouldPredictLevel {
+            
+            switch score {
+                    
+                case 0...11150:         levelNum = cherry
+                case 11151...23742:     levelNum = strawberry
+                case 23743...38404:     levelNum = orange
+                case 38405...42354:     levelNum = pretzel
+                case 42355...51571:     levelNum = apple
+                case 51572...66652:     levelNum = pear
+                case 66653...81478:     levelNum = banana1
+                case 81479...87994:     levelNum = banana2
+                case 87995...93412:     levelNum = banana3
+                case 93413...104802:    levelNum = banana4
+                case 104803...105338:   levelNum = banana5
+                case 105339...110950:   levelNum = banana6
+                case 110951...118707:   levelNum = banana7
+                    
+                default:                levelNum = banana8
+                    
+            }
+            
+        }
+        
+        return Level.get(levelNum)
         
     }
     
@@ -366,7 +405,15 @@ class ScoreEditor: UIView {
 extension ScoreEditor: APNFlexKeypadDelegate {
     
     func valueChanged(_ value: String?,
-                      forID id: String) { load() }
+                      forID id: String) {
+        
+        // Disable prediction as soon as user has set level.
+        // Don't fight the user.
+        if id == fruitPad.id { shouldPredictLevel = false }
+        
+        load()
+        
+    }
     
     func showHideComplete(forID id: String, isShown: Bool, animated: Bool) {
         

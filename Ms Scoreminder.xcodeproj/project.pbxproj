@@ -40,6 +40,7 @@
 		93B67B5D274DD741007C302C /* PlayStreak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B67B5C274DD741007C302C /* PlayStreak.swift */; };
 		93B6D0EC27021DAD005ADF3F /* AtomicScoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93B6D0EB27021DAD005ADF3F /* AtomicScoreView.xib */; };
 		93B6D0EE270231A4005ADF3F /* AtomicScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B6D0ED270231A4005ADF3F /* AtomicScoreView.swift */; };
+		93D030A02ADE0709007665A2 /* StatLab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D0309F2ADE0709007665A2 /* StatLab.swift */; };
 		93D98BD328DD315C00FD0F80 /* APNGraph in Frameworks */ = {isa = PBXBuildFile; productRef = 93D98BD228DD315C00FD0F80 /* APNGraph */; settings = {ATTRIBUTES = (Required, ); }; };
 		93DD05952A86E09D0030D504 /* ScoreEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93DD05942A86E09D0030D504 /* ScoreEditor.xib */; };
 		93DD05972A86E0B60030D504 /* ScoreEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DD05962A86E0B60030D504 /* ScoreEditor.swift */; };
@@ -280,6 +281,7 @@
 				932B1730270D49210030CD59 /* DefaultData.csv */,
 				9313DE422731A40E00460712 /* TestDataSmall.csv */,
 				930128B32AD87AA900FF1AE1 /* TestData20k.csv */,
+				93D0309F2ADE0709007665A2 /* StatLab.swift */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -484,6 +486,7 @@
 				93A497A3270E21F700D5AB5F /* Preferences.swift in Sources */,
 				9316244C26FA4C8D004C06B7 /* SceneDelegate.swift in Sources */,
 				93AF7B862A954BA2002B93F5 /* UISegmentedControl.swift in Sources */,
+				93D030A02ADE0709007665A2 /* StatLab.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
