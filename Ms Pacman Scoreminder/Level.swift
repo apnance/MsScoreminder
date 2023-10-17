@@ -19,6 +19,11 @@ let pear        = 5
 let banana1     = 6
 let banana2     = 7
 let banana3     = 8
+let banana4     = 9
+let banana5     = 10
+let banana6     = 11
+let banana7     = 12
+let banana8     = 13
 
 /// Data structure for managing general level data.
 /// - important: Access instances of this class through the `get` factory method.
