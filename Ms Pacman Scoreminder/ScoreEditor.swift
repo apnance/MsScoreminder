@@ -344,6 +344,8 @@ class ScoreEditor: UIView {
         
         shouldPredictLevel = false
         
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        
         if incr > 0 {
             
             fruitPad.set(value: String(min(14, (Int(fruitPad.value) ?? 0) + incr)))
