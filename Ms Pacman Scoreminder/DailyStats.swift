@@ -43,6 +43,12 @@ struct DailyStats {
     /// Flag indicating if these `DailyStats` are for today
     var areToday: Bool {    date.simple == Date().simple }
     
+    /// What % of possible points for attainable by `averageLevel` is the `averageScore`
+    var optimality: Double { score.optimality.roundTo(2) }
+    
+    /// Max possible points attainable at `averageLevel`
+    var optimalScore: Int { Level.get(averageLevel).optimalScoreCummulative }
+    
     /// Computes a Score from `date`, `averageScore`, and `averageLevel`
     var score: Score {
         
