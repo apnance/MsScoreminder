@@ -265,10 +265,12 @@ struct EmailManager {
             
             var rank                = "\(dailyStats.rank.0)<span class=\"super\">\(dailyStats.rank.0.ordinal)</span> of \(dailyStats.rank.1)"
             var percentile          = StatManager.percentileDescription(dailyStats.rank)
+            var avgLevel            = Level.get(dailyStats.averageLevel).name
             let games               = "\(dailyStats.gamesPlayed) today, \(statMan.getTotalGamesPlayed()) total"
             var avgScore            = dailyStats.averageScore.delimited
+            let optimalScore        = dailyStats.optimalScore.delimited
+            var optimality          = "\(dailyStats.optimality)%"
             var sevenDayAvgScore    = dailyStats.sevenDayAverage.delimited
-            var avgLevel            = Level.get(dailyStats.averageLevel).name
             
             if let previousStats    = statMan.getPreviousDaily(forDate: date) {
                 
@@ -276,10 +278,12 @@ struct EmailManager {
                                                              dailyStats.rank.0))
                 percentile          += formatDelta(doubles: (StatManager.percentile(dailyStats.rank),
                                                              StatManager.percentile(previousStats.rank)))
-                avgScore            += formatDelta(ints:    (dailyStats.averageScore,
-                                                             previousStats.averageScore))
                 avgLevel            += formatDelta(ints:    (dailyStats.averageLevel,
                                                              previousStats.averageLevel))
+                avgScore            += formatDelta(ints:    (dailyStats.averageScore,
+                                                             previousStats.averageScore))
+                optimality          += formatDelta(doubles: (dailyStats.optimality,
+                                                             previousStats.optimality))
                 sevenDayAvgScore    += formatDelta(ints:    (dailyStats.sevenDayAverage,
                                                              previousStats.sevenDayAverage))
                 
@@ -290,10 +294,11 @@ struct EmailManager {
                         \(columnate(["DATE:",       dailyStats.date.simple]))
                         \(columnate(["RANK:",       rank]))
                         \(columnate(["PERCENTILE:", percentile]))
-                        
-                        \(columnate(["AVG SCORE:",  avgScore]))
-                        \(columnate(["7 DAY AVG:",  sevenDayAvgScore]))
                         \(columnate(["AVG LEVEL:",  avgLevel]))
+                        \(columnate(["AVG SCORE:",  avgScore]))
+                        \(columnate(["OPTIMAL SCORE:",  optimalScore]))
+                        \(columnate(["OPTIMALITY:", optimality]))
+                        \(columnate(["7 DAY AVG:",  sevenDayAvgScore]))
                         \(columnate(["GAMES:",      games]))
                         \(buildStreakHTML())
                     """
@@ -331,7 +336,7 @@ struct EmailManager {
     
     static private func buildVersion(forDestination dest: HTMLDestination) -> HTML {
         
-        dest == .email ? "<br/><span class=\"version_number\">v\(Bundle.appVersion)</span>" : ""
+        dest == .email ? "<span class=\"version_number\">v\(Bundle.appVersion)</span>" : ""
         
     }
     
@@ -344,10 +349,12 @@ struct EmailManager {
         let levelSummaryHTML    = buildLevelSummaryHTML(using: statMan, forDate: date)
         let dailyStatsHTML      = buildDailyStatsHTML(using: statMan, forDate: date)
         
-        let bgColor                 = dest == .email ? Color.blue    : "clear"
+        let bgColor                 = dest == .email ? Color.blue   : "clear"
         let bodyHeight              = dest == .email ? "650px"      : "100%"
         let bodyPadding             = dest == .email ? "90px 0px 0px 0px" : "0px"
-        let fontSize                = dest == .email ? "8.4pt"      : "25.5pt"
+        
+        let fontSizeReg             = dest == .email ? "7.9pt"      : "23.5pt"
+        let fontSizeSmall           = dest == .email ? "6pt"        : "18pt"
         
         let roundedBoxBorderWidth   = dest == .email ? "15px"       : "40px"
         let roundedBoxHeight        = dest == .email ? "560px"      : "100%"
@@ -357,11 +364,11 @@ struct EmailManager {
         
         let iconDim                 = dest == .email ? "30px" : "65px"
         
-        let colStyles               = buildColumnStyles(withFontSize: fontSize)
+        let colStyles               = buildColumnStyles(withFontSize: fontSizeReg)
         let mastHead                = buildHeader(forDestination: dest)
         
-        let hr1                     = dest == .email ? "" : "<hr \"/>"
-        let hr2                     = dest == .email ? "<br/>" : "<hr />"
+        let hr1                     = dest == .email ? "" : "<hr/>"
+        let hr2                     = dest == .email ? "<br/>" : "<hr/><br/>"
         
         let version                 = buildVersion(forDestination: dest)
         
@@ -392,15 +399,12 @@ struct EmailManager {
                 }
                 
                 .marqueeImg {
-                
                   display: block;
                   margin-left: auto;
                   margin-right: auto;
-                
                 }
                 
                 .roundedBox {
-                
                     border-style: solid;
                     border-radius: \(roundedBoxBorderRadii);
                     border-width: \(roundedBoxBorderWidth);
@@ -413,27 +417,30 @@ struct EmailManager {
                     width: \(roundedBoxWidth);
                     height: \(roundedBoxHeight);
                     padding: 10px;
-                
                 }
                 
                 .down {
-                    font-size: \(fontSize);
+                    position: relative; 
+                    bottom: -0em;
+                    font-size: \(fontSizeSmall);
                     color: \(Color.apple);
                 }
                 
                 .up {
-                    font-size: \(fontSize);
+                    position: relative; 
+                    top: -0.4em;
+                    font-size: \(fontSizeSmall);
                     color: \(Color.pear);
                 }
                 
                 .header {
-                    font-size: \(fontSize);
+                    font-size: \(fontSizeReg);
                     font-weight: bold;
                     color: \(Color.pear);
                 }
                 
                 .pacDot {
-                    font-size: \(fontSize);
+                    font-size: \(fontSizeReg);
                     font-weight: bold;
                     color: \(Color.white);
                 }
@@ -447,11 +454,15 @@ struct EmailManager {
                 * { box-sizing: border-box; }
                 .row { display: flex; }
                 
-                .super { position: relative; top: -0.5em; font-size: 70%; }
+                .super { 
+                    position: relative;
+                    top: -0.5em;
+                    font-size: 70%;
+                }
                 
                 .version_number {
                     text-align: center;
-                    font-size: \(fontSize);
+                    font-size: \(fontSizeSmall);
                     color: \(Color.white);
                 }
                 
