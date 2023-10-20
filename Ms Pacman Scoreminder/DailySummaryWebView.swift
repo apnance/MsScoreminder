@@ -13,12 +13,11 @@ class DailySummaryWebView: UIView {
     @IBOutlet var contentView: UIView!
     @IBOutlet private weak var webView: WKWebView!
     
-    var delegate: DayWebViewDelegate?
-    
-    private var date = Date()
-    
     @IBAction func didPushLeftButton(_ sender: UIButton) { delegate?.didPushLButton(currentDate: date) }
     @IBAction func didPushRightButton(_ sender: UIButton) { delegate?.didPushRButton(currentDate: date)}
+    
+    var delegate: DayWebViewDelegate?
+    private var date = Date()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
