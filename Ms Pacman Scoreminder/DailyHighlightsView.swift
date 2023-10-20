@@ -91,9 +91,9 @@ class DailyHighlightsView: RoundView {
         averageLevelLabel.layer.borderColor     = UIColor.black.cgColor
         averageLevelLabel.backgroundColor       = .white
         
-        averageLevelBGView.backgroundColor      = Configs.UI.Colors.pink
+        averageLevelBGView.backgroundColor      = .msPink
         averageLevelBGView.layer.borderWidth    = 2.5
-        averageLevelBGView.layer.borderColor    = Configs.UI.Colors.banana.cgColor
+        averageLevelBGView.layer.borderColor    = UIColor.banana.cgColor
         averageLevelBGView.setRadius()
         
         averageLevelIconImageView.image = Level.get(stats.averageLevel).icon

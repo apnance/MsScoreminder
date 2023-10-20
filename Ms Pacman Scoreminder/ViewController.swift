@@ -11,7 +11,6 @@ import APNUtil
 import APNGraph
 
 // TODO: HERE!!!
-//1. Add Optimality to Daily Summary and email HTMLs
 //2. Add UI for displaying stats.optimals and stats.optimalsDaily
 
 class ViewController: UIViewController {
@@ -242,7 +241,7 @@ class ViewController: UIViewController {
                                                          dotOutlineColor: .black,
                                                          dotOutlineWidth: 0.4)
             
-            self.graphImageView.layer.borderColor   =  Colors.banana.cgColor
+            self.graphImageView.layer.borderColor   =  UIColor.banana.cgColor
             self.graphImageView.layer.borderWidth   = 1.5
             self.graphImageView.layer.cornerRadius  = 10
             
@@ -263,7 +262,7 @@ class ViewController: UIViewController {
         
         graphPointCountSlider.setThumbImage(UIImage(named:"ms_icon_ms_pacman"), for: .normal)
         graphPointCountSlider.maximumTrackTintColor = .clear
-        graphPointCountSlider.minimumTrackTintColor = Colors.pink
+        graphPointCountSlider.minimumTrackTintColor = .msPink
         
         graphPointSliderPacPelletView.addDashedLine(.white,
                                                     width: 3.5,
@@ -489,7 +488,7 @@ class ViewController: UIViewController {
         let layer = backgroundStripeView.layer
         
         layer.cornerRadius  = backgroundStripeView.frame.width * 0.47
-        layer.borderColor   = Colors.banana.cgColor
+        layer.borderColor   = UIColor.banana.cgColor
         layer.borderWidth   = backgroundStripeView.frame.width * 0.04
         
     }
@@ -509,7 +508,7 @@ class ViewController: UIViewController {
                                action: #selector(filter(sender:)),
                                for: .valueChanged)
         
-        dataSelector.selectedSegmentTintColor = Colors.blue
+        dataSelector.selectedSegmentTintColor = .msBlue
         
         dataSelector.setTitleTextAttributes(normalAtts, for: .normal)
         dataSelector.setTitleTextAttributes(selectedAtts, for: .selected)
@@ -519,7 +518,7 @@ class ViewController: UIViewController {
                             action: #selector(filter(sender:)),
                             for: .valueChanged)
         
-        avgSorted.selectedSegmentTintColor = Colors.blue
+        avgSorted.selectedSegmentTintColor = .msBlue
         avgSorted.setTitleTextAttributes(normalAtts, for: .normal)
         avgSorted.setTitleTextAttributes(selectedAtts, for: .selected)
         
@@ -528,7 +527,7 @@ class ViewController: UIViewController {
                              action: #selector(filter(sender:)),
                              for: .valueChanged)
         
-        dateSorted.selectedSegmentTintColor = Colors.blue
+        dateSorted.selectedSegmentTintColor = .msBlue
         dateSorted.setTitleTextAttributes(normalAtts, for: .normal)
         dateSorted.setTitleTextAttributes(selectedAtts, for: .selected)
         
