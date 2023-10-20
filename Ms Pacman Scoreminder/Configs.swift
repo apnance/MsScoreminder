@@ -7,7 +7,10 @@
 
 import UIKit
 
-typealias Colors = Configs.UI.Colors
+// TODO: Clean Up - delete
+//typealias Colors = Configs.UI.Colors
+
+typealias ColorTriplet = (UIColor, UIColor, UIColor)
 
 struct Configs {
     
@@ -55,23 +58,58 @@ struct Configs {
         
         struct Colors {
             
-            static let white        = UIColor.white
-            static let blue         = UIColor(named: "Blue")!
-            static let pink         = UIColor(named: "Pink")!
-            static let cherry       = UIColor(named: "Cherry")!
-            static let strawberry   = UIColor(named: "Strawberry")!
-            static let orange       = UIColor(named: "Orange")!
-            static let pretzel      = UIColor(named: "Pretzel")!
-            static let apple        = UIColor(named: "Apple")!
-            static let pear         = UIColor(named: "Pear")!
-            static let banana       = UIColor(named: "Banana")!
+            struct ScoreEditor {
+                
+                static let border = UIColor.banana
+                
+                struct UIContainer {
+                    
+                    static let bg           = UIColor.msBlue
+                    static let polkaDotsBG  = UIColor(patternImage: UIImage(named: "PolkaDotsWhiteDark")!)
+                    static let border       = UIColor.banana
+                    
+                }
+                
+                struct FruitPad {
+                    
+                    static let bg       = UIColor.pretzel
+                    
+                    static let regKeys: ColorTriplet = (.msBlue, .msWhite, .banana)
+                    static let plusKey: ColorTriplet = (.pretzel, .msWhite, .banana)
+                    
+                }
+                
+                struct NumPad {
+                    
+                    static let bg       = UIColor.msPink
+                    
+                    static let numKeys: ColorTriplet     = (.msBlue, .msWhite, .banana)
+                    static let backKey: ColorTriplet     = (.msWhite, .pear.pointSevenAlpha, .msPink)
+                    static let resetKey: ColorTriplet    = (.msWhite, .apple.pointSevenAlpha, .msPink)
+                    
+                }
+                
+            }
+            
+        }
+        
+        struct Fonts {
+            
+            struct ScoreEditor {
+                
+                static let `default` = UIFont(name: "Futura-Bold", size: 20)
+                static let back      = UIFont(name: "Futura-Bold", size: 50.0)
+                static let reset     = UIFont(name: "Futura-Bold", size: 50.0)
+                
+            }
+            
             
         }
         
         struct Display {
             
             static let graphPointCount = 30
-            static let defaultAtomicScoreViewTextColor = UIColor(named:"Banana")!
+            static let defaultAtomicScoreViewTextColor = UIColor.banana
             
         }
         
@@ -86,16 +124,16 @@ struct Configs {
             
             struct Marquee {
                 
-                static let fadeDuration         = 0.3
-                static let highDelay            = 5.0
-                static let avgDelay             = 3.5
-                static let lowDelay             = 3.5
+                static let fadeDuration = 0.3
+                static let highDelay    = 5.0
+                static let avgDelay     = 3.5
+                static let lowDelay     = 3.5
                 
             }
             
             struct Loop {
                 
-                static let interval             = 0.06
+                static let interval = 0.06
                 
             }
             
@@ -108,7 +146,7 @@ struct Configs {
             
             struct RoundViewInfo {
                 
-                static let fadeTime             = 0.39
+                static let fadeTime = 0.39
                 
             }
             

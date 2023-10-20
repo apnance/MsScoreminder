@@ -131,31 +131,41 @@ class ScoreEditor: UIView {
     }
     
     private func uiInitNumPad() {
+        
+        let numColors       = Configs.UI.Colors.ScoreEditor.NumPad.numKeys
+        let backColors      = Configs.UI.Colors.ScoreEditor.NumPad.backKey
+        let resetColors     = Configs.UI.Colors.ScoreEditor.NumPad.resetKey
+        
         numPad.build(withConfigs: APNFlexKeypadConfigs(id: "numPad",
                                                        delegate: self,
-                                                       keys: [   1: ("1",       .accumulator("1"),      Colors.blue,   Colors.white, Colors.banana, .light)
-                                                                 , 2: ("2",     .accumulator("2"),      Colors.blue,   Colors.white, Colors.banana, .light)
-                                                                 , 3: ("3",     .accumulator("3"),      Colors.blue,   Colors.white, Colors.banana, .light)
-                                                                 , 4: ("4",     .accumulator("4"),      Colors.blue,   Colors.white, Colors.banana, .light)
-                                                                 , 5: ("5",     .accumulator("5"),      Colors.blue,   Colors.white, Colors.banana, .light)
-                                                                 , 6: ("6",     .accumulator("6"),      Colors.blue,   Colors.white, Colors.banana, .light)
-                                                                 , 7: ("7",     .accumulator("7"),      Colors.blue,   Colors.white, Colors.banana, .light)
-                                                                 , 8: ("8",     .accumulator("8"),      Colors.blue,   Colors.white, Colors.banana, .light)
-                                                                 , 9: ("9",     .accumulator("9"),      Colors.blue,   Colors.white, Colors.banana, .light)
-                                                                 , 10: ("0",    .accumulatorPost("0"),  Colors.blue,   Colors.white, Colors.banana, .light)
-                                                                 , 11: ("⬅︎",    .accumulatorBackspace,  Colors.white,  Colors.blue, Colors.pear,  .medium)
-                                                                 , 12: ("✘",    .accumulatorReset,      Colors.white,  Colors.apple, Colors.pear, .heavy)
+                                                       defaultFont:  Configs.UI.Fonts.ScoreEditor.default,
+                                                       keys: [
+                                                                1: ("1",    .accumulator("1"),      numColors,      nil, .light),
+                                                                2: ("2",    .accumulator("2"),      numColors,      nil, .light),
+                                                                3: ("3",    .accumulator("3"),      numColors,      nil, .light),
+                                                                4: ("4",    .accumulator("4"),      numColors,      nil, .light),
+                                                                5: ("5",    .accumulator("5"),      numColors,      nil, .light),
+                                                                6: ("6",    .accumulator("6"),      numColors,      nil, .light),
+                                                                7: ("7",    .accumulator("7"),      numColors,      nil, .light),
+                                                                8: ("8",    .accumulator("8"),      numColors,      nil, .light),
+                                                                9: ("9",    .accumulator("9"),      numColors,      nil, .light),
+                                                                10: ("0",   .accumulatorPost("0"),  numColors,      nil, .light),
+                                                                11: ("⌫",   .accumulatorBackspace,  backColors,     Configs.UI.Fonts.ScoreEditor.back, .medium),
+                                                                12: ("✘",   .accumulatorReset,      resetColors,    Configs.UI.Fonts.ScoreEditor.reset, .heavy)
+                                                                
                                                              ])
                      ,buttonStyler: outlineAndShadow(view:))
         
         numPad.layer.cornerRadius       = numPad.frame.width / 2.0
-        numPad.backgroundColor          = Colors.pink
+        numPad.backgroundColor          = Configs.UI.Colors.ScoreEditor.NumPad.bg
+        
         let borderView = UIView(frame: .zero)
         borderView.constrainIn(numPad)
         numPad.sendSubviewToBack(borderView)
         borderView.backgroundColor      = .clear
         borderView.layer.borderWidth    = numPad.frame.width * 0.04
-        borderView.layer.borderColor    = Colors.banana.cgColor
+        borderView.layer.borderColor    = Configs.UI.Colors.ScoreEditor.border.cgColor
+        
         borderView.layer.cornerRadius   = numPad.layer.cornerRadius
         Utils.UI.addShadows(to: numPad)
         numPad.show(false,      animated: false)
@@ -163,33 +173,42 @@ class ScoreEditor: UIView {
     }
     
     private func uiInitFruitPad() {
+        
+        let fruitColors = Configs.UI.Colors.ScoreEditor.FruitPad.regKeys
+        let plusColors  = Configs.UI.Colors.ScoreEditor.FruitPad.plusKey
+        
         fruitPad.build(withConfigs: APNFlexKeypadConfigs(id: "fruitPad",
                                                          delegate: self,
-                                                         keys: [     1: ("ms_icon_0",  .singleValue("0"),   Colors.blue, Colors.white, Colors.banana, .medium)
-                                                                     , 2: ("ms_icon_1",  .singleValue("1"), Colors.blue, Colors.white, Colors.banana, .medium)
-                                                                     , 3: ("ms_icon_2",  .singleValue("2"), Colors.blue, Colors.white, Colors.banana, .medium)
-                                                                     , 4: ("ms_icon_3",  .singleValue("3"), Colors.blue, Colors.white, Colors.banana, .medium)
-                                                                     , 5: ("ms_icon_4",  .singleValue("4"), Colors.blue, Colors.white, Colors.banana, .medium)
-                                                                     , 6: ("ms_icon_5",  .singleValue("5"), Colors.blue, Colors.white, Colors.banana, .medium)
-                                                                     , 7: ("ms_icon_6",  .singleValue("6"), Colors.blue, Colors.white, Colors.banana, .medium)
-                                                                     , 8: ("+", .custom({ [weak self] in self?.changeLevel(+1) }), Colors.banana, Colors.blue, Colors.banana, .medium)
+                                                         defaultFont: Configs.UI.Fonts.ScoreEditor.default,
+                                                         keys: [     1: ("ms_icon_0",   .singleValue("0"),  fruitColors, nil, .medium),
+                                                                     2: ("ms_icon_1", .singleValue("1"),    fruitColors, nil, .medium),
+                                                                     3: ("ms_icon_2", .singleValue("2"),    fruitColors, nil, .medium),
+                                                                     4: ("ms_icon_3", .singleValue("3"),    fruitColors, nil, .medium),
+                                                                     5: ("ms_icon_4", .singleValue("4"),    fruitColors, nil, .medium),
+                                                                     6: ("ms_icon_5", .singleValue("5"),    fruitColors, nil, .medium),
+                                                                     7: ("ms_icon_6", .singleValue("6"),    fruitColors, nil, .medium),
+                                                                     8: ("✚", .custom({ [weak self] in self?.changeLevel(+1) }),
+                                                                           plusColors, nil, .medium)
                                                                ]))
         
-        fruitPad.layer.cornerRadius         = fruitPad.frame.height / 2.0
-        fruitPad.backgroundColor            = Colors.pretzel
+        fruitPad.layer.cornerRadius = fruitPad.frame.height / 2.0
+        fruitPad.backgroundColor    = Configs.UI.Colors.ScoreEditor.FruitPad.bg
+        
         outlineAndShadow(view: fruitPad)
         fruitPad.show(false,    animated: false)
         
     }
     
     private func uiInitContainerViews() {
+
+        // TODO: Clean Up - delete
+        uiContainerView.backgroundColor     = Configs.UI.Colors.ScoreEditor.UIContainer.bg
+        uiContainerView.layer.borderColor   = Configs.UI.Colors.ScoreEditor.UIContainer.border.cgColor
         
-        uiContainerView.layer.borderColor   = Colors.banana.cgColor
         uiContainerView.layer.borderWidth   = 1.5
         uiContainerView.layer.cornerRadius  = 10
-        uiContainerView.backgroundColor     = Colors.blue
         
-        polkaDotsView.backgroundColor       = UIColor(patternImage: UIImage(named: "PolkaDotsWhiteDark")!)
+        polkaDotsView.backgroundColor       = Configs.UI.Colors.ScoreEditor.UIContainer.polkaDotsBG
         
         scoreContainerView.backgroundColor  = .clear
         scoreContainerView.alpha            = 0.0
