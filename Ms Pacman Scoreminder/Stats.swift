@@ -113,6 +113,13 @@ extension StatManager {
     
     func getTotalGamesPlayed() -> Int { stats.singleGamesCount }
     
+    /// Retrieves cached `optimals` or `optimalsDaily`
+    func getOptimals(useDaily: Bool) -> [Score] {
+        
+        useDaily ? stats.optimalsDaily : stats.optimals
+        
+    }
+    
     func getScores(sortedBy: ScoreSortOrder) -> [Score] {
         
         switch sortedBy {

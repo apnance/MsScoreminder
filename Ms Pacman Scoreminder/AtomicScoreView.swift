@@ -50,39 +50,39 @@ class AtomicScoreView: UIView {
         self.data   = data
         self.score  = score
         
-        // date
+        // Date
         dateView.text       = score.date.simple
         todayView.isHidden  = !score.date.isToday
         
-        
-        let imageName = score.date.isToday ? "PolkaDotsBlackMid" : "PolkaDotsWhiteDark"
+        let imageName       = score.date.isToday ? "PolkaDotsBlackMid" : "PolkaDotsWhiteDark"
         borderView.backgroundColor = UIColor(patternImage: UIImage(named: imageName)!)
         
-        // average game count
+        // Average Game Count
         averageGameCountLabel.alpha                 = score.isAveraged ? 1 : 0
         averageGameCountLabel.text                  = "/\(score.averagedGameCount.description)"
         averageGameCountLabel.textColor             = .white
         averageGameCountLabel.clipsToBounds         = true
         averageGameCountLabel.layer.cornerRadius    = averageGameCountLabel.frame.height / 3.0
         
-        // score
+        // Score
         scoreView.text                  = score.score.delimited
         scoreView.textColor             = textColor
         
-        // optimality
+        // Optimality
         optimalityLabel.text            = "\(score.optimality.roundTo(1))%"
         optimalScoreLabel.text          = score.level.optimalScoreCummulative.delimited.description
         
-        // fruit image
+        // Fruit Icon
         fruitView.image                 = score.level.icon
         
-        // border
+        // Border
         layer.cornerRadius              = frame.height / 5.0
         borderView.layer.cornerRadius   = frame.height / 5.0
         borderView.layer.borderWidth    = frame.height / 7.5
         
         scoreStatsLabel.rotate(angle: -22.5)
         
+        // Shadows
         addShadows()
         
         // Interaction
@@ -90,6 +90,16 @@ class AtomicScoreView: UIView {
                                          action: #selector(handleTap))
         
         self.addGestureRecognizer(tap)
+        
+        // Invalid?
+        if !score.isValid {
+        
+            backgroundColor         = .black.pointNineAlpha
+            scoreView.textColor     = .white.pointEightAlpha
+            scoreView.text          = "NA"
+            dateView.text           = ""
+            optimalityLabel.text    = ""
+        }
         
         updateDisplay()
         
@@ -123,8 +133,10 @@ class AtomicScoreView: UIView {
         dateView.textColor  = colorFG
         todayView.textColor = colorFG
         
-        scoresStatsRoundView.isHidden           = data[i] == ""
-        scoreStatsLabel.text                    = data[i]
+        let data = i < data.count ? data[i] : ""
+        
+        scoresStatsRoundView.isHidden           = data == ""
+        scoreStatsLabel.text                    = data
         scoreStatsLabel.textColor               = colorFG
         scoresStatsRoundView.backgroundColor    = colorBG
         

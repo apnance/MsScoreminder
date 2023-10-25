@@ -27,7 +27,13 @@ struct Score: Hashable {
     /// Does this `Score` represent an
     var isAveraged: Bool { averagedGameCount > 1 }
     var isSingle: Bool { averagedGameCount == 1 }
-        
+    
+    /// Flag indicating if this is a normally displayable or "valid" `Score`.
+    ///
+    /// - note: and invalid Score is useful in instance when you need a
+    /// placeholder that doesn't contain meaningful score data.
+    private(set) var isValid = true
+
     var displayScore: String { score.delimited }
     
     /// This `Score`'s percent of the optimal or max score for the `level`
@@ -42,6 +48,25 @@ struct Score: Hashable {
         self.score              = score
         self.level              = Level.get(level)
         self.averagedGameCount  = averagedGameCount
+        
+    }
+    
+    /// Factory method that vends invalid `Scores` of the specified level number.
+    ///
+    /// - Returns: `Score` with isValid = false and various other invalid default property values.
+    /// 
+    /// - note: Invalid Scores are useful for stats that don't make sense but
+    /// should nevertheless be displayed 
+    ///     e.g. optimality for a level that hasn't been reached before
+    static func invalid(withLevel level: Int) -> Score {
+        
+        var invalid = Score(date: "12/07/09".simpleDate,
+                            score: -1279,
+                            level: level)
+        
+        invalid.isValid = false
+        
+        return invalid
         
     }
     

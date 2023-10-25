@@ -9,14 +9,18 @@ import APNUtil
 
 enum ScoreSortFilter: Codable, CustomStringConvertible {
     
-    enum FilterType { case recents, highs, lows }
+    // Note: Do not re-order Enum cases as FilterType's rawValue is used
+    // for ordering various UI elements.
+    enum FilterType: Int { case recents, highs, lows, optimals}
     
     case recents
+    case optimals
     case highsHighFirst
     case highsNewFirst
     case lowsLowFirst
     case lowsNewFirst
     case avgRecents
+    case avgOptimals
     case avgHighsHighFirst
     case avgHighsNewFirst
     case avgLowsLowFirst
@@ -25,6 +29,9 @@ enum ScoreSortFilter: Codable, CustomStringConvertible {
     var type: FilterType {
         
         switch self {
+                
+            case    .optimals,
+                    .avgOptimals: return .optimals
                 
             case    .recents,
                     .avgRecents : return .recents
@@ -55,6 +62,7 @@ enum ScoreSortFilter: Codable, CustomStringConvertible {
     var isAverage: Bool {
         
         self == .avgRecents ||
+        self == .avgOptimals ||
         self == .avgHighsHighFirst ||
         self == .avgHighsNewFirst ||
         self == .avgLowsLowFirst ||
@@ -70,9 +78,9 @@ enum ScoreSortFilter: Codable, CustomStringConvertible {
             
             switch type {
                     
-                case .recents :
+                case .recents :     self = .avgRecents
                     
-                    self = .avgRecents
+                case .optimals :    self = .avgOptimals
                     
                 case .highs :
                     
@@ -88,7 +96,9 @@ enum ScoreSortFilter: Codable, CustomStringConvertible {
             
             switch type {
                     
-                case .recents : self = .recents
+                case .recents :     self = .recents
+                    
+                case .optimals :    self = .optimals
                     
                 case .highs :
                     self = dateSorted ? .highsNewFirst : .highsHighFirst
@@ -106,15 +116,17 @@ enum ScoreSortFilter: Codable, CustomStringConvertible {
         
         switch self {
                 
-                // singles
+            // singles
             case .recents:              return "Recent Scores"
+            case .optimals:             return "Optimal Scores"
             case .highsHighFirst:       return "Top Scores"
             case .highsNewFirst:        return "Top Scores by Date"
             case .lowsLowFirst:         return "Low Scores"
             case .lowsNewFirst:         return "Low Scores by Date"
                 
-                // averages
+            // averages
             case .avgRecents:           return "Recent Daily Averages"
+            case .avgOptimals:          return "Optimal Daily Averages"
             case .avgHighsHighFirst:    return "Top Daily Averages"
             case .avgHighsNewFirst:     return "Top Daily Averages by Date"
             case .avgLowsLowFirst:      return "Low Daily Averages"

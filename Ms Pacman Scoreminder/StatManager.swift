@@ -230,15 +230,20 @@ class StatManager {
         
     }
     
-    /// - important: do not call directly, call `tally` instead
+    /// - important: do not call directly, *call `tally` instead*
     private func tallyScoreStats() {
         
-        stats.levelTally    = Array(repeating: 0,
-                                    count: Score.levelCount)
-        stats.optimals      = Array(repeating: Score.zero,
-                                    count: Score.levelCount)
-        stats.optimalsDaily = Array(repeating: Score.zero,
-                                    count: Score.levelCount)
+        stats.levelTally = Array(repeating: 0,
+                                 count: Score.levelCount)
+        
+        // Invalid Defaults
+        for i in 0..<Score.levelCount {
+            
+            let invalid = Score.invalid(withLevel: i)
+            stats.optimals.append(invalid)
+            stats.optimalsDaily.append(invalid)
+            
+        }
         
         var highScore: Score?
         var high = Int.min
@@ -428,6 +433,10 @@ class StatManager {
                     _filteredAll = getScores(sortedBy: .date)
                     isDateSorted = true
                     
+                case .optimals:
+                    _filteredAll = getOptimals(useDaily: false)
+                    isDateSorted = true
+                    
                 case .lowsLowFirst:
                     _filteredAll = getScores(sortedBy: .low)
                     
@@ -437,6 +446,10 @@ class StatManager {
                     
                 case .avgRecents:
                     _filteredAll = getScores(sortedBy: .avgDate)
+                    isDateSorted = true
+                    
+                case .avgOptimals:
+                    _filteredAll = getOptimals(useDaily: true)
                     isDateSorted = true
                     
                 case .avgHighsHighFirst:

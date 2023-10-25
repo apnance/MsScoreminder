@@ -10,9 +10,6 @@ import WebKit
 import APNUtil
 import APNGraph
 
-// TODO: HERE!!!
-//2. Add UI for displaying stats.optimals and stats.optimalsDaily
-
 class ViewController: UIViewController {
     
     // MARK: - Properties
@@ -502,7 +499,7 @@ class ViewController: UIViewController {
         let selectedAtts    =   [NSAttributedString.Key.font: UIFont(name: "Futura-Bold", size: 8) as Any,
                                  NSAttributedString.Key.foregroundColor: UIColor.white as Any]
         
-        dataSelector.selectedSegmentIndex = filter.type == .recents ? 0 : (filter.type == .highs ? 1 : 2 )
+        dataSelector.selectedSegmentIndex = filter.type.rawValue
         
         dataSelector.addTarget(self,
                                action: #selector(filter(sender:)),
@@ -720,18 +717,21 @@ class ViewController: UIViewController {
         
         switch dataSelector.selectedSegmentIndex {
                 
+            case 0: filterType = .recents
+                
             case 1: filterType = .highs
                 
             case 2: filterType = .lows
-                
-            default: filterType = .recents
+            
+            default: filterType = .optimals
                 
         }
         
-        let showDailies = avgSorted.selectedSegmentIndex == 0 ? true : false
-        let dateSort = dateSorted.selectedSegmentIndex == 0 ? false : true
+        let showDailies = avgSorted.selectedSegmentIndex    == 0 ? true : false
+        let dateSort    = dateSorted.selectedSegmentIndex   == 0 ? false : true
         
-        dateSorted.alpha = filterType == .recents ? 0 : 1
+        dateSorted.alpha =  (filterType == .recents || filterType == .optimals)
+                            ? 0 : 1
         
         statMan.setFilter(filterType, daily: showDailies, dateSorted: dateSort)
         
