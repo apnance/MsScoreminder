@@ -208,7 +208,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fkC-iS-l62" customClass="RoundView" customModule="APNUtil">
                                                 <rect key="frame" x="225.66666666666663" y="34" width="35" height="35"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ms_graph_icon_10" translatesAutoresizingMaskIntoConstraints="NO" id="Qqy-7X-lm2" userLabel="High Level Fruit Icon">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ms_icon_0" translatesAutoresizingMaskIntoConstraints="NO" id="Qqy-7X-lm2" userLabel="High Level Fruit Icon">
                                                         <rect key="frame" x="-5.3333333333333144" y="-9.3333333333333428" width="50" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="dD8-Hp-boG"/>
@@ -760,7 +760,7 @@
     <resources>
         <image name="envelope.fill" catalog="system" width="32" height="32"/>
         <image name="graph_button_bg" width="150" height="150"/>
-        <image name="ms_graph_icon_10" width="22" height="22"/>
+        <image name="ms_icon_0" width="174" height="174"/>
         <image name="ms_marquee_2pt_background" width="754.66668701171875" height="520.66668701171875"/>
         <image name="ms_marquee_2pt_foreground" width="754.66668701171875" height="520.66668701171875"/>
         <namedColor name="Apple">
