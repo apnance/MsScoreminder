@@ -556,7 +556,7 @@ class StatManager {
 extension StatManager {
     
     /// Converts `CSV` data to `Score`s and loads them into `stats`.
-    func importData(from csv: CSV) {
+    func loadScores(from csv: CSV) {
         
         let rawData = csv.split(separator: "\n")
         
@@ -691,7 +691,7 @@ extension StatManager {
         
         self.csv = csv
         
-        importData(from: csv)
+        loadScores(from: csv)
         
         completion?()
         
