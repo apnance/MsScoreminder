@@ -699,7 +699,7 @@ extension StatManager {
     
     /// Runs a series of data checks, presenting an alert at the first one that doesn't pass.
     /// - warning: this method is relatively expensive has to open and scan documentDirectory
-    /// - important: this method calls displays an Alert and must be called in viewDidAppear.
+    /// - important: this method displays an Alert and must be called in viewDidAppear.
     func warningsCheck() {
         
         // Backup Count Check
