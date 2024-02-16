@@ -26,10 +26,22 @@ struct Configs {
     
     struct Notifications {
         
+        static func getBody(withStreakLength streakLen: Int) -> String {
+            
+            if streakLen == 1 {
+                
+                return "Your daily game streak is in jeopardy!"
+                
+            } else {
+                
+                return "Your \(streakLen) game streak is in jeopardy!"
+                
+            }
+            
+        }
+        
         static let title        = "Streak Alert"
-        static let body         = "Your daily streak is in jeopardy!"
         static let id           = "Streak Warning"
-        static let badgeNumber  = 1
         static let testMode     = false
         
         struct Time {
