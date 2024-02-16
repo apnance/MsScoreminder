@@ -944,13 +944,24 @@ extension ViewController: ScoreEditorDelegate {
             
             statMan.set(new)
             
+            var currentStreaklength = 1
+            
+            if let  currentStreak = statMan.getStreaks()?.recent,
+                    currentStreak.isCurrent {
+                
+                currentStreaklength = currentStreak.length
+                
+            }
+             
+            let body = Configs.Notifications.getBody(withStreakLength: currentStreaklength)
+            
             NotificationManager.shared.tomorrow(withTitle:      Configs.Notifications.title,
-                                                andBody:        Configs.Notifications.body,
+                                                andBody:        body,
                                                 notificationID: Configs.Notifications.id,
                                                 hour:           Configs.Notifications.Time.hour,
                                                 minute:         Configs.Notifications.Time.minute,
                                                 second:         Configs.Notifications.Time.second,
-                                                badgeNumber:    Configs.Notifications.badgeNumber,
+                                                badgeNumber:    currentStreaklength,
                                                 testMode:       Configs.Notifications.testMode)
             
         } else {
@@ -965,6 +976,5 @@ extension ViewController: ScoreEditorDelegate {
         }
         
     }
-    
     
 }
