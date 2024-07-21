@@ -37,6 +37,8 @@
 		93A497A3270E21F700D5AB5F /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A497A2270E21F700D5AB5F /* Preferences.swift */; };
 		93ACBFEA272CDCD4000BBC2C /* DailyStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ACBFE9272CDCD4000BBC2C /* DailyStats.swift */; };
 		93AF7B862A954BA2002B93F5 /* UISegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93AF7B852A954BA1002B93F5 /* UISegmentedControl.swift */; };
+		93B087A92C4DD4F9003BE5FA /* APNConsoleView in Frameworks */ = {isa = PBXBuildFile; productRef = 93B087A82C4DD4F9003BE5FA /* APNConsoleView */; };
+		93B087AB2C4DD51C003BE5FA /* ScoreminderConsoleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B087AA2C4DD51C003BE5FA /* ScoreminderConsoleConfigurator.swift */; };
 		93B67B5D274DD741007C302C /* PlayStreak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B67B5C274DD741007C302C /* PlayStreak.swift */; };
 		93B6D0EC27021DAD005ADF3F /* AtomicScoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93B6D0EB27021DAD005ADF3F /* AtomicScoreView.xib */; };
 		93B6D0EE270231A4005ADF3F /* AtomicScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B6D0ED270231A4005ADF3F /* AtomicScoreView.swift */; };
@@ -118,6 +120,7 @@
 		93A497A2270E21F700D5AB5F /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		93ACBFE9272CDCD4000BBC2C /* DailyStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyStats.swift; sourceTree = "<group>"; };
 		93AF7B852A954BA1002B93F5 /* UISegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISegmentedControl.swift; sourceTree = "<group>"; };
+		93B087AA2C4DD51C003BE5FA /* ScoreminderConsoleConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreminderConsoleConfigurator.swift; sourceTree = "<group>"; };
 		93B67B5C274DD741007C302C /* PlayStreak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayStreak.swift; sourceTree = "<group>"; };
 		93B6D0EB27021DAD005ADF3F /* AtomicScoreView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AtomicScoreView.xib; sourceTree = "<group>"; };
 		93B6D0ED270231A4005ADF3F /* AtomicScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicScoreView.swift; sourceTree = "<group>"; };
@@ -139,6 +142,7 @@
 			files = (
 				9331176228E79EE9009F2054 /* APNUtil in Frameworks */,
 				93DD059D2A86E3E90030D504 /* APNFlexKeypad in Frameworks */,
+				93B087A92C4DD4F9003BE5FA /* APNConsoleView in Frameworks */,
 				93D98BD328DD315C00FD0F80 /* APNGraph in Frameworks */,
 				9338E011298F7B7D004CAB2C /* OrderedCollections in Frameworks */,
 			);
@@ -223,6 +227,7 @@
 				9316244D26FA4C8D004C06B7 /* ViewController.swift */,
 				9313DE4B273B418E00460712 /* EmailManager.swift */,
 				933345C12A92FB3100BF1592 /* AnimatedSprite.swift */,
+				93B087AA2C4DD51C003BE5FA /* ScoreminderConsoleConfigurator.swift */,
 			);
 			name = C;
 			sourceTree = "<group>";
@@ -341,6 +346,7 @@
 				9331176128E79EE9009F2054 /* APNUtil */,
 				9338E010298F7B7D004CAB2C /* OrderedCollections */,
 				93DD059C2A86E3E90030D504 /* APNFlexKeypad */,
+				93B087A82C4DD4F9003BE5FA /* APNConsoleView */,
 			);
 			productName = "Ms Pacman Scoreminder";
 			productReference = 9316244626FA4C8D004C06B7 /* Ms Scoreminder.app */;
@@ -415,6 +421,7 @@
 			mainGroup = 9316243D26FA4C8D004C06B7;
 			packageReferences = (
 				9338E00F298F7B7D004CAB2C /* XCRemoteSwiftPackageReference "swift-collections" */,
+				93B087A72C4DD4F8003BE5FA /* XCRemoteSwiftPackageReference "APNConsoleView" */,
 			);
 			productRefGroup = 9316244726FA4C8D004C06B7 /* Products */;
 			projectDirPath = "";
@@ -474,6 +481,7 @@
 				931800EE2721F957002D21E2 /* Utils.swift in Sources */,
 				936DF3AB272C6C2300CF2AEE /* DailyHighlightsView.swift in Sources */,
 				9316247F26FA5B02004C06B7 /* Score.swift in Sources */,
+				93B087AB2C4DD51C003BE5FA /* ScoreminderConsoleConfigurator.swift in Sources */,
 				931C594C2992DF5A00F361FB /* DailyStatsCluster.swift in Sources */,
 				930128B42AD87AA900FF1AE1 /* TestData20k.csv in Sources */,
 				93B6D0EE270231A4005ADF3F /* AtomicScoreView.swift in Sources */,
@@ -674,6 +682,7 @@
 				DEVELOPMENT_TEAM = 56S32J5CWV;
 				INFOPLIST_FILE = "Ms Pacman Scoreminder/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -702,6 +711,7 @@
 				DEVELOPMENT_TEAM = 56S32J5CWV;
 				INFOPLIST_FILE = "Ms Pacman Scoreminder/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -852,6 +862,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		93B087A72C4DD4F8003BE5FA /* XCRemoteSwiftPackageReference "APNConsoleView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apnance/APNConsoleView";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -863,6 +881,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9338E00F298F7B7D004CAB2C /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = OrderedCollections;
+		};
+		93B087A82C4DD4F9003BE5FA /* APNConsoleView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 93B087A72C4DD4F8003BE5FA /* XCRemoteSwiftPackageReference "APNConsoleView" */;
+			productName = APNConsoleView;
 		};
 		93D98BD228DD315C00FD0F80 /* APNGraph */ = {
 			isa = XCSwiftPackageProductDependency;

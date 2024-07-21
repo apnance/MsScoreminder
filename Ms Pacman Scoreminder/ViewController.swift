@@ -565,8 +565,8 @@ class ViewController: UIViewController {
                 
                 self.streakCurrentOrRecent.text = streaks.recent.isCurrent ? "CURRENT" : "RECENT"
                 self.streakCurrentCount.text = streaks.recent.length.description
-                self.streakCurrentDate1.text = streaks.recent.start?.simple ?? Date.now.simple
-                self.streakCurrentDate2.text = streaks.recent.end?.simple ?? Date.now.simple
+                self.streakCurrentDate1.text = streaks.recent.start?.simple ?? Date().simple
+                self.streakCurrentDate2.text = streaks.recent.end?.simple ?? Date().simple
                 
             }
             

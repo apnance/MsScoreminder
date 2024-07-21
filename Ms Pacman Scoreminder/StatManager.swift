@@ -811,7 +811,7 @@ extension StatManager {
                     \tisMainThread: \(Thread.isMainThread)
                     \tthread: \(Thread.current)
                     \tneedsTaly: \(stats.needsTally)
-                    \ttoday count: \(playCountFor(Date.now))
+                    \ttoday count: \(playCountFor(Date()))
                 """)
         
     }
