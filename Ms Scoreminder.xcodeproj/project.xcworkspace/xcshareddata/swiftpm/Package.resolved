@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "apnconsoleview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apnance/APNConsoleView",
+      "state" : {
+        "branch" : "main",
+        "revision" : "27ff8592def66170605b87e37c1df341c61eed6f"
+      }
+    },
+    {
       "identity" : "swift-collections",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-collections.git",

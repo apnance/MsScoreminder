@@ -9,6 +9,7 @@ import MessageUI
 import WebKit
 import APNUtil
 import APNGraph
+import APNConsoleView
 
 class ViewController: UIViewController {
     
@@ -97,6 +98,9 @@ class ViewController: UIViewController {
     
     // Day WebView
     @IBOutlet weak var dailySummaryWebView: DailySummaryWebView!
+    
+    // Console
+    @IBOutlet weak var consoleView: APNConsoleView!
     
     // MARK: Actions
     @IBAction func didTapRangeFilterButton(_ sender: RoundButton) {
@@ -451,6 +455,11 @@ class ViewController: UIViewController {
     
     private func uiMisc() {
         
+        // Console
+        ScoreminderConsoleConfigurator(consoleView: consoleView)
+        spritesViewContainer.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                                         action: #selector(handleConsoleViewTap(_:))))
+        
         // Delegates
         dailySummaryWebView.delegate = self
         
@@ -706,7 +715,8 @@ class ViewController: UIViewController {
         
         Utils.UI.addShadows(to: [marqueeFG,
                                  marqueeBG,
-                                 marqueeScoreTitleLabel],
+                                 marqueeScoreTitleLabel,
+                                 consoleView],
                             withOpacity: 0.6)
         
     }
@@ -739,6 +749,12 @@ class ViewController: UIViewController {
         
         // Don't re-graph if graph isn't visible
         if !graphContainerView.isHidden { uiGraph() }
+        
+    }
+    
+    @objc private func handleConsoleViewTap(_ sender: UITextView) {
+        
+            consoleView.showHide(.show)
         
     }
     
