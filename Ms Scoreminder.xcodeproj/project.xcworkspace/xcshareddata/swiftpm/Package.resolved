@@ -6,7 +6,16 @@
       "location" : "https://github.com/apnance/APNConsoleView",
       "state" : {
         "branch" : "main",
-        "revision" : "27ff8592def66170605b87e37c1df341c61eed6f"
+        "revision" : "75376036bb8336c398a12857c157c1824419d371"
+      }
+    },
+    {
+      "identity" : "apnutil",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apnance/APNUtil",
+      "state" : {
+        "revision" : "e99f517e561c7f156455e32c4540ddb2d9bec08f",
+        "version" : "1.3.2"
       }
     },
     {
