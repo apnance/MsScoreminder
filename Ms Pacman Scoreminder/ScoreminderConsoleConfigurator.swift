@@ -79,9 +79,13 @@ struct ScoreminderConsoleConfigurator: ConsoleConfigurator {
         /// - Returns: CSV version of all `ArchivedPuzzle` data  in `archive`
         func comCSV(_:[String]?) -> CommandOutput {
             
-            if let  csv = (consoleView.viewController as? ViewController)?.statMan.csv {
+            if let csv = (consoleView.viewController as? ViewController)?.statMan.csv {
                 
-                var atts                = consoleView.formatCommandOutput("\(csv)\n**output copied to pasteboard**\n")
+                  var atts = consoleView.formatCommandOutput("""
+                          \(csv)
+                          [Note: above output copied to pasteboard]
+                          """)
+                
                 atts.foregroundColor    = UIColor.pear
                 
                 printToClipboard(csv)
