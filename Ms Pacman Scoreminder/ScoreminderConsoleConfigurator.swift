@@ -7,11 +7,11 @@
 
 import UIKit
 import APNUtil
-import APNConsoleView
+import ConsoleView
 
 struct ScoreminderConsoleConfigurator: ConsoleConfigurator {
     
-    @discardableResult init(consoleView: APNConsoleView) {
+    @discardableResult init(consoleView: ConsoleView) {
         
         self.consoleView = consoleView
         
@@ -19,7 +19,7 @@ struct ScoreminderConsoleConfigurator: ConsoleConfigurator {
         
     }
     
-    var consoleView: APNConsoleView
+    var consoleView: ConsoleView
     
     var commandGroups: [CommandGroup] { [ScoreminderCommandGroup(consoleView: consoleView)] }
     
@@ -39,6 +39,11 @@ struct ScoreminderConsoleConfigurator: ConsoleConfigurator {
         configs.shouldHideOnScreenTap           = true
         configs.shouldMakeCommandFirstResponder = false
         
+        configs.fgColorHistoryBarCommand            = UIColor.msPink
+        configs.fgColorHistoryBarCommandArgument    = UIColor.msBlue
+        configs.bgColorHistoryBarMain               = UIColor.banana.pointNineAlpha
+        configs.bgColorHistoryBarButtons            = .white
+        
         configs.aboutScreen =     """
                                     
                                        Welcome
@@ -53,9 +58,9 @@ struct ScoreminderConsoleConfigurator: ConsoleConfigurator {
     
     fileprivate class ScoreminderCommandGroup: CommandGroup {
         
-        private let consoleView: APNConsoleView
+        private let consoleView: ConsoleView
         
-        init(consoleView: APNConsoleView) {
+        init(consoleView: ConsoleView) {
             
             self.consoleView = consoleView
             

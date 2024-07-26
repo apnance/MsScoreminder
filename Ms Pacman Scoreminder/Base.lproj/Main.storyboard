@@ -534,7 +534,7 @@
                                 <rect key="frame" x="43" y="402.33333333333331" width="307" height="20"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="d4r-1W-jEE" userLabel="Filter Type">
-                                        <rect key="frame" x="0.0" y="0.0" width="92.666666666666671" height="21"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="97" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" identifier="FilterTypeWidth" id="S0g-2i-YqQ"/>
                                         </constraints>
@@ -546,7 +546,7 @@
                                         </segments>
                                     </segmentedControl>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Vnt-bR-Qfa" userLabel="Avg Sorted">
-                                        <rect key="frame" x="103.66666666666666" y="0.0" width="100" height="21"/>
+                                        <rect key="frame" x="108" y="0.0" width="91" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" identifier="AvgSortedWidth" id="66s-No-uLW"/>
                                         </constraints>
@@ -556,7 +556,7 @@
                                         </segments>
                                     </segmentedControl>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Hbp-Q9-muc" userLabel="Date Sorted">
-                                        <rect key="frame" x="214.66666666666671" y="0.0" width="92.333333333333343" height="21"/>
+                                        <rect key="frame" x="210" y="0.0" width="97" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" identifier="DateSortedWidth" id="jhd-fK-CpO"/>
                                         </constraints>
@@ -623,7 +623,7 @@
                                     <constraint firstAttribute="height" constant="560" id="nVp-JK-3qw"/>
                                 </constraints>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r9b-nk-Rxr" userLabel="Console View" customClass="APNConsoleView" customModule="APNConsoleView">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r9b-nk-Rxr" userLabel="Console View" customClass="ConsoleView" customModule="ConsoleView">
                                 <rect key="frame" x="25" y="37" width="343" height="389.66666666666669"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>

@@ -9,7 +9,7 @@ import MessageUI
 import WebKit
 import APNUtil
 import APNGraph
-import APNConsoleView
+import ConsoleView
 
 class ViewController: UIViewController {
     
@@ -100,7 +100,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var dailySummaryWebView: DailySummaryWebView!
     
     // Console
-    @IBOutlet weak var consoleView: APNConsoleView!
+    @IBOutlet weak var consoleView: ConsoleView!
     
     // MARK: Actions
     @IBAction func didTapRangeFilterButton(_ sender: RoundButton) {
