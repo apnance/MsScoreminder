@@ -314,8 +314,8 @@ class ViewController: UIViewController {
                                 (0.0, 6, { self.marqueeFG.alpha     = 1.0 } ),                      // Marquee FG (Ms. Pac-Man)
                                 (0.0, 4, { self.marqueeBG.alpha     = 1.0 } ),                      // Margue BG (Ghosts)
                                 (0.0, 3, { self.marqueeMid.alpha    = 1.0 } ),                      // Margue Mid (Scores)
-                                (0.0, 2.5, { self.streaksContainerView.alpha      = 1.0} ),         // Streaks
-                                (0.0, 2, { self.dailyHighlightsView.alpha       = 0.8 }),           // Daily Summary
+                                (0.0, 2.5, { self.streaksContainerView.alpha    = 1.0} ),         // Streaks
+                                (0.0, 2, { self.dailyHighlightsView.alpha       = 1.0 }),           // Daily Summary
                                 (0.0, 1.75, { self.spritesViewContainer.alpha   = 1.0} ),           // Sprites
                                 (0.0, 1.5, { self.tresButtonsStackView.alpha    = 1.0 }),           // Add Score/Graph/Mail buttons
                                 (0.0, 3.5, {
