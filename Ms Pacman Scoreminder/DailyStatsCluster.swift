@@ -38,7 +38,7 @@ struct DailyStatsCluster {
         
         if stats.count != 0 { return /*EXIT - build only once!*/ }
         
-        // note: set currentSTatIndex such that high stats shows
+        // note: set currentStatIndex such that high stats shows
         // first time getNext() is called(i.e. to be 1 less than
         // the index of high)
         if let requested    = requested {   stats.append(requested) }
