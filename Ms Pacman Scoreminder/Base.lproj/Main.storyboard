@@ -59,11 +59,11 @@
                                     <constraint firstItem="gSj-gz-QZu" firstAttribute="centerX" secondItem="xg8-qZ-HZB" secondAttribute="centerX" id="6sv-z2-x9t"/>
                                 </constraints>
                             </view>
-                            <view userInteractionEnabled="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFo-KC-Pry" userLabel="Streaks Container View" customClass="RoundView" customModule="APNUtil">
-                                <rect key="frame" x="32" y="40" width="130" height="130"/>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFo-KC-Pry" userLabel="Streaks Container View" customClass="RoundTextView" customModule="APNUtil">
+                                <rect key="frame" x="19" y="27" width="170" height="170"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2VS-2R-Jin" userLabel="Streaks Stack View">
-                                        <rect key="frame" x="5" y="5" width="120" height="100"/>
+                                        <rect key="frame" x="25" y="25" width="120" height="100"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" distribution="fillProportionally" spacing="-14" translatesAutoresizingMaskIntoConstraints="NO" id="bz8-aT-QL1" userLabel="Longest Streak Stack View">
                                                 <rect key="frame" x="0.0" y="0.0" width="120" height="50"/>
@@ -74,23 +74,23 @@
                                                         <color key="textColor" name="Apple"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="fillEqually" spacing="-8" translatesAutoresizingMaskIntoConstraints="NO" id="hgl-9X-pji">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="fillEqually" spacing="-15" translatesAutoresizingMaskIntoConstraints="NO" id="hgl-9X-pji">
                                                         <rect key="frame" x="40" y="0.0" width="80" height="50"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="LONGEST" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8aN-71-kDY">
-                                                                <rect key="frame" x="0.0" y="0.0" width="80" height="22"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="80" height="26.666666666666668"/>
                                                                 <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="9"/>
                                                                 <color key="textColor" name="Apple"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="Feb 29, 21" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="YVn-fx-IL5">
-                                                                <rect key="frame" x="0.0" y="14" width="80" height="22"/>
+                                                                <rect key="frame" x="0.0" y="11.666666666666666" width="80" height="26.666666666666671"/>
                                                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="8"/>
                                                                 <color key="textColor" name="Pink"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="Feb 29, 21" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="aiA-1a-tWG">
-                                                                <rect key="frame" x="0.0" y="28" width="80" height="22"/>
+                                                                <rect key="frame" x="0.0" y="23.333333333333329" width="80" height="26.666666666666671"/>
                                                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="8"/>
                                                                 <color key="textColor" name="Pink"/>
                                                                 <nil key="highlightedColor"/>
@@ -151,28 +151,51 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.14999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Streaks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v77-Yr-UNX">
-                                        <rect key="frame" x="8.3333333333333357" y="38.666666666666671" width="113.33333333333331" height="43.333333333333329"/>
+                                        <rect key="frame" x="28.333333333333336" y="58.666666666666671" width="113.33333333333331" height="43.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="34"/>
                                         <color key="textColor" name="Pretzel"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="0.81404164295322845" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="v77-Yr-UNX" firstAttribute="centerY" secondItem="yFo-KC-Pry" secondAttribute="centerY" constant="-4.75" id="8nJ-Bh-gPm"/>
                                     <constraint firstItem="2VS-2R-Jin" firstAttribute="centerX" secondItem="yFo-KC-Pry" secondAttribute="centerX" id="BXj-tS-Bss"/>
                                     <constraint firstItem="2VS-2R-Jin" firstAttribute="centerY" secondItem="yFo-KC-Pry" secondAttribute="centerY" constant="-10" id="GJ4-DH-Z9Y"/>
-                                    <constraint firstAttribute="width" constant="130" id="HtI-np-bXM"/>
+                                    <constraint firstAttribute="width" constant="170" id="HtI-np-bXM"/>
                                     <constraint firstItem="v77-Yr-UNX" firstAttribute="centerX" secondItem="yFo-KC-Pry" secondAttribute="centerX" id="M0O-Wh-qhp"/>
-                                    <constraint firstAttribute="height" constant="130" id="UqR-SO-tQN"/>
+                                    <constraint firstAttribute="height" constant="170" id="UqR-SO-tQN"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="roundedText" value="STREAKS"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="fontName" value="Futura Condensed ExtraBold"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <real key="value" value="36"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="bgStrokeWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                        <color key="value" white="1" alpha="0.81404164300000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                        <color key="value" white="1" alpha="0.81404164300000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="bgRadius">
+                                        <real key="value" value="1.1000000000000001"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="degreesOffset">
+                                        <real key="value" value="-30"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="punchOutText" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view alpha="0.0" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tfc-k3-1dv" customClass="DailyHighlightsView" customModule="Ms_Scoreminder" customModuleProvider="target">
-                                <rect key="frame" x="230.66666666666663" y="52.666666666666657" width="130" height="130"/>
+                                <rect key="frame" x="230.66666666666663" y="32.666666666666657" width="170" height="170"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="130" id="vVw-bP-x8U"/>
-                                    <constraint firstAttribute="height" constant="130" id="ytp-nz-WJo"/>
+                                    <constraint firstAttribute="width" constant="170" id="vVw-bP-x8U"/>
+                                    <constraint firstAttribute="height" constant="170" id="ytp-nz-WJo"/>
                                 </constraints>
                             </view>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TCV-YU-Iab">
@@ -534,7 +557,7 @@
                                 <rect key="frame" x="43" y="402.33333333333331" width="307" height="20"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="d4r-1W-jEE" userLabel="Filter Type">
-                                        <rect key="frame" x="0.0" y="0.0" width="97" height="21"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="92.666666666666671" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" identifier="FilterTypeWidth" id="S0g-2i-YqQ"/>
                                         </constraints>
@@ -546,7 +569,7 @@
                                         </segments>
                                     </segmentedControl>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Vnt-bR-Qfa" userLabel="Avg Sorted">
-                                        <rect key="frame" x="108" y="0.0" width="91" height="21"/>
+                                        <rect key="frame" x="103.66666666666666" y="0.0" width="100" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" identifier="AvgSortedWidth" id="66s-No-uLW"/>
                                         </constraints>
@@ -556,7 +579,7 @@
                                         </segments>
                                     </segmentedControl>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Hbp-Q9-muc" userLabel="Date Sorted">
-                                        <rect key="frame" x="210" y="0.0" width="97" height="21"/>
+                                        <rect key="frame" x="214.66666666666671" y="0.0" width="92.333333333333343" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" identifier="DateSortedWidth" id="jhd-fK-CpO"/>
                                         </constraints>
@@ -636,7 +659,7 @@
                             <constraint firstItem="ZyG-9R-Myt" firstAttribute="top" secondItem="TCV-YU-Iab" secondAttribute="bottom" constant="92.666666666666742" id="2QO-k4-6oM"/>
                             <constraint firstAttribute="trailing" secondItem="ZyG-9R-Myt" secondAttribute="trailing" constant="30" id="34g-yp-jUP"/>
                             <constraint firstItem="TCV-YU-Iab" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="4dK-Oi-YLW"/>
-                            <constraint firstItem="r9b-nk-Rxr" firstAttribute="top" secondItem="yFo-KC-Pry" secondAttribute="top" constant="-3" id="5am-01-MPu"/>
+                            <constraint firstItem="r9b-nk-Rxr" firstAttribute="top" secondItem="yFo-KC-Pry" secondAttribute="top" constant="10" id="5am-01-MPu"/>
                             <constraint firstItem="pii-L0-PwK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" identifier="FilterControlsCenterX" id="7CK-5P-ETK"/>
                             <constraint firstItem="J3b-ku-ou6" firstAttribute="top" secondItem="TCV-YU-Iab" secondAttribute="bottom" constant="-1.3333333333332575" id="7aW-gu-K15"/>
                             <constraint firstAttribute="bottomMargin" secondItem="ZyG-9R-Myt" secondAttribute="bottom" constant="25" id="C8y-JA-aQD"/>
@@ -670,8 +693,8 @@
                             <constraint firstItem="Odw-fc-Buf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="cX8-X1-VHN"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="SsP-ad-Wjl" secondAttribute="bottom" constant="-223" id="d35-DH-3yq"/>
                             <constraint firstAttribute="bottom" secondItem="yGI-Rh-K7B" secondAttribute="bottom" id="d4W-sp-uEF"/>
-                            <constraint firstItem="yFo-KC-Pry" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="d8o-71-Ij3"/>
-                            <constraint firstItem="yFo-KC-Pry" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="40" id="eE3-Jj-njQ"/>
+                            <constraint firstItem="yFo-KC-Pry" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="19" id="d8o-71-Ij3"/>
+                            <constraint firstItem="yFo-KC-Pry" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="27" id="eE3-Jj-njQ"/>
                             <constraint firstItem="r9b-nk-Rxr" firstAttribute="leading" secondItem="SsP-ad-Wjl" secondAttribute="leading" id="fiN-RG-aZG"/>
                             <constraint firstItem="Vyl-Z8-0tu" firstAttribute="width" secondItem="SsP-ad-Wjl" secondAttribute="width" multiplier="0.8" id="fj8-Hs-eXe"/>
                             <constraint firstItem="Vyl-Z8-0tu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iAY-sX-TLc"/>
