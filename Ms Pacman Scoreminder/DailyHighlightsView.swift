@@ -8,14 +8,14 @@
 import UIKit
 import APNUtil
 
-class DailyHighlightsView: RoundView {
+class DailyHighlightsView: RoundTextView {
     
     private var initialized: Bool = false
     var shouldCycle = false
     private var dailyStats = DailyStatsCluster()
     
     // MARK: - Outlets
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var roundDateView: RoundTextView!
     @IBOutlet weak var stat1Label: UILabel!
     @IBOutlet weak var stat2Label: UILabel!
     @IBOutlet weak var stat3Label: UILabel!
@@ -80,7 +80,7 @@ class DailyHighlightsView: RoundView {
         
         let stats = dailyStats.getNext()
         
-        dateLabel.text  = stats.date.simple
+        roundDateView.set(text: stats.date.simple)
         stat1Label.text = getRankText(stats)
         stat2Label.text = stats.averageScore.delimited
         stat3Label.text = stats.gamesPlayed.delimited
