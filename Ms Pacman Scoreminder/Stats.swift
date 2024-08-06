@@ -57,8 +57,22 @@ struct Stats {
 
 extension StatManager {
     
-    /// Returns the closest pervious averages Score to `from` `Date` or nil if
-    /// from is the `Date` oldest available averaged `Score`
+    /// Returns `Bool` indicating if there is/are averaged `Score`(s) predating specified `Date`.
+    func scoresBefore(_ date: Date) -> Bool {
+        
+        getNearestPastAveragedScore(from: date).isNotNil
+        
+    }
+    
+    /// Returns `Bool` indicating if there is/are averaged `Score`(s)  postdating specified `Date`.
+    func scoresAfter(_ date: Date) -> Bool {
+        
+        getNearestFutureAveragedScore(from: date).isNotNil
+        
+    }
+    
+    /// Returns the closest future averagd Score to `from` `Date` or `nil` if
+    /// from is the `Date` of the newest available averaged `Score`
     func getNearestFutureAveragedScore(from: Date) -> Score? {
         
         if let dateIndex = stats.averageDate.index(forKey: from),
@@ -72,8 +86,8 @@ extension StatManager {
         
     }
     
-    /// Returns the closest future averages Score to `from` `Date` or nil if
-    /// from is the `Date` newest available averaged `Score`
+    /// Returns the closest past averaged Score to `from` `Date` or `nil` if
+    /// from is the `Date` of the oldest available averaged `Score`
     func getNearestPastAveragedScore(from: Date) -> Score? {
         
         if let dateIndex = stats.averageDate.index(forKey: from),
