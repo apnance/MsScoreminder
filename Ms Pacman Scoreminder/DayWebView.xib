@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Image references" minToolsVersion="12.0"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DayWebView" customModule="Ms_Scoreminder" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DailySummaryWebView" customModule="Ms_Scoreminder" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="U3m-2h-Egu"/>
+                <outlet property="leftButton" destination="K7P-aZ-hVT" id="So7-ON-lF5"/>
+                <outlet property="rightButton" destination="vOo-Kf-yEG" id="QeF-60-Uj8"/>
                 <outlet property="webView" destination="RgG-eR-3g4" id="fX0-iR-E6Z"/>
             </connections>
         </placeholder>
@@ -28,23 +29,6 @@
                         <wkPreferences key="preferences"/>
                     </wkWebViewConfiguration>
                 </wkWebView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K7P-aZ-hVT" userLabel="Backward Button" customClass="RoundButton" customModule="APNUtil">
-                    <rect key="frame" x="0.0" y="325" width="51" height="51"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="K7P-aZ-hVT" secondAttribute="height" multiplier="1:1" id="R19-Ha-VW4"/>
-                    </constraints>
-                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" image="arrowshape.backward.fill" catalog="system">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </state>
-                    <buttonConfiguration key="configuration" style="plain" image="arrowshape.backward.fill" catalog="system">
-                        <color key="baseForegroundColor" name="Blue"/>
-                    </buttonConfiguration>
-                    <connections>
-                        <action selector="didPushLeftButton:" destination="-1" eventType="touchUpInside" id="rsu-ts-npq"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOo-Kf-yEG" userLabel="Forward Button" customClass="RoundButton" customModule="APNUtil">
                     <rect key="frame" x="279" y="325" width="51" height="51"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -61,6 +45,23 @@
                     </buttonConfiguration>
                     <connections>
                         <action selector="didPushRightButton:" destination="-1" eventType="touchUpInside" id="wFE-MW-wit"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K7P-aZ-hVT" userLabel="Backward Button" customClass="RoundButton" customModule="APNUtil">
+                    <rect key="frame" x="0.0" y="325" width="51" height="51"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="K7P-aZ-hVT" secondAttribute="height" multiplier="1:1" id="R19-Ha-VW4"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="arrowshape.backward.fill" catalog="system">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <buttonConfiguration key="configuration" style="plain" image="arrowshape.backward.fill" catalog="system">
+                        <color key="baseForegroundColor" name="Blue"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="didPushLeftButton:" destination="-1" eventType="touchUpInside" id="rsu-ts-npq"/>
                     </connections>
                 </button>
             </subviews>

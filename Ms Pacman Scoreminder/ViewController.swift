@@ -805,6 +805,9 @@ class ViewController: UIViewController {
 // MARK: - DayViewDelegate
 extension ViewController: DayWebViewDelegate {
     
+    func isFirst(_ date: Date) -> Bool { !statMan.scoresBefore(date) }
+    func isLast(_  date: Date) -> Bool { !statMan.scoresAfter(date) }
+    
     func didPushLButton(currentDate: Date) {
         
         if let closestPastScore  = statMan.getNearestPastAveragedScore(from: currentDate),

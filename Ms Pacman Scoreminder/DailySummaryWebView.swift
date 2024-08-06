@@ -13,6 +13,9 @@ class DailySummaryWebView: UIView {
     @IBOutlet var contentView: UIView!
     @IBOutlet private weak var webView: WKWebView!
     
+    @IBOutlet private weak var leftButton: UIButton!
+    @IBOutlet private weak var rightButton: UIButton!
+    
     @IBAction func didPushLeftButton(_ sender: UIButton) { delegate?.didPushLButton(currentDate: date) }
     @IBAction func didPushRightButton(_ sender: UIButton) { delegate?.didPushRButton(currentDate: date)}
     
@@ -38,7 +41,17 @@ class DailySummaryWebView: UIView {
     func load(html: String, forDate date: Date) {
         
         self.date = date
+        
+        uiButtons()
+        
         webView.loadHTMLString(html, baseURL: nil)
+        
+    }
+    
+    private func uiButtons() {
+        
+        leftButton.isHidden    = delegate!.isFirst(date)
+        rightButton.isHidden   = delegate!.isLast(date)
         
     }
     
@@ -48,5 +61,8 @@ protocol DayWebViewDelegate {
     
     func didPushLButton(currentDate: Date)
     func didPushRButton(currentDate: Date)
+    
+    func isFirst(_ date: Date) -> Bool
+    func isLast(_ date: Date) -> Bool
     
 }
