@@ -647,7 +647,7 @@
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r9b-nk-Rxr" userLabel="Console View" customClass="ConsoleView" customModule="ConsoleView">
-                                <rect key="frame" x="25" y="37" width="343" height="389.66666666666669"/>
+                                <rect key="frame" x="5" y="37" width="383" height="389.66666666666669"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                         </subviews>
@@ -664,7 +664,6 @@
                             <constraint firstItem="J3b-ku-ou6" firstAttribute="top" secondItem="TCV-YU-Iab" secondAttribute="bottom" constant="-1.3333333333332575" id="7aW-gu-K15"/>
                             <constraint firstAttribute="bottomMargin" secondItem="ZyG-9R-Myt" secondAttribute="bottom" constant="25" id="C8y-JA-aQD"/>
                             <constraint firstItem="TCV-YU-Iab" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="Cg8-nc-lRf"/>
-                            <constraint firstItem="r9b-nk-Rxr" firstAttribute="trailing" secondItem="SsP-ad-Wjl" secondAttribute="trailing" id="DZm-gx-D66"/>
                             <constraint firstItem="pii-L0-PwK" firstAttribute="top" secondItem="qZZ-vR-qwz" secondAttribute="bottom" constant="2.5" identifier="FilterControlsTop" id="Fjy-sN-OJC"/>
                             <constraint firstItem="rGJ-M0-qHl" firstAttribute="centerX" secondItem="pii-L0-PwK" secondAttribute="centerX" identifier="ControlsBackgroundViewCenterX" id="G1g-4M-pUd"/>
                             <constraint firstItem="J3b-ku-ou6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="G7d-TB-xWW"/>
@@ -687,6 +686,7 @@
                             <constraint firstItem="rGJ-M0-qHl" firstAttribute="width" secondItem="pii-L0-PwK" secondAttribute="width" constant="15" identifier="ControlsBackgroundViewWidth" id="YfM-m6-U9p"/>
                             <constraint firstItem="xg8-qZ-HZB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ZdF-To-qqv"/>
                             <constraint firstItem="Vyl-Z8-0tu" firstAttribute="top" secondItem="TCV-YU-Iab" secondAttribute="bottom" constant="48" id="ZsW-3F-hGZ"/>
+                            <constraint firstItem="r9b-nk-Rxr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="ae0-ex-MbR"/>
                             <constraint firstAttribute="bottom" secondItem="xg8-qZ-HZB" secondAttribute="bottom" id="b45-At-FHO"/>
                             <constraint firstItem="xg8-qZ-HZB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="c7l-0D-kgo"/>
                             <constraint firstItem="rGJ-M0-qHl" firstAttribute="centerY" secondItem="pii-L0-PwK" secondAttribute="centerY" identifier="ControlsBackgroundViewCenterY" id="cAW-qf-VPp"/>
@@ -695,8 +695,8 @@
                             <constraint firstAttribute="bottom" secondItem="yGI-Rh-K7B" secondAttribute="bottom" id="d4W-sp-uEF"/>
                             <constraint firstItem="yFo-KC-Pry" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="19" id="d8o-71-Ij3"/>
                             <constraint firstItem="yFo-KC-Pry" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="27" id="eE3-Jj-njQ"/>
-                            <constraint firstItem="r9b-nk-Rxr" firstAttribute="leading" secondItem="SsP-ad-Wjl" secondAttribute="leading" id="fiN-RG-aZG"/>
                             <constraint firstItem="Vyl-Z8-0tu" firstAttribute="width" secondItem="SsP-ad-Wjl" secondAttribute="width" multiplier="0.8" id="fj8-Hs-eXe"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="r9b-nk-Rxr" secondAttribute="trailing" constant="5" id="gjF-6N-CW9"/>
                             <constraint firstItem="Vyl-Z8-0tu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iAY-sX-TLc"/>
                             <constraint firstItem="pwm-N2-dS7" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="qOy-7m-1v6"/>
                             <constraint firstAttribute="bottom" secondItem="bFj-cR-DpG" secondAttribute="bottom" id="tXv-Qg-lIA"/>
