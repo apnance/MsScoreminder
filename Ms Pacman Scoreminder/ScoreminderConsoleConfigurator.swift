@@ -21,9 +21,9 @@ struct ScoreminderConsoleConfigurator: ConsoleConfigurator {
     
     var consoleView: ConsoleView
     
-    var commandGroups: [CommandGroup] { [ScoreminderCommandGroup(consoleView: consoleView)] }
+    var commandGroups: [CommandGroup]? { [scoreminderCommandGroup] }
     
-    var configs: ConsoleViewConfigs {
+    var configs: ConsoleViewConfigs? {
         
         var configs = ConsoleViewConfigs()
         
@@ -56,52 +56,42 @@ struct ScoreminderConsoleConfigurator: ConsoleConfigurator {
         
     }
     
-    fileprivate class ScoreminderCommandGroup: CommandGroup {
+    var scoreminderCommandGroup: CommandGroup {
         
-        private let consoleView: ConsoleView
-        
-        init(consoleView: ConsoleView) {
-            
-            self.consoleView = consoleView
-            
-        }
-        
-        var commands: [Command] {
-            [
-                
+            return [
+//                HERE...
                 // TODO: Clean Up - Implement first n, last n, nuke, del, add
                 Command(token: Configs.Console.Command.CSV.token,
-                        process: comCSV,
+                        processor: comCSV,
                         category: Configs.Console.Command.category,
                         helpText:  Configs.Console.Command.CSV.helpText),
                 
             ]
-        }
-        
-        /// Builds and returns a comma separated values list of `ArchivedPuzzle`
-        /// data in `archive`
-        /// - Parameter _: does not require or process arguments.
-        /// - Returns: CSV version of all `ArchivedPuzzle` data  in `archive`
-        func comCSV(_:[String]?) -> CommandOutput {
             
-            if let csv = (consoleView.viewController as? ViewController)?.statMan.csv {
+            /// Builds and returns a comma separated values list of `ArchivedPuzzle`
+            /// data in `archive`
+            /// - Parameter _: does not require or process arguments.
+            /// - Returns: CSV version of all `ArchivedPuzzle` data  in `archive`
+            func comCSV(_:[String]?, console: ConsoleView) -> CommandOutput {
                 
-                  var atts = consoleView.formatCommandOutput("""
+                if let csv = (console.viewController as? ViewController)?.statMan.csv {
+                    
+                    var atts = console.formatCommandOutput("""
                           \(csv)
                           [Note: above output copied to pasteboard]
                           """)
-                
-                atts.foregroundColor    = UIColor.pear
-                
-                printToClipboard(csv)
-                
-                return atts /*EXIT*/
-                
-            } else {
-                
-                return consoleView.format("Error retrieving .csv data.",
+                    
+                    atts.foregroundColor    = UIColor.pear
+                    
+                    printToClipboard(csv)
+                    
+                    return atts /*EXIT*/
+                    
+                } else {
+                    
+                    return console.format("Error retrieving .csv data.",
                                           target: .outputWarning)
-                
+                    
             }
             
         }
