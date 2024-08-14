@@ -30,23 +30,6 @@ struct Configs {
             
             static var category = "score"
             
-            // Example of multi-usage help text formatting style.
-            //struct Nuke {
-            //
-            //    static var token    = "nuke"
-            //    static var category =  Configs.Console.Command.category
-            //    static var helpText = """
-            //    Reverts archived puzzle data to defaults from file \
-            //    puzzle.defaults.data.txt
-            //    \tUsage:
-            //    \t* 'nuke' challenges the user to confirm the request
-            //    \t  before nuking.
-            //    \t* 'nuke Y' bypasses the confirmation nuking archive
-            //    \t  immediately.
-            //    """
-            //
-            //}
-            
             struct CSV {
                 
                 static var token    = "csv"
