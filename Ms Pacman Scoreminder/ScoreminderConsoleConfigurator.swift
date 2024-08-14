@@ -68,10 +68,10 @@ struct ScoreminderConsoleConfigurator: ConsoleConfigurator {
                 
             ]
             
-            /// Builds and returns a comma separated values list of `ArchivedPuzzle`
-            /// data in `archive`
+            /// Builds and returns a comma separated values list of all recorded `Score`s
+            ///
             /// - Parameter _: does not require or process arguments.
-            /// - Returns: CSV version of all `ArchivedPuzzle` data  in `archive`
+            /// - Returns: CSV version of all  recorded`Score` data
             func comCSV(_:[String]?, console: ConsoleView) -> CommandOutput {
                 
                 if let csv = (console.viewController as? ViewController)?.statMan.csv {
