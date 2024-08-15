@@ -7,6 +7,7 @@
 
 import UIKit
 import APNUtil
+import ConsoleView
 
 typealias CSV = String
 
@@ -38,7 +39,7 @@ enum DateRange : CustomStringConvertible {
     
 }
 
-/// Manages game `Stats` and sDailyStats`
+/// Manages game `Stats` and `DailyStats`
 class StatManager {
     
     private var saveNeeded  = false
@@ -211,6 +212,8 @@ class StatManager {
             
             clearNeedsTally()
             
+            sortAndSetDates()
+            
             tallyScoreStats()
             
             tallyDailyStats()
@@ -218,15 +221,6 @@ class StatManager {
             runStatLab()
             
         }
-        
-    }
-    
-    /// Run StatLab analyses here
-    ///
-    /// e.g. StatLab was used to generate score-level prediction ranges
-    func runStatLab() {
-        
-        StatLab.analyze(getScores(sortedBy: .date))
         
     }
     
@@ -406,6 +400,15 @@ class StatManager {
         
     }
     
+    /// Run StatLab analyses here
+    ///
+    /// e.g. StatLab was used to generate score-level prediction ranges
+    func runStatLab() {
+        
+        StatLab.analyze(getScores(sortedBy: .date))
+        
+    }
+    
     /// A backing property for filterAll caching the out ouptut of the most recently run filterAll() call.
     private var _filteredAll = [Score]()
     
@@ -550,6 +553,20 @@ class StatManager {
         
     }
     
+    /// Calculates the number of days between `last` and the first recorded score `Date`.
+    /// Calculation defaults to the game day number for today if no `last` `Date` provided.
+    ///
+    /// - Parameter last: second `Date` from which to calculate the interval between it and the first recorded game `Date`.
+    /// - Returns: Number of days between first game played and this.
+    func getGameDayNumber(for last: Date? = nil) -> Int {
+        
+        let first = stats.firstPlayDate ??  "05/24/73".simpleDate
+        let last = last ?? Date()
+        
+        return last.daysFrom(earlierDate: first) + 1
+        
+    }
+    
 }
 
 // MARK: - Data Storage
@@ -624,9 +641,9 @@ extension StatManager {
         }
         
         do {
-
+            
             let file = toFile ?? Configs.File.Path.currentData
-
+            
             try csv.write(toFile: file,
                           atomically: true,
                           encoding: String.Encoding.utf8)
@@ -741,7 +758,6 @@ extension StatManager {
         
     }
     
-    
     static func rankCompare(_ rank1: (Int,Int), _ rank2: (Int,Int)) -> (Double, Int) {
         
         let pct1 = percentile(rank1)
@@ -787,6 +803,36 @@ extension StatManager: CustomStringConvertible {
     }
     
 }
+
+extension StatManager: DataManagerConfiguratorDataSource {
+    
+    var gapFindableData: [GapFindable]? {
+        
+        var dayNumbers = [Int]()
+        
+        for date in stats.dates {
+            
+            dayNumbers.append(getGameDayNumber(for: date))
+            
+        }
+        
+        return dayNumbers
+        
+    }
+    
+    var gapFindableRange: ClosedRange<Int>? {
+        
+        let lbound = 1
+        let ubound = getGameDayNumber()
+        
+        return lbound...ubound
+        
+    }
+    
+    var gapFindableStride: Int? { 1 }
+    
+}
+
 
 // - MARK: Debug
 extension StatManager {

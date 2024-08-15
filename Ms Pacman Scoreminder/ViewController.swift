@@ -460,6 +460,9 @@ class ViewController: UIViewController {
         spritesViewContainer.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                                          action: #selector(handleConsoleViewTap(_:))))
         
+        DataManagerConfigurator(consoleView: consoleView,
+                                data: statMan)
+        
         // Delegates
         dailySummaryWebView.delegate = self
         

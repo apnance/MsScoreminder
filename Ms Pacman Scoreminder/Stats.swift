@@ -44,7 +44,12 @@ struct Stats {
     fileprivate var streaks: StreakSet?
     
     /// Returns a chronologically-sorted array of `Date`s in `simpleDate` format
-    var dates: [Date] { data.keys.map{$0.simpleDate}.sorted() }
+    /// - important: StatManager alone should write to `dates`
+    fileprivate(set) var dates = [Date]()
+    
+    /// Returns the `Date` of the first saved game.
+    /// - important: StatManager alone should write to `firstPlayDate`
+    fileprivate(set) var firstPlayDate: Date?
     
     init() {
         
@@ -241,6 +246,15 @@ extension StatManager {
         
     }
     
+    /// Clears stats.needsTally flag
     func clearNeedsTally() { stats.needsTally = false }
+    
+    /// - important: do not call directly, *call `tally` instead* 
+    func sortAndSetDates() {
+        
+        stats.dates = stats.data.keys.map{$0.simpleDate}.sorted()
+        stats.firstPlayDate = stats.dates.first
+        
+    }
     
 }

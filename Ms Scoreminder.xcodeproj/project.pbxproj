@@ -42,6 +42,7 @@
 		93B6D0EC27021DAD005ADF3F /* AtomicScoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93B6D0EB27021DAD005ADF3F /* AtomicScoreView.xib */; };
 		93B6D0EE270231A4005ADF3F /* AtomicScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B6D0ED270231A4005ADF3F /* AtomicScoreView.swift */; };
 		93D030A02ADE0709007665A2 /* StatLab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D0309F2ADE0709007665A2 /* StatLab.swift */; };
+		93D92D3D2C6DBD4200843AA0 /* TestDataSmallConsecutive.csv in Resources */ = {isa = PBXBuildFile; fileRef = 93D92D3C2C6DBD4200843AA0 /* TestDataSmallConsecutive.csv */; };
 		93D98BD328DD315C00FD0F80 /* APNGraph in Frameworks */ = {isa = PBXBuildFile; productRef = 93D98BD228DD315C00FD0F80 /* APNGraph */; settings = {ATTRIBUTES = (Required, ); }; };
 		93DD05952A86E09D0030D504 /* ScoreEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93DD05942A86E09D0030D504 /* ScoreEditor.xib */; };
 		93DD05972A86E0B60030D504 /* ScoreEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DD05962A86E0B60030D504 /* ScoreEditor.swift */; };
@@ -125,6 +126,7 @@
 		93B6D0EB27021DAD005ADF3F /* AtomicScoreView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AtomicScoreView.xib; sourceTree = "<group>"; };
 		93B6D0ED270231A4005ADF3F /* AtomicScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicScoreView.swift; sourceTree = "<group>"; };
 		93D0309F2ADE0709007665A2 /* StatLab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatLab.swift; sourceTree = "<group>"; };
+		93D92D3C2C6DBD4200843AA0 /* TestDataSmallConsecutive.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestDataSmallConsecutive.csv; sourceTree = "<group>"; };
 		93D98BD128DD314F00FD0F80 /* APNGraph */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = APNGraph; path = ../../Frameworks/APNGraph; sourceTree = "<group>"; };
 		93DD05942A86E09D0030D504 /* ScoreEditor.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScoreEditor.xib; sourceTree = "<group>"; };
 		93DD05962A86E0B60030D504 /* ScoreEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreEditor.swift; sourceTree = "<group>"; };
@@ -168,13 +170,13 @@
 		9316243D26FA4C8D004C06B7 = {
 			isa = PBXGroup;
 			children = (
-				93D98BC828DD301F00FD0F80 /* Packages */,
 				932CE9ED2705410D006A1CF8 /* Ms Scoreminder.entitlements */,
+				937B2B3A26FB7A070081CC6A /* Frameworks */,
 				9316244826FA4C8D004C06B7 /* Ms Pacman Scoreminder */,
 				9316245F26FA4C90004C06B7 /* Ms Pacman ScoreminderTests */,
 				9316246A26FA4C90004C06B7 /* Ms Pacman ScoreminderUITests */,
+				93D98BC828DD301F00FD0F80 /* Packages */,
 				9316244726FA4C8D004C06B7 /* Products */,
-				937B2B3A26FB7A070081CC6A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -289,6 +291,7 @@
 				937B2B4D26FD56D00081CC6A /* Colors.xcassets */,
 				932B1730270D49210030CD59 /* DefaultData.csv */,
 				9313DE422731A40E00460712 /* TestDataSmall.csv */,
+				93D92D3C2C6DBD4200843AA0 /* TestDataSmallConsecutive.csv */,
 				930128B32AD87AA900FF1AE1 /* TestData20k.csv */,
 				93D0309F2ADE0709007665A2 /* StatLab.swift */,
 			);
@@ -451,6 +454,7 @@
 				932B1731270D49210030CD59 /* DefaultData.csv in Resources */,
 				9313DE432731A40E00460712 /* TestDataSmall.csv in Resources */,
 				930128B52AD87BB200FF1AE1 /* TestData20k.csv in Resources */,
+				93D92D3D2C6DBD4200843AA0 /* TestDataSmallConsecutive.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -687,7 +691,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.4.1;
+				MARKETING_VERSION = 1.5.4.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.aaron.nance.Ms-Scoreminder-v1.5.4";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -716,7 +720,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.4.1;
+				MARKETING_VERSION = 1.5.4.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.aaron.nance.Ms-Scoreminder-v1.5.4";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
