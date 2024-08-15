@@ -204,13 +204,14 @@ struct Configs {
         
         struct Name {
             
-            static let defaultData      = "DefaultData"
-            static let testDataSmall    = "TestDataSmall"
-            static let testData20k      = "TestData20k"     //generated via StatManager.generateTestCSV(scoreCount: 20000)
-            static let nilData: String? = nil
+            static let defaultData              = "DefaultData"
+            static let testDataSmall            = "TestDataSmall"
+            static let testDataSmallConsecutive = "TestDataSmallConsecutive"
+            static let testData20k              = "TestData20k"     //generated via StatManager.generateTestCSV(scoreCount: 20000)
+            static let nilData: String?         = nil
             
-            static let final            = Test.forceLoadDataNamed ?? File.Name.defaultData
-
+            static let final                    = Test.forceLoadDataNamed ?? File.Name.defaultData
+            
         }
         
         
