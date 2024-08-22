@@ -96,6 +96,34 @@ struct Score: Hashable {
                      level: randomLevel)
     }
     
+    
+    /// Builds `count` random scores, returning 2 variations of the results, an
+    /// array of the raw scores and an array of the scores reduced to CSV format.
+    /// - Parameters:
+    ///   - count: number of random `Score`s to generate.
+    ///   - allowInvalidScores: allow invalid scores(i.e. those w/ non-zero termal digits in score value)
+    /// - Returns: Tuple with variations of the results: 1) an array of the raw scores and 2) array of the scores reduced to CSV format.
+    static func random(count: Int,
+                       allowInvalidScores: Bool = false) -> ([Score],[String]) {
+        
+        var scores  = [Score]()
+        var asCSV   = [String]()
+        
+        let clock = ContinuousClock()
+        
+        let buildTime = clock.measure {
+            
+            for _ in 0...count {
+                let score = Score.random()
+                scores.append(score)
+                asCSV.append(score.csv)
+            }
+        }
+        
+        return (scores, asCSV)
+        
+    }
+    
 }
 
 // - MARK: CustomStringConvertible

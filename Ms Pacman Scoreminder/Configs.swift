@@ -245,6 +245,12 @@ struct Configs {
                 
             }
             
+            static func generatePathForFileNamed(_ name: String) -> String {
+                
+                base + name
+                
+            }
+            
         }
         
     }

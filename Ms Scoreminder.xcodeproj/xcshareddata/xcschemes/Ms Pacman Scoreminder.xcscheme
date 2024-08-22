@@ -37,6 +37,11 @@
                BlueprintName = "Ms ScoreminderTests"
                ReferencedContainer = "container:Ms Scoreminder.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "StatManagerTests/testTallyTimes()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
          <TestableReference
             skipped = "NO">

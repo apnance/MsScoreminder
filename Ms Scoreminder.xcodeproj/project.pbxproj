@@ -35,6 +35,7 @@
 		937B2B4926FC14570081CC6A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 937B2B4826FC14570081CC6A /* Images.xcassets */; };
 		937B2B4E26FD56D00081CC6A /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 937B2B4D26FD56D00081CC6A /* Colors.xcassets */; };
 		93A497A3270E21F700D5AB5F /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A497A2270E21F700D5AB5F /* Preferences.swift */; };
+		93A554472C73D92B000D86C7 /* StatManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93386B232C73CAB900072C8B /* StatManagerTests.swift */; };
 		93ACBFEA272CDCD4000BBC2C /* DailyStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ACBFE9272CDCD4000BBC2C /* DailyStats.swift */; };
 		93AF7B862A954BA2002B93F5 /* UISegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93AF7B852A954BA1002B93F5 /* UISegmentedControl.swift */; };
 		93B087AB2C4DD51C003BE5FA /* ScoreminderConsoleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B087AA2C4DD51C003BE5FA /* ScoreminderConsoleConfigurator.swift */; };
@@ -111,6 +112,7 @@
 		933345BF2A9076E400BF1592 /* TaggedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaggedView.swift; sourceTree = "<group>"; };
 		933345C12A92FB3100BF1592 /* AnimatedSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedSprite.swift; sourceTree = "<group>"; };
 		93345AD32730698D0090154B /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
+		93386B232C73CAB900072C8B /* StatManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatManagerTests.swift; sourceTree = "<group>"; };
 		935CC95A2AD4888900F914E2 /* LevelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTests.swift; sourceTree = "<group>"; };
 		936DF3A6272C6C0F00CF2AEE /* DailyHighlightsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyHighlightsView.xib; sourceTree = "<group>"; };
 		936DF3AA272C6C2300CF2AEE /* DailyHighlightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyHighlightsView.swift; sourceTree = "<group>"; };
@@ -171,7 +173,6 @@
 			isa = PBXGroup;
 			children = (
 				932CE9ED2705410D006A1CF8 /* Ms Scoreminder.entitlements */,
-				937B2B3A26FB7A070081CC6A /* Frameworks */,
 				9316244826FA4C8D004C06B7 /* Ms Pacman Scoreminder */,
 				9316245F26FA4C90004C06B7 /* Ms Pacman ScoreminderTests */,
 				9316246A26FA4C90004C06B7 /* Ms Pacman ScoreminderUITests */,
@@ -208,6 +209,7 @@
 			children = (
 				9316246226FA4C90004C06B7 /* Info.plist */,
 				935CC95A2AD4888900F914E2 /* LevelTests.swift */,
+				93386B232C73CAB900072C8B /* StatManagerTests.swift */,
 			);
 			path = "Ms Pacman ScoreminderTests";
 			sourceTree = "<group>";
@@ -274,13 +276,6 @@
 				9316245726FA4C90004C06B7 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		937B2B3A26FB7A070081CC6A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		937B2B4726FC14370081CC6A /* Resources */ = {
@@ -512,6 +507,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				935CC95B2AD4888900F914E2 /* LevelTests.swift in Sources */,
+				93A554472C73D92B000D86C7 /* StatManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -609,7 +605,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -664,7 +660,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -686,7 +682,7 @@
 				DEVELOPMENT_TEAM = 56S32J5CWV;
 				INFOPLIST_FILE = "Ms Pacman Scoreminder/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -715,7 +711,7 @@
 				DEVELOPMENT_TEAM = 56S32J5CWV;
 				INFOPLIST_FILE = "Ms Pacman Scoreminder/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -740,7 +736,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 56S32J5CWV;
 				INFOPLIST_FILE = "Ms Pacman ScoreminderTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -762,7 +758,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 56S32J5CWV;
 				INFOPLIST_FILE = "Ms Pacman ScoreminderTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
