@@ -619,7 +619,7 @@ extension StatManager {
     
     /// Saves `csv` to disk.
     func save(_ csv: CSV? = nil,
-                      toFile: String? = nil) {
+              toFile: String? = nil) {
         
         assert(!(csv.isNil && toFile.isNotNil),
                """
