@@ -38,6 +38,21 @@ struct Configs {
                 
             }
             
+            struct Played {
+                
+                static var token    = "played"
+                static var category =  Configs.Console.Command.category
+                static var helpText = """
+                                        Echoes information about all recorded games played thus far.
+                                        \tUsage:
+                                        \t* 'played' echoes information about all recorded
+                                        \t    games played thus far.
+                                        \t* 'played <date>' echoes information for games played on <date>
+                                        \t* 'played today' echoes information for games played today.
+                                        """
+                
+            }
+            
         }
         
     }

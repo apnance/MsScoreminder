@@ -456,7 +456,8 @@ class ViewController: UIViewController {
     private func uiMisc() {
         
         // Console
-        ScoreminderConsoleConfigurator(consoleView: consoleView)
+        ScoreminderConsoleConfigurator(consoleView: consoleView, 
+                                       statManager: statMan)
         spritesViewContainer.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                                          action: #selector(handleConsoleViewTap(_:))))
         

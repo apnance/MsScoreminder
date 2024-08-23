@@ -145,6 +145,24 @@ class StatManager {
         
     }
     
+    func getFirstRecordedScore() -> Score? {
+        
+        guard let fpd = stats.firstPlayDate
+        else { return nil }
+        
+        return getScoresFor(fpd).first
+        
+    }
+    
+    func getLastRecordedScore() -> Score? {
+        
+        guard let lpd = stats.lastPlayDate
+        else { return nil }
+        
+        return getScoresFor(lpd).first
+        
+    }
+    
     func getHighscore() -> Score? { stats.highScore }
     func getLowscore()  -> Score? { stats.lowScore }
     func getAvgScore()  -> Score? { stats.avgScore }
@@ -564,6 +582,54 @@ class StatManager {
         let last = last ?? Date()
         
         return last.daysFrom(earlierDate: first) + 1
+        
+    }
+    
+    /// - Returns: `String` summary of all games played thus far.
+    func played() -> String {
+        
+        return """
+               Games:
+                    #: \(getTotalGamesPlayed()) games played
+                    $: \(getMoneySpent()) spent
+                First: \(getFirstRecordedScore()?.friendlyDescription ?? "-na-")
+                 Last: \(getLastRecordedScore()?.friendlyDescription ?? "-na-")
+               
+               Scores:
+                 High: \(getHighscore()?.friendlyDescription ?? "-na-")
+                  Low: \(getLowscore()?.friendlyDescription ?? "-na-")
+                  Avg: \(getAvgScore()?.friendlyDescription ?? "-na-")
+               
+               """
+        
+    }
+    
+    /// Returns a summary of game(s) played on `date`.
+    /// - Parameter date: `Date` for which to display game summary.
+    /// - Returns: Summary of game(s) played on `date`.
+    func played(_ date: Date) -> String {
+        
+        let defaultValue = "[Scores]\n"
+        var output = getScoresFor(date).reduce(defaultValue){ $0 + " * " + $1.friendlyDescription + "\n" }
+        
+        if let daily = getDaily(for: date) {
+            
+            output  =   """
+                        [Summary of Games Played \(date.simple)]
+                               Played: \(daily.gamesPlayed)
+                                 Rank: \(daily.rank.0.oridinalDescription) of \(daily.rank.1)
+                           Avg. Score: \(daily.averageScore.delimited) [\(daily.optimality)% of \(daily.optimalScore.delimited) possible]
+                           Avg. Level: \(Level.get(daily.averageLevel).name)
+                            7 Day Avg: \(daily.sevenDayAverage.delimited)
+                        
+                        \(output)
+                        
+                        """
+        }
+        
+        output = output == defaultValue ? "\(defaultValue)* none" : output
+        
+        return output
         
     }
     

@@ -51,6 +51,10 @@ struct Stats {
     /// - important: StatManager alone should write to `firstPlayDate`
     fileprivate(set) var firstPlayDate: Date?
     
+    /// Returns the `Date` of the last saved game.
+    /// - important: StatManager alone should write to `lastPlayDate`
+    fileprivate(set) var lastPlayDate: Date?
+    
     init() {
         
         needsTally  = true
@@ -252,8 +256,9 @@ extension StatManager {
     /// - important: do not call directly, *call `tally` instead* 
     func sortAndSetDates() {
         
-        stats.dates = stats.data.keys.map{$0.simpleDate}.sorted()
+        stats.dates         = stats.data.keys.map{$0.simpleDate}.sorted()
         stats.firstPlayDate = stats.dates.first
+        stats.lastPlayDate  = stats.dates.last
         
     }
     
