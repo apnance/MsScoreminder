@@ -13,7 +13,7 @@ enum ScoreSortOrder { case date, high, low, avgDate, avgHigh, avgLow }
 
 struct Stats {
     
-    // TODO: Clean Up - rename varibales to clarify that averages are used for DailyStats calculations.
+    // TODO: Clean Up - rename variables to clarify that averages are used for DailyStats calculations.
     fileprivate var data = [ DateStringSimple : [Score] ]()
     fileprivate(set) var needsTally: Bool
     
