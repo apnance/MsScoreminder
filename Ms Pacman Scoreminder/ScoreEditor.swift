@@ -48,23 +48,9 @@ class ScoreEditor: UIView {
     @IBAction func decreasLevel(_ sender: Any) { changeLevel(-1) }
     @IBAction func increaseLevel(_ sender: Any) { changeLevel(+1) }
     
-    
     // MARK: - Properties
     /// The focus and raison d'etre of the ScoreEditor control.
-    private(set) var score: Score = .zero {
-        
-        willSet {
-            
-            // TODO: Clean Up - Factor this show/hide logic out into a uiShowUpdateDelete()
-            let isUpdatable = (newValue != lastSavedScore) && (newValue.score % 10 == 0)
-            
-            // Show/hide UI
-            updateButton.isHidden = !isUpdatable
-            deleteButton.isHidden = newValue != lastSavedScore
-            
-        }
-        
-    }
+    var score: Score = .zero { willSet { uiShowUpdateDelete(newValue) } }
     
     /// Score used to track the last saved score, this value will be sent to delegate.delete(score:) if user taps to delete or updates the score.
     /// When a score is "updated" the old value is first deleted then the new value is set.
@@ -116,6 +102,18 @@ class ScoreEditor: UIView {
         
         Utils.UI.addShadows(to: [deleteButton, updateButton], 
                             withOpacity: 0.3)
+        
+    }
+    
+    /// Shows/hides update/delete buttons as user changes the score editor's score value.
+    /// - Parameter newValue: value entered into score editor
+    private func uiShowUpdateDelete(_ newValue: Score) {
+        
+        let isUpdatable = (newValue != lastSavedScore) && (newValue.score % 10 == 0)
+        
+        // Show/hide UI
+        updateButton.isHidden = !isUpdatable
+        deleteButton.isHidden = newValue != lastSavedScore
         
     }
     
@@ -200,8 +198,7 @@ class ScoreEditor: UIView {
     }
     
     private func uiInitContainerViews() {
-
-        // TODO: Clean Up - delete
+        
         uiContainerView.backgroundColor     = Configs.UI.Colors.ScoreEditor.UIContainer.bg
         uiContainerView.layer.borderColor   = Configs.UI.Colors.ScoreEditor.UIContainer.border.cgColor
         

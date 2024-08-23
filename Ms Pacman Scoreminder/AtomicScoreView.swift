@@ -30,8 +30,7 @@ class AtomicScoreView: UIView {
     
     @IBOutlet var dateView: UILabel!
     @IBOutlet weak var averageGameCountLabel: UILabel!
-    // TODO: Clean Up - rename scoreView -> scoreLabel
-    @IBOutlet var scoreView: UILabel!
+    @IBOutlet var scoreLabel: UILabel!
     @IBOutlet weak var optimalityLabel: UILabel!
     @IBOutlet weak var optimalScoreLabel: UILabel!
     @IBOutlet weak var todayView: UILabel!
@@ -65,8 +64,8 @@ class AtomicScoreView: UIView {
         averageGameCountLabel.layer.cornerRadius    = averageGameCountLabel.frame.height / 3.0
         
         // Score
-        scoreView.text                  = score.score.delimited
-        scoreView.textColor             = textColor
+        scoreLabel.text                 = score.score.delimited
+        scoreLabel.textColor            = textColor
         
         // Optimality
         optimalityLabel.text            = "\(score.optimality.roundTo(1))%"
@@ -95,8 +94,8 @@ class AtomicScoreView: UIView {
         if !score.isValid {
         
             backgroundColor         = .black.pointNineAlpha
-            scoreView.textColor     = .white.pointEightAlpha
-            scoreView.text          = "NA"
+            scoreLabel.textColor    = .white.pointEightAlpha
+            scoreLabel.text         = "NA"
             dateView.text           = ""
             optimalityLabel.text    = ""
         }

@@ -7,9 +7,6 @@
 
 import UIKit
 
-// TODO: Clean Up - delete
-//typealias Colors = Configs.UI.Colors
-
 typealias ColorTriplet = (UIColor, UIColor, UIColor)
 
 struct Configs {

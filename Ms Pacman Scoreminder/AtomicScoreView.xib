@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -153,8 +152,8 @@
                 <outlet property="fruitView" destination="ro1-2K-rxe" id="3Hy-fV-r0I"/>
                 <outlet property="optimalScoreLabel" destination="TTa-lZ-uIy" id="FtU-SH-kPX"/>
                 <outlet property="optimalityLabel" destination="Bqa-l5-wd0" id="OIu-ei-hew"/>
+                <outlet property="scoreLabel" destination="otq-Ol-ZOc" id="4aZ-gi-SEE"/>
                 <outlet property="scoreStatsLabel" destination="n4L-Qu-pSh" id="jsh-Tx-BDB"/>
-                <outlet property="scoreView" destination="otq-Ol-ZOc" id="4aZ-gi-SEE"/>
                 <outlet property="scoresStatsRoundView" destination="Gi6-lq-Ab2" id="29p-CG-hZC"/>
                 <outlet property="todayView" destination="7Ih-bR-OAN" id="z5X-DD-5Jv"/>
             </connections>
