@@ -135,6 +135,12 @@ extension Score: CustomStringConvertible {
         
     }
     
+    var friendlyDescription: String {
+        
+        "\(date.simple) \(score.delimited)pts \(level.name) \(optimality.roundTo(1))% opt"
+        
+    }
+    
     var csv: String { "\(date.simple),\(score),\(level.num)\n" }
     
 }
