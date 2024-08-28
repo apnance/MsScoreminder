@@ -5,7 +5,7 @@
 //  Created by Aaron Nance on 10/16/23.
 //
 
-import Foundation
+import APNUtil
 
 struct StatLab {
     
@@ -96,56 +96,53 @@ struct StatLab {
     
     static func displayOptimalityTable() -> String {
         
-        var results = """
-                        [Optimality Table]
-                        """
+        var data = buildDataArray()
         
         for level in 0...maxLevel {
             
             let level           = Level.get(level)
             let levelName       = level.name
-            
             let optimality      = level.optimalScore
             let optimalityCum   = level.optimalScoreCummulative
             
-            results += "\n  \(levelName): \(optimality) / \(optimalityCum)"
+            data[level.num].append(levelName)
+            data[level.num].append(optimality.description)
+            data[level.num].append(optimalityCum.description)
             
         }
         
-        return results
+        return buildReport(data:    data,
+                           headers: ["Level", "Lvl Opt", "Cum. Opt",],
+                           title:   "Optimality Table")
         
     }
     
     static func calcGamesPerLevel() -> String {
         
-        var results = """
-                        [Games Per Level]
-                        """
+        var data = buildDataArray()
         
         for level in 0...maxLevel {
             
-            let levelName = Level.get(level).name
-            let gameCount = levelToScore[level]?.count ?? 0
             
-            results += "\n  \(levelName): \(gameCount)"
+            data[level].append(Level.get(level).name)
+            
+            let gameCount = levelToScore[level]?.count ?? 0
+            data[level].append(gameCount.description)
             
         }
         
-        results += """
-                      
-                      _____________________
-                      Total: \(scores.count)
-                    """
+        data.append(["", ""])
+        data.append(["Total", "\(scores.count)"])
         
-        return results
+        return buildReport(data:    data,
+                           headers: ["Level", "Games Reached"],
+                           title:   "Games Per Level")
         
     }
     
     static func calculateAverageLevelScores() -> String {
         
-        var results = """
-                        [Average Score by Level]
-                        """
+        var data = buildDataArray()
         
         for level in levelToScore.keys.sorted() {
             
@@ -161,35 +158,61 @@ struct StatLab {
                 }
                 let avgScore = runningScoreTotal / scores.count
                 
-                results += "\n  \(Level.get(level).name): \(avgScore)"
+                
+                data[level].append(Level.get(level).name)
+                data[level].append(avgScore.description)
                 
             }
             
         }
         
-        return results
+        return buildReport(data:    data,
+                           headers: ["Level", "Avg. Score"],
+                           title:   "Average Score by Level")
         
     }
     
     static func calculateLevelScoreRanges() -> String {
         
-        var results = """
-                        [Score Ranges by Level]
-                        """
+        var data = buildDataArray()
         
         for levelNum in levelToScoreRange.keys.sorted() {
             
             if let (low,high) = levelToScoreRange[levelNum] {
                 
-                results += "\n  \(Level.get(levelNum).name): \(low)...\(high)"
+                data[levelNum].append(Level.get(levelNum).name)
+                data[levelNum].append("\(low)...\(high)")
                 
             }
             
         }
         
-        return results
+        return buildReport(data:    data,
+                           headers: ["Level", "Low...High"],
+                           title:   "Score Ranges by Level")
         
     }
     
+    
+}
+
+// - MARK: Utilities
+extension StatLab {
+    
+    private static func buildReport(data: [[String]], headers: [String], title: String) -> String {
+        
+        Report.columnateAutoWidth(data,
+                                  headers:headers,
+                                  title: title.uppercased(),
+                                  dataPadType: .right,
+                                  showSeparators: false)
+        
+    }
+    
+    private static func buildDataArray(withCount count: Int = maxLevel + 1) -> [[String]] {
+        
+        Array(repeating:[String](), count: count)
+        
+    }
     
 }
