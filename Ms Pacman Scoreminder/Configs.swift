@@ -75,8 +75,22 @@ struct Configs {
                 
             } else {
                 
-                return "Your \(streakLen) game streak is in jeopardy!"
+                return "Your \(streakLen) game streak \(randomScareText)"
                 
+            }
+            
+        }
+        
+        static var randomScareText: String {
+            
+            switch Int.random(min: 0, max: 3) {
+                    
+                case 0: "needs attention!"
+                case 1: "hangs in the balance!"
+                case 2: "ain't going to extend itself..."
+                case 3: "is sad, extend it!"
+                default: "is in jeopardy!"
+                    
             }
             
         }
