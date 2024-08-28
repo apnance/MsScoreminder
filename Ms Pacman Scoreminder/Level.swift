@@ -8,7 +8,6 @@
 import UIKit
 import APNUtil
 
-
 /// fruit level index constants
 let cherry      = 0
 let strawberry  = 1
@@ -24,6 +23,7 @@ let banana5     = 10
 let banana6     = 11
 let banana7     = 12
 let banana8     = 13
+let banana9     = 14
 
 /// Data structure for managing general level data.
 /// - important: Access instances of this class through the `get` factory method.
@@ -39,19 +39,19 @@ class Level {
         
         if levelNum > cached.lastUsableIndex {
             
-            var cumm = 0
+            var cum = 0
             for i in cherry...levelNum {
                 
                 if i > cached.lastUsableIndex {
                     
                     cached.append(Level(i))
-                    cumm += cached[i].optimalScore
-                    cached[i].optimalScoreCummulative = cumm
+                    cum += cached[i].optimalScore
+                    cached[i].optimalScoreCummulative = cum
                     
                     
                 } else {
                     
-                    cumm = cached[i].optimalScoreCummulative
+                    cum = cached[i].optimalScoreCummulative
                     
                 }
                 
@@ -120,7 +120,7 @@ class Level {
             case banana2:       dotCount = 238
             case banana3:       dotCount = 238
                 
-                // Repeating mazes 2 & 3
+            // Repeating mazes 2 & 3
             default:    dotCount = (maze == 2 ? 238 : 234)
                 
         }
@@ -160,7 +160,7 @@ class Level {
             case orange...apple:        maze = 1
             case pear...banana3:        maze = 2
                 
-            // >8, mazes alternate at intervals of 4
+            // >8 mazes alternate at intervals of 4
             default:                    maze = ((num - 9) / 4).isEven ? 3 : 2
                 
         }
@@ -177,6 +177,7 @@ class Level {
         icon        = UIImage(named: "ms_icon_\(num)") ?? UIImage()
         
     }
+    
 }
 
 extension Level: Hashable {
