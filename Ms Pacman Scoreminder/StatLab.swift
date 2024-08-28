@@ -9,46 +9,147 @@ import Foundation
 
 struct StatLab {
     
-    private static var shouldAnalyze = false
-    private static var runCount = 1
+    /// Array of all `Score`s to analyze
+    private static var scores = [Score]()
     
-    static func analyze(_ scores: [Score]) {
-        
-        assert(runCount <= 1,
-               "Statlab.analyze should only be called once(run count:\(runCount)")
-        
-        guard shouldAnalyze else { return /*EXIT*/ }
-        shouldAnalyze = false
-        
-        calculateAverageLevelScores(scores)
-        
-        calculateLevelScoreRanges(scores)
-        
-    }
+    /// Max level number contained in scores
+    private static var maxLevel = 0
     
-    static func calculateAverageLevelScores(_ scores: [Score]) {
+    /// Level-num to `[Score]` lookup
+    private static var levelToScore = [Int : [Score]]()
+    
+    /// Lookup the range of scores per `Level`
+    private static var levelToScoreRange = [Int : (low: Int, high: Int)]()
+    
+    /// Process `Score`s generating lookup dictionaries for analytical test methods
+    private static func process(_ scores: [Score]) {
         
-        var levelSorted = [Int : [Score]]()
+        Self.scores = scores
         
         // Sort scores into levels
         for score in scores {
             
-            if levelSorted[score.level.num].isNil {
+            // Level
+            let level = score.level.num
+            maxLevel = max(maxLevel, level)
+            
+            if levelToScore[level].isNil {
                 
-                levelSorted[score.level.num] = [score]
+                // Initialize
+                levelToScore[level] = [score]
+                levelToScoreRange[level] = (score.score, score.score)
                 
             } else {
                 
-                levelSorted[score.level.num]?.append(score)
+                // Load
+                // l2score
+                levelToScore[level]?.append(score)
+                
+                // l2range
+                var (low,high) = levelToScoreRange[level]!
+                low = min(score.score, low)
+                high = max(score.score, high)
+                levelToScoreRange[level] = (low, high)
                 
             }
             
         }
         
-        print("Average Score By Level:")
-        for key in levelSorted.keys.sorted() {
+    }
+    
+    /// Perform expensive/experimental analyses on `Score` data
+    /// - Returns: Results of analysis as `String`
+    static func analyze(_ scores: [Score]) -> String {
+        
+        process(scores)
+        
+        var results = ""
+        
+        let runTime = ContinuousClock().measure {
             
-            if let scores = levelSorted[key] {
+            results += """
+                        \(calculateAverageLevelScores())
+                        
+                        \(calculateLevelScoreRanges())
+                        
+                        \(calcGamesPerLevel())
+                        
+                        \(displayOptimalityTable())
+                        
+                        """
+            
+        }
+        
+        results = """
+                    ------------------------------------
+                    \(results)
+                    ------------------------------------
+                    StatLab Run Time: \(runTime)
+                    ------------------------------------
+                    """
+        
+        print(results)
+        
+        return results
+        
+    }
+    
+    static func displayOptimalityTable() -> String {
+        
+        var results = """
+                        [Optimality Table]
+                        """
+        
+        for level in 0...maxLevel {
+            
+            let level           = Level.get(level)
+            let levelName       = level.name
+            
+            let optimality      = level.optimalScore
+            let optimalityCum   = level.optimalScoreCummulative
+            
+            results += "\n  \(levelName): \(optimality) / \(optimalityCum)"
+            
+        }
+        
+        return results
+        
+    }
+    
+    static func calcGamesPerLevel() -> String {
+        
+        var results = """
+                        [Games Per Level]
+                        """
+        
+        for level in 0...maxLevel {
+            
+            let levelName = Level.get(level).name
+            let gameCount = levelToScore[level]?.count ?? 0
+            
+            results += "\n  \(levelName): \(gameCount)"
+            
+        }
+        
+        results += """
+                      
+                      _____________________
+                      Total: \(scores.count)
+                    """
+        
+        return results
+        
+    }
+    
+    static func calculateAverageLevelScores() -> String {
+        
+        var results = """
+                        [Average Score by Level]
+                        """
+        
+        for level in levelToScore.keys.sorted() {
+            
+            if let scores = levelToScore[level] {
                 
                 var runningScoreTotal = 0
                 
@@ -59,49 +160,34 @@ struct StatLab {
                     
                 }
                 let avgScore = runningScoreTotal / scores.count
-                print("\(Level.get(key).name): \(avgScore)")
+                
+                results += "\n  \(Level.get(level).name): \(avgScore)"
                 
             }
             
         }
+        
+        return results
         
     }
     
-    static func calculateLevelScoreRanges(_ scores: [Score]) {
+    static func calculateLevelScoreRanges() -> String {
         
-        var levelSorted = [Int : (low: Int, high: Int)]()
+        var results = """
+                        [Score Ranges by Level]
+                        """
         
-        // Sort scores into levels
-        for score in scores {
+        for levelNum in levelToScoreRange.keys.sorted() {
             
-            if levelSorted[score.level.num].isNil {
+            if let (low,high) = levelToScoreRange[levelNum] {
                 
-                levelSorted[score.level.num] = (score.score, score.score)
-                
-            } else {
-                
-                var (low,high) = levelSorted[score.level.num]!
-                
-                low = min(score.score, low)
-                high = max(score.score, high)
-                
-                
-                levelSorted[score.level.num] = (low, high)
+                results += "\n  \(Level.get(levelNum).name): \(low)...\(high)"
                 
             }
             
         }
         
-        print("\n---\nScore Ranges By Level:")
-        for key in levelSorted.keys.sorted() {
-            
-            if let (low,high) = levelSorted[key] {
-                
-                print("\(Level.get(key).name): \(low)...\(high)")
-                
-            }
-            
-        }
+        return results
         
     }
     

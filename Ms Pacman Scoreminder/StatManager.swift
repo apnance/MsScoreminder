@@ -236,8 +236,6 @@ class StatManager {
             
             tallyDailyStats()
             
-            runStatLab()
-            
         }
         
     }
@@ -421,7 +419,7 @@ class StatManager {
     /// Run StatLab analyses here
     ///
     /// e.g. StatLab was used to generate score-level prediction ranges
-    func runStatLab() {
+    func runStatLab() -> String {
         
         StatLab.analyze(getScores(sortedBy: .date))
         

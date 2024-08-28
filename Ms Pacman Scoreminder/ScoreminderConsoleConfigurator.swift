@@ -65,6 +65,11 @@ struct ScoreminderConsoleConfigurator: ConsoleConfigurator {
             //                HERE...
             // TODO: Clean Up - Implement first n, last n, nuke, del, add
             //       Do this as an addition to ConsoleView.DataManagerConfigurator.
+            Command(token:      Configs.Console.Command.StatLab.token,
+                    processor:  comStatLab,
+                    category:   Configs.Console.Command.StatLab.category,
+                    helpText:   Configs.Console.Command.StatLab.helpText),
+            
             Command(token:      Configs.Console.Command.Played.token,
                     processor:  comPlayed,
                     category:   Configs.Console.Command.Played.category,
@@ -76,6 +81,12 @@ struct ScoreminderConsoleConfigurator: ConsoleConfigurator {
                     helpText:   Configs.Console.Command.CSV.helpText),
             
         ]
+        
+        func comStatLab(_ args:[String]?, console: ConsoleView) -> CommandOutput {
+            
+            console.formatCommandOutput(statMan.runStatLab())
+            
+        }
         
         func comPlayed(_ args:[String]?, console: ConsoleView) -> CommandOutput {
             
