@@ -38,7 +38,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var backgroundStripeView: UIView!
     @IBOutlet weak var gradientView: UIView!
     
-    
     @IBOutlet weak var marqueeScoreView: UIView!
     @IBOutlet weak var marqueeScoreScoreLabel: UILabel!
     @IBOutlet weak var marqueeScoreTitleLabel: UILabel!
@@ -975,17 +974,8 @@ extension ViewController: ScoreEditorDelegate {
                 currentStreaklength = currentStreak.length
                 
             }
-             
-            let body = Configs.Notifications.getBody(withStreakLength: currentStreaklength)
             
-            NotificationManager.shared.tomorrow(withTitle:      Configs.Notifications.title,
-                                                andBody:        body,
-                                                notificationID: Configs.Notifications.id,
-                                                hour:           Configs.Notifications.Time.hour,
-                                                minute:         Configs.Notifications.Time.minute,
-                                                second:         Configs.Notifications.Time.second,
-                                                badgeNumber:    currentStreaklength,
-                                                testMode:       Configs.Notifications.testMode)
+            PlayReminder.set(currentStreaklength)
             
         } else {
             

@@ -67,45 +67,10 @@ struct Configs {
     
     struct Notifications {
         
-        static func getBody(withStreakLength streakLen: Int) -> String {
-            
-            if streakLen == 1 {
-                
-                return "Your daily game streak is in jeopardy!"
-                
-            } else {
-                
-                return "Your \(streakLen) game streak \(randomScareText)"
-                
-            }
-            
-        }
-        
-        static var randomScareText: String {
-            
-            switch Int.random(min: 0, max: 3) {
-                    
-                case 0: "needs attention!"
-                case 1: "hangs in the balance!"
-                case 2: "ain't going to extend itself..."
-                case 3: "is sad, extend it!"
-                default: "is in jeopardy!"
-                    
-            }
-            
-        }
-        
+        static let times        = [7, 8, 12, 15, 17, 19, 20, 21, 22, 23]
         static let title        = "Streak Alert"
-        static let id           = "Streak Warning"
+        static let id           = "Streak_Warning"
         static let testMode     = false
-        
-        struct Time {
-            
-            static let hour     = 7
-            static let minute   = 2
-            static let second   = 15
-            
-        }
         
     }
     

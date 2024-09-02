@@ -42,6 +42,7 @@
 		93B67B5D274DD741007C302C /* PlayStreak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B67B5C274DD741007C302C /* PlayStreak.swift */; };
 		93B6D0EC27021DAD005ADF3F /* AtomicScoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93B6D0EB27021DAD005ADF3F /* AtomicScoreView.xib */; };
 		93B6D0EE270231A4005ADF3F /* AtomicScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B6D0ED270231A4005ADF3F /* AtomicScoreView.swift */; };
+		93BBC0542C864C1900267929 /* PlayReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BBC0532C864C1900267929 /* PlayReminder.swift */; };
 		93D030A02ADE0709007665A2 /* StatLab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D0309F2ADE0709007665A2 /* StatLab.swift */; };
 		93D92D3D2C6DBD4200843AA0 /* TestDataSmallConsecutive.csv in Resources */ = {isa = PBXBuildFile; fileRef = 93D92D3C2C6DBD4200843AA0 /* TestDataSmallConsecutive.csv */; };
 		93D98BD328DD315C00FD0F80 /* APNGraph in Frameworks */ = {isa = PBXBuildFile; productRef = 93D98BD228DD315C00FD0F80 /* APNGraph */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -127,6 +128,7 @@
 		93B67B5C274DD741007C302C /* PlayStreak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayStreak.swift; sourceTree = "<group>"; };
 		93B6D0EB27021DAD005ADF3F /* AtomicScoreView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AtomicScoreView.xib; sourceTree = "<group>"; };
 		93B6D0ED270231A4005ADF3F /* AtomicScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicScoreView.swift; sourceTree = "<group>"; };
+		93BBC0532C864C1900267929 /* PlayReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayReminder.swift; sourceTree = "<group>"; };
 		93D0309F2ADE0709007665A2 /* StatLab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatLab.swift; sourceTree = "<group>"; };
 		93D92D3C2C6DBD4200843AA0 /* TestDataSmallConsecutive.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestDataSmallConsecutive.csv; sourceTree = "<group>"; };
 		93D98BD128DD314F00FD0F80 /* APNGraph */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = APNGraph; path = ../../Frameworks/APNGraph; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 			children = (
 				93B6D0E92700258C005ADF3F /* iOS */,
 				937B2B4026FBA8E70081CC6A /* StatManager.swift */,
+				93BBC0532C864C1900267929 /* PlayReminder.swift */,
 				9316244D26FA4C8D004C06B7 /* ViewController.swift */,
 				9313DE4B273B418E00460712 /* EmailManager.swift */,
 				933345C12A92FB3100BF1592 /* AnimatedSprite.swift */,
@@ -499,6 +502,7 @@
 				9316244C26FA4C8D004C06B7 /* SceneDelegate.swift in Sources */,
 				93AF7B862A954BA2002B93F5 /* UISegmentedControl.swift in Sources */,
 				93D030A02ADE0709007665A2 /* StatLab.swift in Sources */,
+				93BBC0542C864C1900267929 /* PlayReminder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
