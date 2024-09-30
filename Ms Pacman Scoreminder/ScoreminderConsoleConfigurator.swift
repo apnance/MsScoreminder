@@ -24,7 +24,13 @@ struct ScoreminderConsoleConfigurator: ConsoleConfigurator {
     var consoleView: ConsoleView
     var statMan: StatManager
     
-    var commandGroups: [CommandGroup]? { [scoreminderCommandGroup] }
+    var commands: [Command]? { [
+        
+        MinderStatLab(statMan: statMan, console: consoleView.console),
+        MinderPlayed(statMan: statMan, console: consoleView.console),
+        MinderOutputCSV(console: consoleView.console)
+    
+    ] }
     
     var configs: ConsoleViewConfigs? {
         
@@ -56,85 +62,6 @@ struct ScoreminderConsoleConfigurator: ConsoleConfigurator {
                                     """
         
         return configs
-        
-    }
-    
-    var scoreminderCommandGroup: CommandGroup {
-        
-        return [
-            //                HERE...
-            // TODO: Clean Up - Implement first n, last n, nuke, del, add
-            //       Do this as an addition to ConsoleView.DataManagerConfigurator.
-            Command(token:      Configs.Console.Command.StatLab.token,
-                    processor:  comStatLab,
-                    category:   Configs.Console.Command.StatLab.category,
-                    helpText:   Configs.Console.Command.StatLab.helpText),
-            
-            Command(token:      Configs.Console.Command.Played.token,
-                    processor:  comPlayed,
-                    category:   Configs.Console.Command.Played.category,
-                    helpText:   Configs.Console.Command.Played.helpText),
-            
-            Command(token:      Configs.Console.Command.CSV.token,
-                    processor:  comCSV,
-                    category:   Configs.Console.Command.CSV.category,
-                    helpText:   Configs.Console.Command.CSV.helpText),
-            
-        ]
-        
-        func comStatLab(_ args:[String]?, console: ConsoleView) -> CommandOutput {
-            
-            console.formatCommandOutput(statMan.runStatLab())
-            
-        }
-        
-        func comPlayed(_ args:[String]?, console: ConsoleView) -> CommandOutput {
-            
-            var arg1 = args.elementNum(0)
-            
-            // Today?
-            arg1 = (arg1.lowercased() == "today") ? Date().simple : arg1
-            
-            if let date = arg1.simpleDateMaybe {
-                
-                return console.formatCommandOutput(statMan.played(date))
-                
-            } else {
-                
-                return console.formatCommandOutput(statMan.played())
-                
-            }
-            
-        }
-        
-        
-        /// Builds and returns a comma separated values list of all recorded `Score`s
-        ///
-        /// - Parameter _: does not require or process arguments.
-        /// - Returns: CSV version of all  recorded`Score` data
-        func comCSV(_:[String]?, console: ConsoleView) -> CommandOutput {
-            
-            if let csv = (console.viewController as? ViewController)?.statMan.csv {
-                
-                var atts = console.formatCommandOutput("""
-                          \(csv)
-                          [Note: above output copied to pasteboard]
-                          """)
-                
-                atts.foregroundColor    = UIColor.pear
-                
-                printToClipboard(csv)
-                
-                return atts /*EXIT*/
-                
-            } else {
-                
-                return console.format("Error retrieving .csv data.",
-                                      target: .outputWarning)
-                
-            }
-            
-        }
         
     }
     

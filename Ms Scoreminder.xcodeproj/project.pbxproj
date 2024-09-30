@@ -50,6 +50,9 @@
 		93DD05972A86E0B60030D504 /* ScoreEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DD05962A86E0B60030D504 /* ScoreEditor.swift */; };
 		93DD05992A86E2040030D504 /* DayWebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93DD05982A86E2040030D504 /* DayWebView.xib */; };
 		93DD059D2A86E3E90030D504 /* APNFlexKeypad in Frameworks */ = {isa = PBXBuildFile; productRef = 93DD059C2A86E3E90030D504 /* APNFlexKeypad */; };
+		93DDF2172CAA2964005D3C3C /* MinderOutputCSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DDF2162CAA2964005D3C3C /* MinderOutputCSV.swift */; };
+		93DDF2192CAA2B7F005D3C3C /* MinderPlayed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DDF2182CAA2B7F005D3C3C /* MinderPlayed.swift */; };
+		93DDF21B2CAA2E4F005D3C3C /* MinderStatLab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DDF21A2CAA2E4F005D3C3C /* MinderStatLab.swift */; };
 		93DEECF82C53428300473587 /* ConsoleView in Frameworks */ = {isa = PBXBuildFile; productRef = 93DEECF72C53428300473587 /* ConsoleView */; };
 		93DFD4BA2AE313B800C507F8 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DFD4B92AE313B800C507F8 /* UIColor.swift */; };
 		93F89B4A298B4C3A006C672A /* DailySummaryWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F89B49298B4C3A006C672A /* DailySummaryWebView.swift */; };
@@ -136,6 +139,9 @@
 		93DD05962A86E0B60030D504 /* ScoreEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreEditor.swift; sourceTree = "<group>"; };
 		93DD05982A86E2040030D504 /* DayWebView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayWebView.xib; sourceTree = "<group>"; };
 		93DD059B2A86E3CC0030D504 /* APNFlexKeypad */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = APNFlexKeypad; path = ../../Frameworks/APNFlexKeypad; sourceTree = "<group>"; };
+		93DDF2162CAA2964005D3C3C /* MinderOutputCSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinderOutputCSV.swift; sourceTree = "<group>"; };
+		93DDF2182CAA2B7F005D3C3C /* MinderPlayed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinderPlayed.swift; sourceTree = "<group>"; };
+		93DDF21A2CAA2E4F005D3C3C /* MinderStatLab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinderStatLab.swift; sourceTree = "<group>"; };
 		93DFD4B92AE313B800C507F8 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		93F89B49298B4C3A006C672A /* DailySummaryWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySummaryWebView.swift; sourceTree = "<group>"; };
 		93FFB9D52AD35EA900F05165 /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
@@ -229,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				93B6D0E92700258C005ADF3F /* iOS */,
+				93DDF2142CAA2900005D3C3C /* Console */,
 				937B2B4026FBA8E70081CC6A /* StatManager.swift */,
 				93BBC0532C864C1900267929 /* PlayReminder.swift */,
 				9316244D26FA4C8D004C06B7 /* ViewController.swift */,
@@ -323,6 +330,24 @@
 				93DD059B2A86E3CC0030D504 /* APNFlexKeypad */,
 			);
 			name = Packages;
+			sourceTree = "<group>";
+		};
+		93DDF2142CAA2900005D3C3C /* Console */ = {
+			isa = PBXGroup;
+			children = (
+				93DDF2152CAA2918005D3C3C /* Commands */,
+			);
+			path = Console;
+			sourceTree = "<group>";
+		};
+		93DDF2152CAA2918005D3C3C /* Commands */ = {
+			isa = PBXGroup;
+			children = (
+				93DDF2162CAA2964005D3C3C /* MinderOutputCSV.swift */,
+				93DDF2182CAA2B7F005D3C3C /* MinderPlayed.swift */,
+				93DDF21A2CAA2E4F005D3C3C /* MinderStatLab.swift */,
+			);
+			path = Commands;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -491,11 +516,14 @@
 				9313DE4C273B418F00460712 /* EmailManager.swift in Sources */,
 				9316244E26FA4C8D004C06B7 /* ViewController.swift in Sources */,
 				93B67B5D274DD741007C302C /* PlayStreak.swift in Sources */,
+				93DDF2172CAA2964005D3C3C /* MinderOutputCSV.swift in Sources */,
+				93DDF2192CAA2B7F005D3C3C /* MinderPlayed.swift in Sources */,
 				93DFD4BA2AE313B800C507F8 /* UIColor.swift in Sources */,
 				933345C02A9076E400BF1592 /* TaggedView.swift in Sources */,
 				93DD05972A86E0B60030D504 /* ScoreEditor.swift in Sources */,
 				9316244A26FA4C8D004C06B7 /* AppDelegate.swift in Sources */,
 				93FFB9D62AD35EAA00F05165 /* Level.swift in Sources */,
+				93DDF21B2CAA2E4F005D3C3C /* MinderStatLab.swift in Sources */,
 				93345AD42730698D0090154B /* Stats.swift in Sources */,
 				933345C22A92FB3200BF1592 /* AnimatedSprite.swift in Sources */,
 				93A497A3270E21F700D5AB5F /* Preferences.swift in Sources */,
@@ -691,8 +719,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.7;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.aaron.nance.Ms-Scoreminder-v1.5.7";
+				MARKETING_VERSION = 1.5.9;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aaron.nance.Ms-Scoreminder-v1.5.9";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -720,8 +748,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.7;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.aaron.nance.Ms-Scoreminder-v1.5.7";
+				MARKETING_VERSION = 1.5.9;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aaron.nance.Ms-Scoreminder-v1.5.9";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

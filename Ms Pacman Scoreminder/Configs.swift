@@ -23,14 +23,14 @@ struct Configs {
     
     struct Console {
         
-        struct Command {
+        struct Commands {
             
             static var category = "score"
             
             struct CSV {
                 
                 static var token    = "csv"
-                static var category =  Configs.Console.Command.category
+                static var category =  Configs.Console.Commands.category
                 static var helpText = "Formats all saved game data as CSV and copies them to pasteboard."
                 
             }
@@ -38,7 +38,7 @@ struct Configs {
             struct Played {
                 
                 static var token    = "played"
-                static var category =  Configs.Console.Command.category
+                static var category =  Configs.Console.Commands.category
                 static var helpText = """
                                         Echoes information about all recorded games played thus far.
                                         \tUsage:
@@ -53,7 +53,7 @@ struct Configs {
             struct StatLab {
                 
                 static var token    = "statlab"
-                static var category =  Configs.Console.Command.category
+                static var category =  Configs.Console.Commands.category
                 static var helpText = """
                                         Runs a battery of potentially expensive statistical
                                         \tanalyses, echoing the results.
