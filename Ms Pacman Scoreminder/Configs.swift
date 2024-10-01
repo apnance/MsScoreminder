@@ -25,7 +25,7 @@ struct Configs {
         
         struct Commands {
             
-            static var category = "score"
+            static var category = "SCORE"
             
             struct CSV {
                 
