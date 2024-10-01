@@ -54,10 +54,11 @@ struct ScoreminderConsoleConfigurator: ConsoleConfigurator {
         configs.bgColorHistoryBarButtons            = .white
         
         configs.aboutScreen =     """
-                                       Welcome
-                                         to
-                                       Ms. Scoreminder \("v\(Bundle.appVersion)")
-                                    """
+                                    Ms.
+                                    Score-
+                                    minder
+                                    \("v\(Bundle.appVersion)")
+                                    """.fontify(.small)
         
         return configs
         
