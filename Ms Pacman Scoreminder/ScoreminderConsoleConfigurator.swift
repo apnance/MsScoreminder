@@ -14,21 +14,23 @@ struct ScoreminderConsoleConfigurator: ConsoleConfigurator {
     @discardableResult init(consoleView: ConsoleView, 
                             statManager: StatManager) {
         
-        self.consoleView = consoleView
-        self.statMan = statManager
+        self._consoleView   = consoleView
+        self.statMan        = statManager
         
         load()
         
     }
     
-    var consoleView: ConsoleView
-    var statMan: StatManager
+    weak private var _consoleView: ConsoleView!
+    weak private var statMan: StatManager!
+    
+    var consoleView: ConsoleView { _consoleView }
     
     var commands: [Command]? { [
         
         MinderStatLab(statMan: statMan, console: consoleView.console),
         MinderPlayed(statMan: statMan, console: consoleView.console),
-        MinderOutputCSV(console: consoleView.console)
+        MinderOutputCSV(statMan: statMan, console: consoleView.console)
     
     ] }
     

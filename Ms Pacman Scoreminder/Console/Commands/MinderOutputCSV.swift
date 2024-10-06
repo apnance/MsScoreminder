@@ -13,6 +13,8 @@ import ConsoleView
 @available(iOS 15, *)
 struct MinderOutputCSV: Command {
     
+    weak var statMan: StatManager?
+    
     // - MARK: Command Requirements
     var console: Console
     
@@ -26,28 +28,22 @@ struct MinderOutputCSV: Command {
     
     func process(_ args: [String]?) -> CommandOutput {
         
-        if let csv = (console.screen as? ViewController)?.statMan.csv {
-            
-            var atts = screen.formatCommandOutput("""
+        let csv = statMan!.csv
+        
+        var atts = screen.formatCommandOutput("""
                       \(csv)
                       [Note: above output copied to pasteboard]
                       """)
-            
-            // Format
-            atts.formatted.foregroundColor = UIColor.pear
-            
-            // Pasteboard
-            printToClipboard(csv)
-            
-            return atts /*EXIT*/
-            
-        } else {
-            
-            return screen.format("Error retrieving .csv data.",
-                                  target: .outputWarning)
-            
-        }
+        
+        // Format
+        atts.formatted.foregroundColor = UIColor.pear
+        
+        // Pasteboard
+        printToClipboard(csv)
+        
+        return atts /*EXIT*/
         
     }
+    
 }
 
