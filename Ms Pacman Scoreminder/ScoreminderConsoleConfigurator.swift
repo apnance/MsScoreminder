@@ -11,7 +11,7 @@ import ConsoleView
 
 struct ScoreminderConsoleConfigurator: ConsoleConfigurator {
     
-    @discardableResult init(consoleView: ConsoleView, 
+    @discardableResult init(consoleView: ConsoleView,
                             statManager: StatManager) {
         
         self._consoleView   = consoleView
@@ -31,7 +31,7 @@ struct ScoreminderConsoleConfigurator: ConsoleConfigurator {
         MinderStatLab(statMan: statMan, console: consoleView.console),
         MinderPlayed(statMan: statMan, console: consoleView.console),
         MinderOutputCSV(statMan: statMan, console: consoleView.console)
-    
+        
     ] }
     
     var configs: ConsoleViewConfigs? {
@@ -55,12 +55,12 @@ struct ScoreminderConsoleConfigurator: ConsoleConfigurator {
         configs.bgColorHistoryBarMain               = UIColor.banana.pointNineAlpha
         configs.bgColorHistoryBarButtons            = .white
         
-        configs.aboutScreen =     """
-                                    Ms.
-                                    Score-
-                                    minder
-                                    \("v\(Bundle.appVersion)")
-                                    """.fontify(.small)
+        configs.aboutScreen =   """
+                                Ms.
+                                Score-
+                                minder
+                                \("v\(Bundle.appVersion)")
+                                """.fontify(.small)
         
         return configs
         
