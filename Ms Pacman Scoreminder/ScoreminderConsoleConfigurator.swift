@@ -30,7 +30,7 @@ struct ScoreminderConsoleConfigurator: ConsoleConfigurator {
         
         MinderStatLab(statMan: statMan, console: consoleView.console),
         MinderPlayed(statMan: statMan, console: consoleView.console),
-        MinderOutputCSV(statMan: statMan, console: consoleView.console)
+        MinderCSV(statMan: statMan, console: consoleView.console)
         
     ] }
     

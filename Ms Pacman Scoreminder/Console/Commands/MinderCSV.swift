@@ -11,7 +11,7 @@ import ConsoleView
 
 /// Outputs the saved score data to the screen *and* to the pasteboards as a .csv
 @available(iOS 15, *)
-struct MinderOutputCSV: Command {
+struct MinderCSV: Command {
     
     weak var statMan: StatManager?
     
