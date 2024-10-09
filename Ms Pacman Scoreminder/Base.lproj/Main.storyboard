@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SsP-ad-Wjl">
-                                <rect key="frame" x="25" y="134" width="343" height="907"/>
+                                <rect key="frame" x="25" y="134" width="343" height="1184"/>
                                 <color key="backgroundColor" name="Pink"/>
                             </view>
                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xg8-qZ-HZB" userLabel="Gradient View">
@@ -557,7 +557,7 @@
                                 <rect key="frame" x="43" y="402.33333333333331" width="307" height="20"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="d4r-1W-jEE" userLabel="Filter Type">
-                                        <rect key="frame" x="0.0" y="0.0" width="97" height="21"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="92.666666666666671" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" identifier="FilterTypeWidth" id="S0g-2i-YqQ"/>
                                         </constraints>
@@ -569,7 +569,7 @@
                                         </segments>
                                     </segmentedControl>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Vnt-bR-Qfa" userLabel="Avg Sorted">
-                                        <rect key="frame" x="108" y="0.0" width="91" height="21"/>
+                                        <rect key="frame" x="103.66666666666666" y="0.0" width="100" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" identifier="AvgSortedWidth" id="66s-No-uLW"/>
                                         </constraints>
@@ -579,7 +579,7 @@
                                         </segments>
                                     </segmentedControl>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Hbp-Q9-muc" userLabel="Date Sorted">
-                                        <rect key="frame" x="210" y="0.0" width="97" height="21"/>
+                                        <rect key="frame" x="214.66666666666671" y="0.0" width="92.333333333333343" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" identifier="DateSortedWidth" id="jhd-fK-CpO"/>
                                         </constraints>
@@ -691,7 +691,7 @@
                             <constraint firstItem="xg8-qZ-HZB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="c7l-0D-kgo"/>
                             <constraint firstItem="rGJ-M0-qHl" firstAttribute="centerY" secondItem="pii-L0-PwK" secondAttribute="centerY" identifier="ControlsBackgroundViewCenterY" id="cAW-qf-VPp"/>
                             <constraint firstItem="Odw-fc-Buf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="cX8-X1-VHN"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="SsP-ad-Wjl" secondAttribute="bottom" constant="-223" id="d35-DH-3yq"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="SsP-ad-Wjl" secondAttribute="bottom" constant="-500" id="d35-DH-3yq"/>
                             <constraint firstAttribute="bottom" secondItem="yGI-Rh-K7B" secondAttribute="bottom" id="d4W-sp-uEF"/>
                             <constraint firstItem="yFo-KC-Pry" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="19" id="d8o-71-Ij3"/>
                             <constraint firstItem="yFo-KC-Pry" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="27" id="eE3-Jj-njQ"/>
@@ -767,29 +767,6 @@
             <point key="canvasLocation" x="443.51145038167937" y="-212.67605633802819"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="AI7-3q-VHs">
-            <size key="intrinsicContentSize" width="30" height="23"/>
-        </designable>
-        <designable name="L2S-Eo-tq0">
-            <size key="intrinsicContentSize" width="30" height="23"/>
-        </designable>
-        <designable name="VTW-GO-VI7">
-            <size key="intrinsicContentSize" width="30" height="23"/>
-        </designable>
-        <designable name="Yhi-ft-33M">
-            <size key="intrinsicContentSize" width="150" height="150"/>
-        </designable>
-        <designable name="ZXf-J4-hY7">
-            <size key="intrinsicContentSize" width="30" height="23"/>
-        </designable>
-        <designable name="ggF-iH-bax">
-            <size key="intrinsicContentSize" width="24.333333333333332" height="22"/>
-        </designable>
-        <designable name="j9n-rM-wWA">
-            <size key="intrinsicContentSize" width="30" height="57"/>
-        </designable>
-    </designables>
     <resources>
         <image name="envelope.fill" catalog="system" width="128" height="85"/>
         <image name="graph_button_bg" width="150" height="150"/>
