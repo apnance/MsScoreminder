@@ -238,7 +238,6 @@
 				93DDF2142CAA2900005D3C3C /* Console */,
 				937B2B4026FBA8E70081CC6A /* StatManager.swift */,
 				93BBC0532C864C1900267929 /* PlayReminder.swift */,
-				9316244D26FA4C8D004C06B7 /* ViewController.swift */,
 				9313DE4B273B418E00460712 /* EmailManager.swift */,
 				933345C12A92FB3100BF1592 /* AnimatedSprite.swift */,
 				93B087AA2C4DD51C003BE5FA /* ScoreminderConsoleConfigurator.swift */,
@@ -306,6 +305,7 @@
 		93B6D0E92700258C005ADF3F /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				9316244D26FA4C8D004C06B7 /* ViewController.swift */,
 				9316244926FA4C8D004C06B7 /* AppDelegate.swift */,
 				9316244B26FA4C8D004C06B7 /* SceneDelegate.swift */,
 				93AF7B852A954BA1002B93F5 /* UISegmentedControl.swift */,
@@ -713,6 +713,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 56S32J5CWV;
 				INFOPLIST_FILE = "Ms Pacman Scoreminder/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Ms. Scoreminder";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -742,6 +743,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 56S32J5CWV;
 				INFOPLIST_FILE = "Ms Pacman Scoreminder/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Ms. Scoreminder";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
