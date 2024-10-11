@@ -150,20 +150,12 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Streaks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v77-Yr-UNX">
-                                        <rect key="frame" x="28.333333333333336" y="58.666666666666671" width="113.33333333333331" height="43.333333333333329"/>
-                                        <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="34"/>
-                                        <color key="textColor" name="Pretzel"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="v77-Yr-UNX" firstAttribute="centerY" secondItem="yFo-KC-Pry" secondAttribute="centerY" constant="-4.75" id="8nJ-Bh-gPm"/>
                                     <constraint firstItem="2VS-2R-Jin" firstAttribute="centerX" secondItem="yFo-KC-Pry" secondAttribute="centerX" constant="3" id="BXj-tS-Bss"/>
                                     <constraint firstItem="2VS-2R-Jin" firstAttribute="centerY" secondItem="yFo-KC-Pry" secondAttribute="centerY" constant="-6.8333333333333712" id="GJ4-DH-Z9Y"/>
                                     <constraint firstAttribute="width" constant="170" id="HtI-np-bXM"/>
-                                    <constraint firstItem="v77-Yr-UNX" firstAttribute="centerX" secondItem="yFo-KC-Pry" secondAttribute="centerX" id="M0O-Wh-qhp"/>
                                     <constraint firstAttribute="height" constant="170" id="UqR-SO-tQN"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -790,9 +782,6 @@
         </namedColor>
         <namedColor name="Pink">
             <color red="0.94499999284744263" green="0.19300000369548798" blue="0.49599999189376831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="Pretzel">
-            <color red="0.64399999380111694" green="0.39300000667572021" blue="0.18700000643730164" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
