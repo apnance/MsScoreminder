@@ -62,14 +62,14 @@
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFo-KC-Pry" userLabel="Streaks Container View" customClass="RoundTextView" customModule="APNUtil">
                                 <rect key="frame" x="19" y="27" width="170" height="170"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2VS-2R-Jin" userLabel="Streaks Stack View">
-                                        <rect key="frame" x="25" y="25" width="120" height="100"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="equalCentering" alignment="center" spacing="-12" translatesAutoresizingMaskIntoConstraints="NO" id="2VS-2R-Jin" userLabel="Streaks Stack View">
+                                        <rect key="frame" x="28" y="34.333333333333343" width="120" height="88"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" distribution="fillProportionally" spacing="-14" translatesAutoresizingMaskIntoConstraints="NO" id="bz8-aT-QL1" userLabel="Longest Streak Stack View">
+                                            <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" distribution="fillProportionally" spacing="-12" translatesAutoresizingMaskIntoConstraints="NO" id="bz8-aT-QL1" userLabel="Longest Streak Stack View">
                                                 <rect key="frame" x="0.0" y="0.0" width="120" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999" textAlignment="right" lineBreakMode="tailTruncation" minimumScaleFactor="0.29999999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="DXE-m4-uSE">
-                                                        <rect key="frame" x="0.0" y="0.0" width="54" height="50"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="52" height="50"/>
                                                         <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="52"/>
                                                         <color key="textColor" name="Apple"/>
                                                         <nil key="highlightedColor"/>
@@ -77,9 +77,9 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="fillEqually" spacing="-15" translatesAutoresizingMaskIntoConstraints="NO" id="hgl-9X-pji">
                                                         <rect key="frame" x="40" y="0.0" width="80" height="50"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="LONGEST" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8aN-71-kDY">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="LONG" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8aN-71-kDY">
                                                                 <rect key="frame" x="0.0" y="0.0" width="80" height="26.666666666666668"/>
-                                                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="9"/>
+                                                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="12"/>
                                                                 <color key="textColor" name="Apple"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -90,7 +90,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="Feb 29, 21" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="aiA-1a-tWG">
-                                                                <rect key="frame" x="0.0" y="23.333333333333329" width="80" height="26.666666666666671"/>
+                                                                <rect key="frame" x="0.0" y="23.333333333333336" width="80" height="26.666666666666664"/>
                                                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="8"/>
                                                                 <color key="textColor" name="Pink"/>
                                                                 <nil key="highlightedColor"/>
@@ -106,15 +106,15 @@
                                                     <constraint firstAttribute="width" constant="120" id="yr1-aT-X6q"/>
                                                 </constraints>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" distribution="fillProportionally" spacing="-10" translatesAutoresizingMaskIntoConstraints="NO" id="guH-An-kIK" userLabel="Current Streak Stack View">
-                                                <rect key="frame" x="0.0" y="50" width="120" height="50"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" distribution="fillProportionally" spacing="-12" translatesAutoresizingMaskIntoConstraints="NO" id="guH-An-kIK" userLabel="Current Streak Stack View">
+                                                <rect key="frame" x="0.0" y="37.999999999999993" width="120" height="50.000000000000007"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="fillEqually" spacing="-8" translatesAutoresizingMaskIntoConstraints="NO" id="lvP-8u-aXN">
                                                         <rect key="frame" x="0.0" y="0.0" width="65" height="50"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="CURRENT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9mx-Ym-55c">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="ACTIVE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9mx-Ym-55c">
                                                                 <rect key="frame" x="0.0" y="0.0" width="65" height="22"/>
-                                                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="9"/>
+                                                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="12"/>
                                                                 <color key="textColor" name="Orange"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -137,7 +137,7 @@
                                                         </constraints>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999" lineBreakMode="tailTruncation" minimumScaleFactor="0.30000001192092896" translatesAutoresizingMaskIntoConstraints="NO" id="yAz-0b-kQv">
-                                                        <rect key="frame" x="55" y="0.0" width="65" height="50"/>
+                                                        <rect key="frame" x="53" y="0.0" width="67" height="50"/>
                                                         <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="52"/>
                                                         <color key="textColor" name="Orange"/>
                                                         <nil key="highlightedColor"/>
@@ -150,7 +150,7 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.14999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Streaks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v77-Yr-UNX">
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Streaks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v77-Yr-UNX">
                                         <rect key="frame" x="28.333333333333336" y="58.666666666666671" width="113.33333333333331" height="43.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="34"/>
                                         <color key="textColor" name="Pretzel"/>
@@ -160,8 +160,8 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="v77-Yr-UNX" firstAttribute="centerY" secondItem="yFo-KC-Pry" secondAttribute="centerY" constant="-4.75" id="8nJ-Bh-gPm"/>
-                                    <constraint firstItem="2VS-2R-Jin" firstAttribute="centerX" secondItem="yFo-KC-Pry" secondAttribute="centerX" id="BXj-tS-Bss"/>
-                                    <constraint firstItem="2VS-2R-Jin" firstAttribute="centerY" secondItem="yFo-KC-Pry" secondAttribute="centerY" constant="-10" id="GJ4-DH-Z9Y"/>
+                                    <constraint firstItem="2VS-2R-Jin" firstAttribute="centerX" secondItem="yFo-KC-Pry" secondAttribute="centerX" constant="3" id="BXj-tS-Bss"/>
+                                    <constraint firstItem="2VS-2R-Jin" firstAttribute="centerY" secondItem="yFo-KC-Pry" secondAttribute="centerY" constant="-6.8333333333333712" id="GJ4-DH-Z9Y"/>
                                     <constraint firstAttribute="width" constant="170" id="HtI-np-bXM"/>
                                     <constraint firstItem="v77-Yr-UNX" firstAttribute="centerX" secondItem="yFo-KC-Pry" secondAttribute="centerX" id="M0O-Wh-qhp"/>
                                     <constraint firstAttribute="height" constant="170" id="UqR-SO-tQN"/>
