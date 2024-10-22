@@ -24,7 +24,7 @@ struct Score: Hashable {
     /// - note: Default value is 1 and indicates an unaveraged `Score`.
     private(set) var averagedGameCount: Int
     
-    /// Does this `Score` represent an
+    /// Does this `Score` represent an average of `Score` values
     var isAveraged: Bool { averagedGameCount > 1 }
     var isSingle: Bool { averagedGameCount == 1 }
     
