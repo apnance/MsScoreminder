@@ -161,7 +161,7 @@ extension StatManager {
         
     }
     
-    func setScores(_ scores: [Score]) {
+    func setSortedScoreArrays(_ scores: [Score]) {
         
         stats.scoresDateSorted          = scores.sorted{ $0.date > $1.date }
         stats.scoresHighSorted          = scores.sorted{ $0.score > $1.score }

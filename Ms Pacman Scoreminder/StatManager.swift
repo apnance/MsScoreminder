@@ -340,7 +340,7 @@ class StatManager {
         // Streaks
         setStreaks(with: Array(scoreData.keys))
         
-        setScores(scores)
+        setSortedScoreArrays(scores)
         
         stats.singleGamesCount  = scores.count
         stats.highScore         = highScore
