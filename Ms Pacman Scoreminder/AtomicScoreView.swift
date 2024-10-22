@@ -13,16 +13,45 @@ class AtomicScoreView: UIView {
     private static let nib = UINib(nibName: "AtomicScoreView",
                                    bundle: Bundle.main)
     
-    /// Factory method for instantiating AtomicScoreViews via nib loading.
+    /// Standard width for an `AtomicScoreView` to be used througout app.
+    static private(set) var standardWidth: Double!
+    
+    /// Standard height for an `AtomicScoreView` to be used througout app.
+    static private(set) var standardHeight: Double!
+    
+    /// Sets the standard height and width of all AtomicScoreViews henceforth.
+    /// Used to standardize the view dimensions across the app.  This method
+    /// should only be called once.
+    /// - Parameters:
+    ///   - width: view width
+    ///   - height: view height
+    static func setStandardDims(_ width: Double, _ height: Double) {
+        
+        assert(Self.standardWidth.isNil && Self.standardHeight.isNil,
+                """
+                \(#function) should be called once per application lifecycle\
+                but has been called multiple times.
+                """)
+        
+        Self.standardWidth  = width
+        Self.standardHeight = height
+        
+    }
+    
+    /// Factory method for instantiating AtomicScoreViews
     static func new(delegate: AtomicScoreViewDelegate?,
                     withScore score: Score,
                     andData data: [String],
                     textColor: UIColor = Configs.UI.Display.defaultAtomicScoreViewTextColor) -> AtomicScoreView {
         
-        let scoreView = nib.instantiate(withOwner: self,
-                                        options: nil).first as! AtomicScoreView
-        scoreView.delegate = delegate
-        scoreView.load(score: score, data: data, textColor: textColor)
+        let scoreView       = nib.instantiate(withOwner: self,
+                                              options: nil).first as! AtomicScoreView
+        scoreView.delegate  = delegate
+        scoreView.load(score: score,
+                       data: data,
+                       frame: CGRect(x: 0, y: 0,
+                                     width: standardWidth, height: standardHeight),
+                       textColor: textColor)
         
         return scoreView
         
@@ -43,11 +72,20 @@ class AtomicScoreView: UIView {
     private var score: Score!
             
     private var data = [String]()
-  
-    private func load(score: Score, data: [String], textColor: UIColor) {
+    
+    /// Helper method for static new() factory method that loads data into and
+    /// initializes the UI of an `AtomicScoreView` instance.
+    private func load(score: Score,
+                      data: [String],
+                      frame: CGRect,
+                      textColor: UIColor) {
         
-        self.data   = data
+        // Data
         self.score  = score
+        self.data   = data
+        
+        // Frame
+        self.frame  = frame
         
         // Date
         dateView.text       = score.date.simple
@@ -66,6 +104,7 @@ class AtomicScoreView: UIView {
         // Score
         scoreLabel.text                 = score.score.delimited
         scoreLabel.textColor            = textColor
+        scoreStatsLabel.rotate(angle: -22.5)
         
         // Optimality
         optimalityLabel.text            = "\(score.optimality.roundTo(1))%"
@@ -77,9 +116,18 @@ class AtomicScoreView: UIView {
         // Border
         layer.cornerRadius              = frame.height / 5.0
         borderView.layer.cornerRadius   = frame.height / 5.0
-        borderView.layer.borderWidth    = frame.height / 7.5
+        borderView.layer.borderWidth    = frame.height / 7.0
         
-        scoreStatsLabel.rotate(angle: -22.5)
+        // Constraints
+        for constraintName in ["scoreStackViewL", "scoreStackViewR", "scoreStackViewB" /*, "scoreStackViewT"*/ ] {
+            
+            if let constraint = constraints.first(where: { $0.identifier == constraintName }) {
+                
+                constraint.constant = borderView.layer.borderWidth * 1.33
+                
+            }
+            
+        }
         
         // Shadows
         addShadows()

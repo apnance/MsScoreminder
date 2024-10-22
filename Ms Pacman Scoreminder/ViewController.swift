@@ -15,7 +15,8 @@ class ViewController: UIViewController {
     
     // MARK: - Properties
     var statMan             = StatManager()
-    private let (w, h, p)   = (117.0, 58.0, 3.5)
+    private let rowCount    = 7
+    private let colCount    = 3
     private var scoreCycler = (num: -34,
                                incr: 1,
                                dataCurrent: 1,
@@ -454,6 +455,15 @@ class ViewController: UIViewController {
     
     private func uiMisc() {
         
+        // AtomicScoreView
+        var width   = scoresView.frame.width / colCount.double
+        var height  = scoresView.frame.height / rowCount.double
+        
+        width   -= width * 0.045
+        height  -= height * 0.05
+        
+        AtomicScoreView.setStandardDims(width, height)
+        
         // Console
         ScoreminderConsoleConfigurator(consoleView: consoleView, 
                                        statManager: statMan)
@@ -599,21 +609,20 @@ class ViewController: UIViewController {
         scoresContainerView.isHidden = false
         scoresFilterLabel.text = statMan.getFilterLabel(dateRange: .unspecified)
         
-        let rowCount    = Int(scoresView.frame.height) / Int(h)
-        let colCount    = Int(scoresView.frame.width) / Int(w)
-        var col         = 1
+        let rowHeight       = scoresView.frame.height / rowCount.double
+        let colWidth        = scoresView.frame.width / colCount.double
         
-        let scoreCount  = colCount * rowCount
-        let scores      = statMan.filter(count: scoreCount)
-        
-        var (xO, yO)    = ((scoresView.frame.width / colCount.double) / 2.0, (h + p) * 0.55)
+        var (xO, yO)        = (colWidth / 2.0, rowHeight / 2.0)
         
         // Remove old Score UI
-        scoreViews      = []
+        scoreViews          = []
         scoresView.removeAllSubviews()
         
-        var currentDate = Date(timeIntervalSince1970: 0).simple
-        var textColor   = Configs.UI.Display.defaultAtomicScoreViewTextColor
+        var currentDate     = Date(timeIntervalSince1970: 0).simple
+        var textColor       = Configs.UI.Display.defaultAtomicScoreViewTextColor
+        
+        var col             = 1
+        let scores          = statMan.filter(count: colCount * rowCount)
         
         for score in scores {
             
@@ -636,8 +645,6 @@ class ViewController: UIViewController {
                                                 textColor: textColor)
             
             scoreViews.append(scoreView)
-            
-            scoreView.translatesAutoresizingMaskIntoConstraints = true
             scoresView.addSubview(scoreView)
             
             // Layout
@@ -647,14 +654,14 @@ class ViewController: UIViewController {
             
             if col > colCount {
                 
-                xO = (scoresView.frame.width / colCount.double) / 2.0
+                xO  = colWidth / 2.0
                 col = 1
                 
-                yO += (h + p)
+                yO += rowHeight
                 
             } else {
                 
-                xO += scoresView.frame.width / colCount.double
+                xO += colWidth
                 
             }
             

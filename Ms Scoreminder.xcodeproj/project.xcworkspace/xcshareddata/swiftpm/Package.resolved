@@ -1,15 +1,6 @@
 {
   "pins" : [
     {
-      "identity" : "apnutil",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apnance/APNUtil",
-      "state" : {
-        "revision" : "f391f37be225df232a2720f85df19b8eea0de60f",
-        "version" : "1.4.5"
-      }
-    },
-    {
       "identity" : "consoleview",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apnance/ConsoleView",

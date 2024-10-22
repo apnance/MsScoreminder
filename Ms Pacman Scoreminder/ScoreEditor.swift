@@ -19,6 +19,7 @@ class ScoreEditor: UIView {
     @IBOutlet weak var deleteConfirmationContainerView: UIView!
     @IBOutlet weak var numPad: APNFlexKeypad!
     @IBOutlet weak var fruitPad: APNFlexKeypad!
+    @IBOutlet weak var fruitPadBGColorView: UIView!
     @IBOutlet weak var deleteButton: RoundButton!
     @IBOutlet weak var updateButton: UIButton!
     @IBOutlet weak var editScoreLabel: UILabel!
@@ -45,7 +46,7 @@ class ScoreEditor: UIView {
     }
     
     @IBAction func tappedSet(_ sender: Any) { set() }
-    @IBAction func decreasLevel(_ sender: Any) { changeLevel(-1) }
+    @IBAction func decreaseLevel(_ sender: Any) { changeLevel(-1) }
     @IBAction func increaseLevel(_ sender: Any) { changeLevel(+1) }
     
     // MARK: - Properties
@@ -189,8 +190,10 @@ class ScoreEditor: UIView {
                                                                            plusColors, nil, .medium)
                                                                ]))
         
-        fruitPad.layer.cornerRadius = fruitPad.frame.height / 2.0
-        fruitPad.backgroundColor    = Configs.UI.Colors.ScoreEditor.FruitPad.bg
+        fruitPadBGColorView.backgroundColor     = Configs.UI.Colors.ScoreEditor.FruitPad.bg
+        fruitPadBGColorView.layer.cornerRadius  = fruitPadBGColorView.frame.height / 2.0
+        fruitPad.layer.cornerRadius             = fruitPadBGColorView.layer.cornerRadius
+        fruitPad.backgroundColor                = Configs.UI.Colors.ScoreEditor.UIContainer.polkaDotsBG
         
         outlineAndShadow(view: fruitPad)
         fruitPad.show(false,    animated: false)
@@ -266,7 +269,6 @@ class ScoreEditor: UIView {
         scoreView.isUserInteractionEnabled = false
         
         scoreContainerView.subviews.forEach { if $0 is AtomicScoreView { $0.removeFromSuperview() } }
-        scoreContainerView.translatesAutoresizingMaskIntoConstraints = true
         scoreContainerView.addSubview(scoreView)
         
         Utils.UI.addShadows(to: scoreView)
@@ -415,10 +417,12 @@ class ScoreEditor: UIView {
         
         if numPad.isShown && numPad.value != "" && scoreValue % 10 == 0 {
             
+            fruitPadBGColorView.isHidden = false
             fruitPad.show(true, animated: true)
             
         } else {
             
+            fruitPadBGColorView.isHidden = true
             fruitPad.show(false, animated: true)
             
         }

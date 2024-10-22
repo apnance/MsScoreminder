@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -15,6 +15,7 @@
                 <outlet property="deleteConfirmationContainerView" destination="HyG-ov-x6j" id="xXY-eL-mBF"/>
                 <outlet property="editScoreLabel" destination="bXj-AM-asA" id="SOC-uL-RZo"/>
                 <outlet property="fruitPad" destination="3CX-BZ-S7T" id="4iS-4t-2eX"/>
+                <outlet property="fruitPadBGColorView" destination="jIZ-qi-xY8" id="w4S-qI-NEu"/>
                 <outlet property="numPad" destination="eua-Zx-IOX" id="CXb-4c-2uf"/>
                 <outlet property="polkaDotsView" destination="gi4-3L-nlb" id="9pb-6j-q5k"/>
                 <outlet property="scoreContainerView" destination="99q-YI-Z1E" id="gLq-3v-MSD"/>
@@ -37,125 +38,133 @@
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gi4-3L-nlb" userLabel="PolkaDotsView">
                             <rect key="frame" x="0.0" y="0.0" width="290" height="290"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eua-Zx-IOX" userLabel="Num Pad" customClass="APNFlexKeypad" customModule="APNFlexKeypad">
+                                    <rect key="frame" x="25" y="8" width="226" height="225.99999999998727"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <view tag="11" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4M1-7n-YXd" userLabel="Backspace" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
+                                            <rect key="frame" x="35" y="181.33333333333326" width="40" height="39.999999999997726"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                        </view>
+                                        <view tag="12" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fx1-tg-710" userLabel="Clear" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
+                                            <rect key="frame" x="154" y="181.33333333333326" width="39.999999999995453" height="39.999999999997726"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                        </view>
+                                        <view tag="10" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ikl-Dq-cRp" userLabel="10" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
+                                            <rect key="frame" x="154.33333333333334" y="121" width="60" height="60"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                        </view>
+                                        <view tag="9" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GPf-SW-r0e" userLabel="9" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
+                                            <rect key="frame" x="108.33333333333334" y="137" width="60" height="60"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                        </view>
+                                        <view tag="8" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ciH-8k-a91" userLabel="8" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
+                                            <rect key="frame" x="56.333333333333343" y="137" width="60" height="60"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                        </view>
+                                        <view tag="7" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4gK-Ao-6sA" userLabel="7" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
+                                            <rect key="frame" x="9.3333333333333428" y="121" width="60" height="60"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                        </view>
+                                        <view tag="6" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QRA-pu-gGc" userLabel="6" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
+                                            <rect key="frame" x="173.33333333333334" y="79" width="60" height="60"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                        </view>
+                                        <view tag="5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jSB-M6-iZH" userLabel="5" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
+                                            <rect key="frame" x="155.33333333333334" y="36" width="60" height="59.999999999969305"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                        </view>
+                                        <view tag="4" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cv0-m7-jo0" userLabel="4" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
+                                            <rect key="frame" x="108.33333333333334" y="21" width="60" height="60"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                        </view>
+                                        <view tag="3" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zw6-fz-6nN" userLabel="3" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
+                                            <rect key="frame" x="59.333333333333343" y="21" width="60" height="60"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                        </view>
+                                        <view tag="2" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QD5-wy-fLb" userLabel="2" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
+                                            <rect key="frame" x="9.3333333333333428" y="35" width="60" height="60"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                        </view>
+                                        <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wOc-h1-9hr" userLabel="1" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
+                                            <rect key="frame" x="-7.6666666666666572" y="78" width="60" height="60"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" name="Blue"/>
+                                </view>
+                            </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
-                        <view contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3CX-BZ-S7T" userLabel="Fruit Pad" customClass="APNFlexKeypad" customModule="APNFlexKeypad">
-                            <rect key="frame" x="25.333333333333314" y="242" width="240" height="35"/>
+                        <view contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jIZ-qi-xY8" userLabel="Fruit Pad Container">
+                            <rect key="frame" x="25.333333333333332" y="244" width="240" height="35"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <view tag="1" contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JM8-BD-kNL" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
-                                    <rect key="frame" x="7" y="5" width="25" height="25"/>
+                                <view contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3CX-BZ-S7T" userLabel="Fruit Pad" customClass="APNFlexKeypad" customModule="APNFlexKeypad">
+                                    <rect key="frame" x="0.0" y="0.0" width="240" height="35"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" systemColor="systemTealColor"/>
-                                </view>
-                                <view tag="2" contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="97A-Ma-ydb" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
-                                    <rect key="frame" x="36" y="5" width="25" height="25"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" systemColor="systemTealColor"/>
-                                </view>
-                                <view tag="3" contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sxN-Qg-iAN" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
-                                    <rect key="frame" x="65" y="5" width="25" height="25"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" systemColor="systemTealColor"/>
-                                </view>
-                                <view tag="4" contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yWw-gR-8JA" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
-                                    <rect key="frame" x="94" y="5" width="25" height="25"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" systemColor="systemTealColor"/>
-                                </view>
-                                <view tag="5" contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNc-68-yMX" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
-                                    <rect key="frame" x="122" y="5" width="25" height="25"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" systemColor="systemTealColor"/>
-                                </view>
-                                <view tag="6" contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xnf-3s-6jA" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
-                                    <rect key="frame" x="151" y="5" width="25" height="25"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" systemColor="systemTealColor"/>
-                                </view>
-                                <view tag="7" contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQM-n8-cd3" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
-                                    <rect key="frame" x="180" y="5" width="25" height="25"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" systemColor="systemTealColor"/>
-                                </view>
-                                <view tag="8" contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oZK-Vw-auU" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
-                                    <rect key="frame" x="208" y="5" width="25" height="25"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" systemColor="systemTealColor"/>
+                                    <subviews>
+                                        <view tag="1" contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JM8-BD-kNL" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
+                                            <rect key="frame" x="7" y="5" width="25" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" systemColor="systemTealColor"/>
+                                        </view>
+                                        <view tag="2" contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="97A-Ma-ydb" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
+                                            <rect key="frame" x="36" y="5" width="25" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" systemColor="systemTealColor"/>
+                                        </view>
+                                        <view tag="3" contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sxN-Qg-iAN" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
+                                            <rect key="frame" x="65" y="5" width="25" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" systemColor="systemTealColor"/>
+                                        </view>
+                                        <view tag="4" contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yWw-gR-8JA" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
+                                            <rect key="frame" x="94" y="5" width="25" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" systemColor="systemTealColor"/>
+                                        </view>
+                                        <view tag="5" contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNc-68-yMX" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
+                                            <rect key="frame" x="122" y="5" width="25" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" systemColor="systemTealColor"/>
+                                        </view>
+                                        <view tag="6" contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xnf-3s-6jA" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
+                                            <rect key="frame" x="151" y="5" width="25" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" systemColor="systemTealColor"/>
+                                        </view>
+                                        <view tag="7" contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQM-n8-cd3" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
+                                            <rect key="frame" x="180" y="5" width="25" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" systemColor="systemTealColor"/>
+                                        </view>
+                                        <view tag="8" contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oZK-Vw-auU" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
+                                            <rect key="frame" x="208" y="5" width="25" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" systemColor="systemTealColor"/>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                 </view>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
-                        <view contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eua-Zx-IOX" userLabel="Num Pad" customClass="APNFlexKeypad" customModule="APNFlexKeypad">
-                            <rect key="frame" x="33" y="22" width="226" height="225.99999999998727"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <view tag="11" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4M1-7n-YXd" userLabel="Backspace" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
-                                    <rect key="frame" x="35" y="181.33333333333326" width="40" height="39.999999999997726"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" systemColor="systemIndigoColor"/>
-                                </view>
-                                <view tag="12" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fx1-tg-710" userLabel="Clear" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
-                                    <rect key="frame" x="154" y="181.33333333333326" width="39.999999999995453" height="39.999999999997726"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" systemColor="systemIndigoColor"/>
-                                </view>
-                                <view tag="10" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ikl-Dq-cRp" userLabel="10" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
-                                    <rect key="frame" x="154.33333333333334" y="121" width="60" height="60"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" systemColor="systemIndigoColor"/>
-                                </view>
-                                <view tag="9" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GPf-SW-r0e" userLabel="9" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
-                                    <rect key="frame" x="108.33333333333334" y="137" width="60" height="60"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                                </view>
-                                <view tag="8" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ciH-8k-a91" userLabel="8" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
-                                    <rect key="frame" x="56.333333333333343" y="137" width="60" height="60"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" systemColor="systemIndigoColor"/>
-                                </view>
-                                <view tag="7" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4gK-Ao-6sA" userLabel="7" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
-                                    <rect key="frame" x="9.3333333333333428" y="121" width="60" height="60"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                                </view>
-                                <view tag="6" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QRA-pu-gGc" userLabel="6" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
-                                    <rect key="frame" x="173.33333333333334" y="79" width="60" height="60"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                                </view>
-                                <view tag="5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jSB-M6-iZH" userLabel="5" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
-                                    <rect key="frame" x="155.33333333333334" y="36" width="60" height="59.999999999969305"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" systemColor="systemIndigoColor"/>
-                                </view>
-                                <view tag="4" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cv0-m7-jo0" userLabel="4" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
-                                    <rect key="frame" x="108.33333333333334" y="21" width="60" height="60"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                                </view>
-                                <view tag="3" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zw6-fz-6nN" userLabel="3" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
-                                    <rect key="frame" x="59.333333333333343" y="21" width="60" height="60"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" systemColor="systemIndigoColor"/>
-                                </view>
-                                <view tag="2" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QD5-wy-fLb" userLabel="2" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
-                                    <rect key="frame" x="9.3333333333333428" y="35" width="60" height="60"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                                </view>
-                                <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wOc-h1-9hr" userLabel="1" customClass="TaggedView" customModule="Ms_Scoreminder" customModuleProvider="target">
-                                    <rect key="frame" x="-7.6666666666666572" y="78" width="60" height="60"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" systemColor="systemIndigoColor"/>
-                                </view>
-                            </subviews>
-                            <color key="backgroundColor" name="Blue"/>
-                        </view>
-                        <view contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="99q-YI-Z1E" userLabel="scoreContainerView">
-                            <rect key="frame" x="87" y="101.99999999999744" width="117" height="57.999999999996703"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="99q-YI-Z1E" userLabel="scoreContainerView">
+                            <rect key="frame" x="79.333333333333343" y="88" width="119" height="62"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlL-Yb-ye7">
                                     <rect key="frame" x="0.0" y="0.0" width="58" height="58"/>
@@ -164,7 +173,7 @@
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain"/>
                                     <connections>
-                                        <action selector="decreasLevel:" destination="-1" eventType="touchUpInside" id="fgj-uz-cXq"/>
+                                        <action selector="decreaseLevel:" destination="-1" eventType="touchUpInside" id="EEj-Vp-Dsa"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MMu-Z7-yzm">
@@ -179,6 +188,10 @@
                                 </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemTealColor"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="119" id="EIZ-oC-Knk"/>
+                                <constraint firstAttribute="height" constant="62" id="eUd-jd-xZD"/>
+                            </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HyG-ov-x6j" userLabel="Delete Confirmation UI">
                             <rect key="frame" x="85" y="174" width="120" height="28"/>
@@ -262,7 +275,9 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="99q-YI-Z1E" firstAttribute="centerX" secondItem="4kg-R8-Hyb" secondAttribute="centerX" constant="-6.1666666666666572" id="C4d-WA-ulB"/>
                         <constraint firstItem="gi4-3L-nlb" firstAttribute="top" secondItem="4kg-R8-Hyb" secondAttribute="top" id="FsK-dw-M9E"/>
+                        <constraint firstItem="99q-YI-Z1E" firstAttribute="centerY" secondItem="4kg-R8-Hyb" secondAttribute="centerY" constant="-26" id="Hob-7I-y1L"/>
                         <constraint firstAttribute="bottom" secondItem="HyG-ov-x6j" secondAttribute="bottom" constant="88" id="SSX-bZ-xEi"/>
                         <constraint firstAttribute="trailing" secondItem="gi4-3L-nlb" secondAttribute="trailing" id="Tyj-fw-p9O"/>
                         <constraint firstItem="HyG-ov-x6j" firstAttribute="centerX" secondItem="4kg-R8-Hyb" secondAttribute="centerX" id="Wwc-20-Yqa"/>
@@ -285,20 +300,6 @@
             <point key="canvasLocation" x="12.977099236641221" y="-32.394366197183103"/>
         </view>
     </objects>
-    <designables>
-        <designable name="5ZI-k2-hdm">
-            <size key="intrinsicContentSize" width="30" height="27"/>
-        </designable>
-        <designable name="5h2-p0-h7h">
-            <size key="intrinsicContentSize" width="19" height="20.666666666666668"/>
-        </designable>
-        <designable name="5vv-hI-Ode">
-            <size key="intrinsicContentSize" width="30" height="28"/>
-        </designable>
-        <designable name="rnI-Sp-Cpd">
-            <size key="intrinsicContentSize" width="19.333333333333332" height="17.333333333333332"/>
-        </designable>
-    </designables>
     <resources>
         <image name="checkmark.square" catalog="system" width="128" height="114"/>
         <image name="trash" catalog="system" width="117" height="128"/>
@@ -321,13 +322,13 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemIndigoColor">
-            <color red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemTealColor">
-            <color red="0.18823529410000001" green="0.69019607839999997" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
