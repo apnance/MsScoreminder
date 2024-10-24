@@ -224,6 +224,9 @@ class ViewController: UIViewController {
         
         DispatchQueue.main.async { [self] in
             
+            let isAverage = statMan.prefs.scoreSortFilter.isAverage
+            let axisTitleVertical = isAverage ? "Average Score" : "Score"
+            
             let trimmedScores       = uiManagePointCount(withDateRange: dateRange)
             
             graphTitleLabel.text    = statMan.getFilterLabel(dateRange: dateRange)
@@ -236,7 +239,7 @@ class ViewController: UIViewController {
                                                          axisLabelVerticalFontSize: 8,
                                                          axisLabelHorizontalFontSize: 6,
                                                          axisLabelFontColor: .red,
-                                                         axisTitleVertical: "Average Score",
+                                                         axisTitleVertical: axisTitleVertical,
                                                          axisTitleHorizontal: "Date Played",
                                                          dotDiameter: 15,
                                                          dotOutlineColor: .black,
