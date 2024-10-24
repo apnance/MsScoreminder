@@ -99,7 +99,7 @@ class AtomicScoreView: UIView {
         averageGameCountLabel.text                  = "/\(score.averagedGameCount.description)"
         averageGameCountLabel.textColor             = .white
         averageGameCountLabel.clipsToBounds         = true
-        averageGameCountLabel.layer.cornerRadius    = averageGameCountLabel.frame.height / 3.0
+        averageGameCountLabel.layer.cornerRadius    = averageGameCountLabel.frame.height / 2.0
         
         // Score
         scoreLabel.text                 = score.score.delimited

@@ -104,11 +104,10 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Emq-DK-VKw">
-                    <rect key="frame" x="101" y="42" width="16" height="16"/>
+                    <rect key="frame" x="100.5" y="41.5" width="16.5" height="16.5"/>
                     <color key="backgroundColor" name="Cherry"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="Emq-DK-VKw" secondAttribute="height" multiplier="1:1" id="6cz-KW-vS7"/>
-                        <constraint firstAttribute="height" constant="16" id="f2M-0X-vat"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="9"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -127,6 +126,7 @@
             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="Emq-DK-VKw" secondAttribute="bottom" id="1HS-Jl-WMW"/>
+                <constraint firstItem="Emq-DK-VKw" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.27" constant="1" id="6NV-Qj-tlE"/>
                 <constraint firstAttribute="trailing" secondItem="ro1-2K-rxe" secondAttribute="trailing" constant="-5" id="6Te-lc-ixf"/>
                 <constraint firstAttribute="trailing" secondItem="AqY-Su-Diw" secondAttribute="trailing" constant="5" identifier="scoreStackViewR" id="6YZ-Ol-7PE"/>
                 <constraint firstItem="Csp-bg-MgK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-1" id="CGC-r1-aAc"/>
@@ -159,7 +159,7 @@
                 <outlet property="scoresStatsRoundView" destination="Gi6-lq-Ab2" id="29p-CG-hZC"/>
                 <outlet property="todayView" destination="7Ih-bR-OAN" id="z5X-DD-5Jv"/>
             </connections>
-            <point key="canvasLocation" x="108" y="-375"/>
+            <point key="canvasLocation" x="107.97101449275362" y="-375"/>
         </view>
     </objects>
     <resources>
