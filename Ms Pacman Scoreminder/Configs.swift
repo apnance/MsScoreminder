@@ -209,6 +209,8 @@ struct Configs {
             static let defaultData              = "DefaultData"
             static let testDataSmall            = "TestDataSmall"
             static let testDataSmallConsecutive = "TestDataSmallConsecutive"
+            static let testDataStatistics       = "TestDataStatistics"
+            
             static let testData20k              = "TestData20k"     //generated via StatManager.generateTestCSV(scoreCount: 20000)
             static let nilData: String?         = nil
             
@@ -247,6 +249,10 @@ struct Configs {
                 
             }
             
+            
+            /// Generates a path to the users .documentDirectory with provided file name.
+            /// - Parameter name: Name of file
+            /// - Returns: `String` path to specified file
             static func generatePathForFileNamed(_ name: String) -> String {
                 
                 base + name

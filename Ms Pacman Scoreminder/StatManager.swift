@@ -43,7 +43,7 @@ enum DateRange : CustomStringConvertible {
 class StatManager {
     
     private var saveNeeded  = false
-    private (set) var prefs = Preferences.shared
+    private(set) var prefs  = Preferences.shared
     var stats: Stats!
     
     private var _csv: CSV?
@@ -57,7 +57,7 @@ class StatManager {
     
     init() { stats = Stats() }
     
-    // Adds or updates score in the data hash then sets `saveNeeded = true`
+    /// Adds or updates score in the data hash then sets `saveNeeded = true`
     func set(_ score: Score) {
         
         assert(score.score % 10 == 0,
@@ -232,16 +232,17 @@ class StatManager {
             
             sortAndSetDates()
             
-            tallyScoreStats()
+            tallyFirstPass()
             
-            tallyDailyStats()
+            tallySecondPass()
             
         }
         
     }
     
+    /// Tallies statistics that require a single pass.
     /// - important: do not call directly, *call `tally` instead*
-    private func tallyScoreStats() {
+    private func tallyFirstPass() {
         
         stats.levelTally = Array(repeating: 0,
                                  count: Score.levelCount)
@@ -256,19 +257,18 @@ class StatManager {
         }
         
         var highScore: Score?
-        var high = Int.min
+        var high        = Int.min
         
         var lowScore: Score?
-        var low = Int.max
+        var low         = Int.max
         
         // Average
-        var scoreSum = 0
-        var levelSum = 0
-        var totalScores = 0
+        var scoreSum    = 0
+        var levelSum    = 0
         
         // Build Scores
-        let scoreData = getScoreData()
-        var scores = [Score]()
+        let scoreData   = getScoreData()
+        var scores      = [Score]()
         
         for dayScores in scoreData.values {
             
@@ -289,7 +289,6 @@ class StatManager {
                 let levelNum    = score.level.num
                 scoreSum        += score.score
                 levelSum        += levelNum
-                totalScores     += 1
                 
                 // Update Scores
                 scores.append(score)
@@ -342,7 +341,9 @@ class StatManager {
         
         setSortedScoreArrays(scores)
         
-        stats.singleGamesCount  = scores.count
+        let totalScores         = scores.count
+        
+        stats.singleGamesCount  = totalScores
         stats.highScore         = highScore
         stats.lowScore          = lowScore
         stats.avgScore          = Score(date: Date(),
@@ -352,8 +353,18 @@ class StatManager {
         
     }
     
+    /// Tallies statistics that require a second pass at the data (e.g. Standard Deviation)
     /// - important: do not call directly, call `tally` instead
-    private func tallyDailyStats() {
+    private func tallySecondPass() {
+        
+        //StdDev
+        var stdDevSquaredDiffSum = 0
+        func tallyStdDev(_ score: Score) {
+            
+            let dev = score.score - stats.avgScore.score
+            stdDevSquaredDiffSum += (dev * dev)
+            
+        }
         
         var dailies = [DailyStats]()
         
@@ -363,14 +374,28 @@ class StatManager {
            
             let scores = getScoresFor(date)
             
-            if scores.count < 2 { continue /*CONTINUE*/ }
+            // Non-Daily(i.e. single game per day) Second Pass Stats
+            if scores.count < 2 {
+                
+                if let score = scores.first {
+                    
+                    tallyStdDev(score) // StdDev: Tally
+                    
+                }
+                
+                continue /*CONTINUE*/
+                
+            }
             
+            // Daily Second Pass Stats
             var currentDaily = DailyStats()
             
             var scoreSum = 0
             var levelSum = 0
             
             scores.forEach{
+                
+                tallyStdDev($0) // StdDev: Tally
                 
                 scoreSum += $0.score
                 levelSum += $0.level.num
@@ -391,6 +416,13 @@ class StatManager {
             dailies.append(currentDaily)
             
         }
+        
+        // StdDev: Finalize
+        stats.stdDev = sqrt(stdDevSquaredDiffSum.double / stats.singleGamesCount.double)
+        
+        
+// TODO: Clean Up - delete
+print("Standard Deviation: \(stats.stdDev)")
         
         dailies.sort(by: >) // Sorted by averageScore
         
@@ -896,7 +928,6 @@ extension StatManager: DataManagerConfiguratorDataSource {
     var gapFindableStride: Int? { 1 }
     
 }
-
 
 // - MARK: Debug
 extension StatManager {

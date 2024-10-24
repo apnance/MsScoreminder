@@ -38,6 +38,7 @@ struct Stats {
     var highScore:  Score!
     var lowScore:   Score!
     var avgScore:   Score!
+    var stdDev: Double!
     var singleGamesCount  = 0
     var averagedGamesCount : Int { dailies.count }
     
