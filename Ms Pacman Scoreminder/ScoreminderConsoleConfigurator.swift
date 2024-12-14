@@ -21,8 +21,6 @@ struct ScoreminderConsoleConfigurator: ConsoleConfigurator {
     
     weak private var statMan: StatManager!
     
-   var consoleView: ConsoleView { Console.screen }
-    
     var commands: [Command]? { [
         
         MinderStatLab(statMan: statMan),
