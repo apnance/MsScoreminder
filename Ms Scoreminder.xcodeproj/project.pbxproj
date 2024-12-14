@@ -25,7 +25,6 @@
 		932C15062CC986BB007C28E7 /* TestDataStatistics.csv in Resources */ = {isa = PBXBuildFile; fileRef = 932C15052CC986BB007C28E7 /* TestDataStatistics.csv */; };
 		932C15092CC98D98007C28E7 /* StatManagerPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932C15072CC9899A007C28E7 /* StatManagerPerformanceTests.swift */; };
 		932F7E2826FAD3C1001147B7 /* Configs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932F7E2526FAD323001147B7 /* Configs.swift */; };
-		9331176228E79EE9009F2054 /* APNUtil in Frameworks */ = {isa = PBXBuildFile; productRef = 9331176128E79EE9009F2054 /* APNUtil */; };
 		933345C02A9076E400BF1592 /* TaggedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933345BF2A9076E400BF1592 /* TaggedView.swift */; };
 		933345C22A92FB3200BF1592 /* AnimatedSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933345C12A92FB3100BF1592 /* AnimatedSprite.swift */; };
 		93345AD42730698D0090154B /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93345AD32730698D0090154B /* Stats.swift */; };
@@ -116,7 +115,6 @@
 		932C15072CC9899A007C28E7 /* StatManagerPerformanceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatManagerPerformanceTests.swift; sourceTree = "<group>"; };
 		932CE9ED2705410D006A1CF8 /* Ms Scoreminder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Ms Scoreminder.entitlements"; sourceTree = "<group>"; };
 		932F7E2526FAD323001147B7 /* Configs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configs.swift; sourceTree = "<group>"; };
-		9331175F28E79D85009F2054 /* APNUtil */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = APNUtil; path = ../../Frameworks/APNUtil; sourceTree = "<group>"; };
 		933345BF2A9076E400BF1592 /* TaggedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaggedView.swift; sourceTree = "<group>"; };
 		933345C12A92FB3100BF1592 /* AnimatedSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedSprite.swift; sourceTree = "<group>"; };
 		93345AD32730698D0090154B /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
@@ -156,7 +154,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9331176228E79EE9009F2054 /* APNUtil in Frameworks */,
 				93DD059D2A86E3E90030D504 /* APNFlexKeypad in Frameworks */,
 				93D98BD328DD315C00FD0F80 /* APNGraph in Frameworks */,
 				93DEECF82C53428300473587 /* ConsoleView in Frameworks */,
@@ -332,7 +329,6 @@
 			isa = PBXGroup;
 			children = (
 				93D98BD128DD314F00FD0F80 /* APNGraph */,
-				9331175F28E79D85009F2054 /* APNUtil */,
 				93DD059B2A86E3CC0030D504 /* APNFlexKeypad */,
 			);
 			name = Packages;

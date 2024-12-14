@@ -14,8 +14,6 @@ struct MinderStatLab: Command {
     var statMan: StatManager
     
     // - MARK: Command Requirements
-    var console: Console
-    
     var commandToken    = Configs.Console.Commands.StatLab.token
     
     var isGreedy        = false
@@ -26,7 +24,7 @@ struct MinderStatLab: Command {
     
     func process(_ args: [String]?) -> CommandOutput {
         
-        screen.formatCommandOutput(statMan.runStatLab())
+        CommandOutput.output(statMan.runStatLab())
         
     }
 }

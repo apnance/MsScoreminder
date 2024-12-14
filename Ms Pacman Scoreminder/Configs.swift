@@ -55,8 +55,8 @@ struct Configs {
                 static var token    = "statlab"
                 static var category =  Configs.Console.Commands.category
                 static var helpText = """
-                                        Runs a battery of potentially expensive statistical
-                                        \tanalyses, echoing the results.
+                                        Runs a battery of potentially expensive statistical \
+                                        analyses, echoing the results.
                                         """
                 
             }

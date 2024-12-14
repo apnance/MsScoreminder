@@ -16,8 +16,6 @@ struct MinderPlayed: Command {
     var statMan: StatManager
     
     // - MARK: Command Requirements
-    var console: Console
-    
     var commandToken    = Configs.Console.Commands.Played.token
     
     var isGreedy        = false
@@ -35,11 +33,11 @@ struct MinderPlayed: Command {
         
         if let date = arg1.simpleDateMaybe {
             
-            return screen.formatCommandOutput(statMan.played(date))
+            return CommandOutput.output(statMan.played(date))
             
         } else {
             
-            return screen.formatCommandOutput(statMan.played())
+            return CommandOutput.output(statMan.played())
             
         }
         

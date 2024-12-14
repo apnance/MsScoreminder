@@ -468,8 +468,7 @@ class ViewController: UIViewController {
         AtomicScoreView.setStandardDims(width, height)
         
         // Console
-        ScoreminderConsoleConfigurator(consoleView: consoleView, 
-                                       statManager: statMan)
+        ScoreminderConsoleConfigurator(statManager: statMan)
         spritesViewContainer.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                                          action: #selector(handleConsoleViewTap(_:))))
         

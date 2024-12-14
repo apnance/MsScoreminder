@@ -16,8 +16,6 @@ struct MinderCSV: Command {
     weak var statMan: StatManager?
     
     // - MARK: Command Requirements
-    var console: Console
-    
     var commandToken    = Configs.Console.Commands.CSV.token
     
     var isGreedy        = false
@@ -30,18 +28,14 @@ struct MinderCSV: Command {
         
         let csv = statMan!.csv
         
-        var atts = screen.formatCommandOutput("""
-                      \(csv)
-                      [Note: above output copied to pasteboard]
-                      """)
-        
-        // Format
-        atts.formatted.foregroundColor = UIColor.pear
+        var output  = CommandOutput.output(csv)
+        output      += CommandOutput.note("copied to pasteboard.",
+                                          newLines: 1)
         
         // Pasteboard
         printToClipboard(csv)
         
-        return atts /*EXIT*/
+        return output /*EXIT*/
         
     }
     

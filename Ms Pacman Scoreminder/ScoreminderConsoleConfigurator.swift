@@ -11,26 +11,23 @@ import ConsoleView
 
 struct ScoreminderConsoleConfigurator: ConsoleConfigurator {
     
-    @discardableResult init(consoleView: ConsoleView,
-                            statManager: StatManager) {
+    @discardableResult init(statManager: StatManager) {
         
-        self._consoleView   = consoleView
         self.statMan        = statManager
         
         load()
         
     }
     
-    weak private var _consoleView: ConsoleView!
     weak private var statMan: StatManager!
     
-    var consoleView: ConsoleView { _consoleView }
+   var consoleView: ConsoleView { Console.screen }
     
     var commands: [Command]? { [
         
-        MinderStatLab(statMan: statMan, console: consoleView.console),
-        MinderPlayed(statMan: statMan, console: consoleView.console),
-        MinderCSV(statMan: statMan, console: consoleView.console)
+        MinderStatLab(statMan: statMan),
+        MinderPlayed(statMan: statMan),
+        MinderCSV(statMan: statMan)
         
     ] }
     
@@ -42,6 +39,7 @@ struct ScoreminderConsoleConfigurator: ConsoleConfigurator {
         configs.fgColorCommandLine              = UIColor.darkPink
         configs.fgColorScreenInput              = UIColor.orange
         configs.fgColorScreenOutput             = UIColor.banana
+        configs.fgColorScreenOutputNote         = UIColor.msBlue
         configs.borderWidth                     = 1.0
         configs.borderColor                     = UIColor.pear.cgColor
         configs.bgColor                         = .black.pointSevenAlpha
