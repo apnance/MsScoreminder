@@ -44,6 +44,7 @@
 		93B6D0EC27021DAD005ADF3F /* AtomicScoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93B6D0EB27021DAD005ADF3F /* AtomicScoreView.xib */; };
 		93B6D0EE270231A4005ADF3F /* AtomicScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B6D0ED270231A4005ADF3F /* AtomicScoreView.swift */; };
 		93BBC0542C864C1900267929 /* PlayReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BBC0532C864C1900267929 /* PlayReminder.swift */; };
+		93C39F012D117CE2004964CA /* APNUtil in Frameworks */ = {isa = PBXBuildFile; productRef = 9331176128E79EE9009F2054 /* APNUtil */; };
 		93D030A02ADE0709007665A2 /* StatLab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D0309F2ADE0709007665A2 /* StatLab.swift */; };
 		93D92D3D2C6DBD4200843AA0 /* TestDataSmallConsecutive.csv in Resources */ = {isa = PBXBuildFile; fileRef = 93D92D3C2C6DBD4200843AA0 /* TestDataSmallConsecutive.csv */; };
 		93D98BD328DD315C00FD0F80 /* APNGraph in Frameworks */ = {isa = PBXBuildFile; productRef = 93D98BD228DD315C00FD0F80 /* APNGraph */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -154,6 +155,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93C39F012D117CE2004964CA /* APNUtil in Frameworks */,
 				93DD059D2A86E3E90030D504 /* APNFlexKeypad in Frameworks */,
 				93D98BD328DD315C00FD0F80 /* APNGraph in Frameworks */,
 				93DEECF82C53428300473587 /* ConsoleView in Frameworks */,
